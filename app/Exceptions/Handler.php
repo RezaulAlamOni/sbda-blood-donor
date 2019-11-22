@@ -46,6 +46,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json([
+                'data' => 'Resource data found'
+            ], 404);
+        }
+        $class = get_class($exception);
+        switch($class) {
+            case 'Illuminate\Auth\AuthenticationException':
+                $guard = array_get($exception->guards(), 0);
+                switch ($guard) {
+                    case 'donor':
+                        $login = 'donor.login';break;
+                    case 'web':
+                        $login = 'login';break;
+                    default:
+                        $login = 'login';break;
+                }
+                return redirect()->route($login);
+        }
         return parent::render($request, $exception);
     }
 }

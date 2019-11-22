@@ -8,7 +8,7 @@
  * Last Update: 21-11-2017
  **/
 /*========================================================================*/
-/*   TABLE OF CONTENT
+/*   TABLE OF CONTENnavbar-default T
 /*========================================================================*/
 /*
 /*      01. GENERAL STYLING
@@ -863,7 +863,7 @@ a.logo img {
   border: none;
   background: transparent;
   margin-bottom: 0px;
-  padding: 12px 0;
+  /*padding: 12px 0;*/
 }
 .navbar-default .navbar-nav {
   margin-top: 10px;

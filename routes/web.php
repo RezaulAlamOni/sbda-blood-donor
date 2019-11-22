@@ -11,11 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('layouts.master');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+
+Route::prefix('admin')->group(function (){
+    Route::get('/', 'AdminController@index')->name('admin');
+});
+Route::prefix('donor')->group(function (){
+
+    Route::get('/', 'DonorController@index')->name('donor');
+    Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
+});
 

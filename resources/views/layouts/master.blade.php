@@ -55,46 +55,43 @@
         </div> <!--  end .container -->
 
     </div> <!--  end .top-bar  -->
-
     <section class="header-wrapper navgiation-wrapper">
-
-        <
         <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
-                    <a class="logo" href="https://saptagaon.com/">
-                        <img style="height: 60px;" alt="" src={{}}""> </a></div>
+                    <a class="logo" href="#">
+                        <img style="height: 60px;" alt="" src="{{asset('images/logo/sbda-logo.png')}}"> </a></div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" title="Excutive Committee">Excutive Committee</a>
                             <ul class="drop-down">
-                                <li><a href="https://saptagaon.com/advisers">Advisers</a></li>
-                                <li><a href="https://saptagaon.com/excutive-committee">Excutive Committee</a></li>
+                                <li><a href="#advisers">Advisers</a></li>
+                                <li><a href="#excutive-committee">Excutive Committee</a></li>
                             </ul>
                         </li>
                         <li><a href="#" title="Members">Members</a>
                             <ul class="drop-down">
-                                <li><a href="https://saptagaon.com/about-membership">About Membership</a></li>
+                                <li><a href="#about-membership">About Membership</a></li>
                                 <li><a href="#">Apply for Membership</a></li>
                                 <li><a href="#">Life Member</a></li>
-                                <li><a href="https://saptagaon.com/founder-member">Founder Member</a></li>
+                                <li><a href="#founder-member">Founder Member</a></li>
                             </ul>
                         </li>
-                        <li><a href="https://saptagaon.com/about-us" title="About Us">About Us</a></li>
-                        <!--<li><a href="https://saptagaon.com/blog">Blog</a></li>-->
-                        <li><a href="https://saptagaon.com/blog">gallary</a></li>
-                        <li><a href="https://saptagaon.com/contact-us">Contact</a></li>
-                        <li><a href="https://saptagaon.com/registration">Join as Donor</a></li>
-                        <li><a href="https://saptagaon.com/login">Login</a></li>
+                        <li><a href="#about-us" title="About Us">About Us</a></li>
+                        <!--<li><a href="#blog">Blog</a></li>-->
+                        <li><a href="#blog">gallary</a></li>
+                        <li><a href="#contact-us">Contact</a></li>
+                        <li><a href="#registration">Join as Donor</a></li>
+                        <li><a href="#login">Login</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
     </section>
+
 
 </header> <!-- end main-header  -->
 
