@@ -10,4 +10,8 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function Default_vue (){
+        return view('layouts.app');
+    }
 }

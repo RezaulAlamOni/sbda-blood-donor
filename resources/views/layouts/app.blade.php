@@ -68,6 +68,8 @@
                 </div>
             </div>
         </nav>
+        <router-view></router-view>
+
 
         <main class="py-4">
             @yield('content')
