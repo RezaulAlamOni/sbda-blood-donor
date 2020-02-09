@@ -15,9 +15,8 @@
 //    return view('layouts.master');
 //});
 
-Route::prefix('donor')->group(function (){
 
-    Route::get('/', 'DonorController@index')->name('donor');
-    Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
-});
+    Route::get('/donor', 'DonorController@index')->name('donor');
+//    Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
+
 

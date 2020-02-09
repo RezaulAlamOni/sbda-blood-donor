@@ -56,8 +56,8 @@ class Handler extends ExceptionHandler
             case 'Illuminate\Auth\AuthenticationException':
                 $guard = array_get($exception->guards(), 0);
                 switch ($guard) {
-                    case 'donor':
-                        $login = 'donor.login';break;
+                    case 'admin':
+                        $login = 'admin.login';break;
                     case 'web':
                         $login = 'login';break;
                     default:

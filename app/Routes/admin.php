@@ -18,5 +18,6 @@
 
 Route::prefix('admin')->group(function (){
     Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 });
 
