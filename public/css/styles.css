@@ -972,7 +972,7 @@ header.one-page .navbar-nav > li > a span {
 /* 04. HOME PAGE */
 /***********************************************************************************************/
 .section-content-block {
-  padding: 100px 0 100px 0;
+  padding: 30px 0 30px 0;
   background: #FFFFFF;
 }
 .section-heading-wrapper {
@@ -1083,7 +1083,7 @@ header.one-page .navbar-nav > li > a span {
   letter-spacing: 0;
   line-height: 48px;
   position: relative;
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/
 }
 .section-heading-wrapper-alt p,
 .section-heading-wrapper-alt h4 {
@@ -1091,7 +1091,7 @@ header.one-page .navbar-nav > li > a span {
   line-height: 32px;
   font-weight: 400;
   margin-bottom: 0px;
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/
 }
 .section-heading-wrapper-alt span.heading-separator {
   display: inline-block;
@@ -5368,7 +5368,7 @@ span.border-bold-dashed {
   margin-top: 60px !important;
 }
 .margin-top-80 {
-  margin-top: 80px !important;
+  margin-top: 0px !important;
 }
 /*----- BOTTOM MARGIN ----*/
 .margin-bottom-5 {

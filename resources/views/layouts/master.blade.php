@@ -67,8 +67,10 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                         </button>
-                        <a class="logo" href="#">
-                            <img style="height: 60px;" alt="" src="{{asset('images/logo/sbda-logo.png')}}"> </a></div>
+                        <a class="logo" href="/">
+                            <img style="height: 60px;" alt="" src="images/logo/sbda-logo.png">
+                        </a>
+                    </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#" title="Excutive Committee">Excutive Committee</a>
