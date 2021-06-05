@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter)
 
 import test_home from '../components/ExampleComponent'
-import home from '../components/HomeComponent'
+import home from '../components/HomeComponent';
+import gallery from "../components/pages/gallery";
 
 let routes = [
     {
@@ -12,9 +13,9 @@ let routes = [
         name: "home"
     },
     {
-        path: "/test-home",
-        component: test_home,
-        name: "test-home"
+        path: "/gallery",
+        component: gallery,
+        name: "gallery"
     },
 
 ];

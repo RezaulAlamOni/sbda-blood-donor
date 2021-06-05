@@ -782,7 +782,7 @@
 export default {
     name: "HomeComponent",
     mounted() {
-        alert()
+
     }
 }
 </script>
