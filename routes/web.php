@@ -17,7 +17,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+//Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get( '/{vue_route?}', 'HomeController@Default_vue' )->where( 'vue_route', '(.*)' );

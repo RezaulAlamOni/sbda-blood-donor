@@ -12,6 +12,6 @@ class HomeController extends Controller
     }
 
     public function Default_vue (){
-        return view('layouts.app');
+        return view('layouts.master');
     }
 }

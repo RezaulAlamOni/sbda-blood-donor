@@ -3,8 +3,14 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter)
 
 import test_home from '../components/ExampleComponent'
+import home from '../components/HomeComponent'
 
 let routes = [
+    {
+        path: "/",
+        component: home,
+        name: "home"
+    },
     {
         path: "/test-home",
         component: test_home,
