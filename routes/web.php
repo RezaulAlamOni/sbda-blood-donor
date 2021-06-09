@@ -17,8 +17,11 @@
 
 Auth::routes();
 
-//Route::get('/', 'HomeController@index')->name('home');
 
+Route::group(['prefix'=>'admin'], function(){
+    Route::get('/', ['as' => 'index', 'uses' => 'AccountController@index']);
+//    Route::get( '/{vue_route?}', 'HomeController@Default_vue' )->where( 'vue_route', '(.*)' );
+});
 
 Route::get( '/{vue_route?}', 'HomeController@Default_vue' )->where( 'vue_route', '(.*)' );
 

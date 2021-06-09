@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('phone')->index();
+            $table->string('address')->nullable();
+            $table->integer('blood_group_id')->nullable();
+            $table->integer('donation_count')->nullable();
+            $table->tinyInteger('status')->default(0)->comment('0 Pending And confirmed');
             $table->rememberToken();
             $table->timestamps();
         });
