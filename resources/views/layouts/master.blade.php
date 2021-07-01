@@ -338,6 +338,10 @@
 <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('js/venobox.min.js')}}"></script>
 <script src="{{asset('js/custom-scripts.js')}}"></script>
+
+<script>
+    window.APP_URL = '{{ config('app.url') }}';
+</script>
 </body>
 
 </html>

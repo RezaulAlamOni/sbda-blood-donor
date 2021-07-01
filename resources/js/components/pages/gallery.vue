@@ -22,95 +22,19 @@
 
             <div class="row no-padding-gallery">
 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_1.jpg">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">
+                    <a class="gallery-light-box" data-gall="myGallery" :href="'images/'+photo.photo">
 
                         <figure class="gallery-img">
-
-                            <img src="images/gallery_1.jpg" alt="gallery image"/>
+                            <img v-bind:src="app_url+'images/'+photo.photo" alt="gallery image"/>
 
                         </figure> <!-- end .gallery-img  -->
 
                     </a>
 
                 </div><!-- end .col-sm-3  -->
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_2.jpg">
-
-                        <figure class="gallery-img">
-
-                            <img src="images/gallery_2.jpg" alt="gallery image"/>
-
-                        </figure> <!-- end .gallery-img  -->
-
-                    </a> <!-- end .gallery-light-box  -->
-
-                </div><!-- end .col-sm-3  -->
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_3.jpg">
-
-                        <figure class="gallery-img">
-
-                            <img src="images/gallery_3.jpg" alt="gallery image"/>
-
-                        </figure> <!-- end .gallery-img  -->
-
-                    </a>
-
-                </div><!-- end .col-sm-3  -->
-
             </div> <!-- end .row  -->
 
-            <div class="row no-padding-gallery">
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_4.jpg">
-
-                        <figure class="gallery-img">
-
-                            <img src="images/gallery_4.jpg" alt="gallery image"/>
-
-                        </figure> <!-- end .gallery-img  -->
-
-                    </a> <!-- end .gallery-light-box  -->
-
-                </div><!-- end .col-sm-3  -->
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_5.jpg">
-
-                        <figure class="gallery-img">
-
-                            <img src="images/gallery_5.jpg" alt="gallery image"/>
-
-                        </figure> <!-- end .gallery-img  -->
-
-                    </a>
-
-                </div><!-- end .col-sm-3  -->
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-
-                    <a class="gallery-light-box" data-gall="myGallery" href="images/gallery_6.jpg">
-
-                        <figure class="gallery-img">
-
-                            <img src="images/gallery_6.jpg" alt="gallery image"/>
-
-                        </figure> <!-- end .gallery-img  -->
-
-                    </a> <!-- end .gallery-light-box  -->
-
-                </div><!-- end .col-sm-3  -->
-
-            </div> <!-- end .row  -->
 
         </div><!-- end .container-fluid  -->
 
@@ -121,7 +45,24 @@
 
 <script>
 export default {
-    name: "gallery"
+    name: "gallery",
+    data(){
+      return {
+          photos : [],
+          app_url: window.APP_URL
+      }
+    },
+    mounted() {
+        this.photos = [
+                { id : 1 , photo : 'gallery_1.jpg'},
+                { id : 2 , photo : 'gallery_2.jpg'},
+                { id : 3 , photo : 'gallery_3.jpg'},
+                { id : 4 , photo : 'gallery_4.jpg'},
+                { id : 5 , photo : 'gallery_5.jpg'},
+                { id : 6 , photo : 'gallery_6.jpg'}
+            ]
+    },
+
 }
 </script>
 

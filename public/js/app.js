@@ -2590,84 +2590,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "gallery"
+  name: "gallery",
+  data: function data() {
+    return {
+      photos: [],
+      app_url: window.APP_URL
+    };
+  },
+  mounted: function mounted() {
+    this.photos = [{
+      id: 1,
+      photo: 'gallery_1.jpg'
+    }, {
+      id: 2,
+      photo: 'gallery_2.jpg'
+    }, {
+      id: 3,
+      photo: 'gallery_3.jpg'
+    }, {
+      id: 4,
+      photo: 'gallery_4.jpg'
+    }, {
+      id: 5,
+      photo: 'gallery_5.jpg'
+    }, {
+      id: 6,
+      photo: 'gallery_6.jpg'
+    }];
+  }
 });
 
 /***/ }),
@@ -40306,226 +40257,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "section-content-block section-pure-white-bg" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container wow fadeInUp" }, [
+        _c(
+          "div",
+          { staticClass: "row no-padding-gallery" },
+          _vm._l(_vm.photos, function(photo) {
+            return _c(
+              "div",
+              {
+                key: photo.id,
+                staticClass:
+                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "gallery-light-box",
+                    attrs: {
+                      "data-gall": "myGallery",
+                      href: "images/" + photo.photo
+                    }
+                  },
+                  [
+                    _c("figure", { staticClass: "gallery-img" }, [
+                      _c("img", {
+                        attrs: {
+                          src: _vm.app_url + "images/" + photo.photo,
+                          alt: "gallery image"
+                        }
+                      })
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "section-content-block section-pure-white-bg" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row section-heading-wrapper" }, [
-            _c(
-              "div",
-              {
-                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
-              },
-              [
-                _c("h2", [_vm._v("CAMPAIGN GALLERY")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "heading-separator" }),
-                _vm._v(" "),
-                _c("h4", [
-                  _vm._v(
-                    "our prestigious voluntary work on campaigns by the team"
-                  )
-                ])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "container wow fadeInUp" }, [
-          _c("div", { staticClass: "row no-padding-gallery" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_1.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_1.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            ),
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row section-heading-wrapper" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-12 col-sm-12 text-center no-img-separator" },
+          [
+            _c("h2", [_vm._v("CAMPAIGN GALLERY")]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_2.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_2.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            ),
+            _c("span", { staticClass: "heading-separator" }),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_3.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_3.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row no-padding-gallery" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_4.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_4.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_5.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_5.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/gallery_6.jpg"
-                    }
-                  },
-                  [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "images/gallery_6.jpg",
-                          alt: "gallery image"
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
-            )
-          ])
-        ])
-      ]
-    )
+            _c("h4", [
+              _vm._v("our prestigious voluntary work on campaigns by the team")
+            ])
+          ]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
