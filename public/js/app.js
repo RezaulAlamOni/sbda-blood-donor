@@ -40566,7 +40566,7 @@ var render = function() {
               attrs: {
                 method: "post",
                 id: "form_validation",
-                action: "https://saptagaon.com/login",
+                action: _vm.app_url + "register",
                 "data-fv-framework": "bootstrap",
                 "data-bv-message": "This value is not valid",
                 "data-bv-feedbackicons-valid": "",
@@ -40603,10 +40603,15 @@ var render = function() {
                           "select",
                           {
                             staticClass: "form-select form-control",
-                            attrs: { "aria-label": "Default select example" }
+                            attrs: {
+                              name: "blood_group",
+                              "aria-label": "Default select example"
+                            }
                           },
                           [
-                            _c("option", [_vm._v("Select Blood Group")]),
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm._v("Select Blood Group")
+                            ]),
                             _vm._v(" "),
                             _vm._l(_vm.blood_groups, function(b_group) {
                               return _c(
@@ -40676,7 +40681,7 @@ var staticRenderFns = [
           attrs: {
             type: "text",
             id: "name",
-            name: "email",
+            name: "name",
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter full name",

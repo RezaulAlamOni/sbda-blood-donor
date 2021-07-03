@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <form method="post" id="form_validation" action="https://saptagaon.com/login"
+                    <form method="post" id="form_validation" :action="app_url+'register'"
                           data-fv-framework="bootstrap" data-bv-message="This value is not valid"
                           data-bv-feedbackicons-valid="" data-bv-feedbackicons-invalid=""
                           data-bv-feedbackicons-validating="" novalidate="novalidate" class="bv-form">
@@ -27,7 +27,7 @@
                                                 <small class="text-danger">*</small>
                                             </label>
                                             <input type="text" class="form-control" id="name"
-                                                   name="email" value=""
+                                                   name="name" value=""
                                                    data-bv-notempty="true"
                                                    placeholder="enter full name"
                                                    data-bv-field="email">
@@ -85,8 +85,8 @@
                                             <label class="control-label">Blood Group :
                                                 <small class="text-danger">*</small>
                                             </label>
-                                            <select class="form-select form-control" aria-label="Default select example">
-                                                <option >Select Blood Group</option>
+                                            <select class="form-select form-control" name="blood_group" aria-label="Default select example">
+                                                <option value="0" >Select Blood Group</option>
                                                 <option v-for="b_group in blood_groups" :value="b_group.id">{{ b_group.name }}</option>
                                             </select>
                                             <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
