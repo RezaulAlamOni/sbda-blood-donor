@@ -16,7 +16,7 @@
 //});
 
 
-    Route::get('/donor', 'DonorController@index')->name('donor');
-//    Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
+Route::get('/donor', 'DonorController@index')->name('donor');
+Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
 
-
+Route::get('/blood-groups','BloodGroupController@index')->name('blood_group');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BloodGroup;
+use App\Models\BloodGroup;
 use Illuminate\Http\Request;
 
 class BloodGroupController extends Controller
@@ -14,7 +14,9 @@ class BloodGroupController extends Controller
      */
     public function index()
     {
-        //
+        $blood_groups = BloodGroup::all();
+
+        return response()->json(['data' => $blood_groups]);
     }
 
     /**

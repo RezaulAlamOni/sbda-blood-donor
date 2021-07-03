@@ -4,7 +4,11 @@ Vue.use(VueRouter)
 
 import test_home from '../components/ExampleComponent'
 import home from '../components/HomeComponent';
-import gallery from "../components/pages/gallery";
+import gallery from "../components/pages/uses/gallery";
+import member_registration from "../components/pages/uses/member-registration";
+
+let base_url = window.APP_URL
+
 
 let routes = [
     {
@@ -16,6 +20,11 @@ let routes = [
         path: "/gallery",
         component: gallery,
         name: "gallery"
+    },
+    {
+        path: "/member-registration",
+        component: member_registration,
+        name: "member-registration"
     },
 
 ];
