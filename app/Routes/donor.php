@@ -19,6 +19,7 @@
 Route::get('/donor', 'DonorController@index')->name('donor');
 Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.login');
 Route::get('/register', 'Auth\RegisterController@register')->name('donor.register');
+Route::get('/auth-check', 'DonorController@authCheck')->name('auth.check');
 
 
 // blood group

@@ -6,6 +6,7 @@ import test_home from '../components/ExampleComponent'
 import home from '../components/HomeComponent';
 import gallery from "../components/pages/uses/gallery";
 import member_registration from "../components/pages/uses/member-registration";
+import member_login from "../components/pages/uses/member-login";
 
 let base_url = window.APP_URL
 
@@ -25,6 +26,10 @@ let routes = [
         path: "/member-registration",
         component: member_registration,
         name: "member-registration"
+    },{
+        path: "/login",
+        component: member_login,
+        name: "login"
     },
 
 ];
