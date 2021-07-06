@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-4">
-                    <form method="post" id="form_validation" action="https://saptagaon.com/login"
+                    <form method="post" id="form_validation" action="/login"
                           data-fv-framework="bootstrap" data-bv-message="This value is not valid"
                           data-bv-feedbackicons-valid="" data-bv-feedbackicons-invalid=""
                           data-bv-feedbackicons-validating="" novalidate="novalidate" class="bv-form">
@@ -14,24 +14,12 @@
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="text-center">
-                                    <h4>Join as SBDA Member.</h4>
+                                    <h4>Sign-In as SBDA Member.</h4>
                                     <small>
                                         <span class="text-danger">*</span> Required fields
                                     </small>
                                 </div>
                                 <hr>
-                                <div class="form-group">
-                                    <label class="control-label">Full Name:
-                                        <small class="text-danger">*</small>
-                                    </label>
-                                    <input type="text" class="form-control" id="name"
-                                           name="email" value=""
-                                           data-bv-notempty="true"
-                                           placeholder="enter full name"
-                                           data-bv-field="email">
-                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="email"
-                                    data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
-                                </div>
                                 <div class="form-group">
                                     <label class="control-label">E-mail/Mobile:
                                         <small class="text-danger">*</small>
@@ -59,7 +47,7 @@
                             <div class="panel-footer">
                                 <div class="pull-left">
                                     <p style="padding-top: 10px;">
-                                        <a class="text-primary" href="https://saptagaon.com/forgotpassword">Forgot password?</a></p>
+                                        <a class="text-primary" href="/password/reset">Forgot password?</a></p>
                                 </div>
                                 <div class="pull-right">
                                     <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-key"></i> Join now
@@ -78,7 +66,7 @@
 
 <script>
 export default {
-    name: "member-registration",
+    name: "member-login",
     data(){
       return {
           photos : [],

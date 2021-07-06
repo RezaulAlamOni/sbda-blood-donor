@@ -34,9 +34,9 @@
 <div id="app">
 
     <!--  HEADER -->
-    <header class="main-header clearfix" data-sticky_header="true">>
+    <header class="main-header clearfix" data-sticky_header="true">
         <header-component></header-component>
-    </header
+    </header>
 
     <!-- end main-header  -->
 

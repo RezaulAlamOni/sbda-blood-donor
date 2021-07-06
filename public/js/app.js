@@ -2718,8 +2718,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "header-component"
+  name: "header-component",
+  data: function data() {
+    return {
+      auth: null,
+      app_url: window.APP_URL
+    };
+  },
+  mounted: function mounted() {
+    this.get_auth();
+  },
+  methods: {
+    get_auth: function get_auth() {
+      var _this = this;
+
+      axios.get(_this.app_url + 'auth-check').then(function (respose) {
+        console.log(respose.data);
+        _this.auth = respose.data.auth;
+
+        if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login') && _this.auth) {
+          console.log(_this.$route.name);
+
+          _this.$router.push({
+            name: 'home'
+          });
+        }
+      })["catch"](function (er) {
+        console.log(er.message);
+      })["finally"](function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -2799,20 +2829,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "member-registration",
+  name: "member-login",
   data: function data() {
     return {
       photos: [],
@@ -40827,25 +40845,41 @@ var render = function() {
                 _c("ul", { staticClass: "drop-down" }, [
                   _vm._m(3),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: "member-registration" } },
-                        [_vm._v("Apply for Membership")]
+                  !_vm.auth
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: "member-registration" } },
+                            [_vm._v("Apply for Membership")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm.auth
+                    ? _c("li", [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Join as Donor")
+                        ])
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _vm.auth
+                    ? _c("li", [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(" Apply for Volunteer")
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(4)
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6),
+              _vm._m(5),
               _vm._v(" "),
               _c(
                 "li",
@@ -40857,19 +40891,19 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(7),
+              _vm._m(6),
               _vm._v(" "),
-              _vm._m(8),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c("router-link", { attrs: { to: "login" } }, [
-                    _vm._v("Login")
-                  ])
-                ],
-                1
-              )
+              !_vm.auth
+                ? _c(
+                    "li",
+                    [
+                      _c("router-link", { attrs: { to: { name: "login" } } }, [
+                        _vm._v("Login")
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e()
             ])
           ])
         ])
@@ -40894,7 +40928,7 @@ var staticRenderFns = [
               _c("i", { staticClass: "fa fa-phone" }),
               _vm._v(" "),
               _c("a", { attrs: { href: "tel:01905199278" } }, [
-                _vm._v("01905 199\n                            278")
+                _vm._v("01905 199\n                                278")
               ])
             ])
           ]),
@@ -41019,14 +41053,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Life Member")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
       _c("a", { attrs: { href: "#founder-member" } }, [
         _vm._v("Founder Member")
       ])
@@ -41048,14 +41074,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "#contact-us" } }, [_vm._v("Contact")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#registration" } }, [_vm._v("Join as Donor")])
     ])
   }
 ]
@@ -41098,7 +41116,7 @@ var staticRenderFns = [
                 attrs: {
                   method: "post",
                   id: "form_validation",
-                  action: "https://saptagaon.com/login",
+                  action: "/login",
                   "data-fv-framework": "bootstrap",
                   "data-bv-message": "This value is not valid",
                   "data-bv-feedbackicons-valid": "",
@@ -41117,7 +41135,7 @@ var staticRenderFns = [
                 _c("div", { staticClass: "panel panel-primary" }, [
                   _c("div", { staticClass: "panel-body" }, [
                     _c("div", { staticClass: "text-center" }, [
-                      _c("h4", [_vm._v("Join as SBDA Member.")]),
+                      _c("h4", [_vm._v("Sign-In as SBDA Member.")]),
                       _vm._v(" "),
                       _c("small", [
                         _c("span", { staticClass: "text-danger" }, [
@@ -41130,44 +41148,6 @@ var staticRenderFns = [
                     ]),
                     _vm._v(" "),
                     _c("hr"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { staticClass: "control-label" }, [
-                        _vm._v(
-                          "Full Name:\n                                    "
-                        ),
-                        _c("small", { staticClass: "text-danger" }, [
-                          _vm._v("*")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "name",
-                          name: "email",
-                          value: "",
-                          "data-bv-notempty": "true",
-                          placeholder: "enter full name",
-                          "data-bv-field": "email"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "small",
-                        {
-                          staticClass: "help-block",
-                          staticStyle: { display: "none" },
-                          attrs: {
-                            "data-bv-validator": "notEmpty",
-                            "data-bv-for": "email",
-                            "data-bv-result": "NOT_VALIDATED"
-                          }
-                        },
-                        [_vm._v("Please enter a value")]
-                      )
-                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "control-label" }, [
@@ -41253,9 +41233,7 @@ var staticRenderFns = [
                           "a",
                           {
                             staticClass: "text-primary",
-                            attrs: {
-                              href: "https://saptagaon.com/forgotpassword"
-                            }
+                            attrs: { href: "/password/reset" }
                           },
                           [_vm._v("Forgot password?")]
                         )
@@ -57413,9 +57391,9 @@ var routes = [{
 }, {
   path: "/member-registration",
   component: _components_pages_uses_member_registration__WEBPACK_IMPORTED_MODULE_5__["default"],
-  name: "member-registration"
+  name: "member_registration"
 }, {
-  path: "/login",
+  path: "/member-login",
   component: _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: "login"
 }];

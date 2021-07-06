@@ -57,11 +57,12 @@
                             <li><a href="#" title="Members">Members</a>
                                 <ul class="drop-down">
                                     <li><a href="#about-membership">About Membership</a></li>
-                                    <li>
+                                    <li v-if="!auth">
                                         <router-link to="member-registration">Apply for Membership</router-link>
 
                                     </li>
-                                    <li><a href="#">Life Member</a></li>
+                                    <li v-if="auth"><a href="#">Join as Donor</a></li>
+                                    <li v-if="auth"><a href="#"> Apply for Volunteer</a></li>
                                     <li><a href="#founder-member">Founder Member</a></li>
                                 </ul>
                             </li>
@@ -71,9 +72,9 @@
                                 <router-link to="gallery">gallery</router-link>
                             </li>
                             <li><a href="#contact-us">Contact</a></li>
-                            <li><a href="#registration">Join as Donor</a></li>
-                            <li>
-                                <router-link to="login">Login</router-link>
+<!--                            <li><a href="#registration">Join as Donor</a></li>-->
+                            <li v-if="!auth">
+                                <router-link :to="{name : 'login'}">Login</router-link>
                             </li>
                         </ul>
                     </div>
@@ -86,7 +87,37 @@
 
 <script>
 export default {
-    name: "header-component"
+    name: "header-component",
+    data(){
+        return {
+            auth : null,
+            app_url : window.APP_URL
+        }
+    },
+    mounted() {
+        this.get_auth();
+    },
+    methods : {
+        get_auth() {
+            let _this = this;
+            axios.get(_this.app_url+'auth-check')
+                .then(function (respose) {
+                    console.log( respose.data)
+                    _this.auth = respose.data.auth;
+                    if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
+                        console.log(_this.$route.name)
+                        _this.$router.push({name : 'home'})
+                    }
+
+                })
+                .catch(function (er) {
+                    console.log(er.message)
+                })
+                .finally(function () {
+
+                })
+        }
+    }
 }
 </script>
 
