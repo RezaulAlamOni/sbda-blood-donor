@@ -68,10 +68,12 @@
                             </li>
                             <li><a href="#about-us" title="About Us">About Us</a></li>
                             <!--<li><a href="#blog">Blog</a></li>-->
-                            <li>
-                                <router-link to="gallery">gallery</router-link>
+                            <li >
+                                <router-link to="gallery" class="active">gallery</router-link>
                             </li>
-                            <li><a href="#contact-us">Contact</a></li>
+                            <li>
+                                <router-link :to="{name : 'contact'}">Contact</router-link>
+                            </li>
 <!--                            <li><a href="#registration">Join as Donor</a></li>-->
                             <li v-if="!auth">
                                 <router-link :to="{name : 'login'}">Login</router-link>

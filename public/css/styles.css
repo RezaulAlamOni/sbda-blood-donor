@@ -864,6 +864,7 @@ a.logo img {
   background: transparent;
   margin-bottom: 0px;
   /*padding: 12px 0;*/
+    box-shadow: 2px 2px 3px 0px rgb(212 121 121 / 16%);
 }
 .navbar-default .navbar-nav {
   margin-top: 10px;
@@ -877,7 +878,7 @@ a.logo img {
   font-size: 16px;
   color: #333333;
   text-transform: uppercase;
-  padding-bottom: 24px;
+  padding-bottom: 15px;
 }
 .navbar-default .navbar-nav > li > a:hover {
   color: #000000;
@@ -900,6 +901,7 @@ a.logo img {
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
+    background: gray;
 }
 .navbar-default .navbar-nav li ul.drop-down li {
   list-style: none;

@@ -274,6 +274,9 @@
 <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
 <script src="{{asset('js/venobox.min.js')}}"></script>
 <script src="{{asset('js/custom-scripts.js')}}"></script>
+<script src="{{asset('js/gmaps.js')}}"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyDTSNL3kqBW0Go4Fa2xOf58_uWU6vXKnT8"></script>
+
 
 <script>
     window.APP_URL = '{{ config('app.url') }}';
