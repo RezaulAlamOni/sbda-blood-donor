@@ -63,7 +63,7 @@
                                             <label class="control-label">Phone:
                                                 <small class="text-danger">*</small>
                                             </label>
-                                            <input type="password" class="form-control"
+                                            <input type="text" class="form-control"
                                                    id="phone" name="phone" value=""
                                                    data-bv-notempty="true"
                                                    placeholder="enter phone number"
@@ -74,7 +74,7 @@
                                             <label class="control-label">Address :
                                                 <small class="text-danger">*</small>
                                             </label>
-                                            <input type="password" class="form-control"
+                                            <input type="text" class="form-control"
                                                    id="address" name="address" value=""
                                                    data-bv-notempty="true"
                                                    placeholder="enter full address"
@@ -87,7 +87,17 @@
                                             </label>
                                             <select class="form-select form-control" name="blood_group" aria-label="Default select example">
                                                 <option value="0" >Select Blood Group</option>
-                                                <option v-for="b_group in blood_groups" :value="b_group.id">{{ b_group.name }}</option>
+                                                <option v-for="b_group in blood_groups" :value="b_group.id">{{ b_group.id }}) {{ b_group.name }}</option>
+                                            </select>
+                                            <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Member Area :
+                                                <small class="text-danger">*</small>
+                                            </label>
+                                            <select class="form-select form-control" name="area" aria-label="Default select example">
+                                                <option value="0" >Select Member Area </option>
+                                                <option v-for="areas in member_areas" :value="areas.id">{{ areas.id }}) {{ areas.name }}</option>
                                             </select>
                                             <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
                                         </div>
@@ -123,12 +133,14 @@ export default {
       return {
           photos : [],
           app_url: window.APP_URL,
-          blood_groups : []
+          blood_groups : [],
+          member_areas : [],
       }
     },
     mounted() {
         this.photos = []
         this.getAllBloodGroups();
+        this.getAllAreas();
     },
     methods :{
         getAllBloodGroups() {
@@ -137,6 +149,21 @@ export default {
             .then(function (respose) {
                 console.log( respose.data)
                 _this.blood_groups = respose.data.data;
+
+            })
+            .catch(function (er) {
+                console.log(er.message)
+            })
+            .finally(function () {
+
+            })
+        },
+        getAllAreas() {
+            let _this = this;
+            axios.get(_this.app_url+'member-areas')
+            .then(function (respose) {
+                console.log( respose.data)
+                _this.member_areas = respose.data.areas;
 
             })
             .catch(function (er) {

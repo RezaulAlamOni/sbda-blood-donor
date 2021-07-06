@@ -2971,18 +2971,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "member-registration",
   data: function data() {
     return {
       photos: [],
       app_url: window.APP_URL,
-      blood_groups: []
+      blood_groups: [],
+      member_areas: []
     };
   },
   mounted: function mounted() {
     this.photos = [];
     this.getAllBloodGroups();
+    this.getAllAreas();
   },
   methods: {
     getAllBloodGroups: function getAllBloodGroups() {
@@ -2991,6 +3003,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(_this.app_url + 'blood-groups').then(function (respose) {
         console.log(respose.data);
         _this.blood_groups = respose.data.data;
+      })["catch"](function (er) {
+        console.log(er.message);
+      })["finally"](function () {});
+    },
+    getAllAreas: function getAllAreas() {
+      var _this = this;
+
+      axios.get(_this.app_url + 'member-areas').then(function (respose) {
+        console.log(respose.data);
+        _this.member_areas = respose.data.areas;
       })["catch"](function (er) {
         console.log(er.message);
       })["finally"](function () {});
@@ -41348,7 +41370,60 @@ var render = function() {
                               return _c(
                                 "option",
                                 { domProps: { value: b_group.id } },
-                                [_vm._v(_vm._s(b_group.name))]
+                                [
+                                  _vm._v(
+                                    _vm._s(b_group.id) +
+                                      ") " +
+                                      _vm._s(b_group.name)
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "small",
+                          {
+                            staticClass: "help-block",
+                            staticStyle: { display: "none" },
+                            attrs: {
+                              "data-bv-validator": "notEmpty",
+                              "data-bv-for": "password",
+                              "data-bv-result": "NOT_VALIDATED"
+                            }
+                          },
+                          [_vm._v("Please enter a value")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-select form-control",
+                            attrs: {
+                              name: "area",
+                              "aria-label": "Default select example"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm._v("Select Member Area ")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.member_areas, function(areas) {
+                              return _c(
+                                "option",
+                                { domProps: { value: areas.id } },
+                                [
+                                  _vm._v(
+                                    _vm._s(areas.id) + ") " + _vm._s(areas.name)
+                                  )
+                                ]
                               )
                             })
                           ],
@@ -41373,7 +41448,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(6)
               ])
             ]
           )
@@ -41519,7 +41594,7 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "form-control",
         attrs: {
-          type: "password",
+          type: "text",
           id: "phone",
           name: "phone",
           value: "",
@@ -41557,7 +41632,7 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "form-control",
         attrs: {
-          type: "password",
+          type: "text",
           id: "address",
           name: "address",
           value: "",
@@ -41588,6 +41663,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label" }, [
       _vm._v("Blood Group :\n                                            "),
+      _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "control-label" }, [
+      _vm._v("Member Area :\n                                            "),
       _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

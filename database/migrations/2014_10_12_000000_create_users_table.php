@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('address')->nullable();
             $table->integer('blood_group_id')->nullable();
+            $table->integer('areas_id')->nullable();
             $table->integer('donation_count')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0 Pending And confirmed');
             $table->rememberToken();

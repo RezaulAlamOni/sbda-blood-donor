@@ -16,7 +16,7 @@ class CreateVolunteerAreasTable extends Migration
         Schema::create('volunteer_areas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('details');
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }

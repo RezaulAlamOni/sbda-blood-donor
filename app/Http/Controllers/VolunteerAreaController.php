@@ -14,7 +14,8 @@ class VolunteerAreaController extends Controller
      */
     public function index()
     {
-        //
+        $areas = VolunteerArea::all();
+        return response()->json(['areas' => $areas]);
     }
 
     /**
