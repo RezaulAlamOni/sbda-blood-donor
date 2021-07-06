@@ -891,7 +891,7 @@ a.logo img {
   position: absolute;
   top: 71px;
   left: 0;
-  width: 190px;
+  width: 220px;
   visibility: hidden;
   opacity: 0;
   z-index: 3;
@@ -929,14 +929,14 @@ a.logo img {
   text-decoration: none;
   display: block;
   color: #000000;
-  padding: 12px 20px;
-  text-transform: uppercase;
+  padding: 5px 15px;
+  text-transform: capitalize;
   background: rgba(255, 255, 255, 0.9);
   margin: 0;
   border: none;
 }
 .navbar-default .navbar-nav li ul.drop-down li a:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(248, 153, 153, 0.9);
   color: #FFFFFF;
 }
 .navbar-default .navbar-nav li ul.drop-down li:hover ul.drop-down.level3 {
