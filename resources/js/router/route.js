@@ -7,7 +7,8 @@ import home from '../components/HomeComponent';
 import gallery from "../components/pages/uses/gallery";
 import member_registration from "../components/pages/uses/member-registration";
 import member_login from "../components/pages/uses/member-login";
-import Contact from "../components/pages/uses/contact";
+import Contact from "../components/pages/sbda/contact";
+import AboutUs from "../components/pages/sbda/about-us";
 
 let base_url = window.APP_URL
 
@@ -37,6 +38,11 @@ let routes = [
         path: "/contacts",
         component: Contact,
         name: "contact"
+    },
+    {
+        path: "/about-us",
+        component: AboutUs,
+        name: "about-us"
     },
     {
         path : '/admin',

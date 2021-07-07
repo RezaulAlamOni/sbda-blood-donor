@@ -66,7 +66,9 @@
                                     <li><a href="#founder-member">Founder Member</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#about-us" title="About Us">About Us</a></li>
+                            <li>
+                                <router-link :to="{name : 'about-us'}">About Us</router-link>
+                            </li>
                             <!--<li><a href="#blog">Blog</a></li>-->
                             <li >
                                 <router-link to="gallery" class="active">gallery</router-link>
