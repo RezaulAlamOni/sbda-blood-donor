@@ -80,6 +80,23 @@
                             <li v-if="!auth">
                                 <router-link :to="{name : 'login'}">Login</router-link>
                             </li>
+                            <li style="display: flex" v-else >
+                                <span style="display: flex" class="profile-section">
+                                    <img src="images/thumbnail.png" alt="" style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
+                                    <a href="#" title="Members" class="profile-name">{{ auth.name }}</a>
+                                </span>
+
+                                <ul class="drop-down">
+                                    <li><a href="#about-membership">Profile</a></li>
+                                    <li>
+                                        <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a href="#" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -126,5 +143,18 @@ export default {
 </script>
 
 <style scoped>
+.profile-section {
+    display: flex;
+    background: #5082bb;
+    padding: 0px 9px 6px 6px;
+    border-radius: 25px;
+
+}
+.profile-name {
+    margin: 8px 0px 0px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
 
 </style>
