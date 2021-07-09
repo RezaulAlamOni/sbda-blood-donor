@@ -14,7 +14,8 @@
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="text-center">
-                                    <h4>Join as SBDA Member.</h4>
+                                    <h4>Join as SBDA <span v-if="router_name == 'donor_registration'">Donor </span>
+                                        <span v-else>Volunteer </span>.</h4>
                                     <small>
                                         <span class="text-danger">*</span> Required fields
                                     </small>
@@ -135,12 +136,14 @@ export default {
           app_url: window.APP_URL,
           blood_groups : [],
           member_areas : [],
+          router_name : null
       }
     },
     mounted() {
         this.photos = []
         this.getAllBloodGroups();
         this.getAllAreas();
+        this.router_name =  this.$route.name;
     },
     methods :{
         getAllBloodGroups() {

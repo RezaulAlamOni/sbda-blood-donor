@@ -73,7 +73,7 @@
                             </li>
                             <!--<li><a href="#blog">Blog</a></li>-->
                             <li >
-                                <router-link to="gallery" class="active">gallery</router-link>
+                                <router-link to="gallery">gallery</router-link>
                             </li>
                             <li>
                                 <router-link :to="{name : 'contact'}">Contact</router-link>
@@ -85,8 +85,8 @@
                                     <li v-if="!auth">
                                         <router-link :to="{name : 'donor_registration'}">Become A Blood Donor</router-link>
                                     </li>
-                                    <li><a href="#founder-member">Become A Member</a></li>
-                                    <li><a href="#founder-member">Become A  Volunteer</a></li>
+                                    <li> <router-link :to="{name : 'member_registration'}">Become A Member</router-link></li>
+                                    <li><router-link :to="{name : 'volunteer_registration'}">Become A  Volunteer</router-link></li>
                                 </ul>
                             </li>
                             <li v-if="!auth">
@@ -136,7 +136,6 @@ export default {
             let _this = this;
             axios.get(_this.app_url+'auth-check')
                 .then(function (respose) {
-                    console.log( respose.data)
                     _this.auth = respose.data.auth;
                     if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
                         console.log(_this.$route.name)
@@ -150,7 +149,7 @@ export default {
                 .finally(function () {
 
                 })
-        }
+        },
     }
 }
 </script>
@@ -168,6 +167,11 @@ export default {
     font-size: 14px;
     font-weight: bold;
     color: white;
+}
+
+.router-link-active {
+    background: none;
+    border-bottom: 3px solid #ef3d32;
 }
 
 </style>

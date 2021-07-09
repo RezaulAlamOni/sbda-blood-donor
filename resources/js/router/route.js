@@ -6,6 +6,7 @@ import test_home from '../components/ExampleComponent'
 import home from '../components/HomeComponent';
 import gallery from "../components/pages/uses/gallery";
 import member_registration from "../components/pages/uses/member-registration";
+import member_note from "../components/pages/uses/members-note";
 import member_login from "../components/pages/uses/member-login";
 import Contact from "../components/pages/sbda/contact";
 import AboutUs from "../components/pages/sbda/about-us";
@@ -25,9 +26,19 @@ let routes = [
         name: "gallery"
     },
     {
-        path: "/member-registration",
+        path: "/member-registration-note",
+        component: member_note,
+        name: "member_registration"
+    },
+    {
+        path: "/donor-registration",
         component: member_registration,
         name: "donor_registration"
+    },
+    {
+        path: "/volunteer-registration",
+        component: member_registration,
+        name: "volunteer_registration"
     },
     {
         path: "/member-login",

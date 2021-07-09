@@ -3371,7 +3371,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(_this.app_url + 'auth-check').then(function (respose) {
-        console.log(respose.data);
         _this.auth = respose.data.auth;
 
         if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login') && _this.auth) {
@@ -3617,6 +3616,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "member-registration",
   data: function data() {
@@ -3624,13 +3624,15 @@ __webpack_require__.r(__webpack_exports__);
       photos: [],
       app_url: window.APP_URL,
       blood_groups: [],
-      member_areas: []
+      member_areas: [],
+      router_name: null
     };
   },
   mounted: function mounted() {
     this.photos = [];
     this.getAllBloodGroups();
     this.getAllAreas();
+    this.router_name = this.$route.name;
   },
   methods: {
     getAllBloodGroups: function getAllBloodGroups() {
@@ -3654,6 +3656,95 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {});
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "members-note"
 });
 
 /***/ }),
@@ -8258,7 +8349,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #ef3d32;\n}\n\n", ""]);
 
 // exports
 
@@ -42563,11 +42654,9 @@ var render = function() {
               _c(
                 "li",
                 [
-                  _c(
-                    "router-link",
-                    { staticClass: "active", attrs: { to: "gallery" } },
-                    [_vm._v("gallery")]
-                  )
+                  _c("router-link", { attrs: { to: "gallery" } }, [
+                    _vm._v("gallery")
+                  ])
                 ],
                 1
               ),
@@ -42602,9 +42691,29 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "member_registration" } } },
+                        [_vm._v("Become A Member")]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "volunteer_registration" } } },
+                        [_vm._v("Become A  Volunteer")]
+                      )
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -42647,7 +42756,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(6)
+                    _vm._m(4)
                   ])
             ])
           ])
@@ -42819,26 +42928,6 @@ var staticRenderFns = [
             _vm._v("Founder Member")
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#founder-member" } }, [
-        _vm._v("Become A Member")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#founder-member" } }, [
-        _vm._v("Become A  Volunteer")
       ])
     ])
   },
@@ -43122,7 +43211,17 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "panel panel-primary" }, [
                 _c("div", { staticClass: "panel-body" }, [
-                  _vm._m(0),
+                  _c("div", { staticClass: "text-center" }, [
+                    _c("h4", [
+                      _vm._v("Join as SBDA "),
+                      _vm.router_name == "donor_registration"
+                        ? _c("span", [_vm._v("Donor ")])
+                        : _c("span", [_vm._v("Volunteer ")]),
+                      _vm._v(".")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ]),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
@@ -43247,13 +43346,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("h4", [_vm._v("Join as SBDA Member.")]),
-      _vm._v(" "),
-      _c("small", [
-        _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-        _vm._v(" Required fields\n                                ")
-      ])
+    return _c("small", [
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
+      _vm._v(" Required fields\n                                ")
     ])
   },
   function() {
@@ -43490,6 +43585,379 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "clearfix" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", [
+      _c(
+        "section",
+        {
+          staticClass: "yaqOZd",
+          staticStyle: { padding: "29px 210px" },
+          attrs: { id: "h.33ac46acaa9cb602_15" }
+        },
+        [
+          _c("div", { staticClass: "IFuOkc" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "mYVXT" }, [
+            _c(
+              "div",
+              { staticClass: "LS81yb VICjCf", attrs: { tabindex: "-1" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"
+                  },
+                  [
+                    _c("div", { staticClass: "JNdkSc-SmKAyb" }, [
+                      _c(
+                        "div",
+                        {
+                          attrs: {
+                            jscontroller: "sGwD4d",
+                            jsaction: "zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;",
+                            jsname: "F57UId"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "oKdM2c Kzv0Me" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc",
+                                attrs: { id: "h.33ac46acaa9cb602_12" }
+                              },
+                              [
+                                _c("div", { staticClass: "jXK9ad-SmKAyb" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "tyJCtd mGzaTb baZpAe" },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "margin-left": "0",
+                                            "margin-right": "0",
+                                            "padding-left": "0",
+                                            "text-align": "center",
+                                            "text-indent": "0"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [
+                                              _c("strong", [
+                                                _vm._v("সদস্যভুক্তির নিয়মাবলী")
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "margin-left": "0",
+                                            "margin-right": "0",
+                                            "padding-left": "0",
+                                            "text-align": "center",
+                                            "text-indent": "0"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                রক্তদান করেন এমন "
+                                          ),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "font-weight": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [_vm._v("যেকোন")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                                ব্যক্তি "
+                                          ),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "font-weight": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [_vm._v("অত্র এসোসিয়েশনের ")]
+                                          ),
+                                          _vm._v(
+                                            "গঠনতন্ত্র\n                                                "
+                                          ),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "font-weight": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                " বিধি ও নিয়মাবলীর প্রতি পূর্ণ আস্থা জ্ঞাপন"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            "\n                                                করে"
+                                          ),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "font-weight": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                " নির্ধারিত ফি প্রদান পূর্বক এসোসিয়েশনের সদস্য হওয়ার জন্য নির্ধারিত আবেদন ফর্মে  আবেদন করতে পারবেন এবং আবেদন কার্যনির্বাহী কমিটি কর্তৃক অনুমোদিত হ"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v("লে"),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticStyle: {
+                                                "font-family": "Open Sans",
+                                                "font-size": "13pt",
+                                                "font-style": "normal",
+                                                "font-weight": "normal",
+                                                "text-decoration": "normal",
+                                                "vertical-align": "baseline"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                " আবেদনকারী এসোসিয়েশনের সদস্য হিসাবে গণ্য হইবেন। শর্ত থাকে যে, কার্যনির্বাহী কমিটি যে কোন আবেদন গ্রহণ কিংবা প্রত্যাখান করার সর্বময় ক্ষমতা সংরক্ষণ রাখে।"
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "section",
+        {
+          staticClass: "yaqOZd cJgDec nyKByd",
+          staticStyle: {
+            padding: "29px 210px",
+            "background-color": "rgb(41 40 94)",
+            color: "white"
+          },
+          attrs: { id: "h.33ac46acaa9cb602_19" }
+        },
+        [
+          _c("div", { staticClass: "mYVXT" }, [
+            _c(
+              "div",
+              { staticClass: "LS81yb VICjCf", attrs: { tabindex: "-1" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"
+                  },
+                  [
+                    _c("div", { staticClass: "JNdkSc-SmKAyb" }, [
+                      _c(
+                        "div",
+                        {
+                          attrs: {
+                            jscontroller: "sGwD4d",
+                            jsaction: "zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;",
+                            jsname: "F57UId"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "oKdM2c Kzv0Me" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc",
+                                attrs: { id: "h.33ac46acaa9cb602_16" }
+                              },
+                              [
+                                _c("div", { staticClass: "jXK9ad-SmKAyb" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "tyJCtd mGzaTb baZpAe" },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "text-align": "center",
+                                            color: "white"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "সদস্য হতে\n                                            আমাদের কার্যালয়ে আসুন"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "text-align": "center",
+                                            color: "white"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "প্রধান\n                                                কার্যালয়ঃ "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "text-align": "center",
+                                            color: "white"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "মাদ্রাসা\n                                                মার্কেট (২য় তলা), ইসলামপুর, চাটখিল, নোয়াখালী-৩৮৭৪"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "CDt4Ke zfr3Q",
+                                          staticStyle: {
+                                            "text-align": "center",
+                                            color: "white"
+                                          },
+                                          attrs: { dir: "ltr" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "ফোনঃ +88\n                                                01905199278 , ইমেলঃ sbdaofficialbd@gmail.com"
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      )
     ])
   }
 ]
@@ -59415,6 +59883,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/uses/members-note.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/pages/uses/members-note.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./members-note.vue?vue&type=template&id=02a5f6fa&scoped=true& */ "./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true&");
+/* harmony import */ var _members_note_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./members-note.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _members_note_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "02a5f6fa",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pages/uses/members-note.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_members_note_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./members-note.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/members-note.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_members_note_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./members-note.vue?vue&type=template&id=02a5f6fa&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/members-note.vue?vue&type=template&id=02a5f6fa&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_members_note_vue_vue_type_template_id_02a5f6fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router/route.js":
 /*!**************************************!*\
   !*** ./resources/js/router/route.js ***!
@@ -59431,12 +59968,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_HomeComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/HomeComponent */ "./resources/js/components/HomeComponent.vue");
 /* harmony import */ var _components_pages_uses_gallery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/pages/uses/gallery */ "./resources/js/components/pages/uses/gallery.vue");
 /* harmony import */ var _components_pages_uses_member_registration__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/pages/uses/member-registration */ "./resources/js/components/pages/uses/member-registration.vue");
-/* harmony import */ var _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/pages/uses/member-login */ "./resources/js/components/pages/uses/member-login.vue");
-/* harmony import */ var _components_pages_sbda_contact__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/pages/sbda/contact */ "./resources/js/components/pages/sbda/contact.vue");
-/* harmony import */ var _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/pages/sbda/about-us */ "./resources/js/components/pages/sbda/about-us.vue");
+/* harmony import */ var _components_pages_uses_members_note__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/pages/uses/members-note */ "./resources/js/components/pages/uses/members-note.vue");
+/* harmony import */ var _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/pages/uses/member-login */ "./resources/js/components/pages/uses/member-login.vue");
+/* harmony import */ var _components_pages_sbda_contact__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/pages/sbda/contact */ "./resources/js/components/pages/sbda/contact.vue");
+/* harmony import */ var _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/pages/sbda/about-us */ "./resources/js/components/pages/sbda/about-us.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -59454,20 +59993,28 @@ var routes = [{
   component: _components_pages_uses_gallery__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: "gallery"
 }, {
-  path: "/member-registration",
+  path: "/member-registration-note",
+  component: _components_pages_uses_members_note__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: "member_registration"
+}, {
+  path: "/donor-registration",
   component: _components_pages_uses_member_registration__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: "donor_registration"
 }, {
+  path: "/volunteer-registration",
+  component: _components_pages_uses_member_registration__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: "volunteer_registration"
+}, {
   path: "/member-login",
-  component: _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_7__["default"],
   name: "login"
 }, {
   path: "/contacts",
-  component: _components_pages_sbda_contact__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _components_pages_sbda_contact__WEBPACK_IMPORTED_MODULE_8__["default"],
   name: "contact"
 }, {
   path: "/about-us",
-  component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_8__["default"],
+  component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_9__["default"],
   name: "about-us"
 }, {
   path: '/admin',
