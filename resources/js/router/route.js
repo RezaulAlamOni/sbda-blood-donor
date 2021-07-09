@@ -27,7 +27,7 @@ let routes = [
     {
         path: "/member-registration",
         component: member_registration,
-        name: "member_registration"
+        name: "donor_registration"
     },
     {
         path: "/member-login",

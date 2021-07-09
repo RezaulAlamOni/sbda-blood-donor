@@ -48,24 +48,26 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" title="Excutive Committee">Excutive Committee</a>
+                            <li>
+                                <a href="#" title="Members" class="dropdown-toggle">Unit</a>
+                                <ul class="drop-down">
+                                    <li>
+                                        <a href="#about-membership">SBDA Volunteer</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about-membership">SBDA Medical Care</a>
+                                    </li>
+                                    <li><a href="#founder-member">Books</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" title="Excutive Committee">Committee</a>
                                 <ul class="drop-down">
                                     <li><a href="#advisers">Advisers</a></li>
-                                    <li><a href="#excutive-committee">Excutive Committee</a></li>
+                                    <li><a href="#excutive-committee">Executive Committee</a></li>
+                                    <li><a href="#excutive-committee">Founder Member</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" title="Members">Members</a>
-                                <ul class="drop-down">
-                                    <li><a href="#about-membership">About Membership</a></li>
-                                    <li v-if="!auth">
-                                        <router-link to="member-registration">Apply for Membership</router-link>
 
-                                    </li>
-                                    <li v-if="auth"><a href="#">Join as Donor</a></li>
-                                    <li v-if="auth"><a href="#"> Apply for Volunteer</a></li>
-                                    <li><a href="#founder-member">Founder Member</a></li>
-                                </ul>
-                            </li>
                             <li>
                                 <router-link :to="{name : 'about-us'}">About Us</router-link>
                             </li>
@@ -77,9 +79,20 @@
                                 <router-link :to="{name : 'contact'}">Contact</router-link>
                             </li>
 <!--                            <li><a href="#registration">Join as Donor</a></li>-->
+
+                            <li><a href="#" title="Members">Join Us</a>
+                                <ul class="drop-down">
+                                    <li v-if="!auth">
+                                        <router-link :to="{name : 'donor_registration'}">Become A Blood Donor</router-link>
+                                    </li>
+                                    <li><a href="#founder-member">Become A Member</a></li>
+                                    <li><a href="#founder-member">Become A  Volunteer</a></li>
+                                </ul>
+                            </li>
                             <li v-if="!auth">
                                 <router-link :to="{name : 'login'}">Login</router-link>
                             </li>
+
                             <li style="display: flex" v-else >
                                 <span style="display: flex" class="profile-section">
                                     <img src="images/thumbnail.png" alt="" style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
@@ -87,7 +100,7 @@
                                 </span>
 
                                 <ul class="drop-down">
-                                    <li><a href="#about-membership">Profile</a></li>
+                                    <li><a href="#about-membership">Donation history</a></li>
                                     <li>
                                         <form id="logout-form" action="logout" method="POST" style="display: none;">
                                             @csrf

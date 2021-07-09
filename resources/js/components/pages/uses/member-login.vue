@@ -14,7 +14,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="text-center">
-                                    <h4>Sign-In as SBDA Member.</h4>
+                                    <h4 class="text-red">Sign-In as SBDA Blood Donor.</h4>
                                     <small>
                                         <span class="text-danger">*</span> Required fields
                                     </small>

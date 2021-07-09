@@ -3342,6 +3342,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -42535,47 +42548,7 @@ var render = function() {
             _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
               _vm._m(2),
               _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#", title: "Members" } }, [
-                  _vm._v("Members")
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "drop-down" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  !_vm.auth
-                    ? _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "member-registration" } },
-                            [_vm._v("Apply for Membership")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.auth
-                    ? _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("Join as Donor")
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.auth
-                    ? _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(" Apply for Volunteer")
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._m(4)
-                ])
-              ]),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "li",
@@ -42608,6 +42581,32 @@ var render = function() {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { attrs: { href: "#", title: "Members" } }, [
+                  _vm._v("Join Us")
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "drop-down" }, [
+                  !_vm.auth
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "donor_registration" } } },
+                            [_vm._v("Become A Blood Donor")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5)
+                ])
+              ]),
               _vm._v(" "),
               !_vm.auth
                 ? _c(
@@ -42648,7 +42647,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(5)
+                    _vm._m(6)
                   ])
             ])
           ])
@@ -42767,8 +42766,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "dropdown-toggle",
+          attrs: { href: "#", title: "Members" }
+        },
+        [_vm._v("Unit")]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "drop-down" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "#about-membership" } }, [
+            _vm._v("SBDA Volunteer")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#about-membership" } }, [
+            _vm._v("SBDA Medical Care")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#founder-member" } }, [_vm._v("Books")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
       _c("a", { attrs: { href: "#", title: "Excutive Committee" } }, [
-        _vm._v("Excutive Committee")
+        _vm._v("Committee")
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "drop-down" }, [
@@ -42778,7 +42810,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("li", [
           _c("a", { attrs: { href: "#excutive-committee" } }, [
-            _vm._v("Excutive Committee")
+            _vm._v("Executive Committee")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#excutive-committee" } }, [
+            _vm._v("Founder Member")
           ])
         ])
       ])
@@ -42789,8 +42827,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#about-membership" } }, [
-        _vm._v("About Membership")
+      _c("a", { attrs: { href: "#founder-member" } }, [
+        _vm._v("Become A Member")
       ])
     ])
   },
@@ -42800,7 +42838,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "#founder-member" } }, [
-        _vm._v("Founder Member")
+        _vm._v("Become A  Volunteer")
       ])
     ])
   },
@@ -42810,7 +42848,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "drop-down" }, [
       _c("li", [
-        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Profile")])
+        _c("a", { attrs: { href: "#about-membership" } }, [
+          _vm._v("Donation history")
+        ])
       ]),
       _vm._v(" "),
       _c("li", [
@@ -42900,7 +42940,9 @@ var staticRenderFns = [
                 _c("div", { staticClass: "panel panel-primary" }, [
                   _c("div", { staticClass: "panel-body" }, [
                     _c("div", { staticClass: "text-center" }, [
-                      _c("h4", [_vm._v("Sign-In as SBDA Member.")]),
+                      _c("h4", { staticClass: "text-red" }, [
+                        _vm._v("Sign-In as SBDA Blood Donor.")
+                      ]),
                       _vm._v(" "),
                       _c("small", [
                         _c("span", { staticClass: "text-danger" }, [
@@ -59414,7 +59456,7 @@ var routes = [{
 }, {
   path: "/member-registration",
   component: _components_pages_uses_member_registration__WEBPACK_IMPORTED_MODULE_5__["default"],
-  name: "member_registration"
+  name: "donor_registration"
 }, {
   path: "/member-login",
   component: _components_pages_uses_member_login__WEBPACK_IMPORTED_MODULE_6__["default"],
