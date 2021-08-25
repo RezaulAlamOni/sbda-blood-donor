@@ -14,8 +14,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="text-center">
-                                    <h4>Join as SBDA <span v-if="router_name == 'donor_registration'">Donor </span>
-                                        <span v-else>Volunteer </span>.</h4>
+                                    <h4>Join as SBDA Donor.</h4>
                                     <small>
                                         <span class="text-danger">*</span> Required fields
                                     </small>
@@ -176,7 +175,7 @@ export default {
 
             })
         }
-    }
+    },
 
 }
 </script>

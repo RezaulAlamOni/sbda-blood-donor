@@ -5,7 +5,8 @@ Vue.use(VueRouter)
 import test_home from '../components/ExampleComponent'
 import home from '../components/HomeComponent';
 import gallery from "../components/pages/uses/gallery";
-import member_registration from "../components/pages/uses/member-registration";
+import donor_registration from "../components/pages/uses/donor-registration";
+import volunteer_registration from "../components/pages/uses/volunteer-registration";
 import member_note from "../components/pages/uses/members-note";
 import member_login from "../components/pages/uses/member-login";
 import Contact from "../components/pages/sbda/contact";
@@ -32,12 +33,12 @@ let routes = [
     },
     {
         path: "/donor-registration",
-        component: member_registration,
+        component: donor_registration,
         name: "donor_registration"
     },
     {
         path: "/volunteer-registration",
-        component: member_registration,
+        component: volunteer_registration,
         name: "volunteer_registration"
     },
     {
