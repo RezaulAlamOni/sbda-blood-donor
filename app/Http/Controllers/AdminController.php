@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        //
+        dd(Auth::user());
     }
 
     /**
