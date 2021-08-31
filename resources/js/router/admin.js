@@ -13,7 +13,7 @@ let routes = [
         path : '/admin',
         child : {
             path: "/user",
-            component: AboutUs,
+            component: test_home,
             name: "about-us"
         }
 
