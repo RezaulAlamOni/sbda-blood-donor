@@ -3275,6 +3275,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "member-registration",
   data: function data() {
@@ -3757,6 +3758,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -8420,7 +8422,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-2b03c45d] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-2b03c45d] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -8477,7 +8479,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-5dd83ed3] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-5dd83ed3] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -8496,7 +8498,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-62fb0d8e] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-62fb0d8e] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -43080,6 +43082,10 @@ var render = function() {
                 attrs: { type: "submit" }
               }),
               _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", value: "donor", name: "type" }
+              }),
+              _vm._v(" "),
               _c("div", { staticClass: "panel panel-primary" }, [
                 _c("div", { staticClass: "panel-body" }, [
                   _vm._m(0),
@@ -43970,7 +43976,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "panel-body" }, [
                     _c("div", { staticClass: "text-center" }, [
                       _c("h4", { staticClass: "text-red" }, [
-                        _vm._v("Sign-In as SBDA Blood Donor.")
+                        _vm._v("Sign-In")
                       ]),
                       _vm._v(" "),
                       _c("small", [
@@ -44520,6 +44526,10 @@ var render = function() {
                 staticClass: "bv-hidden-submit",
                 staticStyle: { display: "none", width: "0px", height: "0px" },
                 attrs: { type: "submit" }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", value: "volunteer", name: "type" }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "panel panel-primary" }, [

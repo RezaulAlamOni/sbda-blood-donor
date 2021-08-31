@@ -11,6 +11,7 @@
                           data-bv-feedbackicons-valid="" data-bv-feedbackicons-invalid=""
                           data-bv-feedbackicons-validating="" novalidate="novalidate" class="bv-form">
                         <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                        <input type="hidden" value="donor"  name="type" >
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="text-center">
