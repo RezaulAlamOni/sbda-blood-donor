@@ -16,7 +16,9 @@ class AdminController extends Controller
 
     public function index()
     {
-        Auth::guard('admin')->logout();
+
+//        Auth::guard('admin')->logout();
+        return view('layouts.admin');
         return redirect()->route('admin.login');
     }
 

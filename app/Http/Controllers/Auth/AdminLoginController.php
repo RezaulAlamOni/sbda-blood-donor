@@ -34,7 +34,7 @@ class AdminLoginController extends Controller
         $credentials = $request->except(['_token']);
 
         if (Auth::guard('admin')->attempt($credentials)){
-            return redirect()->intended(route('admin'));
+            return redirect()->intended('/admin');
         }
 
         return back();

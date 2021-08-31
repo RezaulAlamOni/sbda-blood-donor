@@ -3536,6 +3536,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -8460,7 +8463,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\r\n    display: flex;\r\n    background: #5082bb;\r\n    padding: 0px 9px 6px 6px;\r\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\r\n    margin: 8px 0px 0px 15px;\r\n    font-size: 14px;\r\n    font-weight: bold;\r\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\r\n    background: none;\r\n    border-bottom: 3px solid #ef3d32;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #ef3d32;\n}\n\n", ""]);
 
 // exports
 
@@ -43637,29 +43640,35 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "member_registration" } } },
-                        [_vm._v("Become A Member")]
+                  !_vm.auth || _vm.auth.type != "member"
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "member_registration" } } },
+                            [_vm._v("Become A Member")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "volunteer_registration" } } },
-                        [_vm._v("Become A  Volunteer")]
+                  !_vm.auth
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: { to: { name: "volunteer_registration" } }
+                            },
+                            [_vm._v("Become A  Volunteer")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
@@ -43697,7 +43706,13 @@ var render = function() {
                             staticClass: "profile-name",
                             attrs: { href: "#", title: "Members" }
                           },
-                          [_vm._v(_vm._s(_vm.auth.name))]
+                          [
+                            _vm._v(_vm._s(_vm.auth.name) + " ("),
+                            _c("span", { staticClass: "text-capitalize" }, [
+                              _vm._v(_vm._s(_vm.auth.type))
+                            ]),
+                            _vm._v(")")
+                          ]
                         )
                       ]
                     ),
@@ -43882,6 +43897,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "drop-down" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Profile")])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Events")])
+      ]),
+      _vm._v(" "),
       _c("li", [
         _c("a", { attrs: { href: "#about-membership" } }, [
           _vm._v("Donation history")
@@ -61336,7 +61359,9 @@ var routes = [{
 }, {
   path: '/admin',
   child: {
-    path: '/'
+    path: "/user",
+    component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
+    name: "about-us"
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

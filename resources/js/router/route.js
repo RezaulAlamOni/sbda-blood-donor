@@ -59,7 +59,9 @@ let routes = [
     {
         path : '/admin',
         child : {
-            path : '/'
+            path: "/user",
+            component: AboutUs,
+            name: "about-us"
         }
 
     }

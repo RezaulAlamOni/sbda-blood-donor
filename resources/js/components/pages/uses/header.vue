@@ -80,13 +80,13 @@
                             </li>
 <!--                            <li><a href="#registration">Join as Donor</a></li>-->
 
-                            <li><a href="#" title="Members">Join Us</a>
+                            <li><a href="#" title="Members" >Join Us</a>
                                 <ul class="drop-down">
                                     <li v-if="!auth">
                                         <router-link :to="{name : 'donor_registration'}">Become A Blood Donor</router-link>
                                     </li>
-                                    <li> <router-link :to="{name : 'member_registration'}">Become A Member</router-link></li>
-                                    <li><router-link :to="{name : 'volunteer_registration'}">Become A  Volunteer</router-link></li>
+                                    <li  v-if="!auth || auth.type != 'member'"> <router-link :to="{name : 'member_registration'}">Become A Member</router-link></li>
+                                    <li  v-if="!auth"><router-link :to="{name : 'volunteer_registration'}">Become A  Volunteer</router-link></li>
                                 </ul>
                             </li>
                             <li v-if="!auth">
@@ -96,10 +96,13 @@
                             <li style="display: flex" v-else >
                                 <span style="display: flex" class="profile-section">
                                     <img src="images/thumbnail.png" alt="" style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
-                                    <a href="#" title="Members" class="profile-name">{{ auth.name }}</a>
+                                    <a href="#" title="Members" class="profile-name">{{ auth.name }} (<span class="text-capitalize">{{ auth.type }}</span>)</a>
+
                                 </span>
 
                                 <ul class="drop-down">
+                                    <li><a href="#about-membership">Profile</a></li>
+                                    <li><a href="#about-membership">Events</a></li>
                                     <li><a href="#about-membership">Donation history</a></li>
                                     <li>
                                         <form id="logout-form" action="logout" method="POST" style="display: none;">
