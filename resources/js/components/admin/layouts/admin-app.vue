@@ -1,17 +1,19 @@
 <template>
-    <section id="admin-app">
+    <section>
         <side-nav></side-nav>
-        <router-view></router-view>
+        <body-content></body-content>
     </section>
 
 </template>
 
 <script>
 import sidenav from './side-nav'
+import body from './content-body'
 export default {
     name: "admin-app",
     components : {
-        'side-nav': sidenav
+        'side-nav': sidenav,
+        'body-content': body,
     }
 }
 </script>
