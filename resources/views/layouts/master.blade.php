@@ -61,14 +61,14 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                    <img src="images/logo-footer.png" alt=""/>
+                                    <img src="images/logo/logo.png" alt="" height="120"/>
                                 </div> <!--  end col-lg-3-->
 
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                     <p>
-                                        We are world largest and trustful blood donation center. We have been working since
-                                        1973 with a prestigious vision to helping patient to provide blood.
-                                        We are working all over the world, organizing blood donation campaign to grow
+                                        We are world largest and trustful blood donor Association. We have been working since
+                                        2016 with a prestigious vision to helping patient to provide blood.
+                                        We are working all over Bangladesh, organizing blood donation campaign to grow
                                         awareness among the people to donate blood.
                                     </p>
                                 </div> <!--  end .col-lg-9  -->
@@ -241,7 +241,8 @@
                 <div class="row clearfix">
 
                     <div class="col-md-12 col-sm-12 text-center">
-                        <p class="copyright-text"> Copyright 2018 - Blood Buddies by BlueWindLab. All Rights Reserved. </p>
+                        <p class="copyright-text"> Copyright 2021 - SBDA. All Rights Reserved. </p>
+                        Developed By <a href="www.rezaul-oni.xyz" class="float-right"> <strong >Rezaul Alam Oni</strong></a>
                     </div>  <!-- end .col-sm-6  -->
 
                 </div> <!-- end .row  -->
