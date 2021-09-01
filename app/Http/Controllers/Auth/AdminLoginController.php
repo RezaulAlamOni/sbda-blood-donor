@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminLoginController extends Controller
 {
     use AuthenticatesUsers;
-//    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     public function __construct()
     {
@@ -20,7 +20,7 @@ class AdminLoginController extends Controller
     }
 
     public function showLoginForm(){
-        return view('auth.donor.login');
+        return view('auth.admin.login');
     }
 
     public function login(Request $request)
@@ -38,6 +38,13 @@ class AdminLoginController extends Controller
         }
 
         return back();
+    }
+
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 
 }
