@@ -819,6 +819,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "content-body"
 });
@@ -1498,7 +1501,9 @@ var render = function() {
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3)
     ],
     1
   )
@@ -1669,7 +1674,7 @@ var staticRenderFns = [
                                         staticClass: "avatar rounded-circle",
                                         attrs: {
                                           alt: "Image placeholder",
-                                          src: "assets/img/theme/team-1.jpg"
+                                          src: "/assets/img/theme/team-1.jpg"
                                         }
                                       })
                                     ]),
@@ -1729,7 +1734,7 @@ var staticRenderFns = [
                                         staticClass: "avatar rounded-circle",
                                         attrs: {
                                           alt: "Image placeholder",
-                                          src: "assets/img/theme/team-2.jpg"
+                                          src: "/assets/img/theme/team-2.jpg"
                                         }
                                       })
                                     ]),
@@ -1789,7 +1794,7 @@ var staticRenderFns = [
                                         staticClass: "avatar rounded-circle",
                                         attrs: {
                                           alt: "Image placeholder",
-                                          src: "assets/img/theme/team-3.jpg"
+                                          src: "/assets/img/theme/team-3.jpg"
                                         }
                                       })
                                     ]),
@@ -1849,7 +1854,7 @@ var staticRenderFns = [
                                         staticClass: "avatar rounded-circle",
                                         attrs: {
                                           alt: "Image placeholder",
-                                          src: "assets/img/theme/team-4.jpg"
+                                          src: "/assets/img/theme/team-4.jpg"
                                         }
                                       })
                                     ]),
@@ -1909,7 +1914,7 @@ var staticRenderFns = [
                                         staticClass: "avatar rounded-circle",
                                         attrs: {
                                           alt: "Image placeholder",
-                                          src: "assets/img/theme/team-5.jpg"
+                                          src: "/assets/img/theme/team-5.jpg"
                                         }
                                       })
                                     ]),
@@ -2149,7 +2154,7 @@ var staticRenderFns = [
                               _c("img", {
                                 attrs: {
                                   alt: "Image placeholder",
-                                  src: "assets/img/theme/team-4.jpg"
+                                  src: "/assets/img/theme/team-4.jpg"
                                 }
                               })
                             ]
@@ -3098,8 +3103,14 @@ var staticRenderFns = [
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid" }, [
       _c("footer", { staticClass: "footer pt-0" }, [
         _c(
           "div",
@@ -3112,7 +3123,7 @@ var staticRenderFns = [
                   staticClass: "copyright text-center  text-lg-left  text-muted"
                 },
                 [
-                  _vm._v("\n                        © 2020 "),
+                  _vm._v("\n                        © 2021 "),
                   _c(
                     "a",
                     {
@@ -3122,7 +3133,7 @@ var staticRenderFns = [
                         target: "_blank"
                       }
                     },
-                    [_vm._v("Creative Tim")]
+                    [_vm._v("SBDA")]
                   )
                 ]
               )
@@ -3146,7 +3157,7 @@ var staticRenderFns = [
                           target: "_blank"
                         }
                       },
-                      [_vm._v("Creative Tim")]
+                      [_vm._v("SBDA")]
                     )
                   ]),
                   _vm._v(" "),
@@ -3222,53 +3233,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      {
-        staticClass:
-          "sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white",
-        attrs: { id: "sidenav-main" }
-      },
-      [
-        _c("div", { staticClass: "scrollbar-inner" }, [
-          _c("div", { staticClass: "sidenav-header  align-items-center" }, [
-            _c(
-              "a",
-              {
-                staticClass: "navbar-brand",
-                attrs: { href: "javascript:void(0)" }
-              },
-              [
-                _c("img", {
-                  staticClass: "navbar-brand-img",
-                  attrs: { src: "/images/logo/sbda-logo.png", alt: "..." }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "navbar-inner" }, [
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "sidenav-collapse-main" }
-              },
-              [
-                _c("ul", { staticClass: "navbar-nav" }, [
-                  _c("li", { staticClass: "nav-item" }, [
+  return _c(
+    "nav",
+    {
+      staticClass:
+        "sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white",
+      attrs: { id: "sidenav-main" }
+    },
+    [
+      _c("div", { staticClass: "scrollbar-inner" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "navbar-inner" }, [
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "sidenav-collapse-main" }
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
                     _c(
-                      "a",
+                      "router-link",
                       {
                         staticClass: "nav-link active",
-                        attrs: { href: "examples/dashboard.html" }
+                        attrs: { to: { name: "admin_home" } }
                       },
                       [
                         _c("i", { staticClass: "ni ni-tv-2 text-primary" }),
@@ -3278,207 +3271,225 @@ var staticRenderFns = [
                         ])
                       ]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link collapsed",
-                        attrs: {
-                          href: "#navbar-payment",
-                          "data-toggle": "collapse",
-                          role: "button",
-                          "aria-expanded": "false",
-                          "aria-controls": "navbar-examples"
-                        }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-credit-card text-default"
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Deposit")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "collapse",
-                        attrs: { id: "navbar-payment" }
-                      },
-                      [
-                        _c("ul", { staticClass: "nav nav-sm flex-column" }, [
-                          _c("li", { staticClass: "nav-item" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  href: "#paymentModal",
-                                  "data-toggle": "modal"
-                                }
-                              },
-                              [_vm._v("Add Deposit")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "nav-item" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "nav-link ",
-                                attrs: {
-                                  href:
-                                    "https://smspanel.walletmix.biz/deposit-log"
-                                }
-                              },
-                              [_vm._v("Deposit Log")]
-                            )
-                          ])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/icons.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-planet text-orange" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Icons")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/map.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-pin-3 text-primary" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Google")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/profile.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-single-02 text-yellow" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Profile")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/tables.html" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "ni ni-bullet-list-67 text-default"
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Tables")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/login.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-key-25 text-info" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Login")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/register.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-circle-08 text-pink" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Register")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "examples/upgrade.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "ni ni-send text-dark" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Upgrade")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("hr", { staticClass: "my-3" }),
+                _vm._m(1),
                 _vm._v(" "),
-                _c("h6", { staticClass: "navbar-heading p-0 text-muted" }, [
-                  _c("span", { staticClass: "docs-normal" }, [
-                    _vm._v("Documentation")
-                  ])
-                ])
-              ]
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _vm._m(8)
+              ]),
+              _vm._v(" "),
+              _c("hr", { staticClass: "my-3" }),
+              _vm._v(" "),
+              _vm._m(9)
+            ]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sidenav-header  align-items-center" }, [
+      _c(
+        "a",
+        { staticClass: "navbar-brand", attrs: { href: "javascript:void(0)" } },
+        [
+          _c("img", {
+            staticClass: "navbar-brand-img",
+            attrs: { src: "/images/logo/sbda-logo.png", alt: "..." }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link collapsed",
+          attrs: {
+            href: "#navbar-payment",
+            "data-toggle": "collapse",
+            role: "button",
+            "aria-expanded": "false",
+            "aria-controls": "navbar-examples"
+          }
+        },
+        [
+          _c("i", { staticClass: "fa fa-images text-info" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Images")])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "collapse", attrs: { id: "navbar-payment" } }, [
+        _c("ul", { staticClass: "nav nav-sm flex-column" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#paymentModal", "data-toggle": "modal" }
+              },
+              [_vm._v("Add Deposit")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link ",
+                attrs: { href: "https://smspanel.walletmix.biz/deposit-log" }
+              },
+              [_vm._v("Deposit Log")]
             )
           ])
         ])
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/icons.html" } },
+        [
+          _c("i", { staticClass: "ni ni-planet text-orange" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Icons")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/map.html" } },
+        [
+          _c("i", { staticClass: "ni ni-pin-3 text-primary" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Google")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/profile.html" } },
+        [
+          _c("i", { staticClass: "ni ni-single-02 text-yellow" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Profile")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/tables.html" } },
+        [
+          _c("i", { staticClass: "ni ni-bullet-list-67 text-default" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Tables")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/login.html" } },
+        [
+          _c("i", { staticClass: "ni ni-key-25 text-info" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Login")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/register.html" } },
+        [
+          _c("i", { staticClass: "ni ni-circle-08 text-pink" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Register")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "examples/upgrade.html" } },
+        [
+          _c("i", { staticClass: "ni ni-send text-dark" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "nav-link-text" }, [_vm._v("Upgrade")])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "navbar-heading p-0 text-muted" }, [
+      _c("span", { staticClass: "docs-normal" }, [_vm._v("Documentation")])
+    ])
   }
 ]
 render._withStripped = true
@@ -18859,7 +18870,7 @@ Vue.component('admin-app', __webpack_require__(/*! ./components/admin/layouts/ad
  */
 
 
-var app = new Vue({
+var app_ = new Vue({
   el: '#admin-app',
   router: _router_admin__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
@@ -19162,17 +19173,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var base_url = window.APP_URL;
 var routes = [{
   path: '/admin',
-  child: {
-    path: "/user",
-    component: _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    name: "about-us"
-  }
+  component: _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+  name: 'admin_home'
 }];
-var admin = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",
   routes: routes
 });
-/* harmony default export */ __webpack_exports__["default"] = (admin);
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 

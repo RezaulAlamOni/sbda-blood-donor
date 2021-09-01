@@ -30,7 +30,7 @@ Vue.component('admin-app', require('./components/admin/layouts/admin-app').defau
  */
 import router from "./router/admin";
 
-const app = new Vue({
+const app_ = new Vue({
     el: '#admin-app',
     router
 });

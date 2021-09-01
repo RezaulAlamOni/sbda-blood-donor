@@ -61356,13 +61356,6 @@ var routes = [{
   path: "/about-us",
   component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
   name: "about-us"
-}, {
-  path: '/admin',
-  child: {
-    path: "/user",
-    component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
-    name: "about-us"
-  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: "history",

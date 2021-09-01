@@ -14,15 +14,15 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="examples/dashboard.html">
+                            <router-link class="nav-link active" :to="{ name: 'admin_home'}">
                                 <i class="ni ni-tv-2 text-primary"></i>
                                 <span class="nav-link-text">Dashboard</span>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsed" href="#navbar-payment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
-                                <i class="fa fa-credit-card text-default"></i>
-                                <span class="nav-link-text">Deposit</span>
+                                <i class="fa fa-images text-info"></i>
+                                <span class="nav-link-text">Images</span>
                             </a>
                             <div class="collapse" id="navbar-payment" style="">
                                 <ul class="nav nav-sm flex-column">

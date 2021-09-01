@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
+    <meta name="author" content="SBDA">
     <title>SBDA</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
@@ -16,15 +16,17 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/nucleo/css/nucleo.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
     <!-- Page plugins -->
+
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.2.0') }}" type="text/css">
+    <script src="{{ asset('js/admin-app.js?v=2541') }}" defer></script>
+
 </head>
 
 <body >
 <div id="admin-app">
     <admin-app></admin-app>
 </div>
-
 
 <!-- Argon Scripts -->
 <!-- Core -->
@@ -39,7 +41,9 @@
 <!-- Argon JS -->
 <script src="{{ asset('assets/js/argon.js?v=1.2.0') }}"></script>
 
-<script src="{{ asset('js/admin-app.js') }}" defer></script>
+<script>
+    window.APP_URL = '{{ config('app.url') }}';
+</script>
 </body>
 
 </html>
