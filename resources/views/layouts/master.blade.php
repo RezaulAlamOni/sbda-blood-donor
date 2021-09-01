@@ -97,13 +97,15 @@
                                 <div class="textwidget">
 
                                     <i class="fa fa-envelope-o fa-contact"></i>
-                                    <p><a href="#">support@donation.com</a><br/><a href="#">helpme@donation.com</a></p>
+                                    <p><a href="#">ssbdaofficialbd@gmail.com</a></p>
 
                                     <i class="fa fa-location-arrow fa-contact"></i>
-                                    <p>Road-2,3/A East Shibgonj<br/>Sylhet-3100, Bangladesh</p>
+                                    <p>Madrasha Market (1st Floor),<br>
+                                        Islampur, Chatkhil, Noakhali-3874<br>
+                                        Bangladesh</p>
 
                                     <i class="fa fa-phone fa-contact"></i>
-                                    <p>Office:&nbsp; (+880) 0823 560 433<br/>Cell:&nbsp; (+880) 0723 161 343</p>
+                                    <p>Office:&nbsp; (+880) 1933018532</p>
 
                                 </div>
 

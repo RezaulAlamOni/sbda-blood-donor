@@ -27,10 +27,10 @@
                             <div class="collapse" id="navbar-payment" style="">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="#paymentModal" data-toggle="modal" class="nav-link">Add Deposit</a>
+                                        <router-link :to="{ name : 'gallery-image'}"  class="nav-link">Gallery Image</router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://smspanel.walletmix.biz/deposit-log" class="nav-link ">Deposit Log</a>
+                                        <a href="https://smspanel.walletmix.biz/deposit-log" class="nav-link ">Home Slider Image</a>
                                     </li>
                                 </ul>
                             </div>
