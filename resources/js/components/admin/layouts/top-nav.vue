@@ -208,10 +208,10 @@
                            aria-expanded="false">
                             <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="/assets/img/theme/team-4.jpg">
+                    <img alt="Image placeholder" src="/images/thumbnail.png">
                   </span>
                                 <div class="media-body  ml-2  d-none d-lg-block">
-                                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                                    <span class="mb-0 text-sm  font-weight-bold">{{ auth.name }}</span>
                                 </div>
                             </div>
                         </a>
@@ -252,8 +252,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    name: "top-nav"
+    name: "top-nav",
+    components : {},
+    data () {
+        return {
+            auth : null,
+            app_url : window.APP_URL
+        }
+    },
+    mounted() {
+        this.get_auth();
+    },
+    methods:{
+        get_auth() {
+            let _this = this;
+            axios.get(_this.app_url+'admin/auth-data')
+                .then(function (respose) {
+                    _this.auth = respose.data;
+                    // if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
+                    //     console.log(_this.$route.name)
+                    //     _this.$router.push({name : 'home'})
+                    // }
+
+                })
+                .catch(function (er) {
+                    console.log(er.message)
+                })
+                .finally(function () {
+
+                })
+        },
+    }
 }
 </script>
 

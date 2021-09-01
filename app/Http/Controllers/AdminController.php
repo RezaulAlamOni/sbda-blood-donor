@@ -29,6 +29,13 @@ class AdminController extends Controller
         //
     }
 
+    protected function authData(Request $request)
+    {
+        return response()->json(
+            Auth::guard('admin')->user()
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *
