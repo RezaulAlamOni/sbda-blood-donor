@@ -19,4 +19,14 @@ class Photo extends Model
         return  '/storage/images/'.$this->attributes['type'].'/'.$value;
     }
 
+    public static function boot() {
+
+        parent::boot();
+
+        static::deleting(function($photo) {
+
+        });
+
+    }
+
 }

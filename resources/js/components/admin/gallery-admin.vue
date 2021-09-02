@@ -41,7 +41,7 @@
                         <div class="table-responsive card-body ">
                             <div class="row col-md-12" style="margin: auto">
                                 <div class="image-grid col-md-3 col-sm-3 col-lg-2 " v-for="(photo,key) in gallery"
-                                     @click="previewImage('event_4.jpg',1)">
+                                     @click="previewImage(photo.photo,photo.id)">
                                     <img :src="photo.photo" class="img-thumbnail" alt="" height="200"
                                          width="200">
                                 </div>
@@ -57,21 +57,22 @@
 
             <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default">Preview Image & Action</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                    <div class="modal-header" style="background: #4c1313">
+                        <h4 class="modal-title text-white" id="modal-title-default">Preview Image & Action</h4>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">×</span>
                         </button>
                     </div>
 
                     <div class="modal-body" style="margin:auto">
-                        <img :src="'/images/'+preview_image.img" alt="" width="100%">
+                        <img :src="preview_image.img" alt="" width="100%" style="max-height: 350px;">
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                    <div class="modal-footer"  style="border-top: 1px solid #e6e5e5;padding: 2px 10px;">
+                        <!--                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>-->
+                        <button type="button" class="btn btn-danger" @click="deleteImage()">
+                            <i class="fas fa-trash-alt mr-2"> </i>
+                            Delete</button>
                     </div>
 
                 </div>
@@ -157,25 +158,6 @@ export default {
             $('#image-preview').modal({backdrop: 'static'})
 
         },
-        saveImage() {
-            let fd = new FormData()
-            let _this = this;
-
-            for (let i = 0; i < _this.save_image.length ; i++) {
-                fd.append('file[]', _this.save_image[i].img)
-            }
-            fd.append('type', 'gallery')
-            if (_this.save_image.length > 0) {
-                this.axios.post('/admin/image-upload', fd)
-                    .then(resp => {
-                        $('#add-image').modal('hide')
-                        _this.save_image = [];
-                        _this.upload_preview = [];
-                        _this.getGallery();
-                    })
-            }
-
-        },
         uploadImage (e) {
             let _this = this;
             let files = e.target.files
@@ -199,6 +181,34 @@ export default {
                 reader.readAsDataURL(_this.upload_preview[i]);
 
             }
+        },
+        saveImage() {
+            let fd = new FormData()
+            let _this = this;
+
+            for (let i = 0; i < _this.save_image.length ; i++) {
+                fd.append('file[]', _this.save_image[i].img)
+            }
+            fd.append('type', 'gallery')
+            if (_this.save_image.length > 0) {
+                this.axios.post('/admin/image-upload', fd)
+                    .then(resp => {
+                        $('#add-image').modal('hide')
+                        _this.save_image = [];
+                        _this.upload_preview = [];
+                        _this.getGallery();
+                    })
+            }
+
+        },
+        //delete image
+        deleteImage() {
+            let _this = this;
+            this.axios.post('/admin/images-delete', {'id' : _this.preview_image.id})
+                .then(resp => {
+                    $('#image-preview').modal('hide')
+                    _this.getGallery();
+                })
         }
     }
 }

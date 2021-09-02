@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\PhotoEvent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -17,7 +18,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            PhotoEvent::class
         ],
+        'App\Events\Event' => [
+            'App\Listeners\EventListener',
+        ],
+        'photo.deleted' => [
+            'App\Events\PhotoEvent@itemDeleted'
+        ]
     ];
 
     /**

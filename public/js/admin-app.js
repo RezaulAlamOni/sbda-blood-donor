@@ -1854,6 +1854,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gallery-admin",
   data: function data() {
@@ -1885,27 +1886,6 @@ __webpack_require__.r(__webpack_exports__);
       $('#image-preview').modal({
         backdrop: 'static'
       });
-    },
-    saveImage: function saveImage() {
-      var fd = new FormData();
-
-      var _this = this;
-
-      for (var i = 0; i < _this.save_image.length; i++) {
-        fd.append('file[]', _this.save_image[i].img);
-      }
-
-      fd.append('type', 'gallery');
-
-      if (_this.save_image.length > 0) {
-        this.axios.post('/admin/image-upload', fd).then(function (resp) {
-          $('#add-image').modal('hide');
-          _this.save_image = [];
-          _this.upload_preview = [];
-
-          _this.getGallery();
-        });
-      }
     },
     uploadImage: function uploadImage(e) {
       var _this2 = this;
@@ -1939,6 +1919,39 @@ __webpack_require__.r(__webpack_exports__);
       for (var _i = 0; _i < _this.upload_preview.length; _i++) {
         _loop(_i);
       }
+    },
+    saveImage: function saveImage() {
+      var fd = new FormData();
+
+      var _this = this;
+
+      for (var i = 0; i < _this.save_image.length; i++) {
+        fd.append('file[]', _this.save_image[i].img);
+      }
+
+      fd.append('type', 'gallery');
+
+      if (_this.save_image.length > 0) {
+        this.axios.post('/admin/image-upload', fd).then(function (resp) {
+          $('#add-image').modal('hide');
+          _this.save_image = [];
+          _this.upload_preview = [];
+
+          _this.getGallery();
+        });
+      }
+    },
+    //delete image
+    deleteImage: function deleteImage() {
+      var _this = this;
+
+      this.axios.post('/admin/images-delete', {
+        'id': _this.preview_image.id
+      }).then(function (resp) {
+        $('#image-preview').modal('hide');
+
+        _this.getGallery();
+      });
     }
   }
 });
@@ -4221,7 +4234,7 @@ var render = function() {
                       staticClass: "image-grid col-md-3 col-sm-3 col-lg-2 ",
                       on: {
                         click: function($event) {
-                          return _vm.previewImage("event_4.jpg", 1)
+                          return _vm.previewImage(photo.photo, photo.id)
                         }
                       }
                     },
@@ -4274,8 +4287,9 @@ var render = function() {
                 { staticClass: "modal-body", staticStyle: { margin: "auto" } },
                 [
                   _c("img", {
+                    staticStyle: { "max-height": "350px" },
                     attrs: {
-                      src: "/images/" + _vm.preview_image.img,
+                      src: _vm.preview_image.img,
                       alt: "",
                       width: "100%"
                     }
@@ -4283,7 +4297,34 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(4)
+              _c(
+                "div",
+                {
+                  staticClass: "modal-footer",
+                  staticStyle: {
+                    "border-top": "1px solid #e6e5e5",
+                    padding: "2px 10px"
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteImage()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-trash-alt mr-2" }),
+                      _vm._v("\n                            Delete")
+                    ]
+                  )
+                ]
+              )
             ])
           ]
         )
@@ -4311,7 +4352,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _vm.upload_preview.length > 0
@@ -4460,47 +4501,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h6",
-        { staticClass: "modal-title", attrs: { id: "modal-title-default" } },
-        [_vm._v("Preview Image & Action")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-link  ml-auto",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "modal-header", staticStyle: { background: "#4c1313" } },
+      [
+        _c(
+          "h4",
+          {
+            staticClass: "modal-title text-white",
+            attrs: { id: "modal-title-default" }
+          },
+          [_vm._v("Preview Image & Action")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close text-white",
+            attrs: {
+              type: "button",
+              "data-dismiss": "modal",
+              "aria-label": "Close"
+            }
+          },
+          [
+            _c(
+              "span",
+              { staticClass: "text-white", attrs: { "aria-hidden": "true" } },
+              [_vm._v("×")]
+            )
+          ]
+        )
+      ]
+    )
   },
   function() {
     var _vm = this

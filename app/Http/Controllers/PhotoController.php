@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -16,7 +17,6 @@ class PhotoController extends Controller
     public function index($type)
     {
         $Photo = new Photo();
-
         $photos = $Photo->where('type',$type)->orderBy('id','desc')->get();
         return response()->json(['photos' => $photos]);
     }
@@ -109,8 +109,15 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Photo $photo,Request $request)
     {
-        //
+        $photo_ = $photo->where('id',$request->id)->first();
+        $path = public_path().$photo_->photo;
+        // Value is not URL but directory file path
+        $photo->where('id',$request->id)->delete();
+        if(File::exists($path)) {
+            File::delete($path);
+        }
+        return response()->json(['status' => 'success']);
     }
 }
