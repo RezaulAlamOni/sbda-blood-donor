@@ -1865,23 +1865,51 @@ __webpack_require__.r(__webpack_exports__);
         id: null
       },
       save_image: [],
-      upload_preview: []
+      upload_preview: [],
+      gallery: []
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.getGallery();
+  },
   methods: {
+    getGallery: function getGallery() {
+      var _this = this; // this.axios.get('/admin/image-upload')
+      //     .then(resp => {
+      //         $('#image-preview').modal('hide')
+      //         _this.save_image = [];
+      //         _this.upload_preview = [];
+      //         console.log(resp)
+      //     })
+
+    },
     previewImage: function previewImage(image, id) {
       this.preview_image.img = image;
       this.preview_image.id = id;
-      $('#image-preview').modal();
+      $('#image-preview').modal({
+        backdrop: 'static'
+      });
     },
     saveImage: function saveImage() {
       var fd = new FormData();
-      fd.append('image', this.save_image.img);
-      fd.append('type', this.save_image.type);
-      this.axios.post('/admin/image-upload', fd).then(function (resp) {
-        console.log(resp);
-      });
+
+      var _this = this;
+
+      for (var i = 0; i < _this.save_image.length; i++) {
+        fd.append('file[]', _this.save_image[i].img);
+      }
+
+      fd.append('type', 'gallery');
+
+      if (_this.save_image.length > 0) {
+        this.axios.post('/admin/image-upload', fd).then(function (resp) {
+          $('#add-image').modal('hide');
+          _this.save_image = [];
+          _this.upload_preview = [];
+
+          _this.getGallery();
+        });
+      }
     },
     uploadImage: function uploadImage(e) {
       var _this2 = this;
@@ -1894,7 +1922,6 @@ __webpack_require__.r(__webpack_exports__);
         var file = files[i];
 
         _this.save_image.push({
-          type: 'gallery',
           img: file
         }); // let tem_path = URL.createObjectURL(_this.save_image.img);
         // let tem_path = window.URL.createObjectURL(_this.save_image.img)
@@ -4313,8 +4340,8 @@ var render = function() {
                       attrs: {
                         type: "file",
                         name: "img",
+                        accept: "image/png, image/gif, image/jpeg, image/jpg",
                         multiple: "",
-                        accept: "image/*",
                         id: "customFileLang",
                         lang: "en"
                       },

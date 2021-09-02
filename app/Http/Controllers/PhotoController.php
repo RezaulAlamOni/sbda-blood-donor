@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -35,7 +36,34 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $type = $request->type;
+        $files = $request->file;
+        if (count($files) > 0) {
+            $photos = [];
+            foreach ($files as $file) {
+//                dd($file);
+                $extension = $file->extension();
+                $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
+                $file->storeAs('/public/images/gallery', $name .".".$extension);
+                $file_ = Storage::url($name .".".$extension);
+                if ($file_) {
+                    array_push($photos,[
+                        'photo' => $name,
+                        'type' => $type,
+                        'description' => 'Gallery Image Uploaded',
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }
+
+            }
+            if (count($photos) > 0){
+                if (Photo::insert($photos)) {
+                    return response(['status' => 'success']);
+                }
+            }
+
+        }
     }
 
     /**

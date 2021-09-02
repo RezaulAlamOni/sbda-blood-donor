@@ -98,8 +98,8 @@
                         <span v-if="upload_preview.length > 0" class=" float-right my-2"> {{ upload_preview.length }} Images Selected </span>
                         <div class="custom-file" style="width: 50% !important;">
                             <input type="file" name="img" class="custom-file-input" @change="uploadImage"
-                                   style="opacity: 0 !important;"
-                                   multiple  accept="image/*"  id="customFileLang" lang="en">
+                                   style="opacity: 0 !important;" accept="image/png, image/gif, image/jpeg, image/jpg"
+                                   multiple   id="customFileLang" lang="en">
                             <label class="custom-file-label" for="customFileLang">Select file</label>
                         </div>
                         <div v-if="upload_preview.length > 0"  style="margin-top: 6px; border-top: 1px solid lightgray;">
@@ -135,29 +135,50 @@ export default {
                 id: null
             },
             save_image : [],
-            upload_preview : []
+            upload_preview : [],
+            gallery : []
 
         }
     },
     mounted() {
+        this.getGallery();
     },
     methods: {
+        getGallery() {
+            let _this = this;
+            // this.axios.get('/admin/image-upload')
+            //     .then(resp => {
+            //         $('#image-preview').modal('hide')
+            //         _this.save_image = [];
+            //         _this.upload_preview = [];
+            //         console.log(resp)
+            //     })
+        },
         previewImage(image, id) {
             this.preview_image.img = image;
             this.preview_image.id = id
 
-            $('#image-preview').modal()
+            $('#image-preview').modal({backdrop: 'static'})
 
         },
         saveImage() {
-            let fd= new FormData()
-            fd.append('image', this.save_image.img)
-            fd.append('type', this.save_image.type)
+            let fd = new FormData()
+            let _this = this;
 
-            this.axios.post('/admin/image-upload', fd)
-                .then(resp => {
-                    console.log(resp)
-                })
+            for (let i = 0; i < _this.save_image.length ; i++) {
+                fd.append('file[]', _this.save_image[i].img)
+            }
+            fd.append('type', 'gallery')
+            if (_this.save_image.length > 0) {
+                this.axios.post('/admin/image-upload', fd)
+                    .then(resp => {
+                        $('#add-image').modal('hide')
+                        _this.save_image = [];
+                        _this.upload_preview = [];
+                        _this.getGallery();
+                    })
+            }
+
         },
         uploadImage (e) {
             let _this = this;
@@ -166,7 +187,6 @@ export default {
             for (let i = 0; i < files.length ; i++) {
                 let file = files[i];
                 _this.save_image.push({
-                    type : 'gallery',
                     img: file
                 })
                 // let tem_path = URL.createObjectURL(_this.save_image.img);
