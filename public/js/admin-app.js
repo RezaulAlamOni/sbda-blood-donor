@@ -1845,6 +1845,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gallery-admin",
   data: function data() {
@@ -1853,10 +1864,8 @@ __webpack_require__.r(__webpack_exports__);
         img: null,
         id: null
       },
-      save_image: {
-        type: 'gallery',
-        img: ''
-      }
+      save_image: [],
+      upload_preview: []
     };
   },
   mounted: function mounted() {},
@@ -1865,6 +1874,48 @@ __webpack_require__.r(__webpack_exports__);
       this.preview_image.img = image;
       this.preview_image.id = id;
       $('#image-preview').modal();
+    },
+    saveImage: function saveImage() {
+      var fd = new FormData();
+      fd.append('image', this.save_image.img);
+      fd.append('type', this.save_image.type);
+      this.axios.post('/admin/image-upload', fd).then(function (resp) {
+        console.log(resp);
+      });
+    },
+    uploadImage: function uploadImage(e) {
+      var _this2 = this;
+
+      var _this = this;
+
+      var files = e.target.files;
+
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+
+        _this.save_image.push({
+          type: 'gallery',
+          img: file
+        }); // let tem_path = URL.createObjectURL(_this.save_image.img);
+        // let tem_path = window.URL.createObjectURL(_this.save_image.img)
+
+
+        _this.upload_preview.push(file);
+      }
+
+      var _loop = function _loop(_i) {
+        var reader = new FileReader(); //instantiate a new file reader
+
+        reader.addEventListener('load', function () {
+          this.$refs['image' + parseInt(_i)][0].src = reader.result;
+        }.bind(_this2), false); //add event listener
+
+        reader.readAsDataURL(_this.upload_preview[_i]);
+      };
+
+      for (var _i = 0; _i < _this.upload_preview.length; _i++) {
+        _loop(_i);
+      }
     }
   }
 });
@@ -2500,6 +2551,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "side-nav"
 });
@@ -2515,8 +2569,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2770,7 +2822,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "top-nav",
   components: {},
@@ -2787,7 +2838,7 @@ __webpack_require__.r(__webpack_exports__);
     get_auth: function get_auth() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(_this.app_url + 'admin/auth-data').then(function (respose) {
+      this.axios.get(_this.app_url + 'admin/auth-data').then(function (respose) {
         _this.auth = respose.data; // if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
         //     console.log(_this.$route.name)
         //     _this.$router.push({name : 'home'})
@@ -2832,7 +2883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.image-grid[data-v-11ff1659] {\n    padding: 1px 1px 12px 1px;\n}\n.card-body[data-v-11ff1659] {\n    min-height: calc(100vh - 255px);\n}\n.image-grid img[data-v-11ff1659] {\n    max-height: 100% !important;\n    width: auto !important;\n    cursor: pointer;\n}\n.image-grid img[data-v-11ff1659]:hover {\n    zoom: 1.5;\n}\n\n\n", ""]);
+exports.push([module.i, "\n#preview[data-v-11ff1659] {\n        display: contents;\n        justify-content: center;\n        align-items: center;\n}\n#preview img[data-v-11ff1659] {\n    max-width: 30%;\n    max-height: 100px;\n    padding: 5px;\n    margin: 3px;\n}\n.image-grid[data-v-11ff1659] {\n    padding: 1px 1px 12px 1px;\n}\n.card-body[data-v-11ff1659] {\n    min-height: calc(100vh - 255px);\n}\n.image-grid img[data-v-11ff1659] {\n    max-height: 100% !important;\n    width: auto !important;\n    cursor: pointer;\n}\n.image-grid img[data-v-11ff1659]:hover {\n    zoom: 1.5;\n}\n\n\n", ""]);
 
 // exports
 
@@ -4215,7 +4266,130 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(5)
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          tabindex: "-1",
+          id: "add-image",
+          role: "dialog",
+          "aria-labelledby": "modal-default",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal-dialog-centered modal-",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm.upload_preview.length > 0
+                  ? _c("span", { staticClass: " float-right my-2" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(_vm.upload_preview.length) +
+                          " Images Selected "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "custom-file",
+                    staticStyle: { width: "50% !important" }
+                  },
+                  [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      staticStyle: { opacity: "0 !important" },
+                      attrs: {
+                        type: "file",
+                        name: "img",
+                        multiple: "",
+                        accept: "image/*",
+                        id: "customFileLang",
+                        lang: "en"
+                      },
+                      on: { change: _vm.uploadImage }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "customFileLang" }
+                      },
+                      [_vm._v("Select file")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.upload_preview.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticStyle: {
+                          "margin-top": "6px",
+                          "border-top": "1px solid lightgray"
+                        }
+                      },
+                      _vm._l(_vm.upload_preview, function(preview, key) {
+                        return _c("div", { attrs: { id: "preview" } }, [
+                          preview
+                            ? _c("img", {
+                                ref: "image" + parseInt(key),
+                                refInFor: true,
+                                staticClass: "img-thumbnail"
+                              })
+                            : _vm._e()
+                        ])
+                      }),
+                      0
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal-footer",
+                  staticStyle: {
+                    "border-top": "1px solid #e6e5e5",
+                    padding: "2px 10px"
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.saveImage()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-save mr-2" }),
+                      _vm._v("\n                            Save")
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -4310,99 +4484,33 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          tabindex: "-1",
-          id: "add-image",
-          role: "dialog",
-          "aria-labelledby": "modal-default",
-          "aria-hidden": "true"
-        }
-      },
+      { staticClass: "modal-header", staticStyle: { background: "#4c1313" } },
       [
         _c(
-          "div",
+          "h4",
           {
-            staticClass: "modal-dialog modal-dialog-centered modal-",
-            attrs: { role: "document" }
+            staticClass: "modal-title text-white",
+            attrs: { id: "modal-default" }
+          },
+          [_vm._v("Add New Gallery Image")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close text-white",
+            attrs: {
+              type: "button",
+              "data-dismiss": "modal",
+              "aria-label": "Close"
+            }
           },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h6",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "modal-default" }
-                  },
-                  [_vm._v("Add New Gallery Image")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "modal-body", staticStyle: { margin: "auto" } },
-                [
-                  _c("form", [
-                    _c("div", { staticClass: "custom-file" }, [
-                      _c("input", {
-                        staticClass: "custom-file-input",
-                        attrs: {
-                          type: "file",
-                          name: "img",
-                          id: "customFileLang",
-                          lang: "en"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-file-label",
-                          attrs: { for: "customFileLang" }
-                        },
-                        [_vm._v("Select file")]
-                      )
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                  [_vm._v("Save changes")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-link  ml-auto",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                )
-              ])
-            ])
+            _c(
+              "span",
+              { staticClass: "text-white", attrs: { "aria-hidden": "true" } },
+              [_vm._v("×")]
+            )
           ]
         )
       ]
@@ -5568,7 +5676,15 @@ var render = function() {
                                 staticClass: "nav-link",
                                 attrs: { to: { name: "gallery-image" } }
                               },
-                              [_vm._v("Gallery Image")]
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-arrow-right text-info",
+                                  staticStyle: { "min-width": "20px" }
+                                }),
+                                _vm._v(
+                                  "\n                                        Gallery Image"
+                                )
+                              ]
                             )
                           ],
                           1
@@ -21794,7 +21910,9 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router/admin */ "./resources/js/router/admin.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router/admin */ "./resources/js/router/admin.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -21802,6 +21920,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 // require('./bootstrap');
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+Vue.prototype.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -21824,7 +21944,7 @@ Vue.component('admin-app', __webpack_require__(/*! ./components/admin/layouts/ad
 
 var app_ = new Vue({
   el: '#admin-app',
-  router: _router_admin__WEBPACK_IMPORTED_MODULE_0__["default"]
+  router: _router_admin__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 /***/ }),

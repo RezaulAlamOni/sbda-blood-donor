@@ -27,7 +27,10 @@
                             <div class="collapse" id="navbar-payment" style="">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <router-link :to="{ name : 'gallery-image'}"  class="nav-link">Gallery Image</router-link>
+
+                                        <router-link :to="{ name : 'gallery-image'}"  class="nav-link">
+                                            <i class="fa fa-arrow-right text-info" style="    min-width: 20px;"></i>
+                                            Gallery Image</router-link>
                                     </li>
                                     <li class="nav-item">
                                         <a href="https://smspanel.walletmix.biz/deposit-log" class="nav-link ">Home Slider Image</a>

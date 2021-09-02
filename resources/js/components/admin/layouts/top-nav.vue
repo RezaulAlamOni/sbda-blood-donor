@@ -252,7 +252,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     name: "top-nav",
     components : {},
@@ -268,7 +267,7 @@ export default {
     methods:{
         get_auth() {
             let _this = this;
-            axios.get(_this.app_url+'admin/auth-data')
+            this.axios.get(_this.app_url+'admin/auth-data')
                 .then(function (respose) {
                     _this.auth = respose.data;
                     // if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {

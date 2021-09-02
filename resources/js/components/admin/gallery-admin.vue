@@ -84,28 +84,39 @@
         <div class="modal fade" tabindex="-1" id="add-image" role="dialog" aria-labelledby="modal-default"
              aria-hidden="true">
 
-            <div class="modal-dialog modal-dialog-centered modal-" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-default">Add New Gallery Image</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                    <div class="modal-header" style="background: #4c1313">
+                        <h4 class="modal-title text-white" id="modal-default">Add New Gallery Image</h4>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">×</span>
                         </button>
                     </div>
 
-                    <div class="modal-body" style="margin:auto">
-                        <form>
-                            <div class="custom-file">
-                                <input type="file" name="img" class="custom-file-input" id="customFileLang" lang="en">
-                                <label class="custom-file-label" for="customFileLang">Select file</label>
+                    <div class="modal-body" >
+                        <span v-if="upload_preview.length > 0" class=" float-right my-2"> {{ upload_preview.length }} Images Selected </span>
+                        <div class="custom-file" style="width: 50% !important;">
+                            <input type="file" name="img" class="custom-file-input" @change="uploadImage"
+                                   style="opacity: 0 !important;"
+                                   multiple  accept="image/*"  id="customFileLang" lang="en">
+                            <label class="custom-file-label" for="customFileLang">Select file</label>
+                        </div>
+                        <div v-if="upload_preview.length > 0"  style="margin-top: 6px; border-top: 1px solid lightgray;">
+                            <div id="preview" v-for="(preview, key ) in upload_preview">
+                                <img v-if="preview" class="img-thumbnail"  v-bind:ref="'image' +parseInt( key )"/>
                             </div>
-                        </form>
+                        </div>
+
+
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+
+                    <div class="modal-footer"  style="border-top: 1px solid #e6e5e5;padding: 2px 10px;">
+<!--                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>-->
+                        <button type="button" class="btn btn-primary" @click="saveImage()">
+                            <i class="fas fa-save mr-2"> </i>
+                            Save</button>
                     </div>
 
                 </div>
@@ -123,10 +134,9 @@ export default {
                 img: null,
                 id: null
             },
-            save_image : {
-                type : 'gallery',
-                img: ''
-            }
+            save_image : [],
+            upload_preview : []
+
         }
     },
     mounted() {
@@ -138,12 +148,61 @@ export default {
 
             $('#image-preview').modal()
 
+        },
+        saveImage() {
+            let fd= new FormData()
+            fd.append('image', this.save_image.img)
+            fd.append('type', this.save_image.type)
+
+            this.axios.post('/admin/image-upload', fd)
+                .then(resp => {
+                    console.log(resp)
+                })
+        },
+        uploadImage (e) {
+            let _this = this;
+            let files = e.target.files
+
+            for (let i = 0; i < files.length ; i++) {
+                let file = files[i];
+                _this.save_image.push({
+                    type : 'gallery',
+                    img: file
+                })
+                // let tem_path = URL.createObjectURL(_this.save_image.img);
+                // let tem_path = window.URL.createObjectURL(_this.save_image.img)
+                _this.upload_preview.push(file)
+            }
+
+            for (let i = 0; i< _this.upload_preview.length; i++) {
+                let reader = new FileReader(); //instantiate a new file reader
+                reader.addEventListener('load', function () {
+                    this.$refs['image' + parseInt(i)][0].src = reader.result;
+                }.bind(this), false);  //add event listener
+
+                reader.readAsDataURL(_this.upload_preview[i]);
+
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+
+    #preview {
+        display: contents;
+        justify-content: center;
+        align-items: center;
+    }
+
+#preview img {
+    max-width: 30%;
+    max-height: 100px;
+    padding: 5px;
+    margin: 3px;
+}
+
 .image-grid {
     padding: 1px 1px 12px 1px;
 }
