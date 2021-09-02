@@ -40,13 +40,11 @@
                         </div>
                         <div class="table-responsive card-body ">
                             <div class="row col-md-12" style="margin: auto">
-                                <div class="image-grid col-md-3 col-sm-3 col-lg-2 "
+                                <div class="image-grid col-md-3 col-sm-3 col-lg-2 " v-for="(photo,key) in gallery"
                                      @click="previewImage('event_4.jpg',1)">
-                                    <img src="/images/event_4.jpg" class="img-thumbnail" alt="" height="200"
+                                    <img :src="photo.photo" class="img-thumbnail" alt="" height="200"
                                          width="200">
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -130,6 +128,7 @@ export default {
     name: "gallery-admin",
     data() {
         return {
+            type : 'gallery',
             preview_image: {
                 img: null,
                 id: null
@@ -146,13 +145,10 @@ export default {
     methods: {
         getGallery() {
             let _this = this;
-            // this.axios.get('/admin/image-upload')
-            //     .then(resp => {
-            //         $('#image-preview').modal('hide')
-            //         _this.save_image = [];
-            //         _this.upload_preview = [];
-            //         console.log(resp)
-            //     })
+            this.axios.get('/admin/images/'+_this.type)
+                .then(resp => {
+                   _this.gallery = resp.data.photos;
+                })
         },
         previewImage(image, id) {
             this.preview_image.img = image;
@@ -225,6 +221,7 @@ export default {
 
 .image-grid {
     padding: 1px 1px 12px 1px;
+    text-align: center;
 }
 
 .card-body {
@@ -235,10 +232,12 @@ export default {
     max-height: 100% !important;
     width: auto !important;
     cursor: pointer;
+    height: 150px !important;
 }
 
 .image-grid img:hover {
-    zoom: 1.5;
+    zoom: 1.011;
+    height: 150px !important;
 }
 
 

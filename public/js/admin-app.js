@@ -1854,12 +1854,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "gallery-admin",
   data: function data() {
     return {
+      type: 'gallery',
       preview_image: {
         img: null,
         id: null
@@ -1874,14 +1873,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getGallery: function getGallery() {
-      var _this = this; // this.axios.get('/admin/image-upload')
-      //     .then(resp => {
-      //         $('#image-preview').modal('hide')
-      //         _this.save_image = [];
-      //         _this.upload_preview = [];
-      //         console.log(resp)
-      //     })
+      var _this = this;
 
+      this.axios.get('/admin/images/' + _this.type).then(function (resp) {
+        _this.gallery = resp.data.photos;
+      });
     },
     previewImage: function previewImage(image, id) {
       this.preview_image.img = image;
@@ -2910,7 +2906,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#preview[data-v-11ff1659] {\n        display: contents;\n        justify-content: center;\n        align-items: center;\n}\n#preview img[data-v-11ff1659] {\n    max-width: 30%;\n    max-height: 100px;\n    padding: 5px;\n    margin: 3px;\n}\n.image-grid[data-v-11ff1659] {\n    padding: 1px 1px 12px 1px;\n}\n.card-body[data-v-11ff1659] {\n    min-height: calc(100vh - 255px);\n}\n.image-grid img[data-v-11ff1659] {\n    max-height: 100% !important;\n    width: auto !important;\n    cursor: pointer;\n}\n.image-grid img[data-v-11ff1659]:hover {\n    zoom: 1.5;\n}\n\n\n", ""]);
+exports.push([module.i, "\n#preview[data-v-11ff1659] {\n        display: contents;\n        justify-content: center;\n        align-items: center;\n}\n#preview img[data-v-11ff1659] {\n    max-width: 30%;\n    max-height: 100px;\n    padding: 5px;\n    margin: 3px;\n}\n.image-grid[data-v-11ff1659] {\n    padding: 1px 1px 12px 1px;\n    text-align: center;\n}\n.card-body[data-v-11ff1659] {\n    min-height: calc(100vh - 255px);\n}\n.image-grid img[data-v-11ff1659] {\n    max-height: 100% !important;\n    width: auto !important;\n    cursor: pointer;\n    height: 150px !important;\n}\n.image-grid img[data-v-11ff1659]:hover {\n    zoom: 1.011;\n    height: 150px !important;\n}\n\n\n", ""]);
 
 // exports
 
@@ -4218,8 +4214,8 @@ var render = function() {
                   staticClass: "row col-md-12",
                   staticStyle: { margin: "auto" }
                 },
-                [
-                  _c(
+                _vm._l(_vm.gallery, function(photo, key) {
+                  return _c(
                     "div",
                     {
                       staticClass: "image-grid col-md-3 col-sm-3 col-lg-2 ",
@@ -4233,7 +4229,7 @@ var render = function() {
                       _c("img", {
                         staticClass: "img-thumbnail",
                         attrs: {
-                          src: "/images/event_4.jpg",
+                          src: photo.photo,
                           alt: "",
                           height: "200",
                           width: "200"
@@ -4241,7 +4237,8 @@ var render = function() {
                       })
                     ]
                   )
-                ]
+                }),
+                0
               )
             ])
           ])

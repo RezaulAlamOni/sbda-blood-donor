@@ -13,9 +13,12 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type)
     {
-        //
+        $Photo = new Photo();
+
+        $photos = $Photo->where('type',$type)->orderBy('id','desc')->get();
+        return response()->json(['photos' => $photos]);
     }
 
     /**
@@ -48,7 +51,7 @@ class PhotoController extends Controller
                 $file_ = Storage::url($name .".".$extension);
                 if ($file_) {
                     array_push($photos,[
-                        'photo' => $name,
+                        'photo' => $name.'.'.$extension,
                         'type' => $type,
                         'description' => 'Gallery Image Uploaded',
                         'created_at' => now(),
