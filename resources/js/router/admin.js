@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 import home from '../components/admin/home'
 import PageNotFound from '../components/404'
 import GalleryAdmin from '../components/admin/gallery-admin'
+import SliderSetting from '../components/admin/sider-admin'
 
 
 let base_url = window.APP_URL
@@ -21,6 +22,13 @@ let routes = [
         component: GalleryAdmin,
         name: 'gallery-image'
     },
+    {
+        path: '/admin/slider-image',
+        component: SliderSetting,
+        name: 'slider-image'
+    },
+
+
     { path: "*", component: PageNotFound }
 
 ];

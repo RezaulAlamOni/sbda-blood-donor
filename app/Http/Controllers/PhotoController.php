@@ -47,7 +47,10 @@ class PhotoController extends Controller
 //                dd($file);
                 $extension = $file->extension();
                 $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
-                $file->storeAs('/public/images/gallery', $name .".".$extension);
+                if (!file_exists('/public/images/'.$type)) {
+                    mkdir('/public/images/'.$type, 0777, true);
+                }
+                $file->storeAs('/public/images/'.$type, $name .".".$extension);
                 $file_ = Storage::url($name .".".$extension);
                 if ($file_) {
                     array_push($photos,[

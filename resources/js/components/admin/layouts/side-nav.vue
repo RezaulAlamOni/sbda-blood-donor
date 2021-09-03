@@ -33,8 +33,12 @@
                                             Gallery Image</router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="https://smspanel.walletmix.biz/deposit-log" class="nav-link ">Home Slider Image</a>
+
+                                        <router-link :to="{ name : 'slider-image'}"  class="nav-link">
+                                            <i class="fa fa-arrow-right text-info" style="    min-width: 20px;"></i>
+                                            Home Sliders</router-link>
                                     </li>
+
                                 </ul>
                             </div>
                         </li>
