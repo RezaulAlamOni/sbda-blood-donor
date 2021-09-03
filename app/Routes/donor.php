@@ -21,6 +21,9 @@ Route::get('/login', 'Auth\DonorLoginController@showLoginForm')->name('donor.log
 Route::get('/register', 'Auth\RegisterController@register')->name('donor.register');
 Route::get('/auth-check', 'DonorController@authCheck')->name('auth.check');
 
+Route::get('/', 'HomeController@index')->name('home');
+
+
 
 // blood group
 Route::get('/blood-groups','BloodGroupController@index')->name('blood_group');

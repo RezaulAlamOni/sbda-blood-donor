@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "v-viewer": "^1.6.4",
+        "vue-image-slider": "^1.0.2",
         "vue-router": "^3.1.5"
     }
 }
