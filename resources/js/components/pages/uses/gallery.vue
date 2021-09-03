@@ -22,17 +22,28 @@
 
             <div class="row no-padding-gallery" v-if="photos.length > 0">
 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">
-                    <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
+                <!--                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">-->
+                <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
 
-                        <figure class="gallery-img">
-                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>
+                    <!--                        <figure class="gallery-img">-->
+                    <!--                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>-->
 
-                        </figure> <!-- end .gallery-img  -->
+                    <!--                        </figure> &lt;!&ndash; end .gallery-img  &ndash;&gt;-->
 
-                    </a>
+                </a>
 
-                </div><!-- end .col-sm-3  -->
+                <!--                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;-->
+
+                <viewer :images="photos" options="{inline : true}">
+                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos" style="max-height: 140px !important;">
+                        <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
+                            <figure class="gallery-img" >
+                                <img :key="src" :src="src" style="max-height: 130px !important;">
+                            </figure>
+                        </a>
+                    </div>
+                </viewer>
+
             </div> <!-- end .row  -->
 
 
@@ -44,27 +55,32 @@
 </template>
 
 <script>
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
+import Vue from 'vue'
+
+Vue.use(VueViewer)
 export default {
     name: "gallery",
-    data(){
-      return {
-          photos : [],
-          app_url: window.APP_URL
-      }
+    data() {
+        return {
+            photos: [],
+            app_url: window.APP_URL
+        }
     },
     mounted() {
         this.photos = [
-                // { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
-                // { id : 2 , photo : 'gallery_2.jpg'},
-                // { id : 3 , photo : 'gallery_3.jpg'},
-                // { id : 4 , photo : 'gallery_4.jpg'},
-                // { id : 5 , photo : 'gallery_5.jpg'},
-                // { id : 6 , photo : 'gallery_6.jpg'}
-            ]
+            // { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
+            // { id : 2 , photo : 'gallery_2.jpg'},
+            // { id : 3 , photo : 'gallery_3.jpg'},
+            // { id : 4 , photo : 'gallery_4.jpg'},
+            // { id : 5 , photo : 'gallery_5.jpg'},
+            // { id : 6 , photo : 'gallery_6.jpg'}
+        ]
         console.log(this.photos)
 
     },
-    methods : {
+    methods: {
         getGallery() {
             let _this = this;
             this.axios.get('/admin/images/gallery')
@@ -75,20 +91,19 @@ export default {
                     // _this.photos = [
                     //     { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
                     // ];
-                    gallery.push({ id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"})
+                    // gallery.push({ id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"})
                     photos.map(function (photo) {
-                        gallery.push({
-                            id : photo.id,
-                            photo : photo.photo
-                        })
+                        gallery.push(photo.photo)
                     });
-                    setTimeout(function (){
-                        _this.photos = gallery;
-                    },100)
-                    console.log(resp.data.photos)
-                    console.log(this.photos)
+                    _this.photos = gallery;
+
 
                 })
+        },
+        show() {
+            this.$viewerApi({
+                images: this.photos
+            })
         },
     },
     created() {
