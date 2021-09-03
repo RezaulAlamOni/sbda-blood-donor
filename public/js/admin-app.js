@@ -4242,7 +4242,7 @@ var render = function() {
                       _c("img", {
                         staticClass: "img-thumbnail",
                         attrs: {
-                          src: photo.photo,
+                          src: "/" + photo.photo,
                           alt: "",
                           height: "200",
                           width: "200"
@@ -4289,7 +4289,7 @@ var render = function() {
                   _c("img", {
                     staticStyle: { "max-height": "350px" },
                     attrs: {
-                      src: _vm.preview_image.img,
+                      src: "/" + _vm.preview_image.img,
                       alt: "",
                       width: "100%"
                     }

@@ -42,7 +42,7 @@
                             <div class="row col-md-12" style="margin: auto">
                                 <div class="image-grid col-md-3 col-sm-3 col-lg-2 " v-for="(photo,key) in gallery"
                                      @click="previewImage(photo.photo,photo.id)">
-                                    <img :src="photo.photo" class="img-thumbnail" alt="" height="200"
+                                    <img :src="'/'+photo.photo" class="img-thumbnail" alt="" height="200"
                                          width="200">
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="modal-body" style="margin:auto">
-                        <img :src="preview_image.img" alt="" width="100%" style="max-height: 350px;">
+                        <img :src="'/'+preview_image.img" alt="" width="100%" style="max-height: 350px;">
                     </div>
 
                     <div class="modal-footer"  style="border-top: 1px solid #e6e5e5;padding: 2px 10px;">
