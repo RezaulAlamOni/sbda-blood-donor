@@ -20,13 +20,13 @@
 
         <div class="container wow fadeInUp">
 
-            <div class="row no-padding-gallery">
+            <div class="row no-padding-gallery" v-if="photos.length > 0">
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">
-                    <a class="gallery-light-box" data-gall="myGallery" :href="'images/'+photo.photo">
+                    <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
 
                         <figure class="gallery-img">
-                            <img v-bind:src="app_url+'images/'+photo.photo" alt="gallery image"/>
+                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>
 
                         </figure> <!-- end .gallery-img  -->
 
@@ -54,14 +54,46 @@ export default {
     },
     mounted() {
         this.photos = [
-                { id : 1 , photo : 'gallery_1.jpg'},
-                { id : 2 , photo : 'gallery_2.jpg'},
-                { id : 3 , photo : 'gallery_3.jpg'},
-                { id : 4 , photo : 'gallery_4.jpg'},
-                { id : 5 , photo : 'gallery_5.jpg'},
-                { id : 6 , photo : 'gallery_6.jpg'}
+                // { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
+                // { id : 2 , photo : 'gallery_2.jpg'},
+                // { id : 3 , photo : 'gallery_3.jpg'},
+                // { id : 4 , photo : 'gallery_4.jpg'},
+                // { id : 5 , photo : 'gallery_5.jpg'},
+                // { id : 6 , photo : 'gallery_6.jpg'}
             ]
+        console.log(this.photos)
+
     },
+    methods : {
+        getGallery() {
+            let _this = this;
+            this.axios.get('/admin/images/gallery')
+                .then(resp => {
+                    let photos = resp.data.photos;
+                    // _this.photos = resp.data.photos;
+                    let gallery = [];
+                    // _this.photos = [
+                    //     { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
+                    // ];
+                    gallery.push({ id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"})
+                    photos.map(function (photo) {
+                        gallery.push({
+                            id : photo.id,
+                            photo : photo.photo
+                        })
+                    });
+                    setTimeout(function (){
+                        _this.photos = gallery;
+                    },100)
+                    console.log(resp.data.photos)
+                    console.log(this.photos)
+
+                })
+        },
+    },
+    created() {
+        this.getGallery();
+    }
 
 }
 </script>

@@ -3414,25 +3414,48 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.photos = [{
-      id: 1,
-      photo: 'gallery_1.jpg'
-    }, {
-      id: 2,
-      photo: 'gallery_2.jpg'
-    }, {
-      id: 3,
-      photo: 'gallery_3.jpg'
-    }, {
-      id: 4,
-      photo: 'gallery_4.jpg'
-    }, {
-      id: 5,
-      photo: 'gallery_5.jpg'
-    }, {
-      id: 6,
-      photo: 'gallery_6.jpg'
-    }];
+    this.photos = [// { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
+      // { id : 2 , photo : 'gallery_2.jpg'},
+      // { id : 3 , photo : 'gallery_3.jpg'},
+      // { id : 4 , photo : 'gallery_4.jpg'},
+      // { id : 5 , photo : 'gallery_5.jpg'},
+      // { id : 6 , photo : 'gallery_6.jpg'}
+    ];
+    console.log(this.photos);
+  },
+  methods: {
+    getGallery: function getGallery() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.get('/admin/images/gallery').then(function (resp) {
+        var photos = resp.data.photos; // _this.photos = resp.data.photos;
+
+        var gallery = []; // _this.photos = [
+        //     { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
+        // ];
+
+        gallery.push({
+          id: 1,
+          photo: "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"
+        });
+        photos.map(function (photo) {
+          gallery.push({
+            id: photo.id,
+            photo: photo.photo
+          });
+        });
+        setTimeout(function () {
+          _this.photos = gallery;
+        }, 100);
+        console.log(resp.data.photos);
+        console.log(_this2.photos);
+      });
+    }
+  },
+  created: function created() {
+    this.getGallery();
   }
 });
 
@@ -8495,7 +8518,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-13718505] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-13718505] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -43640,43 +43663,45 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "container wow fadeInUp" }, [
-        _c(
-          "div",
-          { staticClass: "row no-padding-gallery" },
-          _vm._l(_vm.photos, function(photo) {
-            return _c(
+        _vm.photos.length > 0
+          ? _c(
               "div",
-              {
-                key: photo.id,
-                staticClass:
-                  "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
-              },
-              [
-                _c(
-                  "a",
+              { staticClass: "row no-padding-gallery" },
+              _vm._l(_vm.photos, function(photo) {
+                return _c(
+                  "div",
                   {
-                    staticClass: "gallery-light-box",
-                    attrs: {
-                      "data-gall": "myGallery",
-                      href: "images/" + photo.photo
-                    }
+                    key: photo.id,
+                    staticClass:
+                      "col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container"
                   },
                   [
-                    _c("figure", { staticClass: "gallery-img" }, [
-                      _c("img", {
+                    _c(
+                      "a",
+                      {
+                        staticClass: "gallery-light-box",
                         attrs: {
-                          src: _vm.app_url + "images/" + photo.photo,
-                          alt: "gallery image"
+                          "data-gall": "myGallery",
+                          href: "javascript:void(0)"
                         }
-                      })
-                    ])
+                      },
+                      [
+                        _c("figure", { staticClass: "gallery-img" }, [
+                          _c("img", {
+                            attrs: {
+                              src: _vm.app_url + photo.photo,
+                              alt: "gallery image"
+                            }
+                          })
+                        ])
+                      ]
+                    )
                   ]
                 )
-              ]
+              }),
+              0
             )
-          }),
-          0
-        )
+          : _vm._e()
       ])
     ]
   )
@@ -60461,7 +60486,9 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router_route__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router/route */ "./resources/js/router/route.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router_route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router/route */ "./resources/js/router/route.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -60470,6 +60497,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+Vue.prototype.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -60492,7 +60521,7 @@ Vue.component('header-component', __webpack_require__(/*! ./components/pages/use
 
 var app = new Vue({
   el: '#app',
-  router: _router_route__WEBPACK_IMPORTED_MODULE_0__["default"]
+  router: _router_route__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 /***/ }),

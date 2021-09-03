@@ -16,7 +16,7 @@ class Photo extends Model
 
     public function getPhotoAttribute($value)
     {
-        return  '/storage/images/'.$this->attributes['type'].'/'.$value;
+        return  'storage/images/'.$this->attributes['type'].'/'.$value;
     }
 
     public static function boot() {
