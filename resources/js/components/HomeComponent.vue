@@ -1,89 +1,89 @@
 <template>
     <section>
-        <div class="slider-wrap" >
+        <div class="slider-wrap">
             <div id="slider_1" class="owl-carousel" data-nav="true" data-dots="false" data-autoplay="true"
-                 data-autoplaytimeout="17000" >
-<!--
-                                <template v-for="image in sliders">
-                                    <div class="slider_item_container" :data-bg_img="'/'+image.photo"  data-bg_color="#555555" data-bg_opacity="0.0">
-                                        <div class="item">
-                                            <div class="slider-content">
-                                                <div class="container text-left">
-                                                    <div class="row">
-                                                        <div class="slider-bg">
-                                                            <div class="col-sm-12 wow zoomInUp" data-wow-duration="1s">
+                 data-autoplaytimeout="17000">
+                <!--
+                                                <template v-for="image in sliders">
+                                                    <div class="slider_item_container" :data-bg_img="'/'+image.photo"  data-bg_color="#555555" data-bg_opacity="0.0">
+                                                        <div class="item">
+                                                            <div class="slider-content">
+                                                                <div class="container text-left">
+                                                                    <div class="row">
+                                                                        <div class="slider-bg">
+                                                                            <div class="col-sm-12 wow zoomInUp" data-wow-duration="1s">
 
-                                                                <h3>Donate blood,save life !</h3>
-                                                                <h2>
-                                                                    YOUR BLOOD
-                                                                    <br>
-                                                                    CAN BRING SMILE
-                                                                    <br/>
-                                                                    IN OTHER PERSON FACE
-                                                                </h2>
-                                                                <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
-                                                                <a href="#" class="btn btn-theme btn-theme-invert margin-top-24">CALL :
-                                                                    411-009-872-333</a>
-                                                            </div>
-                                                        </div> &lt;!&ndash; end .col-sm-12  &ndash;&gt;
-                                                    </div> &lt;!&ndash; end .row  &ndash;&gt;
-                                                </div>&lt;!&ndash; end .container &ndash;&gt;
-                                            </div> &lt;!&ndash;  end .slider-content &ndash;&gt;
-                                        </div> &lt;!&ndash; end .item  &ndash;&gt;
-                                    </div> &lt;!&ndash; end .slider_item_container  &ndash;&gt;
-                                </template>
+                                                                                <h3>Donate blood,save life !</h3>
+                                                                                <h2>
+                                                                                    YOUR BLOOD
+                                                                                    <br>
+                                                                                    CAN BRING SMILE
+                                                                                    <br/>
+                                                                                    IN OTHER PERSON FACE
+                                                                                </h2>
+                                                                                <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
+                                                                                <a href="#" class="btn btn-theme btn-theme-invert margin-top-24">CALL :
+                                                                                    411-009-872-333</a>
+                                                                            </div>
+                                                                        </div> &lt;!&ndash; end .col-sm-12  &ndash;&gt;
+                                                                    </div> &lt;!&ndash; end .row  &ndash;&gt;
+                                                                </div>&lt;!&ndash; end .container &ndash;&gt;
+                                                            </div> &lt;!&ndash;  end .slider-content &ndash;&gt;
+                                                        </div> &lt;!&ndash; end .item  &ndash;&gt;
+                                                    </div> &lt;!&ndash; end .slider_item_container  &ndash;&gt;
+                                                </template>
 
-                                <div class="slider_item_container" data-bg_img="images/home_1_slider_2.jpg" data-bg_color="#555555"
-                                     data-bg_opacity="0.0">
-                                    <div class="item">
-                                        <div class="slider-content">
-                                            <div class="container text-left">
-                                                <div class="row">
-                                                    <div class="slider-bg" data-animation-in="zoomInUp" data-animation-out="zoomInDown">
-                                                        <div class="col-sm-12 wow fadeInDown" data-wow-duration="1s">
+                                                <div class="slider_item_container" data-bg_img="images/home_1_slider_2.jpg" data-bg_color="#555555"
+                                                     data-bg_opacity="0.0">
+                                                    <div class="item">
+                                                        <div class="slider-content">
+                                                            <div class="container text-left">
+                                                                <div class="row">
+                                                                    <div class="slider-bg" data-animation-in="zoomInUp" data-animation-out="zoomInDown">
+                                                                        <div class="col-sm-12 wow fadeInDown" data-wow-duration="1s">
 
-                                                            <h3>Donate blood,save life !</h3>
-                                                            <h2>
-                                                                DONATE BLOOD
-                                                                <br>
-                                                                AND INSPIRES OTHERS.
-                                                            </h2>
-                                                            <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
-                                                        </div>
-                                                    </div> &lt;!&ndash; end .col-sm-12  &ndash;&gt;
-                                                </div> &lt;!&ndash; end .row  &ndash;&gt;
-                                            </div>&lt;!&ndash; end .container &ndash;&gt;
-                                        </div> &lt;!&ndash;  end .slider-content &ndash;&gt;
-                                    </div> &lt;!&ndash; end .item  &ndash;&gt;
-                                </div> &lt;!&ndash; end .slider_item_container  &ndash;&gt;
-                                <div class="slider_item_container" data-bg_img="images/home_1_slider_2.jpg" data-bg_color="#555555"-->
-                                     data-bg_opacity="0.0">
-                                    <div class="item">
-                                        <div class="slider-content">
-                                            <div class="container text-left">
-                                                <div class="row">
-                                                    <div class="slider-bg" data-animation-in="zoomInUp" data-animation-out="zoomInDown">
-                                                        <div class="col-sm-12 wow fadeInDown" data-wow-duration="1s">
+                                                                            <h3>Donate blood,save life !</h3>
+                                                                            <h2>
+                                                                                DONATE BLOOD
+                                                                                <br>
+                                                                                AND INSPIRES OTHERS.
+                                                                            </h2>
+                                                                            <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
+                                                                        </div>
+                                                                    </div> &lt;!&ndash; end .col-sm-12  &ndash;&gt;
+                                                                </div> &lt;!&ndash; end .row  &ndash;&gt;
+                                                            </div>&lt;!&ndash; end .container &ndash;&gt;
+                                                        </div> &lt;!&ndash;  end .slider-content &ndash;&gt;
+                                                    </div> &lt;!&ndash; end .item  &ndash;&gt;
+                                                </div> &lt;!&ndash; end .slider_item_container  &ndash;&gt;
+                                                <div class="slider_item_container" data-bg_img="images/home_1_slider_2.jpg" data-bg_color="#555555"-->
+<!--                data-bg_opacity="0.0">-->
+                <div class="item">
+                    <div class="slider-content">
+                        <div class="container text-left">
+                            <div class="row">
+                                <div class="slider-bg" data-animation-in="zoomInUp" data-animation-out="zoomInDown">
+                                    <div class="col-sm-12 wow fadeInDown" data-wow-duration="1s">
 
-                                                            <h3>Donate blood,save life !</h3>
-                                                            <h2>
-                                                                DONATE BLOOD
-                                                                <br>
-                                                                AND INSPIRES OTHERS.
-                                                            </h2>
-                                                            <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
-                                                        </div>
-                                                    </div> <!-- end .col-sm-12  -->
-                                                </div> <!-- end .row  -->
-                                            </div><!-- end .container -->
-                                        </div> <!--  end .slider-content -->
-                                    </div> <!-- end .item  -->
-                                </div> <!-- end .slider_item_container  -->
-                <vue-image-slider :images="sliders" :intervalVal=15000 :height=700 :width="'100%'" >
-                    <button class="btn btn-success">Update</button>
-                </vue-image-slider>
-            </div> <!-- end .slider_1  -->
-        </div> <!-- end .slider-wrap.  -->
+                                        <h3>Donate blood,save life !</h3>
+                                        <h2>
+                                            DONATE BLOOD
+                                            <br>
+                                            AND INSPIRES OTHERS.
+                                        </h2>
+                                        <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
+                                    </div>
+                                </div> <!-- end .col-sm-12  -->
+                            </div> <!-- end .row  -->
+                        </div><!-- end .container -->
+                    </div> <!--  end .slider-content -->
+                </div> <!-- end .item  -->
+            </div> <!-- end .slider_item_container  -->
+            <vue-image-slider :images="sliders" :intervalVal=6000 :height=700 :width="'100%'">
+                <button class="btn btn-success">Update</button>
+            </vue-image-slider>
+        </div> <!-- end .slider_1  -->
+
 
         <!--  FEATURED ABOUT US SECTION-->
 
@@ -108,7 +108,8 @@
 
                             <div class="about-details">
 
-                                <p>Blood Buddies is for public donation center with blood donation members in the changing
+                                <p>Blood Buddies is for public donation center with blood donation members in the
+                                    changing
                                     health care system.</p>
 
 
@@ -144,7 +145,8 @@
 
         <!-- SECTION TESTIMONIAL   -->
 
-        <section class="section-content-block section-custom-bg" data-bg_img='images/testimony_feat_bg.jpg' data-bg_size='cover'
+        <section class="section-content-block section-custom-bg" data-bg_img='images/testimony_feat_bg.jpg'
+                 data-bg_size='cover'
                  data-bg_position='top center' data-bg_opacity="0">
 
             <div class="container margin-top-80">
@@ -160,7 +162,8 @@
                 </div>
             </div>
 
-            <div class="container theme-custom-box-shadow  section-pure-white-bg margin-top-48 margin-bottom-48 wow fadeInUp">
+            <div
+                class="container theme-custom-box-shadow  section-pure-white-bg margin-top-48 margin-bottom-48 wow fadeInUp">
 
                 <div class="row">
 
@@ -174,7 +177,8 @@
                                     <h3 class="people-quote">Donor Opinion</h3>
                                     <p class="testimony-text">
                                         I proudly donate blood on a regular basis because it gives others something they
-                                        desperately need to survive. Just knowing I can make a difference in someone else's life
+                                        desperately need to survive. Just knowing I can make a difference in someone
+                                        else's life
                                         makes me feel great!
                                     </p>
 
@@ -191,8 +195,10 @@
                                 <div class="testimony-layout-1">
                                     <h3 class="people-quote">Donor Opinion</h3>
                                     <p class="testimony-text">
-                                        I have been a donor since high school. Although I have not been a donor every year, I
-                                        always want to give to the human race. I love to help others! Moreover it gives a real
+                                        I have been a donor since high school. Although I have not been a donor every
+                                        year, I
+                                        always want to give to the human race. I love to help others! Moreover it gives
+                                        a real
                                         peace in my mind.
                                     </p>
 
@@ -209,8 +215,10 @@
                                 <div class="testimony-layout-1">
                                     <h3 class="people-quote">Recipient Opinion</h3>
                                     <p class="testimony-text">
-                                        I wish I could tell you my donor how grateful I am for your selfless act.You gave me new
-                                        life. We may be coworkers or schoolmates or just two in the same community.I'm very
+                                        I wish I could tell you my donor how grateful I am for your selfless act.You
+                                        gave me new
+                                        life. We may be coworkers or schoolmates or just two in the same community.I'm
+                                        very
                                         grateful to you.
                                     </p>
 
@@ -285,8 +293,10 @@
                                             <h4>
                                                 <a href="#">Opening Donation Day</a>
                                             </h4>
-                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort
-                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris
+                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit
+                                                lobort
+                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis
+                                                sharetrx mauris
                                                 gone do.
                                             </div>
                                             <div class="event-time">
@@ -305,12 +315,15 @@
                                             </a>
                                         </figure>
                                         <div class="event-info">
-                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 11 March, 2018</a>
+                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 11 March,
+                                                2018</a>
                                             <h4>
                                                 <a href="#">Free Group Checking</a>
                                             </h4>
-                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort
-                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris
+                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit
+                                                lobort
+                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis
+                                                sharetrx mauris
                                                 gone do.
                                             </div>
                                             <div class="event-time">
@@ -329,12 +342,15 @@
                                             </a>
                                         </figure>
                                         <div class="event-info">
-                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 14 June, 2018</a>
+                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 14 June,
+                                                2018</a>
                                             <h4>
                                                 <a href="#">Blood Group Collection</a>
                                             </h4>
-                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort
-                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris
+                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit
+                                                lobort
+                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis
+                                                sharetrx mauris
                                                 gone do.
                                             </div>
                                             <div class="event-time">
@@ -353,12 +369,15 @@
                                             </a>
                                         </figure>
                                         <div class="event-info">
-                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 31 July, 2018</a>
+                                            <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 31 July,
+                                                2018</a>
                                             <h4>
                                                 <a href="#">Blood Donation Camp</a>
                                             </h4>
-                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort
-                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris
+                                            <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit
+                                                lobort
+                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis
+                                                sharetrx mauris
                                                 gone do.
                                             </div>
                                             <div class="event-time">
@@ -538,7 +557,8 @@
 
         <!-- SECTION TEAM   -->
 
-        <section class="section-content-block section-custom-bg" data-bg_img='images/team_feat_bg.jpg' data-bg_size='cover'
+        <section class="section-content-block section-custom-bg" data-bg_img='images/team_feat_bg.jpg'
+                 data-bg_size='cover'
                  data-bg_position='top center' data-bg_opacity="0">
 
             <div class="container margin-top-80">
@@ -547,7 +567,8 @@
                     <div class="col-md-12 col-sm-12 text-center no-img-separator">
                         <h4>OUR VOLUNTEERS</h4>
                         <span class="heading-separator heading-separator-horizontal"></span>
-                        <h2 class="extra-large">The volunteers who give their time and talents help to fulfill our mission.</h2>
+                        <h2 class="extra-large">The volunteers who give their time and talents help to fulfill our
+                            mission.</h2>
 
                     </div> <!-- end .col-sm-10  -->
 
@@ -791,7 +812,8 @@
                             <p>
                                 You can give blood at any of our blood donation venues all over the world.
                                 <br/>
-                                We have total sixty thousands donor centers and visit thousands of other venues on various
+                                We have total sixty thousands donor centers and visit thousands of other venues on
+                                various
                                 occasions.
                             </p>
                             <a class="btn btn-theme margin-top-24 wow bounceIn" href="#">JOIN WITH US</a>
@@ -806,29 +828,30 @@
 
 <script>
 import VueImageSlider from 'vue-image-slider'
+
 export default {
     name: "HomeComponent",
     components: {
         VueImageSlider
     },
-    data(){
-        return{
-            type : '',
-            sliders : []
+    data() {
+        return {
+            type: '',
+            sliders: []
         }
     },
     mounted() {
         this.getSliders();
     },
-    methods :{
+    methods: {
         getSliders() {
             let _this = this;
             _this.type = 'slider';
-            this.axios.get('/admin/images/'+_this.type)
+            this.axios.get('/admin/images/' + _this.type)
                 .then(resp => {
                     _this.sliders = resp.data.photos;
                     _this.sliders = _this.sliders.map(function (slide) {
-                        return '/'+slide.photo
+                        return '/' + slide.photo
                     })
                 })
         },
@@ -838,8 +861,8 @@ export default {
 
 <style scoped>
 
-.owl-item .container {
-    padding: 0 !important;
+.slider-wrap .container {
+    padding: 5px 10px !important;
     width: 100% !important;
 }
 

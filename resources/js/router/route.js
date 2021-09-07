@@ -17,11 +17,11 @@ let base_url = window.APP_URL
 
 
 let routes = [
-    // {
-    //     path: "/",
-    //     component: home,
-    //     name: "home"
-    // },
+    {
+        path: "/",
+        component: home,
+        name: "home"
+    },
     {
         path: "/gallery",
         component: gallery,

@@ -2569,6 +2569,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomeComponent",
@@ -8546,7 +8568,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.owl-item .container[data-v-782dcf83] {\n    padding: 0 !important;\n    width: 100% !important;\n}\n\n", ""]);
+exports.push([module.i, "\n.slider-wrap .container[data-v-782dcf83] {\n    padding: 5px 10px !important;\n    width: 100% !important;\n}\n\n", ""]);
 
 // exports
 
@@ -45205,7 +45227,7 @@ var render = function() {
           {
             attrs: {
               images: _vm.sliders,
-              intervalVal: 15000,
+              intervalVal: 6000,
               height: 700,
               width: "100%"
             }
@@ -45251,9 +45273,6 @@ var staticRenderFns = [
         }
       },
       [
-        _vm._v(
-          '\n                                     data-bg_opacity="0.0">\n                                    '
-        ),
         _c("div", { staticClass: "item" }, [
           _c("div", { staticClass: "slider-content" }, [
             _c("div", { staticClass: "container text-left" }, [
@@ -45279,11 +45298,11 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("h2", [
                           _vm._v(
-                            "\n                                                                DONATE BLOOD\n                                                                "
+                            "\n                                            DONATE BLOOD\n                                            "
                           ),
                           _c("br"),
                           _vm._v(
-                            "\n                                                                AND INSPIRES OTHERS.\n                                                            "
+                            "\n                                            AND INSPIRES OTHERS.\n                                        "
                           )
                         ]),
                         _vm._v(" "),
@@ -45345,7 +45364,7 @@ var staticRenderFns = [
                 _c("div", { staticClass: "about-details" }, [
                   _c("p", [
                     _vm._v(
-                      "Blood Buddies is for public donation center with blood donation members in the changing\n                                    health care system."
+                      "Blood Buddies is for public donation center with blood donation members in the\n                                    changing\n                                    health care system."
                     )
                   ]),
                   _vm._v(" "),
@@ -45465,7 +45484,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("p", { staticClass: "testimony-text" }, [
                           _vm._v(
-                            "\n                                        I proudly donate blood on a regular basis because it gives others something they\n                                        desperately need to survive. Just knowing I can make a difference in someone else's life\n                                        makes me feel great!\n                                    "
+                            "\n                                        I proudly donate blood on a regular basis because it gives others something they\n                                        desperately need to survive. Just knowing I can make a difference in someone\n                                        else's life\n                                        makes me feel great!\n                                    "
                           )
                         ]),
                         _vm._v(" "),
@@ -45487,7 +45506,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("p", { staticClass: "testimony-text" }, [
                           _vm._v(
-                            "\n                                        I have been a donor since high school. Although I have not been a donor every year, I\n                                        always want to give to the human race. I love to help others! Moreover it gives a real\n                                        peace in my mind.\n                                    "
+                            "\n                                        I have been a donor since high school. Although I have not been a donor every\n                                        year, I\n                                        always want to give to the human race. I love to help others! Moreover it gives\n                                        a real\n                                        peace in my mind.\n                                    "
                           )
                         ]),
                         _vm._v(" "),
@@ -45509,7 +45528,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("p", { staticClass: "testimony-text" }, [
                           _vm._v(
-                            "\n                                        I wish I could tell you my donor how grateful I am for your selfless act.You gave me new\n                                        life. We may be coworkers or schoolmates or just two in the same community.I'm very\n                                        grateful to you.\n                                    "
+                            "\n                                        I wish I could tell you my donor how grateful I am for your selfless act.You\n                                        gave me new\n                                        life. We may be coworkers or schoolmates or just two in the same community.I'm\n                                        very\n                                        grateful to you.\n                                    "
                           )
                         ]),
                         _vm._v(" "),
@@ -45646,7 +45665,7 @@ var staticRenderFns = [
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
-                                "Lorem ipsum dolor sit amet turadipi scing elit lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris\n                                                gone do.\n                                            "
+                                "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
                               )
                             ]),
                             _vm._v(" "),
@@ -45691,7 +45710,9 @@ var staticRenderFns = [
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
-                                _vm._v(" 11 March, 2018")
+                                _vm._v(
+                                  " 11 March,\n                                                2018"
+                                )
                               ]
                             ),
                             _vm._v(" "),
@@ -45703,7 +45724,7 @@ var staticRenderFns = [
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
-                                "Lorem ipsum dolor sit amet turadipi scing elit lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris\n                                                gone do.\n                                            "
+                                "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
                               )
                             ]),
                             _vm._v(" "),
@@ -45748,7 +45769,9 @@ var staticRenderFns = [
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
-                                _vm._v(" 14 June, 2018")
+                                _vm._v(
+                                  " 14 June,\n                                                2018"
+                                )
                               ]
                             ),
                             _vm._v(" "),
@@ -45760,7 +45783,7 @@ var staticRenderFns = [
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
-                                "Lorem ipsum dolor sit amet turadipi scing elit lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris\n                                                gone do.\n                                            "
+                                "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
                               )
                             ]),
                             _vm._v(" "),
@@ -45805,7 +45828,9 @@ var staticRenderFns = [
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
-                                _vm._v(" 31 July, 2018")
+                                _vm._v(
+                                  " 31 July,\n                                                2018"
+                                )
                               ]
                             ),
                             _vm._v(" "),
@@ -45817,7 +45842,7 @@ var staticRenderFns = [
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
-                                "Lorem ipsum dolor sit amet turadipi scing elit lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris\n                                                gone do.\n                                            "
+                                "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
                               )
                             ]),
                             _vm._v(" "),
@@ -46160,7 +46185,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("h2", { staticClass: "extra-large" }, [
                   _vm._v(
-                    "The volunteers who give their time and talents help to fulfill our mission."
+                    "The volunteers who give their time and talents help to fulfill our\n                            mission."
                   )
                 ])
               ]
@@ -46619,7 +46644,7 @@ var staticRenderFns = [
                   ),
                   _c("br"),
                   _vm._v(
-                    "\n                                We have total sixty thousands donor centers and visit thousands of other venues on various\n                                occasions.\n                            "
+                    "\n                                We have total sixty thousands donor centers and visit thousands of other venues on\n                                various\n                                occasions.\n                            "
                   )
                 ]),
                 _vm._v(" "),
@@ -65985,12 +66010,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 var base_url = window.APP_URL;
-var routes = [// {
-//     path: "/",
-//     component: home,
-//     name: "home"
-// },
-{
+var routes = [{
+  path: "/",
+  component: _components_HomeComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+  name: "home"
+}, {
   path: "/gallery",
   component: _components_pages_uses_gallery__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: "gallery"
