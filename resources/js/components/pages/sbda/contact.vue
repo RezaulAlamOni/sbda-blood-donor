@@ -44,8 +44,13 @@
 
                         <ul class="contact-info">
                             <li>
-                                <span class="icon-container"><i class="fa fa-home"></i></span>
-                                <address>3100 C/A Mouchak,Sylhet,UK</address>
+                                <address>
+                                    <span class="icon-container">
+                                    <i class="fa fa-home"></i></span>
+                                    Madrasha Market (1st Floor),
+                                    Islampur, Chatkhil, Noakhali-3874
+                                    Bangladesh
+                                </address>
                             </li>
                         </ul>
 
@@ -57,7 +62,7 @@
 
                             <li>
                                 <span class="icon-container"><i class="fa fa-phone"></i></span>
-                                <address><a href="#">+093-120-525-9162</a></address>
+                                <address><a href="#">+88 01933018532</a></address>
                             </li>
 
                         </ul>
@@ -68,7 +73,8 @@
                         <ul class="contact-info">
                             <li>
                                 <span class="icon-container"><i class="fa fa-envelope"></i></span>
-                                <address><a href="mailto:">query@yourdomain.com</a></address>
+                                <address><a href="mailto:">sbdaofficialbd@gmail.com
+                                </a></address>
                             </li>
                         </ul>
 

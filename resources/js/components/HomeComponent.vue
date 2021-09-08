@@ -327,7 +327,7 @@
         <!--  SECTION APPOINTMENT BOX -->
 
         <section class="section-content-block section-custom-bg section-custom-bg-extra-padding"
-                 data-bg_img='images/appointment_female_bg.jpg' data-bg_color='#000000' data-bg_opacity='0.1'>
+                 data-bg_img='images/event_single.jpg' data-bg_color='#000000' data-bg_opacity='0.1'>
 
             <div class="container">
                 <div class="custom-empty-space" data-height="160px" data-class="col-sm-hidden"></div>

@@ -3156,6 +3156,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "member-login",
   data: function data() {
@@ -8683,7 +8689,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-34331213] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-34331213] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -45917,7 +45923,7 @@ var staticRenderFns = [
         staticClass:
           "section-content-block section-custom-bg section-custom-bg-extra-padding",
         attrs: {
-          "data-bg_img": "images/appointment_female_bg.jpg",
+          "data-bg_img": "images/event_single.jpg",
           "data-bg_color": "#000000",
           "data-bg_opacity": "0.1"
         }
@@ -47463,11 +47469,14 @@ var staticRenderFns = [
             _c("div", { staticClass: "col-md-3" }, [
               _c("ul", { staticClass: "contact-info" }, [
                 _c("li", [
-                  _c("span", { staticClass: "icon-container" }, [
-                    _c("i", { staticClass: "fa fa-home" })
-                  ]),
-                  _vm._v(" "),
-                  _c("address", [_vm._v("3100 C/A Mouchak,Sylhet,UK")])
+                  _c("address", [
+                    _c("span", { staticClass: "icon-container" }, [
+                      _c("i", { staticClass: "fa fa-home" })
+                    ]),
+                    _vm._v(
+                      "\n                                Madrasha Market (1st Floor),\n                                Islampur, Chatkhil, Noakhali-3874\n                                Bangladesh\n                            "
+                    )
+                  ])
                 ])
               ])
             ]),
@@ -47481,7 +47490,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("address", [
                     _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("+093-120-525-9162")
+                      _vm._v("+88 01933018532")
                     ])
                   ])
                 ])
@@ -47497,7 +47506,9 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("address", [
                     _c("a", { attrs: { href: "mailto:" } }, [
-                      _vm._v("query@yourdomain.com")
+                      _vm._v(
+                        "sbdaofficialbd@gmail.com\n                            "
+                      )
                     ])
                   ])
                 ])
