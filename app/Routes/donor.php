@@ -29,3 +29,5 @@ Route::get('/auth-check', 'DonorController@authCheck')->name('auth.check');
 Route::get('/blood-groups','BloodGroupController@index')->name('blood_group');
 // member areas
 Route::get('/member-areas','VolunteerAreaController@index')->name('member.areas');
+
+Route::get('/photos/{type}','PhotoController@index');

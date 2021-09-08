@@ -21,8 +21,15 @@
     <link href="{{asset('css/owl.carousel.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/venobox.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('css/styles.css')}}"/>
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
+    <style>
+        @media (min-width: 1200px) {
+            .container {
+                width: 90% !important;
+            }
+        }
+    </style>
 
 <body>
 
@@ -66,7 +73,8 @@
 
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                     <p>
-                                        We are world largest and trustful blood donor Association. We have been working since
+                                        We are world largest and trustful blood donor Association. We have been working
+                                        since
                                         2016 with a prestigious vision to helping patient to provide blood.
                                         We are working all over Bangladesh, organizing blood donation campaign to grow
                                         awareness among the people to donate blood.
@@ -244,7 +252,7 @@
 
                     <div class="col-md-12 col-sm-12 text-center">
                         <p class="copyright-text"> Copyright 2021 - SBDA. All Rights Reserved. </p>
-                        Developed By <a href="www.rezaul-oni.xyz" class="float-right"> <strong >Rezaul Alam Oni</strong></a>
+                        Developed By <a href="www.rezaul-oni.xyz" class="float-right"> <strong>Rezaul Alam Oni</strong></a>
                     </div>  <!-- end .col-sm-6  -->
 
                 </div> <!-- end .row  -->
@@ -257,9 +265,6 @@
 
     <!-- END FOOTER  -->
 </div>
-
-
-
 
 
 <!-- Back To Top Button  -->

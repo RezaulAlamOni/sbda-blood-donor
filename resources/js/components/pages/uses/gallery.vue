@@ -35,10 +35,10 @@
                 <!--                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;-->
 
                 <viewer :images="photos" options="{inline : true}">
-                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos" style="max-height: 140px !important;">
+                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos" style="max-height: 200px !important;">
                         <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
                             <figure class="gallery-img" >
-                                <img :key="src" :src="src" style="max-height: 130px !important;">
+                                <img :key="src" :src="src" style="max-height: 180px !important;">
                             </figure>
                         </a>
                     </div>
@@ -83,7 +83,7 @@ export default {
     methods: {
         getGallery() {
             let _this = this;
-            this.axios.get('/admin/images/gallery')
+            this.axios.get('/photos/gallery')
                 .then(resp => {
                     let photos = resp.data.photos;
                     // _this.photos = resp.data.photos;

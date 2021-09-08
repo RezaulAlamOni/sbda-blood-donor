@@ -847,7 +847,7 @@ export default {
         getSliders() {
             let _this = this;
             _this.type = 'slider';
-            this.axios.get('/admin/images/' + _this.type)
+            this.axios.get('/photos/' + _this.type)
                 .then(resp => {
                     _this.sliders = resp.data.photos;
                     _this.sliders = _this.sliders.map(function (slide) {

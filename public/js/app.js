@@ -2611,7 +2611,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _this.type = 'slider';
-      this.axios.get('/admin/images/' + _this.type).then(function (resp) {
+      this.axios.get('/photos/' + _this.type).then(function (resp) {
         _this.sliders = resp.data.photos;
         _this.sliders = _this.sliders.map(function (slide) {
           return '/' + slide.photo;
@@ -3522,7 +3522,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     getGallery: function getGallery() {
       var _this = this;
 
-      this.axios.get('/admin/images/gallery').then(function (resp) {
+      this.axios.get('/photos/gallery').then(function (resp) {
         var photos = resp.data.photos; // _this.photos = resp.data.photos;
 
         var gallery = []; // _this.photos = [
@@ -48069,7 +48069,7 @@ var render = function() {
                       {
                         staticClass:
                           "gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 ",
-                        staticStyle: { "max-height": "140px !important" }
+                        staticStyle: { "max-height": "200px !important" }
                       },
                       [
                         _c(
@@ -48086,7 +48086,7 @@ var render = function() {
                               _c("img", {
                                 key: src,
                                 staticStyle: {
-                                  "max-height": "130px !important"
+                                  "max-height": "180px !important"
                                 },
                                 attrs: { src: src }
                               })
