@@ -29,14 +29,46 @@
                                     <li class="nav-item">
 
                                         <router-link :to="{ name : 'gallery-image'}"  class="nav-link">
-                                            <i class="fa fa-arrow-right text-info" style="    min-width: 20px;"></i>
-                                            Gallery Image</router-link>
+                                            <i class="fa fa-image text-primary" style="    min-width: 20px;"></i>
+                                            Gallery Image
+                                        </router-link>
                                     </li>
                                     <li class="nav-item">
 
                                         <router-link :to="{ name : 'slider-image'}"  class="nav-link">
-                                            <i class="fa fa-arrow-right text-info" style="    min-width: 20px;"></i>
-                                            Home Sliders</router-link>
+                                            <i class="fa fa-image text-primary" style="    min-width: 20px;"></i>
+                                            Home Sliders
+                                        </router-link>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#users" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                                <i class="fa fa-users-cog text-success"></i>
+                                <span class="nav-link-text">Users</span>
+                            </a>
+                            <div class="collapse" id="users" style="">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+
+                                        <router-link :to="{ name : 'admin-volunteer', params : { type : 'member' }}" class="nav-link" :key ='$route.params'>
+                                            <i class="fa fa-user text-blue" style="    min-width: 20px;"></i>
+                                            Members
+                                        </router-link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <router-link :to="{ name : 'admin-volunteer', params : { type : 'donor' }}"  class="nav-link" :key ='$route.params'>
+                                            <i class="fa fa-user text-blue" style="    min-width: 20px;"></i>
+                                            Donors
+                                        </router-link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <router-link :to="{ name : 'admin-volunteer', params : { type : 'volunteer' }}"  class="nav-link" :key ='$route.params'>
+                                            <i class="fa fa-user text-blue" style="    min-width: 20px;"></i>
+                                            Volunteer
+                                        </router-link>
                                     </li>
 
                                 </ul>

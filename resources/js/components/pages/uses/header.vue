@@ -76,7 +76,8 @@
                                 <router-link to="gallery">gallery</router-link>
                             </li>
                             <li>
-                                <router-link :to="{name : 'contact'}">Contact</router-link>
+<!--                                <router-link :to="{name : 'contact'}">Contact</router-link>-->
+                                <a href="/contacts">Contact</a>
                             </li>
 <!--                            <li><a href="#registration">Join as Donor</a></li>-->
 
@@ -96,7 +97,7 @@
                             <li style="display: flex" v-else >
                                 <span style="display: flex" class="profile-section">
                                     <img src="images/thumbnail.png" alt="" style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
-                                    <a href="#" title="Members" class="profile-name">{{ auth.name }} (<span class="text-capitalize">{{ auth.type }}</span>)</a>
+                                    <a href="#" title="Members" class="profile-name">{{ auth.name }} [<span class="text-capitalize">{{ auth.type }}</span>]</a>
 
                                 </span>
 

@@ -3615,6 +3615,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -48233,15 +48234,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c("router-link", { attrs: { to: { name: "contact" } } }, [
-                    _vm._v("Contact")
-                  ])
-                ],
-                1
-              ),
+              _vm._m(4),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Members" } }, [
@@ -48330,17 +48323,17 @@ var render = function() {
                             attrs: { href: "#", title: "Members" }
                           },
                           [
-                            _vm._v(_vm._s(_vm.auth.name) + " ("),
+                            _vm._v(_vm._s(_vm.auth.name) + " ["),
                             _c("span", { staticClass: "text-capitalize" }, [
                               _vm._v(_vm._s(_vm.auth.type))
                             ]),
-                            _vm._v(")")
+                            _vm._v("]")
                           ]
                         )
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _vm._m(5)
                   ])
             ])
           ])
@@ -48513,6 +48506,14 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/contacts" } }, [_vm._v("Contact")])
     ])
   },
   function() {
