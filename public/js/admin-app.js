@@ -3280,20 +3280,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "volunteer",
   data: function data() {
     return {
-      type: null
+      type: null,
+      users: []
     };
   },
   mounted: function mounted() {
     this.type = this.$attrs.type;
+    this.getUsersType();
   },
-  methods: {},
+  methods: {
+    getUsersType: function getUsersType() {
+      var _this = this;
+
+      this.axios.get('/admin/users-type/' + _this.type).then(function (resp) {
+        _this.users = resp.data.users;
+
+        if (_this.type == 'volunteer') {
+          _this.users = _this.users.map(function (user) {
+            user.area = user.v_area;
+            return user;
+          });
+        }
+      });
+    }
+  },
   watch: {
     '$attrs.type': function $attrsType(val) {
       this.type = val;
+      this.getUsersType();
     }
   }
 });
@@ -7738,7 +7760,109 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table align-items-center table-dark table-flush"
+                },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    { staticClass: "list" },
+                    _vm._l(_vm.users, function(user) {
+                      return _c("tr", [
+                        _c("th", { attrs: { scope: "row" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "media align-items-center" },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "avatar rounded-circle mr-3",
+                                  attrs: { href: "#" }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      alt: "#",
+                                      src: user.profile_photo
+                                        ? user.profile_photo
+                                        : "/images/thumbnail.png"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "media-body" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "name mb-0 text-sm" },
+                                  [_vm._v(_vm._s(user.name))]
+                                )
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "budget" }, [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(user.email) +
+                              "\n                                "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.phone))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.area.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.blood_group.name))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "span",
+                            { staticClass: "badge badge-dot mr-4" },
+                            [
+                              user.status == 0
+                                ? [
+                                    _c("i", { staticClass: "bg-warning" }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "status text-capitalize "
+                                      },
+                                      [_vm._v("pending")]
+                                    )
+                                  ]
+                                : [
+                                    _c("i", { staticClass: "bg-success" }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "status text-capitalize "
+                                      },
+                                      [_vm._v("Active")]
+                                    )
+                                  ]
+                            ],
+                            2
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3, true)
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
           ])
         ])
       ])
@@ -7781,156 +7905,97 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table-responsive" }, [
-      _c(
-        "table",
-        { staticClass: "table align-items-center table-dark table-flush" },
-        [
-          _c("thead", { staticClass: "thead-dark" }, [
-            _c("tr", [
-              _c(
-                "th",
-                {
-                  staticClass: "sort",
-                  attrs: { scope: "col", "data-sort": "name" }
-                },
-                [_vm._v("Name")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  staticClass: "sort",
-                  attrs: { scope: "col", "data-sort": "budget" }
-                },
-                [_vm._v("Email")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  staticClass: "sort",
-                  attrs: { scope: "col", "data-sort": "status" }
-                },
-                [_vm._v("Phone")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  staticClass: "sort",
-                  attrs: { scope: "col", "data-sort": "status" }
-                },
-                [_vm._v("Area")]
-              ),
-              _vm._v(" "),
-              _c(
-                "th",
-                {
-                  staticClass: "sort",
-                  attrs: { scope: "col", "data-sort": "status" }
-                },
-                [_vm._v("Blood Group")]
-              ),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
-              _vm._v(" "),
-              _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c(
+          "th",
+          { staticClass: "sort", attrs: { scope: "col", "data-sort": "name" } },
+          [_vm._v("Name")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "sort",
+            attrs: { scope: "col", "data-sort": "budget" }
+          },
+          [_vm._v("Email")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "sort",
+            attrs: { scope: "col", "data-sort": "status" }
+          },
+          [_vm._v("Phone")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "sort",
+            attrs: { scope: "col", "data-sort": "status" }
+          },
+          [_vm._v("Area")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "sort",
+            attrs: { scope: "col", "data-sort": "status" }
+          },
+          [_vm._v("Blood Group")]
+        ),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-right" }, [
+      _c("div", { staticClass: "dropdown" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-sm btn-icon-only text-light",
+            attrs: {
+              href: "#",
+              role: "button",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false"
+            }
+          },
+          [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+          },
+          [
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Action")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Another action")
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Something else here")
             ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", { staticClass: "list" }, [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [
-                _c("div", { staticClass: "media align-items-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "avatar rounded-circle mr-3",
-                      attrs: { href: "#" }
-                    },
-                    [_c("img", { attrs: { alt: "#", src: "#" } })]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body" }, [
-                    _c("span", { staticClass: "name mb-0 text-sm" }, [
-                      _vm._v("Argon Design System")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "budget" }, [
-                _vm._v(
-                  "\n                                    $2500 USD\n                                "
-                )
-              ]),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td"),
-              _vm._v(" "),
-              _c("td", [
-                _c("span", { staticClass: "badge badge-dot mr-4" }, [
-                  _c("i", { staticClass: "bg-warning" }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "status text-capitalize " }, [
-                    _vm._v("pending")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "text-right" }, [
-                _c("div", { staticClass: "dropdown" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-sm btn-icon-only text-light",
-                      attrs: {
-                        href: "#",
-                        role: "button",
-                        "data-toggle": "dropdown",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [_c("i", { staticClass: "fas fa-ellipsis-v" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
-                    },
-                    [
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Action")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Another action")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Something else here")]
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ])
-        ]
-      )
+          ]
+        )
+      ])
     ])
   }
 ]

@@ -56,30 +56,34 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                <tr>
+                                <tr v-for="user in users">
                                     <th scope="row">
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle mr-3">
-                                                <img alt="#" src="#">
+                                                <img alt="#" :src="user.profile_photo ?  user.profile_photo : '/images/thumbnail.png'">
                                             </a>
                                             <div class="media-body">
-                                                <span class="name mb-0 text-sm">Argon Design System</span>
+                                                <span class="name mb-0 text-sm">{{ user.name }}</span>
                                             </div>
                                         </div>
                                     </th>
                                     <td class="budget">
-                                        $2500 USD
+                                        {{ user.email }}
                                     </td>
+                                    <td>{{ user.phone }}</td>
+                                    <td>{{ user.area.name }}</td>
+                                    <td>{{ user.blood_group.name }}</td>
                                     <td>
-                                    </td>
-                                    <td>
+                                        <span class="badge badge-dot mr-4" >
+                                            <template v-if="user.status == 0">
+                                                 <i class="bg-warning"></i>
+                                                <span class="status text-capitalize ">pending</span>
+                                            </template>
+                                            <template v-else>
+                                                <i class="bg-success"></i>
+                                                <span class="status text-capitalize ">Active</span>
+                                            </template>
 
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <span class="badge badge-dot mr-4">
-                                            <i class="bg-warning"></i>
-                                            <span class="status text-capitalize ">pending</span>
                                         </span>
                                     </td>
                                     <td class="text-right">
@@ -113,15 +117,33 @@ export default {
     data() {
         return {
             type: null,
+            users : []
         }
     },
     mounted() {
         this.type = this.$attrs.type;
+        this.getUsersType();
     },
-    methods: {},
+    methods: {
+        getUsersType() {
+            let _this = this;
+            this.axios.get('/admin/users-type/'+_this.type)
+                .then(resp => {
+                    _this.users = resp.data.users;
+                    if (_this.type == 'volunteer') {
+                        _this.users = _this.users.map(function (user){
+                            user.area = user.v_area;
+                            return user;
+                        })
+                    }
+                })
+        },
+
+    },
     watch: {
         '$attrs.type': function (val) {
             this.type = val;
+            this.getUsersType();
         }
     }
 }

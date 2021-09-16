@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Volunteer;
+use App\User;
 use Illuminate\Http\Request;
 
 class VolunteerController extends Controller
@@ -12,8 +13,18 @@ class VolunteerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $users = new User();
+        if (isset($request->type)) {
+            $users = $users->where('type',$request->type);
+        }
+
+        $users = $users->with(['blood_group','area','v_area'])->get();
+
+        return response()->json(['users'=>$users]);
+
+
         //
     }
 
