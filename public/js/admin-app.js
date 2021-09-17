@@ -7698,10 +7698,6 @@ var render = function() {
         _c("div", { staticClass: "header-body" }, [
           _c("div", { staticClass: "row align-items-center py-4" }, [
             _c("div", { staticClass: "col-lg-6 col-7" }, [
-              _c("h6", { staticClass: "h2 text-white d-inline-block mb-0" }, [
-                _vm._v("Images")
-              ]),
-              _vm._v(" "),
               _c(
                 "nav",
                 {
@@ -7733,7 +7729,7 @@ var render = function() {
                       _c(
                         "li",
                         {
-                          staticClass: "breadcrumb-item active",
+                          staticClass: "breadcrumb-item active text-capitalize",
                           attrs: { "aria-current": "page" }
                         },
                         [_vm._v(_vm._s(_vm.type))]
@@ -7810,9 +7806,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", { staticClass: "budget" }, [
                           _vm._v(
-                            "\n                                    " +
+                            "\n                                        " +
                               _vm._s(user.email) +
-                              "\n                                "
+                              "\n                                    "
                           )
                         ]),
                         _vm._v(" "),

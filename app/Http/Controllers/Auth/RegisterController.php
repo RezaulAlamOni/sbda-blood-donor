@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Volunteer;
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'type' => $data['type'],
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,5 +77,17 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
+        if ($data['type'] == 'volunteer') {
+            Volunteer::create([
+                'user_id' => $user->id,
+                'v_area_id' => $user->areas_id,
+                'v_type' => '',
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        }
+
+        return $user;
     }
 }
