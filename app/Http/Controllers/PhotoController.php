@@ -17,7 +17,7 @@ class PhotoController extends Controller
     public function index($type)
     {
         $Photo = new Photo();
-        $photos = $Photo->where('type',$type)->orderBy('id','desc')->get();
+        $photos = $Photo->where('type',$type)->orderBy('id','desc')->paginate(20);
         return response()->json(['photos' => $photos]);
     }
 

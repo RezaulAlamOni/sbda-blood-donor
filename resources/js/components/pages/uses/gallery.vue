@@ -34,16 +34,22 @@
 
                 <!--                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;-->
 
-                <viewer :images="photos" options="{inline : true}">
-                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos" style="max-height: 200px !important;">
+                <viewer :images="photos" :options="{inline : false}">
+                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos"
+                         style="max-height: 200px !important;">
                         <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
-                            <figure class="gallery-img" >
+                            <figure class="gallery-img">
                                 <img :key="src" :src="src" style="max-height: 180px !important;">
                             </figure>
                         </a>
                     </div>
                 </viewer>
-
+                <div class="text-center col-md-12">
+                    <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">
+                        <span slot="prev-nav">&lt; Previous</span>
+                        <span slot="next-nav">Next &gt;</span>
+                    </pagination>
+                </div>
             </div> <!-- end .row  -->
 
 
@@ -58,14 +64,22 @@
 import 'viewerjs/dist/viewer.css'
 import VueViewer from 'v-viewer'
 import Vue from 'vue'
+import pagination from 'laravel-vue-pagination'
 
 Vue.use(VueViewer)
 export default {
     name: "gallery",
+    components:{
+        pagination
+    },
     data() {
         return {
             photos: [],
-            app_url: window.APP_URL
+            photo_s: {},
+            app_url: window.APP_URL,
+            options : {
+
+            }
         }
     },
     mounted() {
@@ -85,7 +99,8 @@ export default {
             let _this = this;
             this.axios.get('/photos/gallery')
                 .then(resp => {
-                    let photos = resp.data.photos;
+                    let photos = resp.data.photos.data;
+                    _this.photo_s = resp.data.photos;
                     // _this.photos = resp.data.photos;
                     let gallery = [];
                     // _this.photos = [
@@ -105,6 +120,22 @@ export default {
                 images: this.photos
             })
         },
+        async list(page = 1) {
+            let _this = this;
+            await axios.get(`/photos/gallery?page=${page}`)
+                .then((resp) => {
+                    let photos = resp.data.photos.data;
+                    _this.photo_s = resp.data.photos;
+                    // _this.photos = resp.data.photos;
+                    let gallery = [];
+                    photos.map(function (photo) {
+                        gallery.push(photo.photo)
+                    });
+                    _this.photos = gallery;
+                }).catch(({response}) => {
+                    console.error(response)
+                })
+        }
     },
     created() {
         this.getGallery();
