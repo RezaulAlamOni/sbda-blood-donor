@@ -1877,7 +1877,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.get('/admin/images/' + _this.type).then(function (resp) {
-        _this.gallery = resp.data.photos;
+        _this.gallery = resp.data.photos.data;
       });
     },
     previewImage: function previewImage(image, id) {
