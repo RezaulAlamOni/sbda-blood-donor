@@ -47,12 +47,16 @@ class PhotoController extends Controller
 //                dd($file);
                 $extension = $file->extension();
                 $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
-//                if (!file_exists('/public/images/'.$type)) {
+//                if (!file_exists('/public/images/'.$name)) {
 //                    mkdir('/public/images/'.$type, 0777, true);
 //                }
-                $file->storeAs('/public/images/'.$type, $name .".".$extension);
-                $file_ = Storage::url($name .".".$extension);
-                if ($file_) {
+
+                $destinationPath = public_path().'/images/'.$type ;
+                $file->move($destinationPath,$name.'.'.$extension);
+
+//                $file->storeAs('/public/images/'.$type, $name .".".$extension);
+//                $file_ = Storage::url($name .".".$extension);
+//                if ($file_) {
                     array_push($photos,[
                         'photo' => $name.'.'.$extension,
                         'type' => $type,
@@ -60,7 +64,7 @@ class PhotoController extends Controller
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
-                }
+//                }
 
             }
             if (count($photos) > 0){
