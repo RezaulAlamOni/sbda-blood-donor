@@ -119,7 +119,7 @@ class PhotoController extends Controller
     public function destroy(Photo $photo,Request $request)
     {
         $photo_ = $photo->where('id',$request->id)->first();
-        $path = public_path().$photo_->photo;
+        $path = public_path().'/'.$photo_->photo;
         // Value is not URL but directory file path
         $photo->where('id',$request->id)->delete();
         if(File::exists($path)) {
