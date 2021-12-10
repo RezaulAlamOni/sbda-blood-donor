@@ -2551,8 +2551,8 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.type = 'slider';
       this.axios.get('/photos/' + _this.type).then(function (resp) {
-        _this.sliders = resp.data.photos;
-        _this.sliders = _this.sliders.map(function (slide) {
+        var sliders = resp.data.photos.data;
+        _this.sliders = sliders.map(function (slide) {
           return '/' + slide.photo;
         });
       });
@@ -8724,7 +8724,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.slider-wrap .container[data-v-782dcf83] {\r\n    padding: 5px 10px !important;\r\n    width: 100% !important;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.slider-wrap .container[data-v-782dcf83] {\n    padding: 5px 10px !important;\n    width: 100% !important;\n}\n\n", ""]);
 
 // exports
 
