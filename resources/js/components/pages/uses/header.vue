@@ -138,7 +138,7 @@ export default {
     methods : {
         get_auth() {
             let _this = this;
-            axios.get(_this.app_url+'auth-check')
+            axios.get('auth-check')
                 .then(function (respose) {
                     _this.auth = respose.data.auth;
                     if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
