@@ -114,7 +114,7 @@ export default {
             let type = 'slider';
             this.axios.get('/photos/' + type)
                 .then(resp => {
-                    _this.photos = resp.data.photos;
+                    _this.photos = resp.data.photos.data;
                     _this.photos = _this.photos.map(function (slide) {
                         // return '/' + slide.photo
                         _this.slides.push({

@@ -148,7 +148,7 @@ export default {
             let _this = this;
             this.axios.get('/admin/images/'+_this.type)
                 .then(resp => {
-                   _this.gallery = resp.data.photos;
+                   _this.gallery = resp.data.photos.data;
                 })
         },
         previewImage(image, id) {

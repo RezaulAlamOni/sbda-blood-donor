@@ -40,7 +40,7 @@
                         </div>
                         <div class="table-responsive card-body ">
                             <div class="row col-md-12" style="margin: auto">
-                                <div class="image-grid col-md-3 col-sm-3 col-lg-2 " v-for="(photo,key) in gallery"
+                                <div class="image-grid col-md-3 col-sm-3 col-lg-2 " v-for="(photo,key) in gallery.data"
                                      @click="previewImage(photo.photo,photo.id)">
                                     <img :src="'/'+photo.photo" class="img-thumbnail" alt="" height="200"
                                          width="200">

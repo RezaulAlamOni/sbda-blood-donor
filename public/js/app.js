@@ -2551,8 +2551,8 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.type = 'slider';
       this.axios.get('/photos/' + _this.type).then(function (resp) {
-        _this.sliders = resp.data.photos;
-        _this.sliders = _this.sliders.map(function (slide) {
+        var sliders = resp.data.photos.data;
+        _this.sliders = sliders.map(function (slide) {
           return '/' + slide.photo;
         });
       });
@@ -3348,7 +3348,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllBloodGroups: function getAllBloodGroups() {
       var _this = this;
 
-      axios.get(_this.app_url + 'blood-groups').then(function (respose) {
+      axios.get('/blood-groups').then(function (respose) {
         console.log(respose.data);
         _this.blood_groups = respose.data.data;
       })["catch"](function (er) {
@@ -3358,7 +3358,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllAreas: function getAllAreas() {
       var _this = this;
 
-      axios.get(_this.app_url + 'member-areas').then(function (respose) {
+      axios.get('/member-areas').then(function (respose) {
         console.log(respose.data);
         _this.member_areas = respose.data.areas;
       })["catch"](function (er) {
@@ -3703,7 +3703,7 @@ __webpack_require__.r(__webpack_exports__);
     get_auth: function get_auth() {
       var _this = this;
 
-      axios.get(_this.app_url + 'auth-check').then(function (respose) {
+      axios.get('auth-check').then(function (respose) {
         _this.auth = respose.data.auth;
 
         if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login') && _this.auth) {
@@ -4017,7 +4017,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var type = 'slider';
       this.axios.get('/photos/' + type).then(function (resp) {
-        _this.photos = resp.data.photos;
+        _this.photos = resp.data.photos.data;
         _this.photos = _this.photos.map(function (slide) {
           // return '/' + slide.photo
           _this.slides.push({

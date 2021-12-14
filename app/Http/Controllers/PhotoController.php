@@ -47,12 +47,16 @@ class PhotoController extends Controller
 //                dd($file);
                 $extension = $file->extension();
                 $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
-                if (!file_exists('/public/images/'.$type)) {
-                    mkdir('/public/images/'.$type, 0777, true);
-                }
-                $file->storeAs('/public/images/'.$type, $name .".".$extension);
-                $file_ = Storage::url($name .".".$extension);
-                if ($file_) {
+//                if (!file_exists('/public/images/'.$name)) {
+//                    mkdir('/public/images/'.$type, 0777, true);
+//                }
+
+                $destinationPath = public_path().'/images/'.$type ;
+                $file->move($destinationPath,$name.'.'.$extension);
+
+//                $file->storeAs('/public/images/'.$type, $name .".".$extension);
+//                $file_ = Storage::url($name .".".$extension);
+//                if ($file_) {
                     array_push($photos,[
                         'photo' => $name.'.'.$extension,
                         'type' => $type,
@@ -60,7 +64,7 @@ class PhotoController extends Controller
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
-                }
+//                }
 
             }
             if (count($photos) > 0){
@@ -115,7 +119,7 @@ class PhotoController extends Controller
     public function destroy(Photo $photo,Request $request)
     {
         $photo_ = $photo->where('id',$request->id)->first();
-        $path = public_path().$photo_->photo;
+        $path = public_path().'/'.$photo_->photo;
         // Value is not URL but directory file path
         $photo->where('id',$request->id)->delete();
         if(File::exists($path)) {
