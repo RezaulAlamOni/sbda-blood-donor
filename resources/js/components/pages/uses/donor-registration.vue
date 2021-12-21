@@ -148,7 +148,7 @@ export default {
     methods :{
         getAllBloodGroups() {
             let _this = this;
-            axios.get(_this.app_url+'blood-groups')
+            axios.get('/blood-groups')
             .then(function (respose) {
                 console.log( respose.data)
                 _this.blood_groups = respose.data.data;
@@ -163,7 +163,7 @@ export default {
         },
         getAllAreas() {
             let _this = this;
-            axios.get(_this.app_url+'member-areas')
+            axios.get('/member-areas')
             .then(function (respose) {
                 console.log( respose.data)
                 _this.member_areas = respose.data.areas;
