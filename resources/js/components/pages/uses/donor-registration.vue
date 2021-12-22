@@ -92,16 +92,16 @@
                                             </select>
                                             <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Member Area :
-                                                <small class="text-danger">*</small>
-                                            </label>
-                                            <select class="form-select form-control" name="area" aria-label="Default select example">
-                                                <option value="0" >Select Member Area </option>
-                                                <option v-for="areas in member_areas" :value="areas.id">{{ areas.id }}) {{ areas.name }}</option>
-                                            </select>
-                                            <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
-                                        </div>
+<!--                                        <div class="form-group">-->
+<!--                                            <label class="control-label">Member Area :-->
+<!--                                                <small class="text-danger">*</small>-->
+<!--                                            </label>-->
+<!--                                            <select class="form-select form-control" name="area" aria-label="Default select example">-->
+<!--                                                <option value="0" >Select Member Area </option>-->
+<!--                                                <option v-for="areas in member_areas" :value="areas.id">{{ areas.id }}) {{ areas.name }}</option>-->
+<!--                                            </select>-->
+<!--                                            <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>-->
+<!--                                        </div>-->
                                     </div>
 
                                 </div>
