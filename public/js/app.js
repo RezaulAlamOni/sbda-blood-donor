@@ -8724,7 +8724,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.slider-wrap .container[data-v-782dcf83] {\r\n    padding: 5px 10px !important;\r\n    width: 100% !important;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.slider-wrap .container[data-v-782dcf83] {\n    padding: 5px 10px !important;\n    width: 100% !important;\n}\n\n", ""]);
 
 // exports
 
@@ -46828,34 +46828,12 @@ var staticRenderFns = [
                 _c("div", { staticClass: "about-details" }, [
                   _c("p", [
                     _vm._v(
-                      "Blood Buddies is for public donation center with blood donation members in the\n                                    changing\n                                    health care system."
+                      "Saptagaon Blood Donor Association is a voluntary, non-political and non-profit organization. The members of the association voluntarily donate blood and do other social and humanitarian work. In addition to free blood donation, free blood group diagnosis, social awareness raising activities on blood donation, the organization ensures free healthcare for helpless patients through a medical unit consisting of specialist doctors. This organization has a special role in eradicating rural social degradation.\n                                    "
+                    ),
+                    _c("br"),
+                    _vm._v(
+                      "\n                                    Estd: January 3, 2018"
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "custom-bullet-list" }, [
-                    _c("li", [
-                      _vm._v(
-                        "Specialist blood donors and clinical supervision."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v("Increasing communication with our members.")
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v(
-                        "High quality assessment, diagnosis and treatment."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v("Examine critically to ensure alignment.")
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._v("The extra care of a multi-disciplinary team.")
-                    ])
                   ])
                 ])
               ]
