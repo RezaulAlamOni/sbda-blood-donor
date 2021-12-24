@@ -2880,110 +2880,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "member-login",
   data: function data() {
@@ -8743,7 +8639,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-6379ff0a] {\r\n    padding: 30px 0 100px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-6379ff0a] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
 
 // exports
 
@@ -47372,13 +47268,13 @@ var staticRenderFns = [
             _c("div", { staticClass: "col-sm-12 text-center" }, [
               _c("h3", [
                 _vm._v(
-                  "\n                        About Us\n                    "
+                  "\n                            About Us\n                        "
                 )
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "page-breadcrumb" }, [
                 _c("a", { attrs: { href: "#" } }, [_vm._v("Home")]),
-                _vm._v(" / About Us\n                    ")
+                _vm._v(" / About Us\n                        ")
               ])
             ])
           ])
@@ -47424,34 +47320,8 @@ var staticRenderFns = [
                     _c("div", { staticClass: "about-details" }, [
                       _c("p", [
                         _vm._v(
-                          "Blood Buddies is for public donation center with blood donation members in the changing health care system."
+                          "\n                                    সপ্তগাঁও ব্লাড ডোনার এসোসিয়েশন’ একটি স্বেচ্ছাসেবী, অরাজনৈতিক ও অলাভজনক সংগঠন। এসোসিয়েশনের সদস্যরা স্বেচ্ছায় রক্তদান এবং অন্যান্য সামাজিক ও মানবিক\n                                    কাজ করে থাকে। বিনামূল্যে রক্তদান, বিনামূল্যে রক্তের গ্রুপ নির্ণয়, রক্তদান নিয়ে সামাজিক সচেতনতা বৃদ্ধি কার্যক্রম ছাড়াও বিশেষজ্ঞ ডাক্তারদের সমন্বয়ে গঠিত মেডিকেল ইউনিটের\n                                    মাধ্যমে অসহায় রোগীদের জন্য বিনামূল্যে স্বাস্থ্যসেবা নিশ্চিত করে থাকে এই সংগঠন। গ্রামীন সামাজিক অবক্ষয় দূরীকরণে এই সংগঠনটির বিশেষ ভূমিকা রয়েছে।\n                                "
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("ul", { staticClass: "custom-bullet-list" }, [
-                        _c("li", [
-                          _vm._v(
-                            "Specialist blood donors and clinical supervision."
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _vm._v("Increasing communication with our members.")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _vm._v(
-                            "High quality assessment, diagnosis and treatment."
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _vm._v("Examine critically to ensure alignment.")
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _vm._v("The extra care of a multi-disciplinary team.")
-                        ])
                       ])
                     ])
                   ]
@@ -47828,185 +47698,7 @@ var staticRenderFns = [
             ])
           ])
         ]
-      ),
-      _vm._v(" "),
-      _c(
-        "section",
-        {
-          staticClass: "section-content-block section-custom-bg",
-          attrs: {
-            "data-bg_img": "images/testimony_feat_bg.jpg",
-            "data-bg_size": "cover",
-            "data-bg_position": "top center",
-            "data-bg_opacity": "0"
-          }
-        },
-        [
-          _c("div", { staticClass: "container margin-top-80" }, [
-            _c("div", { staticClass: "row section-heading-wrapper-alt" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-md-12 col-sm-12 text-center no-img-separator"
-                },
-                [
-                  _c("h4", [_vm._v("Awesome Words From Members")]),
-                  _vm._v(" "),
-                  _c("span", {
-                    staticClass:
-                      "heading-separator heading-separator-horizontal"
-                  }),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "extra-large" }, [
-                    _vm._v("JOIN WITH US AND SAVE LIFE")
-                  ])
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "container theme-custom-box-shadow  section-pure-white-bg margin-top-48 margin-bottom-48 wow fadeInUp"
-            },
-            [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-6 col-md-12 col-sm-12" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "testimonial-container owl-carousel text-left",
-                      attrs: { "data-items": "1" }
-                    },
-                    [
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("div", { staticClass: "testimony-layout-1" }, [
-                          _c("h3", { staticClass: "people-quote" }, [
-                            _vm._v("Donor Opinion")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "testimony-text" }, [
-                            _vm._v(
-                              "\n                                    I proudly donate blood on a regular basis because it gives others something they desperately need to survive. Just knowing I can make a difference in someone else's life makes me feel great!\n                                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("img", {
-                            attrs: { src: "images/user_1.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c("h6", [_vm._v("Brandon Munson")]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("CTO, Fulcrum Design, USA")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("div", { staticClass: "testimony-layout-1" }, [
-                          _c("h3", { staticClass: "people-quote" }, [
-                            _vm._v("Donor Opinion")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "testimony-text" }, [
-                            _vm._v(
-                              "\n                                    I have been a donor since high school. Although I have not been a donor every year, I always want to give to the human race. I love to help others! Moreover it gives a real peace in my mind.\n                                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("img", {
-                            attrs: { src: "images/user_2.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c("h6", [_vm._v("Munson Brandon")]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("CTO, Fulcrum Design, USA")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                        _c("div", { staticClass: "testimony-layout-1" }, [
-                          _c("h3", { staticClass: "people-quote" }, [
-                            _vm._v("Recipient Opinion")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "testimony-text" }, [
-                            _vm._v(
-                              "\n                                    I wish I could tell you my donor how grateful I am for your selfless act.You gave me new life. We may be coworkers or schoolmates or just two in the same community.I'm very grateful to you.\n                                "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("img", {
-                            attrs: { src: "images/user_3.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c("h6", [_vm._v("Logan Munson")]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("CTO, Fulcrum Design, USA")])
-                        ])
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "col-lg-6 hidden-md hidden-xs hidden-sm no-padding"
-                  },
-                  [
-                    _c("figure", [
-                      _c("img", {
-                        staticClass: "db",
-                        attrs: { src: "images/testimony_feat_img.jpg", alt: "" }
-                      })
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c("section", { staticClass: "cta-section-1" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-8 col-md-8 col-sm-12 col-xs-12" },
-              [
-                _c("h2", [_vm._v("We are helping people from 40 years")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                        You can give blood at any of our blood donation venues all over the world. We have total sixty thousands donor centers and visit thousands of other venues on various occasions.\n                    "
-                  )
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-4 col-sm-12 col-xs-12" },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-cta-1 wow bounceIn",
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("Request Appointment")]
-                )
-              ]
-            )
-          ])
-        ])
-      ])
+      )
     ])
   }
 ]

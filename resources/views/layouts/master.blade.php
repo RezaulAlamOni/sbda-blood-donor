@@ -123,118 +123,118 @@
 
                     </div> <!--  end .col-md-4 col-sm-12 -->
 
-                    <div class="col-md-4 col-sm-12 col-xs-12">
+{{--                    <div class="col-md-4 col-sm-12 col-xs-12">--}}
 
-                        <div class="footer-widget clearfix">
+{{--                        <div class="footer-widget clearfix">--}}
 
-                            <div class="sidebar-widget-wrapper">
+{{--                            <div class="sidebar-widget-wrapper">--}}
 
-                                <div class="footer-widget-header clearfix">
-                                    <h3>Support Links</h3>
-                                </div>  <!--  end .footer-widget-header -->
+{{--                                <div class="footer-widget-header clearfix">--}}
+{{--                                    <h3>Support Links</h3>--}}
+{{--                                </div>  <!--  end .footer-widget-header -->--}}
 
 
-                                <ul class="footer-useful-links">
+{{--                                <ul class="footer-useful-links">--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Thalassemia
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Thalassemia--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Cell Elofrosis
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Cell Elofrosis--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Myelodysasia
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Myelodysasia--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Blood Count
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Blood Count--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Hemolytimia
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Hemolytimia--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Ychromas Eosis
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Ychromas Eosis--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Hyrcoagulable
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Hyrcoagulable--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Thrombo Xtosis
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Thrombo Xtosis--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Sicklenemiaxs
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Sicklenemiaxs--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-caret-right fa-footer"></i>
-                                            Aplastic Anemia
-                                        </a>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <a href="#">--}}
+{{--                                            <i class="fa fa-caret-right fa-footer"></i>--}}
+{{--                                            Aplastic Anemia--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
 
-                                </ul>
+{{--                                </ul>--}}
 
-                            </div> <!--  end .footer-widget  -->
+{{--                            </div> <!--  end .footer-widget  -->--}}
 
-                        </div> <!--  end .footer-widget  -->
+{{--                        </div> <!--  end .footer-widget  -->--}}
 
-                    </div> <!--  end .col-md-4 col-sm-12 -->
+{{--                    </div> <!--  end .col-md-4 col-sm-12 -->--}}
 
-                    <div class="col-md-4 col-sm-6 col-xs-12">
+{{--                    <div class="col-md-4 col-sm-6 col-xs-12">--}}
 
-                        <div class="footer-widget">
-                            <div class="sidebar-widget-wrapper">
-                                <div class="footer-widget-header clearfix">
-                                    <h3>Subscribe Us</h3>
-                                </div>
-                                <p>Signup for regular newsletter and stay up to date with our latest news.</p>
-                                <div class="footer-subscription">
-                                    <p>
-                                        <input id="mc4wp_email" class="form-control" required=""
-                                               placeholder="Enter Your Email" name="EMAIL" type="email">
-                                    </p>
-                                    <p>
-                                        <input class="btn btn-default" value="Subscribe Now" type="submit">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="footer-widget">--}}
+{{--                            <div class="sidebar-widget-wrapper">--}}
+{{--                                <div class="footer-widget-header clearfix">--}}
+{{--                                    <h3>Subscribe Us</h3>--}}
+{{--                                </div>--}}
+{{--                                <p>Signup for regular newsletter and stay up to date with our latest news.</p>--}}
+{{--                                <div class="footer-subscription">--}}
+{{--                                    <p>--}}
+{{--                                        <input id="mc4wp_email" class="form-control" required=""--}}
+{{--                                               placeholder="Enter Your Email" name="EMAIL" type="email">--}}
+{{--                                    </p>--}}
+{{--                                    <p>--}}
+{{--                                        <input class="btn btn-default" value="Subscribe Now" type="submit">--}}
+{{--                                    </p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                    </div> <!--  end .col-md-4 col-sm-12 -->
+{{--                    </div> <!--  end .col-md-4 col-sm-12 -->--}}
 
                 </div> <!-- end row  -->
 
