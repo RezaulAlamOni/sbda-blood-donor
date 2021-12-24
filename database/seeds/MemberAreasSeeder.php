@@ -13,9 +13,10 @@ class MemberAreasSeeder extends Seeder
     {
         DB::table('volunteer_areas')
             ->insert([
-                ['name' => 'মানিকপুর'],
-                ['name' => 'ইসলামপুর'],
-                ['name' => 'মুরাইম'],
+                ['name' => 'মানিকপুর দক্ষিণ'],
+                ['name' => 'মানিকপুর উত্তর'],
+                ['name' => 'মুরাইম দক্ষিণ'],
+                ['name' => 'মুরাইম উত্তর'],
                 ['name' => 'মুটকি'],
                 ['name' => 'মনোহরপুর'],
                 ['name' => 'রুদ্ররামপুর'],
