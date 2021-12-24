@@ -42,7 +42,7 @@
                             <div class="row section-heading-wrapper margin-bottom-11">
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 text-left no-img-separator">
-                                    <h2><strong>Who We Are?</strong></h2>
+<!--                                    <h2><strong>Who We Are?</strong></h2>-->
                                     <span class="heading-separator heading-separator-horizontal"></span>
                                 </div> <!-- end .col-sm-10  -->
 
@@ -56,14 +56,6 @@
                                     মাধ্যমে অসহায় রোগীদের জন্য বিনামূল্যে স্বাস্থ্যসেবা নিশ্চিত করে থাকে এই সংগঠন। গ্রামীন সামাজিক অবক্ষয় দূরীকরণে এই সংগঠনটির বিশেষ ভূমিকা রয়েছে।
                                 </p>
 
-
-<!--                                <ul class="custom-bullet-list">-->
-<!--                                    <li>Specialist blood donors and clinical supervision.</li>-->
-<!--                                    <li>Increasing communication with our members.</li>-->
-<!--                                    <li>High quality assessment, diagnosis and treatment.</li>-->
-<!--                                    <li>Examine critically to ensure alignment.</li>-->
-<!--                                    <li>The extra care of a multi-disciplinary team.</li>-->
-<!--                                </ul>-->
 
                             </div> <!--  end .about-details -->
 
@@ -79,7 +71,73 @@
                             <img src="images/about_feat_bg.jpg" alt="about" />
                         </figure> <!-- end .cause-img  -->
 
-                    </div> <!--  end .col-lg-6 col-md-6 col-sm-12 col-xs-12  -->
+                    </div>
+                    <!--  end .col-lg-6 col-md-6 col-sm-12 col-xs-12  -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="about-us-container theme-custom-box-shadow" style="width: 100%">
+
+                            <div class="row section-heading-wrapper margin-bottom-11">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 text-left no-img-separator">
+                                    <h4><strong>আমাদের লক্ষ্য ও উদ্দেশ্য । OUR AIM & OBJECTIVES</strong></h4>
+                                    <span class="heading-separator heading-separator-horizontal"></span>
+                                </div> <!-- end .col-sm-10  -->
+
+                            </div>
+
+                            <div class="about-details">
+                                <ul class="custom-bullet-list">
+                                    <li>বিনামূল্যে রক্তদান করা।</li>
+                                    <li>নতুন ও নিয়মিত রক্তদাতা তৈরি করা।</li>
+                                    <li>রক্তদান সম্পর্কে সামাজিক সচেতনতা বৃদ্ধি করা।</li>
+                                    <li>সুবিধাবঞ্ছিত ও অসহায় মানুষের সুবিধার্থে ফ্রি ব্লাড গ্রুপিং ক্যাম্পেইন ও ফ্রি মেডিকেল ক্যাম্প আয়োজন করা।</li>
+                                    <li>এসোসিয়েশনের সদস্যদের মধ্যে একতা, সৌহার্দ্য, ভ্রাতৃত্ববোধ স্থাপন ও উৎকর্ষ সাধন করা এবং একে- অন্যকে যথাসম্ভব সহযোগিতা করা।</li>
+                                    <li> একটি পৃথক তহবিল গঠন করার মাধ্যমে সাহায্য পাওয়ার যোগ্য মানুষদের সহায়তা করা।</li>
+                                    <li> সামাজিক উন্নয়নের জন্য বিভিন্ন কর্মসূচি গ্রহণ করা।</li>
+
+                                </ul>
+
+                            </div> <!--  end .about-details -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="about-us-container theme-custom-box-shadow" style="width: 100%;text-align: center">
+
+                            <div class="row section-heading-wrapper margin-bottom-11">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 text-left no-img-separator">
+<!--                                    <h4><strong>আমাদের লক্ষ্য ও উদ্দেশ্য । OUR AIM & OBJECTIVES</strong></h4>-->
+                                    <span class="heading-separator heading-separator-horizontal"></span>
+                                </div> <!-- end .col-sm-10  -->
+
+                            </div>
+
+                            <div class="about-details">
+                                <p>
+                                    সপ্তগাঁও আদর্শ উচ্চ বিদ্যালয়-এর কয়েকজন প্রাক্তন কৃতি ছাত্রের উদ্যোগে ও ফলপ্রসু প্রচেষ্টায় ২০১৮ সালের ৩রা জানুয়ারী
+                                    <br><strong>
+                                    ‘সপ্তগাঁও ব্লাড ডোনার এসোসিয়েশন’
+                                    </strong> প্রতিষ্ঠিত হয়।
+                                    <br>
+                                    <br>
+                                    সপ্তগাঁও ভিত্তিক ৭ টি গ্রামের (মুরাইম,মানিকপুর,মুটকী, রুদ্ররামপুর, চাঁদপুর, মনোহরপুর, চান্দিয়াপাড়া) মানুষের প্রয়োজনীয় রক্তের চাহিদা পূরণ এবং বিভিন্ন সামাজিক উন্নয়ন ও মানবিক কাজ  সম্পাদনের উদ্দেশ্যে এই এসোসিয়েশন প্রতিষ্ঠা লাভ করে।
+                                    <br>
+                                    <br>
+                                    <strong>স্লোগানঃ</strong>
+                                    <br>
+                                    নিরাপদ হোক রক্তদান - আপনার রক্তে বাঁচুক প্রাণ
+                                </p>
+
+                            </div> <!--  end .about-details -->
+
+                        </div>
+
+                    </div>
 
                 </div> <!--  end .row  -->
             </div>
