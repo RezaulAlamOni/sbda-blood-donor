@@ -32,18 +32,18 @@
 
                             <div class="about-details">
 
-                                <p>Blood Buddies is for public donation center with blood donation members in the
-                                    changing
-                                    health care system.</p>
+                                <p>Saptagaon Blood Donor Association is a voluntary, non-political and non-profit organization. The members of the association voluntarily donate blood and do other social and humanitarian work. In addition to free blood donation, free blood group diagnosis, social awareness raising activities on blood donation, the organization ensures free healthcare for helpless patients through a medical unit consisting of specialist doctors. This organization has a special role in eradicating rural social degradation.
+                                    <br>
+                                    Estd: January 3, 2018</p>
 
 
-                                <ul class="custom-bullet-list">
-                                    <li>Specialist blood donors and clinical supervision.</li>
-                                    <li>Increasing communication with our members.</li>
-                                    <li>High quality assessment, diagnosis and treatment.</li>
-                                    <li>Examine critically to ensure alignment.</li>
-                                    <li>The extra care of a multi-disciplinary team.</li>
-                                </ul>
+<!--                                <ul class="custom-bullet-list">-->
+<!--                                    <li>Specialist blood donors and clinical supervision.</li>-->
+<!--                                    <li>Increasing communication with our members.</li>-->
+<!--                                    <li>High quality assessment, diagnosis and treatment.</li>-->
+<!--                                    <li>Examine critically to ensure alignment.</li>-->
+<!--                                    <li>The extra care of a multi-disciplinary team.</li>-->
+<!--                                </ul>-->
 
                             </div> <!--  end .about-details -->
 
