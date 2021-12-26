@@ -11,6 +11,7 @@ import member_note from "../components/pages/uses/members-note";
 import member_login from "../components/pages/uses/member-login";
 import Contact from "../components/pages/sbda/contact";
 import AboutUs from "../components/pages/sbda/about-us";
+import Committee from "../components/pages/uses/committee";
 import PageNotFound from "../components/404";
 
 let base_url = window.APP_URL
@@ -56,6 +57,26 @@ let routes = [
         path: "/about-us",
         component: AboutUs,
         name: "about-us"
+    },
+    {
+        path: "/executive-committee",
+        component: Committee,
+        name: "committee"
+    },
+    {
+        path: "/advisor",
+        component: Committee,
+        name: "advisor"
+    },
+    {
+        path: "/founder-member",
+        component: Committee,
+        name: "founder-member"
+    },
+    {
+        path: "/life-member",
+        component: Committee,
+        name: "life-member"
     },
 
 
