@@ -66742,6 +66742,10 @@ var routes = [{
   component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
   name: "about-us"
 }, {
+  path: "/committee",
+  component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
+  name: "committee"
+}, {
   path: "*",
   component: _components_404__WEBPACK_IMPORTED_MODULE_11__["default"]
 }];

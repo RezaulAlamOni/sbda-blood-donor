@@ -57,6 +57,11 @@ let routes = [
         component: AboutUs,
         name: "about-us"
     },
+    {
+        path: "/committee",
+        component: AboutUs,
+        name: "committee"
+    },
 
 
     { path: "*", component: PageNotFound }
