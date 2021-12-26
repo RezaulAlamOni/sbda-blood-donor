@@ -9,7 +9,7 @@
 
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
 
-                    <img src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
+                    <img v-if="$route.name == 'committee'" src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
 
                 </div> <!-- end .col-sm-10  -->
 
@@ -79,19 +79,12 @@ export default {
             app_url: window.APP_URL,
             options : {
 
-            }
+            },
+            type : 0
         }
     },
     mounted() {
-        this.photos = [
-            // { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
-            // { id : 2 , photo : 'gallery_2.jpg'},
-            // { id : 3 , photo : 'gallery_3.jpg'},
-            // { id : 4 , photo : 'gallery_4.jpg'},
-            // { id : 5 , photo : 'gallery_5.jpg'},
-            // { id : 6 , photo : 'gallery_6.jpg'}
-        ]
-        console.log(this.photos)
+        this.type = this.$attrs.type;
 
     },
     methods: {

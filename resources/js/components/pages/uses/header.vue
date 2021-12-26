@@ -39,7 +39,8 @@
             <div class="navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                         </button>
                         <a class="logo" href="/">
@@ -65,8 +66,16 @@
                                     <li>
                                         <router-link :to="{name : 'committee'}">Executive Committee</router-link>
                                     </li>
-                                    <li><a href="#advisers">Advisers</a></li>
-                                    <li><a href="#excutive-committee">Founder Member</a></li>
+                                    <li>
+                                        <router-link :to="{name : 'advisor'}">Advisers</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name : 'founder-member'}">Founder Member</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name : 'life-member'}">Life Member</router-link>
+                                    </li>
+
                                 </ul>
                             </li>
 
@@ -74,32 +83,40 @@
                                 <router-link :to="{name : 'about-us'}">About Us</router-link>
                             </li>
                             <!--<li><a href="#blog">Blog</a></li>-->
-                            <li >
+                            <li>
                                 <router-link to="gallery">gallery</router-link>
                             </li>
                             <li>
-<!--                                <router-link :to="{name : 'contact'}">Contact</router-link>-->
+                                <!--                                <router-link :to="{name : 'contact'}">Contact</router-link>-->
                                 <a href="/contacts">Contact</a>
                             </li>
-<!--                            <li><a href="#registration">Join as Donor</a></li>-->
+                            <!--                            <li><a href="#registration">Join as Donor</a></li>-->
 
-                            <li><a href="#" title="Members" >Join Us</a>
+                            <li><a href="#" title="Members">Join Us</a>
                                 <ul class="drop-down">
                                     <li v-if="!auth">
-                                        <router-link :to="{name : 'donor_registration'}">Become A Blood Donor</router-link>
+                                        <router-link :to="{name : 'donor_registration'}">Become A Blood Donor
+                                        </router-link>
                                     </li>
-                                    <li  v-if="!auth || auth.type != 'member'"> <router-link :to="{name : 'member_registration'}">Become A Member</router-link></li>
-                                    <li  v-if="!auth"><router-link :to="{name : 'volunteer_registration'}">Become A  Volunteer</router-link></li>
+                                    <li v-if="!auth || auth.type != 'member'">
+                                        <router-link :to="{name : 'member_registration'}">Become A Member</router-link>
+                                    </li>
+                                    <li v-if="!auth">
+                                        <router-link :to="{name : 'volunteer_registration'}">Become A Volunteer
+                                        </router-link>
+                                    </li>
                                 </ul>
                             </li>
                             <li v-if="!auth">
                                 <router-link :to="{name : 'login'}">Login</router-link>
                             </li>
 
-                            <li style="display: flex" v-else >
+                            <li style="display: flex" v-else>
                                 <span style="display: flex" class="profile-section">
-                                    <img src="images/thumbnail.png" alt="" style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
-                                    <a href="#" title="Members" class="profile-name">{{ auth.name }} [<span class="text-capitalize">{{ auth.type }}</span>]</a>
+                                    <img src="images/thumbnail.png" alt=""
+                                         style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
+                                    <a href="#" title="Members" class="profile-name">{{ auth.name }} [<span
+                                        class="text-capitalize">{{ auth.type }}</span>]</a>
 
                                 </span>
 
@@ -128,24 +145,24 @@
 <script>
 export default {
     name: "header-component",
-    data(){
+    data() {
         return {
-            auth : null,
-            app_url : window.APP_URL
+            auth: null,
+            app_url: window.APP_URL
         }
     },
     mounted() {
         this.get_auth();
     },
-    methods : {
+    methods: {
         get_auth() {
             let _this = this;
             axios.get('auth-check')
                 .then(function (respose) {
                     _this.auth = respose.data.auth;
-                    if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login' ) && _this.auth) {
+                    if ((_this.$route.name == 'member_registration' || _this.$route.name == 'login') && _this.auth) {
                         console.log(_this.$route.name)
-                        _this.$router.push({name : 'home'})
+                        _this.$router.push({name: 'home'})
                     }
 
                 })
@@ -168,6 +185,7 @@ export default {
     border-radius: 25px;
 
 }
+
 .profile-name {
     margin: 8px 0px 0px 15px;
     font-size: 14px;
@@ -177,7 +195,7 @@ export default {
 
 .router-link-active {
     background: none;
-    border-bottom: 3px solid #f9161f ;
+    border-bottom: 3px solid #f9161f;
 }
 
 </style>

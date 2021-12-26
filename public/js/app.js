@@ -3245,18 +3245,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
       photos: [],
       photo_s: {},
       app_url: window.APP_URL,
-      options: {}
+      options: {},
+      type: 0
     };
   },
   mounted: function mounted() {
-    this.photos = [// { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
-      // { id : 2 , photo : 'gallery_2.jpg'},
-      // { id : 3 , photo : 'gallery_3.jpg'},
-      // { id : 4 , photo : 'gallery_4.jpg'},
-      // { id : 5 , photo : 'gallery_5.jpg'},
-      // { id : 6 , photo : 'gallery_6.jpg'}
-    ];
-    console.log(this.photos);
+    this.type = this.$attrs.type;
   },
   methods: {
     getGallery: function getGallery() {
@@ -3701,6 +3695,23 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8978,7 +8989,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f ;\n}\n\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f;\n}\n\n", ""]);
 
 // exports
 
@@ -48405,40 +48416,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "section-content-block section-pure-white-bg" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row section-heading-wrapper" }, [
-            _c(
-              "div",
-              {
-                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
-              },
-              [
-                _c("img", {
-                  staticStyle: { width: "100%" },
-                  attrs: {
-                    src: "images/sbda/executive-committee.png",
-                    alt: "Executive Committee"
-                  }
-                })
-              ]
-            )
-          ])
+  return _c(
+    "section",
+    { staticClass: "section-content-block section-pure-white-bg" },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row section-heading-wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-12 col-sm-12 text-center no-img-separator" },
+            [
+              _vm.$route.name == "committee"
+                ? _c("img", {
+                    staticStyle: { width: "100%" },
+                    attrs: {
+                      src: "images/sbda/executive-committee.png",
+                      alt: "Executive Committee"
+                    }
+                  })
+                : _vm._e()
+            ]
+          )
         ])
-      ]
-    )
-  }
-]
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49004,9 +49008,41 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "advisor" } } },
+                        [_vm._v("Advisers")]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "founder-member" } } },
+                        [_vm._v("Founder Member")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "life-member" } } },
+                        [_vm._v("Life Member")]
+                      )
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -49030,7 +49066,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(5),
+              _vm._m(3),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Members" } }, [
@@ -49045,7 +49081,11 @@ var render = function() {
                           _c(
                             "router-link",
                             { attrs: { to: { name: "donor_registration" } } },
-                            [_vm._v("Become A Blood Donor")]
+                            [
+                              _vm._v(
+                                "Become A Blood Donor\n                                    "
+                              )
+                            ]
                           )
                         ],
                         1
@@ -49075,7 +49115,11 @@ var render = function() {
                             {
                               attrs: { to: { name: "volunteer_registration" } }
                             },
-                            [_vm._v("Become A  Volunteer")]
+                            [
+                              _vm._v(
+                                "Become A Volunteer\n                                    "
+                              )
+                            ]
                           )
                         ],
                         1
@@ -49129,7 +49173,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(6)
+                    _vm._m(4)
                   ])
             ])
           ])
@@ -49155,7 +49199,7 @@ var staticRenderFns = [
               _c("i", { staticClass: "fa fa-phone" }),
               _vm._v(" "),
               _c("a", { attrs: { href: "tel:01905199278" } }, [
-                _vm._v("01905 199\n                                278")
+                _vm._v("01905 199\n                            278")
               ])
             ])
           ]),
@@ -49281,24 +49325,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#advisers" } }, [_vm._v("Advisers")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#excutive-committee" } }, [
-        _vm._v("Founder Member")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
       _c("a", { attrs: { href: "/contacts" } }, [_vm._v("Contact")])
     ])
   },
@@ -49330,7 +49356,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                                            @csrf\n                                        "
+              "\n                                        @csrf\n                                    "
             )
           ]
         ),
@@ -49341,7 +49367,7 @@ var staticRenderFns = [
             attrs: {
               href: "#",
               onclick:
-                "event.preventDefault();\n                                                     document.getElementById('logout-form').submit();"
+                "event.preventDefault();\n                                                 document.getElementById('logout-form').submit();"
             }
           },
           [_vm._v("Logout")]
@@ -67140,6 +67166,14 @@ var routes = [{
   path: "/advisor",
   component: _components_pages_uses_committee__WEBPACK_IMPORTED_MODULE_11__["default"],
   name: "advisor"
+}, {
+  path: "/founder-member",
+  component: _components_pages_uses_committee__WEBPACK_IMPORTED_MODULE_11__["default"],
+  name: "founder-member"
+}, {
+  path: "/life-member",
+  component: _components_pages_uses_committee__WEBPACK_IMPORTED_MODULE_11__["default"],
+  name: "life-member"
 }, {
   path: "*",
   component: _components_404__WEBPACK_IMPORTED_MODULE_12__["default"]

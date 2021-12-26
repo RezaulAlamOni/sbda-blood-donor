@@ -68,6 +68,16 @@ let routes = [
         component: Committee,
         name: "advisor"
     },
+    {
+        path: "/founder-member",
+        component: Committee,
+        name: "founder-member"
+    },
+    {
+        path: "/life-member",
+        component: Committee,
+        name: "life-member"
+    },
 
 
     { path: "*", component: PageNotFound }
