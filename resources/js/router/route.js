@@ -59,9 +59,14 @@ let routes = [
         name: "about-us"
     },
     {
-        path: "/committee",
+        path: "/executive-committee",
         component: Committee,
         name: "committee"
+    },
+    {
+        path: "/advisor",
+        component: Committee,
+        name: "advisor"
     },
 
 

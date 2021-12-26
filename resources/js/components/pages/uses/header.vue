@@ -62,8 +62,10 @@
                             </li>
                             <li><a href="#" title="Excutive Committee">Committee</a>
                                 <ul class="drop-down">
+                                    <li>
+                                        <router-link :to="{name : 'committee'}">Executive Committee</router-link>
+                                    </li>
                                     <li><a href="#advisers">Advisers</a></li>
-                                    <li><a href="#excutive-committee">Executive Committee</a></li>
                                     <li><a href="#excutive-committee">Founder Member</a></li>
                                 </ul>
                             </li>
@@ -175,7 +177,7 @@ export default {
 
 .router-link-active {
     background: none;
-    border-bottom: 3px solid #ef3d32;
+    border-bottom: 3px solid #f9161f ;
 }
 
 </style>

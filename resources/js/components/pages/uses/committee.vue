@@ -8,9 +8,9 @@
             <div class="row section-heading-wrapper">
 
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
-                    <h2>CAMPAIGN GALLERY</h2>
-                    <span class="heading-separator"></span>
-                    <h4>our prestigious voluntary work on campaigns by the team</h4>
+
+                    <img src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
+
                 </div> <!-- end .col-sm-10  -->
 
 
@@ -18,42 +18,42 @@
 
         </div> <!--  end .container -->
 
-        <div class="container wow fadeInUp">
+<!--        <div class="container wow fadeInUp">-->
 
-            <div class="row no-padding-gallery" v-if="photos.length > 0">
+<!--            <div class="row no-padding-gallery" v-if="photos.length > 0">-->
 
-                <!--                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">-->
-                <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
+<!--                &lt;!&ndash;                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">&ndash;&gt;-->
+<!--                <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
 
-                    <!--                        <figure class="gallery-img">-->
-                    <!--                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>-->
+<!--                    &lt;!&ndash;                        <figure class="gallery-img">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>&ndash;&gt;-->
 
-                    <!--                        </figure> &lt;!&ndash; end .gallery-img  &ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </figure> &lt;!&ndash; end .gallery-img  &ndash;&gt;&ndash;&gt;-->
 
-                </a>
+<!--                </a>-->
 
-                <!--                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;&ndash;&gt;-->
 
-                <viewer :images="photos" :options="{inline : false}">
-                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos"
-                         style="max-height: 200px !important;">
-                        <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">
-                            <figure class="gallery-img">
-                                <img :key="src" :src="src" style="max-height: 180px !important;">
-                            </figure>
-                        </a>
-                    </div>
-                </viewer>
-                <div class="text-center col-md-12">
-                    <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">
-                        <span slot="prev-nav">&lt; Previous</span>
-                        <span slot="next-nav">Next &gt;</span>
-                    </pagination>
-                </div>
-            </div> <!-- end .row  -->
+<!--                <viewer :images="photos" :options="{inline : false}">-->
+<!--                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos"-->
+<!--                         style="max-height: 200px !important;">-->
+<!--                        <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
+<!--                            <figure class="gallery-img">-->
+<!--                                <img :key="src" :src="src" style="max-height: 180px !important;">-->
+<!--                            </figure>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </viewer>-->
+<!--                <div class="text-center col-md-12">-->
+<!--                    <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">-->
+<!--                        <span slot="prev-nav">&lt; Previous</span>-->
+<!--                        <span slot="next-nav">Next &gt;</span>-->
+<!--                    </pagination>-->
+<!--                </div>-->
+<!--            </div> &lt;!&ndash; end .row  &ndash;&gt;-->
 
 
-        </div><!-- end .container-fluid  -->
+<!--        </div>&lt;!&ndash; end .container-fluid  &ndash;&gt;-->
 
     </section> <!-- end .section-content-block  -->
 

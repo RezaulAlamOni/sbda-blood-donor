@@ -3826,6 +3826,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -8976,7 +8978,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #ef3d32;\n}\n\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f ;\n}\n\n", ""]);
 
 // exports
 
@@ -48403,126 +48405,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    { staticClass: "section-content-block section-pure-white-bg" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "container wow fadeInUp" }, [
-        _vm.photos.length > 0
-          ? _c(
-              "div",
-              { staticClass: "row no-padding-gallery" },
-              [
-                _c("a", {
-                  staticClass: "gallery-light-box",
-                  attrs: {
-                    "data-gall": "myGallery",
-                    href: "javascript:void(0)"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "viewer",
-                  { attrs: { images: _vm.photos, options: { inline: false } } },
-                  _vm._l(_vm.photos, function(src) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 ",
-                        staticStyle: { "max-height": "200px !important" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "gallery-light-box",
-                            attrs: {
-                              "data-gall": "myGallery",
-                              href: "javascript:void(0)"
-                            }
-                          },
-                          [
-                            _c("figure", { staticClass: "gallery-img" }, [
-                              _c("img", {
-                                key: src,
-                                staticStyle: {
-                                  "max-height": "180px !important"
-                                },
-                                attrs: { src: src }
-                              })
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "text-center col-md-12" },
-                  [
-                    _c(
-                      "pagination",
-                      {
-                        attrs: {
-                          align: "center",
-                          options: _vm.options,
-                          data: _vm.photo_s
-                        },
-                        on: { "pagination-change-page": _vm.list }
-                      },
-                      [
-                        _c(
-                          "span",
-                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
-                          [_vm._v("< Previous")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
-                          [_vm._v("Next >")]
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          : _vm._e()
-      ])
-    ]
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row section-heading-wrapper" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-12 col-sm-12 text-center no-img-separator" },
-          [
-            _c("h2", [_vm._v("CAMPAIGN GALLERY")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "heading-separator" }),
-            _vm._v(" "),
-            _c("h4", [
-              _vm._v("our prestigious voluntary work on campaigns by the team")
-            ])
-          ]
-        )
-      ])
-    ])
+    return _c(
+      "section",
+      { staticClass: "section-content-block section-pure-white-bg" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row section-heading-wrapper" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
+              },
+              [
+                _c("img", {
+                  staticStyle: { width: "100%" },
+                  attrs: {
+                    src: "images/sbda/executive-committee.png",
+                    alt: "Executive Committee"
+                  }
+                })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -49072,7 +48986,29 @@ var render = function() {
             _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
               _vm._m(2),
               _vm._v(" "),
-              _vm._m(3),
+              _c("li", [
+                _c("a", { attrs: { href: "#", title: "Excutive Committee" } }, [
+                  _vm._v("Committee")
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "drop-down" }, [
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "committee" } } },
+                        [_vm._v("Executive Committee")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "li",
@@ -49094,7 +49030,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Members" } }, [
@@ -49193,7 +49129,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(5)
+                    _vm._m(6)
                   ])
             ])
           ])
@@ -49345,26 +49281,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#", title: "Excutive Committee" } }, [
-        _vm._v("Committee")
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "drop-down" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "#advisers" } }, [_vm._v("Advisers")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#excutive-committee" } }, [
-            _vm._v("Executive Committee")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#excutive-committee" } }, [
-            _vm._v("Founder Member")
-          ])
-        ])
+      _c("a", { attrs: { href: "#advisers" } }, [_vm._v("Advisers")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#excutive-committee" } }, [
+        _vm._v("Founder Member")
       ])
     ])
   },
@@ -67207,9 +67133,13 @@ var routes = [{
   component: _components_pages_sbda_about_us__WEBPACK_IMPORTED_MODULE_10__["default"],
   name: "about-us"
 }, {
-  path: "/committee",
+  path: "/executive-committee",
   component: _components_pages_uses_committee__WEBPACK_IMPORTED_MODULE_11__["default"],
   name: "committee"
+}, {
+  path: "/advisor",
+  component: _components_pages_uses_committee__WEBPACK_IMPORTED_MODULE_11__["default"],
+  name: "advisor"
 }, {
   path: "*",
   component: _components_404__WEBPACK_IMPORTED_MODULE_12__["default"]
