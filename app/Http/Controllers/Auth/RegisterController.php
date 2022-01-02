@@ -67,12 +67,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $area = $data['type'] == 'volunteer' ? null : 4;
         $user =  User::create([
             'type' => $data['type'],
             'name' => $data['name'],
             'email' => $data['email'],
             'blood_group_id' => $data['blood_group'],
-            'areas_id' => $data['area'],
+            'areas_id' => $area,
             'phone' => $data['phone'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
