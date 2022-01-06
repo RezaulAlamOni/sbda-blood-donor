@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UsersImport;
 use App\Models\Volunteer;
 use App\User;
 use Illuminate\Http\Request;
+//use Maatwebsite\Excel\Facades\Excel;
+use Excel;
 
 class VolunteerController extends Controller
 {
@@ -46,7 +49,19 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $path = $request->file('file')->getRealPath();
+        $data = Excel::load($path)->get();
+        foreach ($data as $datum) {
+            
+        }
+
+    }
+
+
+    public function csvReader($baseUrl)
+    {
+        $data = array_map('str_getcsv', file($baseUrl));
+        return array_slice($data, 1);
     }
 
     /**

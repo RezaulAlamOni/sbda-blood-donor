@@ -50185,12 +50185,59 @@ var render = function() {
                           },
                           [_vm._v("Please enter a value")]
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-select form-control",
+                            attrs: {
+                              name: "area",
+                              "aria-label": "Default select example"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "0" } }, [
+                              _vm._v("Select Member Area ")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.member_areas, function(areas) {
+                              return _c(
+                                "option",
+                                { domProps: { value: areas.id } },
+                                [
+                                  _vm._v(
+                                    _vm._s(areas.id) + ") " + _vm._s(areas.name)
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "small",
+                          {
+                            staticClass: "help-block",
+                            staticStyle: { display: "none" },
+                            attrs: {
+                              "data-bv-validator": "notEmpty",
+                              "data-bv-for": "password",
+                              "data-bv-result": "NOT_VALIDATED"
+                            }
+                          },
+                          [_vm._v("Please enter a value")]
+                        )
                       ])
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(6)
               ])
             ]
           )
@@ -50209,7 +50256,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("small", [
         _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-        _vm._v(" Required fields\n                                    ")
+        _vm._v(" Required fields\n                                ")
       ])
     ])
   },
@@ -50220,9 +50267,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-6" }, [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
-          _vm._v(
-            "Full Name:\n                                                "
-          ),
+          _vm._v("Full Name:\n                                            "),
           _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
         ]),
         _vm._v(" "),
@@ -50257,7 +50302,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
           _vm._v(
-            "E-mail/Mobile:\n                                                "
+            "E-mail/Mobile:\n                                            "
           ),
           _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
         ]),
@@ -50292,7 +50337,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
-          _vm._v("Password:\n                                                "),
+          _vm._v("Password:\n                                            "),
           _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
         ]),
         _vm._v(" "),
@@ -50331,7 +50376,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
-        _vm._v("Phone:\n                                                "),
+        _vm._v("Phone:\n                                            "),
         _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
       ]),
       _vm._v(" "),
@@ -50369,7 +50414,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
-        _vm._v("Address :\n                                                "),
+        _vm._v("Address :\n                                            "),
         _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
       ]),
       _vm._v(" "),
@@ -50406,7 +50451,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label" }, [
-      _vm._v("Blood Group :\n                                                "),
+      _vm._v("Blood Group :\n                                            "),
+      _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "control-label" }, [
+      _vm._v("Member Area :\n                                            "),
       _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -50434,7 +50488,7 @@ var staticRenderFns = [
           { staticClass: "btn btn-lg btn-primary", attrs: { type: "submit" } },
           [
             _c("i", { staticClass: "fa fa-key" }),
-            _vm._v(" Join now\n                                    ")
+            _vm._v(" Join now\n                                ")
           ]
         )
       ]),

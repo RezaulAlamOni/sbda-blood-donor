@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/images/{type}', 'PhotoController@index')->name('admin.image');
         Route::post('/images-delete', 'PhotoController@destroy')->name('admin.image.delete');
         Route::post('/image-upload', 'PhotoController@store')->name('admin.image.upload');
+        Route::post('/csv-upload', 'VolunteerController@store')->name('admin.csv.upload');
         Route::get('/users-type/{type}', 'VolunteerController@index')->name('admin.users.type');
     });
 

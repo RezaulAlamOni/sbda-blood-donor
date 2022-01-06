@@ -19,7 +19,8 @@
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#add-image">
+                            <input type="file" style="display: none" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="csv_input" @change="uploadCsvData" >
+                            <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#add-image" @click="clickOnCsvFile()">
                                 <i class="fas fa-plus-circle fa-2x"> </i>
                             </a>
                             <a href="#" class="btn btn-sm btn-neutral">
@@ -138,6 +139,29 @@ export default {
                     }
                 })
         },
+        uploadCsvData(e) {
+            let _this = this;
+            let file = e.target.files[0]
+            let fd = new FormData()
+
+            fd.append('file', file)
+
+            fd.append('type', 'gallery')
+
+            this.axios.post('/admin/csv-upload', fd)
+                .then(resp => {
+                    $('#add-image').modal('hide')
+                    _this.save_image = [];
+                    _this.upload_preview = [];
+                    _this.getUsersType();
+                })
+
+
+        },
+
+        clickOnCsvFile() {
+            $('#csv_input').click()
+        }
 
     },
     watch: {

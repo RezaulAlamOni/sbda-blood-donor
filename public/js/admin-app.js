@@ -3284,6 +3284,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "volunteer",
   data: function data() {
@@ -3310,6 +3311,24 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    uploadCsvData: function uploadCsvData(e) {
+      var _this = this;
+
+      var file = e.target.files[0];
+      var fd = new FormData();
+      fd.append('file', file);
+      fd.append('type', 'gallery');
+      this.axios.post('/admin/csv-upload', fd).then(function (resp) {
+        $('#add-image').modal('hide');
+        _this.save_image = [];
+        _this.upload_preview = [];
+
+        _this.getUsersType();
+      });
+    },
+    clickOnCsvFile: function clickOnCsvFile() {
+      $('#csv_input').click();
     }
   },
   watch: {
@@ -7740,7 +7759,38 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "col-lg-6 col-5 text-right" }, [
+              _c("input", {
+                staticStyle: { display: "none" },
+                attrs: {
+                  type: "file",
+                  accept:
+                    ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+                  id: "csv_input"
+                },
+                on: { change: _vm.uploadCsvData }
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-sm btn-neutral",
+                  attrs: {
+                    href: "#",
+                    "data-toggle": "modal",
+                    "data-target": "#add-image"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.clickOnCsvFile()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-plus-circle fa-2x" })]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
           ])
         ])
       ])
@@ -7878,24 +7928,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-6 col-5 text-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-sm btn-neutral",
-          attrs: {
-            href: "#",
-            "data-toggle": "modal",
-            "data-target": "#add-image"
-          }
-        },
-        [_c("i", { staticClass: "fas fa-plus-circle fa-2x" })]
-      ),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-sm btn-neutral", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fas fa-filter fa-2x" })
-      ])
-    ])
+    return _c(
+      "a",
+      { staticClass: "btn btn-sm btn-neutral", attrs: { href: "#" } },
+      [_c("i", { staticClass: "fas fa-filter fa-2x" })]
+    )
   },
   function() {
     var _vm = this
