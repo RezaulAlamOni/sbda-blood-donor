@@ -105,7 +105,7 @@
                                 <div class="textwidget">
 
                                     <i class="fa fa-envelope-o fa-contact"></i>
-                                    <p><a href="#">ssbdaofficialbd@gmail.com</a></p>
+                                    <p><a href="#">sbdaofficialbd@gmail.com</a></p>
 
                                     <i class="fa fa-location-arrow fa-contact"></i>
                                     <p>Madrasha Market (1st Floor),<br>
@@ -113,7 +113,7 @@
                                         Bangladesh</p>
 
                                     <i class="fa fa-phone fa-contact"></i>
-                                    <p>Office:&nbsp; (+880) 1933018532</p>
+                                    <p>Office:&nbsp; (+880) 1905199278</p>
 
                                 </div>
 
