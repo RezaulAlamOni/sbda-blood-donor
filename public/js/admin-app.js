@@ -7864,7 +7864,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.phone))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(user.area.name))]),
+                        _c("td", [
+                          _vm._v(_vm._s(user.area ? user.area.name : ""))
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.blood_group.name))]),
                         _vm._v(" "),
