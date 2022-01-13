@@ -49966,7 +49966,7 @@ var render = function() {
                           },
                           [
                             _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select Member Area ")
+                              _vm._v("Select Volunteer Area ")
                             ]),
                             _vm._v(" "),
                             _vm._l(_vm.member_areas, function(areas) {
