@@ -2802,6 +2802,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -47602,6 +47604,22 @@ var render = function() {
                     staticStyle: { width: "100%" },
                     attrs: {
                       src: "images/sbda/executive-committee.png",
+                      alt: "Executive Committee"
+                    }
+                  })
+                : _vm.$route.name == "advisor"
+                ? _c("img", {
+                    staticStyle: { width: "100%" },
+                    attrs: {
+                      src: "images/sbda/Advisor.png",
+                      alt: "Executive Committee"
+                    }
+                  })
+                : _vm.$route.name == "founder-member"
+                ? _c("img", {
+                    staticStyle: { width: "100%" },
+                    attrs: {
+                      src: "images/sbda/Founder-Member.png",
                       alt: "Executive Committee"
                     }
                   })
