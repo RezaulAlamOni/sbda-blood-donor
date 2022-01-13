@@ -9,7 +9,7 @@
 
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
 
-                    <img  src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
+                    <img v-if="$route.name == 'committee'" src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
 
                 </div> <!-- end .col-sm-10  -->
 

@@ -4290,7 +4290,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllBloodGroups: function getAllBloodGroups() {
       var _this = this;
 
-      axios.get(_this.app_url + 'blood-groups').then(function (respose) {
+      axios.get('/blood-groups').then(function (respose) {
         console.log(respose.data);
         _this.blood_groups = respose.data.data;
       })["catch"](function (er) {
@@ -4300,7 +4300,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllAreas: function getAllAreas() {
       var _this = this;
 
-      axios.get(_this.app_url + 'member-areas').then(function (respose) {
+      axios.get('/member-areas').then(function (respose) {
         console.log(respose.data);
         _this.member_areas = respose.data.areas;
       })["catch"](function (er) {
@@ -48151,40 +48151,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "section-content-block section-pure-white-bg" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row section-heading-wrapper" }, [
-            _c(
-              "div",
-              {
-                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
-              },
-              [
-                _c("img", {
-                  staticStyle: { width: "100%" },
-                  attrs: {
-                    src: "images/sbda/executive-committee.png",
-                    alt: "Executive Committee"
-                  }
-                })
-              ]
-            )
-          ])
+  return _c(
+    "section",
+    { staticClass: "section-content-block section-pure-white-bg" },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row section-heading-wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-12 col-sm-12 text-center no-img-separator" },
+            [
+              _vm.$route.name == "committee"
+                ? _c("img", {
+                    staticStyle: { width: "100%" },
+                    attrs: {
+                      src: "images/sbda/executive-committee.png",
+                      alt: "Executive Committee"
+                    }
+                  })
+                : _vm._e()
+            ]
+          )
         ])
-      ]
-    )
-  }
-]
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
