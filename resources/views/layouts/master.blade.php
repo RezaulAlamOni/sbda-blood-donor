@@ -73,11 +73,7 @@
 
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                     <p>
-                                        We are world largest and trustful blood donor Association. We have been working
-                                        since
-                                        2016 with a prestigious vision to helping patient to provide blood.
-                                        We are working all over Bangladesh, organizing blood donation campaign to grow
-                                        awareness among the people to donate blood.
+                                        Saptagaon Blood Donor Association is a voluntary, non-political and non-profit organization. The members of the association voluntarily donate blood and do other social and humanitarian work. In addition to free blood donation, free blood group diagnosis, social awareness raising activities on blood donation, the organization ensures free healthcare for helpless patients through a medical unit consisting of specialist doctors. This organization has a special role in eradicating rural social degradation.
                                     </p>
                                 </div> <!--  end .col-lg-9  -->
 
