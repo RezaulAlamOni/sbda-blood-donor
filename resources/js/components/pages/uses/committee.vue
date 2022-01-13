@@ -10,6 +10,8 @@
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
 
                     <img v-if="$route.name == 'committee'" src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
+                    <img v-else-if="$route.name == 'advisor'" src="images/sbda/Advisor.png" alt="Executive Committee" style="width: 100%">
+                    <img v-else-if="$route.name == 'founder-member'" src="images/sbda/Founder-Member.png" alt="Executive Committee" style="width: 100%">
 
                 </div> <!-- end .col-sm-10  -->
 

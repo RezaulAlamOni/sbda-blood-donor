@@ -72,7 +72,7 @@
                                         {{ user.email }}
                                     </td>
                                     <td>{{ user.phone }}</td>
-                                    <td>{{ user.area.name }}</td>
+                                    <td>{{ user.area ? user.area.name : '' }}</td>
                                     <td>{{ user.blood_group.name }}</td>
                                     <td>
                                         <span class="badge badge-dot mr-4" >
