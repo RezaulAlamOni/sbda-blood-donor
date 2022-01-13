@@ -83,6 +83,9 @@ export default {
         }
     },
     mounted() {
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
         this.photos = [
             // { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
             // { id : 2 , photo : 'gallery_2.jpg'},
