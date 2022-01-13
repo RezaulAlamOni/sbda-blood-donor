@@ -2822,6 +2822,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.type = this.$attrs.type;
   },
   methods: {
@@ -3000,6 +3003,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.type = this.$attrs.type;
   },
   methods: {
@@ -3179,6 +3185,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
   },
   mounted: function mounted() {
     this.type = this.$attrs.type;
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
   },
   methods: {
     getGallery: function getGallery() {
@@ -4281,6 +4290,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.photos = [];
     this.getAllBloodGroups();
     this.getAllAreas();

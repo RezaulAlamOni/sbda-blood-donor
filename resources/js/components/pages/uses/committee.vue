@@ -85,6 +85,9 @@ export default {
     },
     mounted() {
         this.type = this.$attrs.type;
+       setTimeout(function () {
+           $('.navbar-toggle').click()
+       },200)
 
     },
     methods: {
