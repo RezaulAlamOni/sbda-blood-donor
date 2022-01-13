@@ -2519,6 +2519,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.photos = [];
   }
 });
@@ -2710,6 +2713,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.photos = [];
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
   }
 });
 
@@ -3408,6 +3414,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.photos = [];
     this.getAllBloodGroups();
     this.getAllAreas();
@@ -3545,6 +3554,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     };
   },
   mounted: function mounted() {
+    setTimeout(function () {
+      $('.navbar-toggle').click();
+    }, 200);
     this.photos = [// { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
       // { id : 2 , photo : 'gallery_2.jpg'},
       // { id : 3 , photo : 'gallery_3.jpg'},

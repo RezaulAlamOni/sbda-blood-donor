@@ -140,6 +140,9 @@ export default {
       }
     },
     mounted() {
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
         this.photos = []
         this.getAllBloodGroups();
         this.getAllAreas();

@@ -175,6 +175,9 @@ export default {
     },
     mounted() {
         this.photos = []
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
     },
 
 }
