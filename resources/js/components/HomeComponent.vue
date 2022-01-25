@@ -181,7 +181,6 @@
                                 <h2>OUR CAMPAIGNS</h2>
                                 <span class="heading-separator heading-separator-horizontal"></span>
                                 <h4 class="margin-top-24">
-
                                     <small>
                                         বিনামূল্যে রক্তদান, বিনামূল্যে রক্তের গ্রুপ নির্ণয়, বিনামূল্যে স্বাস্থ্যসেবা ও স্বেচ্ছাসেবী কার্যক্রম - এই চার সেবা নিয়ে বর্তমানে এসবিডিএ'র কার্যক্রম পরিচালিত হচ্ছে।
                                     </small>
