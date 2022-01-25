@@ -97,7 +97,7 @@
                                                 <small class="text-danger">*</small>
                                             </label>
                                             <select class="form-select form-control" name="area" aria-label="Default select example">
-                                                <option value="0" >Select Member Area </option>
+                                                <option value="0" >Select Volunteer Area </option>
                                                 <option v-for="areas in member_areas" :value="areas.id">{{ areas.id }}) {{ areas.name }}</option>
                                             </select>
                                             <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
@@ -140,6 +140,9 @@ export default {
       }
     },
     mounted() {
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
         this.photos = []
         this.getAllBloodGroups();
         this.getAllAreas();
@@ -148,7 +151,7 @@ export default {
     methods :{
         getAllBloodGroups() {
             let _this = this;
-            axios.get(_this.app_url+'blood-groups')
+            axios.get('/blood-groups')
             .then(function (respose) {
                 console.log( respose.data)
                 _this.blood_groups = respose.data.data;
@@ -163,7 +166,7 @@ export default {
         },
         getAllAreas() {
             let _this = this;
-            axios.get(_this.app_url+'member-areas')
+            axios.get('/member-areas')
             .then(function (respose) {
                 console.log( respose.data)
                 _this.member_areas = respose.data.areas;

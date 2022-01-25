@@ -62,7 +62,7 @@
 
                             <li>
                                 <span class="icon-container"><i class="fa fa-phone"></i></span>
-                                <address><a href="#">+88 01933018532</a></address>
+                                <address><a href="#">+88 01905199278</a></address>
                             </li>
 
                         </ul>
@@ -175,6 +175,9 @@ export default {
     },
     mounted() {
         this.photos = []
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
     },
 
 }

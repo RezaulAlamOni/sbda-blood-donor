@@ -73,11 +73,7 @@
 
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                     <p>
-                                        We are world largest and trustful blood donor Association. We have been working
-                                        since
-                                        2016 with a prestigious vision to helping patient to provide blood.
-                                        We are working all over Bangladesh, organizing blood donation campaign to grow
-                                        awareness among the people to donate blood.
+                                        Saptagaon Blood Donor Association is a voluntary, non-political and non-profit organization. The members of the association voluntarily donate blood and do other social and humanitarian work. In addition to free blood donation, free blood group diagnosis, social awareness raising activities on blood donation, the organization ensures free healthcare for helpless patients through a medical unit consisting of specialist doctors. This organization has a special role in eradicating rural social degradation.
                                     </p>
                                 </div> <!--  end .col-lg-9  -->
 
@@ -105,7 +101,7 @@
                                 <div class="textwidget">
 
                                     <i class="fa fa-envelope-o fa-contact"></i>
-                                    <p><a href="#">ssbdaofficialbd@gmail.com</a></p>
+                                    <p><a href="#">sbdaofficialbd@gmail.com</a></p>
 
                                     <i class="fa fa-location-arrow fa-contact"></i>
                                     <p>Madrasha Market (1st Floor),<br>
@@ -113,7 +109,7 @@
                                         Bangladesh</p>
 
                                     <i class="fa fa-phone fa-contact"></i>
-                                    <p>Office:&nbsp; (+880) 1933018532</p>
+                                    <p>Office:&nbsp; (+880) 1905199278</p>
 
                                 </div>
 

@@ -9,7 +9,7 @@
 
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
 
-                    <img v-if="$route.name == 'committee'" src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">
+                    <img src="images/sbda/Advisor.png" alt="Executive Committee" style="width: 100%">
 
                 </div> <!-- end .col-sm-10  -->
 
@@ -68,7 +68,7 @@ import pagination from 'laravel-vue-pagination'
 
 Vue.use(VueViewer)
 export default {
-    name: "committee",
+    name: "Advisor",
     components:{
         pagination
     },
@@ -84,10 +84,10 @@ export default {
         }
     },
     mounted() {
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        },200)
         this.type = this.$attrs.type;
-       setTimeout(function () {
-           $('.navbar-toggle').click()
-       },200)
 
     },
     methods: {
