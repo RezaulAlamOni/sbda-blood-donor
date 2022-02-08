@@ -3789,6 +3789,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -8980,7 +8983,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\r\n    display: flex;\r\n    background: #5082bb;\r\n    padding: 0px 9px 6px 6px;\r\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\r\n    margin: 8px 0px 0px 15px;\r\n    font-size: 14px;\r\n    font-weight: bold;\r\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\r\n    background: none;\r\n    border-bottom: 3px solid #f9161f;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f;\n}\n\n", ""]);
 
 // exports
 
@@ -49007,6 +49010,17 @@ var staticRenderFns = [
                   }
                 },
                 [_c("i", { staticClass: "fa fa-youtube" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    target: "_blank",
+                    href: "https://www.linkedin.com/company/sbdaofficialbd/"
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-linkedin" })]
               )
             ])
           ])
