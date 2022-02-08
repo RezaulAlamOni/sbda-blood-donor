@@ -28,6 +28,9 @@
                             <a target="_blank" href="//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A"><i
                                 class="fa fa-youtube"></i>
                             </a>
+                            <a target="_blank" href="https://www.linkedin.com/company/sbdaofficialbd/"><i
+                                class="fa fa-linkedin"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

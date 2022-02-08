@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required'],
             'blood_group' => ['required'],
-//            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
         ]);
     }
@@ -81,7 +81,7 @@ class RegisterController extends Controller
         if ($data['type'] == 'volunteer') {
             Volunteer::create([
                 'user_id' => $user->id,
-                'v_area_id' => $user->areas_id,
+                'v_area_id' => $data['area'],
                 'v_type' => '',
                 'status' => 0,
                 'created_at' => Carbon::now(),
