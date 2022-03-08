@@ -73,7 +73,7 @@
                                     </td>
                                     <td>{{ user.phone }}</td>
                                     <td>{{ user.area ? user.area.name : '' }}</td>
-                                    <td>{{ user.blood_group.name }}</td>
+                                    <td>{{ user.blood_group ? user.blood_group.name : null }}</td>
                                     <td>
                                         <span class="badge badge-dot mr-4" >
                                             <template v-if="user.status == 0">
