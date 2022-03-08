@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Donor;
 use App\Imports\UsersImport;
 use App\Models\BloodGroup;
 use App\Models\Volunteer;
@@ -56,6 +57,7 @@ class VolunteerController extends Controller
         $path = $request->file('file')->getRealPath();
         $data = Excel::load($path)->get();
         $data__ = [];
+        $type = $request->type;
         foreach ($data as $datum) {
 
             try {
@@ -63,12 +65,19 @@ class VolunteerController extends Controller
                 $a_id = $a_id ? $a_id->id : null;
                 $b_grp = BloodGroup::query()->where('name',$datum->blood)->first();
                 $bg_id = $b_grp ? $b_grp->id  : null;
+                if ($type == 'volunteer') {
+                    $cond = [
+                        'email' => trim($datum->email??$datum->phone),
+                    ];
+                } else {
+                    $cond = [
+                        'email' => trim($datum->email??$datum->phone),
+                    ];
+                }
 
-                $user =  User::updateOrCreate([
-                    'email' => trim($datum->email??$datum->phone)
-                ],
+                $user =  User::updateOrCreate( $cond,
                     [
-                        'type' => 'volunteer',
+                        'type' => $type,
                         'name' => $datum->name,
                         'email' => trim($datum->email??$datum->phone),
                         'blood_group_id' => $bg_id,
@@ -78,20 +87,34 @@ class VolunteerController extends Controller
                         'password' => Hash::make($datum->phone),
                     ]);
 
-                Volunteer::updateOrInsert(['user_id' => $user->id],[
-                    'user_id' => $user->id,
-                    'v_area_id' => $a_id,
-                    'v_type' => '',
-                    'status' => 0,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ]);
+                if ($type == 'volunteer') {
+                    Volunteer::updateOrInsert(['user_id' => $user->id],[
+                        'user_id' => $user->id,
+                        'v_area_id' => $a_id,
+                        'v_type' => '',
+                        'status' => 0,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]);
+                } else {
+                    Donor::updateOrCreate(
+                        [
+                            'user_id' => $user->id
+                        ],
+                        [
+                            'user_id' => $user->id,
+                            'current_area_id' => 1
+                        ]
+                    );
+                }
+
+
             } catch (\Exception $exception){
-                $data__[] = $datum;
+                $data__[] = [$datum,$exception->getMessage()];
             }
         }
         if (count($data__)  > 0) {
-            return response()->json(['status' => 'success','data' => $data__]);
+            return response()->json(['status' => 'some data not insert successfully','data' => $data__]);
         }
         return response()->json(['status' => 'success']);
     }

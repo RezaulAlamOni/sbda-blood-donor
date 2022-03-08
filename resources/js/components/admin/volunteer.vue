@@ -146,7 +146,7 @@ export default {
 
             fd.append('file', file)
 
-            fd.append('type', 'gallery')
+            fd.append('type', _this.type)
 
             this.axios.post('/admin/csv-upload', fd)
                 .then(resp => {

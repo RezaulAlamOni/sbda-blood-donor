@@ -3318,7 +3318,7 @@ __webpack_require__.r(__webpack_exports__);
       var file = e.target.files[0];
       var fd = new FormData();
       fd.append('file', file);
-      fd.append('type', 'gallery');
+      fd.append('type', _this.type);
       this.axios.post('/admin/csv-upload', fd).then(function (resp) {
         $('#add-image').modal('hide');
         _this.save_image = [];
