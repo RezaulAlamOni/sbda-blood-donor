@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Donor extends Model
 {
-    protected $guarded = [];
     protected $table = 'donors';
+    protected $guarded = [];
 
 }

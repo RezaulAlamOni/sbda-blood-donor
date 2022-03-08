@@ -25,10 +25,15 @@ class VolunteerController extends Controller
     {
         $users = new User();
         if (isset($request->type)) {
-            $users = $users->where('type',$request->type);
+            if ($request->type == 'donor') {
+                $users = $users->whereHas('donor')->with(['blood_group','area','v_area','donor','volunteer']);
+            } {
+                $users = $users->whereHas('volunteer')->with(['blood_group','area','v_area','donor','volunteer']);
+            }
+
         }
 
-        $users = $users->with(['blood_group','area','v_area'])->get();
+        $users = $users->get();
 
         return response()->json(['users'=>$users]);
 
