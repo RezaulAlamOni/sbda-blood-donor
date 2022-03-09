@@ -73,7 +73,7 @@
                                     </td>
                                     <td>{{ user.phone }}</td>
                                     <td>{{ user.area ? user.area.name : '' }}</td>
-                                    <td>{{ user.blood_group.name }}</td>
+                                    <td>{{ user.blood_group ? user.blood_group.name : null }}</td>
                                     <td>
                                         <span class="badge badge-dot mr-4" >
                                             <template v-if="user.status == 0">
@@ -146,7 +146,7 @@ export default {
 
             fd.append('file', file)
 
-            fd.append('type', 'gallery')
+            fd.append('type', _this.type)
 
             this.axios.post('/admin/csv-upload', fd)
                 .then(resp => {

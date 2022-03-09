@@ -93,7 +93,7 @@
                                             <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">Member Area :
+                                            <label class="control-label">Volunteer Area :
                                                 <small class="text-danger">*</small>
                                             </label>
                                             <select class="form-select form-control" name="area" aria-label="Default select example">
