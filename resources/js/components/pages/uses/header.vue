@@ -63,12 +63,15 @@
                                     </li>
                                     <li><a href="#founder-member">Books</a></li>
                                     <li><a href="#founder-member">Emergency Response Team</a></li>
-                                    <li>
-                                        <router-link :to="{name : 'committee'}">Donors</router-link>
-                                    </li>
-                                    <li>
-                                        <router-link :to="{name : 'committee'}">Volunteers</router-link>
-                                    </li>
+                                    <template v-if="auth">
+                                        <li>
+                                            <router-link :to="{name : 'donors'}">Donors</router-link>
+                                        </li>
+                                        <li>
+                                            <router-link :to="{name : 'volunteers'}">Volunteers</router-link>
+                                        </li>
+                                    </template>
+
                                 </ul>
                             </li>
                             <li><a href="#" title="Excutive Committee">Committee</a>
