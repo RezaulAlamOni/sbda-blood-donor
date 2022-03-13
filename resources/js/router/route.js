@@ -15,6 +15,7 @@ import Committee from "../components/pages/uses/committee";
 import Advisor from "../components/pages/uses/Advisor";
 import FounderMember from "../components/pages/uses/Founder-Member";
 import PageNotFound from "../components/404";
+import donors from "../components/pages/uses/donors";
 
 let base_url = window.APP_URL
 
@@ -79,6 +80,16 @@ let routes = [
         path: "/life-member",
         component: Committee,
         name: "life-member"
+    },
+    {
+        path: "/donors",
+        component: donors,
+        name: "donors"
+    },
+    {
+        path: "/volunteers",
+        component: donors,
+        name: "volunteers"
     },
 
 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Reddrop Buddies - Blood Donation Campaign & Multi-Concept Activism Template">
     <meta name="author" content="xenioushk">
-    <link rel="shortcut icon" href="{{asset('images/logo/logo.png')}}"/>
+    <link rel="shortcut icon" href="{{asset('images/logo/img.png')}}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
