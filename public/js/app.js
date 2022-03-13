@@ -3791,6 +3791,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -48749,7 +48755,50 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "navbar-collapse collapse" }, [
             _c("ul", { staticClass: "nav navbar-nav navbar-right" }, [
-              _vm._m(2),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-toggle",
+                    attrs: { href: "#", title: "Members" }
+                  },
+                  [_vm._v("Unit")]
+                ),
+                _vm._v(" "),
+                _c("ul", { staticClass: "drop-down" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "committee" } } },
+                        [_vm._v("Donors")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "committee" } } },
+                        [_vm._v("Volunteers")]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Excutive Committee" } }, [
@@ -48827,7 +48876,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(3),
+              _vm._m(6),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Members" } }, [
@@ -48934,7 +48983,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _vm._m(7)
                   ])
             ])
           ])
@@ -49064,37 +49113,36 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "dropdown-toggle",
-          attrs: { href: "#", title: "Members" }
-        },
-        [_vm._v("Unit")]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "drop-down" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "#about-membership" } }, [
-            _vm._v("SBDA Volunteer")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#about-membership" } }, [
-            _vm._v("SBDA Medical Care")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#founder-member" } }, [_vm._v("Books")])
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c("a", { attrs: { href: "#founder-member" } }, [
-            _vm._v("Emergency Response Team")
-          ])
-        ])
+      _c("a", { attrs: { href: "#about-membership" } }, [
+        _vm._v("SBDA Volunteer")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#about-membership" } }, [
+        _vm._v("SBDA Medical Care")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#founder-member" } }, [_vm._v("Books")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#founder-member" } }, [
+        _vm._v("Emergency Response Team")
       ])
     ])
   },
