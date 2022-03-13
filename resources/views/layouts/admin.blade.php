@@ -9,7 +9,8 @@
     <title>SBDA</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
+{{--    <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">--}}
+    <link rel="shortcut icon" href="{{asset('images/logo/img.png')}}"/>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
