@@ -3534,6 +3534,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3563,7 +3589,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     getGallery: function getGallery() {
       var _this = this;
 
-      this.axios.get('/photos/gallery').then(function (resp) {
+      this.axios.get('/all-donors').then(function (resp) {
         var photos = resp.data.photos.data;
         _this.photo_s = resp.data.photos; // _this.photos = resp.data.photos;
 
@@ -48835,26 +48861,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "section-content-block section-pure-white-bg" },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "text-center col-md-12" },
+              [
+                _c(
+                  "pagination",
+                  {
+                    attrs: {
+                      align: "center",
+                      options: _vm.options,
+                      data: _vm.photo_s
+                    },
+                    on: { "pagination-change-page": _vm.list }
+                  },
+                  [
+                    _c(
+                      "span",
+                      { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                      [_vm._v("< Previous")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                      [_vm._v("Next >")]
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "section-content-block section-pure-white-bg" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row section-heading-wrapper" }, [
-            _c("div", {
-              staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
-            })
-          ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h2", [_vm._v("Our Donors")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-hover" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("#")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("First Name")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Last Name")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Username")])
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("Mark")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("Otto")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("@mdo")])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("Jacob")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("Thornton")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("@fat")])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true

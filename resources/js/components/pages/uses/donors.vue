@@ -5,55 +5,81 @@
 
         <div class="container">
 
-            <div class="row section-heading-wrapper">
-
-                <div class="col-md-12 col-sm-12 text-center no-img-separator">
-
-<!--                    <img v-if="$route.name == 'committee'" src="images/sbda/executive-committee.png" alt="Executive Committee" style="width: 100%">-->
-
-                </div> <!-- end .col-sm-10  -->
-
-
-            </div> <!-- end .row  -->
-
+            <div class="card">
+                <div class="card-header">
+                    <h2>Our Donors</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center col-md-12">
+                        <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">
+                            <span slot="prev-nav">&lt; Previous</span>
+                            <span slot="next-nav">Next &gt;</span>
+                        </pagination>
+                    </div>
+                </div>
+            </div>
         </div> <!--  end .container -->
 
-<!--        <div class="container wow fadeInUp">-->
+        <!--        <div class="container wow fadeInUp">-->
 
-<!--            <div class="row no-padding-gallery" v-if="photos.length > 0">-->
+        <!--            <div class="row no-padding-gallery" v-if="photos.length > 0">-->
 
-<!--                &lt;!&ndash;                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">&ndash;&gt;-->
-<!--                <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
+        <!--                &lt;!&ndash;                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container" v-for="photo in photos" :key="photo.id">&ndash;&gt;-->
+        <!--                <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
 
-<!--                    &lt;!&ndash;                        <figure class="gallery-img">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>&ndash;&gt;-->
+        <!--                    &lt;!&ndash;                        <figure class="gallery-img">&ndash;&gt;-->
+        <!--                    &lt;!&ndash;                            <img v-bind:src="app_url+photo.photo" alt="gallery image"/>&ndash;&gt;-->
 
-<!--                    &lt;!&ndash;                        </figure> &lt;!&ndash; end .gallery-img  &ndash;&gt;&ndash;&gt;-->
+        <!--                    &lt;!&ndash;                        </figure> &lt;!&ndash; end .gallery-img  &ndash;&gt;&ndash;&gt;-->
 
-<!--                </a>-->
+        <!--                </a>-->
 
-<!--                &lt;!&ndash;                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                </div>&lt;!&ndash; end .col-sm-3  &ndash;&gt;&ndash;&gt;-->
 
-<!--                <viewer :images="photos" :options="{inline : false}">-->
-<!--                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos"-->
-<!--                         style="max-height: 200px !important;">-->
-<!--                        <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
-<!--                            <figure class="gallery-img">-->
-<!--                                <img :key="src" :src="src" style="max-height: 180px !important;">-->
-<!--                            </figure>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </viewer>-->
-<!--                <div class="text-center col-md-12">-->
-<!--                    <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">-->
-<!--                        <span slot="prev-nav">&lt; Previous</span>-->
-<!--                        <span slot="next-nav">Next &gt;</span>-->
-<!--                    </pagination>-->
-<!--                </div>-->
-<!--            </div> &lt;!&ndash; end .row  &ndash;&gt;-->
+        <!--                <viewer :images="photos" :options="{inline : false}">-->
+        <!--                    <div class="gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 " v-for="src in photos"-->
+        <!--                         style="max-height: 200px !important;">-->
+        <!--                        <a class="gallery-light-box" data-gall="myGallery" href="javascript:void(0)">-->
+        <!--                            <figure class="gallery-img">-->
+        <!--                                <img :key="src" :src="src" style="max-height: 180px !important;">-->
+        <!--                            </figure>-->
+        <!--                        </a>-->
+        <!--                    </div>-->
+        <!--                </viewer>-->
+        <!--                <div class="text-center col-md-12">-->
+        <!--                    <pagination align="center" :options="options" :data="photo_s" @pagination-change-page="list">-->
+        <!--                        <span slot="prev-nav">&lt; Previous</span>-->
+        <!--                        <span slot="next-nav">Next &gt;</span>-->
+        <!--                    </pagination>-->
+        <!--                </div>-->
+        <!--            </div> &lt;!&ndash; end .row  &ndash;&gt;-->
 
 
-<!--        </div>&lt;!&ndash; end .container-fluid  &ndash;&gt;-->
+        <!--        </div>&lt;!&ndash; end .container-fluid  &ndash;&gt;-->
 
     </section> <!-- end .section-content-block  -->
 
@@ -69,7 +95,7 @@ import pagination from 'laravel-vue-pagination'
 Vue.use(VueViewer)
 export default {
     name: "committee",
-    components:{
+    components: {
         pagination
     },
     data() {
@@ -77,23 +103,21 @@ export default {
             photos: [],
             photo_s: {},
             app_url: window.APP_URL,
-            options : {
-
-            },
-            type : 0
+            options: {},
+            type: 0
         }
     },
     mounted() {
         this.type = this.$attrs.type;
-       setTimeout(function () {
-           $('.navbar-toggle').click()
-       },200)
+        setTimeout(function () {
+            $('.navbar-toggle').click()
+        }, 200)
 
     },
     methods: {
         getGallery() {
             let _this = this;
-            this.axios.get('/photos/gallery')
+            this.axios.get('/all-donors')
                 .then(resp => {
                     let photos = resp.data.photos.data;
                     _this.photo_s = resp.data.photos;
