@@ -31,3 +31,4 @@ Route::get('/blood-groups','BloodGroupController@index')->name('blood_group');
 Route::get('/member-areas','VolunteerAreaController@index')->name('member.areas');
 
 Route::get('/photos/{type}','PhotoController@index');
+Route::get('/users-type/{type}', 'VolunteerController@index')->name('users.type');

@@ -14,24 +14,19 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Blood Group</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                        <tr v-for="(user,k) in users">
+                            <th scope="row">{{ (k+1) }}</th>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.blood_group ? user.blood_group.name : '' }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
+
                         </tbody>
                     </table>
                     <div class="text-center col-md-12">
@@ -94,7 +89,7 @@ import pagination from 'laravel-vue-pagination'
 
 Vue.use(VueViewer)
 export default {
-    name: "committee",
+    name: "donor-list",
     components: {
         pagination
     },
@@ -104,7 +99,8 @@ export default {
             photo_s: {},
             app_url: window.APP_URL,
             options: {},
-            type: 0
+            type: 0,
+            users : []
         }
     },
     mounted() {
@@ -117,22 +113,10 @@ export default {
     methods: {
         getGallery() {
             let _this = this;
-            this.axios.get('/all-donors')
+            this.axios.get('/users-type/donor')
                 .then(resp => {
-                    let photos = resp.data.photos.data;
-                    _this.photo_s = resp.data.photos;
-                    // _this.photos = resp.data.photos;
-                    let gallery = [];
-                    // _this.photos = [
-                    //     { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
-                    // ];
-                    // gallery.push({ id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"})
-                    photos.map(function (photo) {
-                        gallery.push(photo.photo)
-                    });
-                    _this.photos = gallery;
-
-
+                    _this.users = resp.data.users;
+                    _this.photo_s =     _this.users;
                 })
         },
         show() {

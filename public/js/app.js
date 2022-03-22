@@ -3555,18 +3555,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "committee",
+  name: "donor-list",
   components: {
     pagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_4___default.a
   },
@@ -3576,7 +3571,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
       photo_s: {},
       app_url: window.APP_URL,
       options: {},
-      type: 0
+      type: 0,
+      users: []
     };
   },
   mounted: function mounted() {
@@ -3589,19 +3585,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     getGallery: function getGallery() {
       var _this = this;
 
-      this.axios.get('/all-donors').then(function (resp) {
-        var photos = resp.data.photos.data;
-        _this.photo_s = resp.data.photos; // _this.photos = resp.data.photos;
-
-        var gallery = []; // _this.photos = [
-        //     { id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"},
-        // ];
-        // gallery.push({ id : 1 , photo : "storage/images/gallery/cropped-Jacos-main16305787611534073093.png"})
-
-        photos.map(function (photo) {
-          gallery.push(photo.photo);
-        });
-        _this.photos = gallery;
+      this.axios.get('/users-type/donor').then(function (resp) {
+        _this.users = resp.data.users;
+        _this.photo_s = _this.users;
       });
     },
     show: function show() {
@@ -4562,14 +4548,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.6.0 (https://getbootstrap.com/)
+  * Bootstrap v4.6.1 (https://getbootstrap.com/)
   * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
    true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
   undefined;
-}(this, (function (exports, $, Popper) { 'use strict';
+})(this, (function (exports, $, Popper) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -4613,19 +4599,27 @@ __webpack_require__.r(__webpack_exports__);
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
-    subClass.__proto__ = superClass;
+
+    _setPrototypeOf(subClass, superClass);
+  }
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
   }
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.6.0): util.js
+   * Bootstrap (v4.6.1): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
   /**
-   * ------------------------------------------------------------------------
    * Private TransitionEnd Helpers
-   * ------------------------------------------------------------------------
    */
 
   var TRANSITION_END = 'transitionend';
@@ -4645,7 +4639,7 @@ __webpack_require__.r(__webpack_exports__);
       bindType: TRANSITION_END,
       delegateType: TRANSITION_END,
       handle: function handle(event) {
-        if ($__default['default'](event.target).is(this)) {
+        if ($__default["default"](event.target).is(this)) {
           return event.handleObj.handler.apply(this, arguments); // eslint-disable-line prefer-rest-params
         }
 
@@ -4658,7 +4652,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var called = false;
-    $__default['default'](this).one(Util.TRANSITION_END, function () {
+    $__default["default"](this).one(Util.TRANSITION_END, function () {
       called = true;
     });
     setTimeout(function () {
@@ -4670,13 +4664,11 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function setTransitionEndSupport() {
-    $__default['default'].fn.emulateTransitionEnd = transitionEndEmulator;
-    $__default['default'].event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
+    $__default["default"].fn.emulateTransitionEnd = transitionEndEmulator;
+    $__default["default"].event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
   }
   /**
-   * --------------------------------------------------------------------------
-   * Public Util Api
-   * --------------------------------------------------------------------------
+   * Public Util API
    */
 
 
@@ -4684,6 +4676,7 @@ __webpack_require__.r(__webpack_exports__);
     TRANSITION_END: 'bsTransitionEnd',
     getUID: function getUID(prefix) {
       do {
+        // eslint-disable-next-line no-bitwise
         prefix += ~~(Math.random() * MAX_UID); // "~~" acts like a faster Math.floor() here
       } while (document.getElementById(prefix));
 
@@ -4709,8 +4702,8 @@ __webpack_require__.r(__webpack_exports__);
       } // Get transition-duration of the element
 
 
-      var transitionDuration = $__default['default'](element).css('transition-duration');
-      var transitionDelay = $__default['default'](element).css('transition-delay');
+      var transitionDuration = $__default["default"](element).css('transition-duration');
+      var transitionDelay = $__default["default"](element).css('transition-delay');
       var floatTransitionDuration = parseFloat(transitionDuration);
       var floatTransitionDelay = parseFloat(transitionDelay); // Return 0 if element or transition duration is not found
 
@@ -4727,7 +4720,7 @@ __webpack_require__.r(__webpack_exports__);
       return element.offsetHeight;
     },
     triggerTransitionEnd: function triggerTransitionEnd(element) {
-      $__default['default'](element).trigger(TRANSITION_END);
+      $__default["default"](element).trigger(TRANSITION_END);
     },
     supportsTransitionEnd: function supportsTransitionEnd() {
       return Boolean(TRANSITION_END);
@@ -4771,11 +4764,11 @@ __webpack_require__.r(__webpack_exports__);
       return Util.findShadowRoot(element.parentNode);
     },
     jQueryDetection: function jQueryDetection() {
-      if (typeof $__default['default'] === 'undefined') {
+      if (typeof $__default["default"] === 'undefined') {
         throw new TypeError('Bootstrap\'s JavaScript requires jQuery. jQuery must be included before Bootstrap\'s JavaScript.');
       }
 
-      var version = $__default['default'].fn.jquery.split(' ')[0].split('.');
+      var version = $__default["default"].fn.jquery.split(' ')[0].split('.');
       var minMajor = 1;
       var ltMajor = 2;
       var minMinor = 9;
@@ -4791,28 +4784,24 @@ __webpack_require__.r(__webpack_exports__);
   setTransitionEndSupport();
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME = 'alert';
-  var VERSION = '4.6.0';
-  var DATA_KEY = 'bs.alert';
-  var EVENT_KEY = "." + DATA_KEY;
-  var DATA_API_KEY = '.data-api';
-  var JQUERY_NO_CONFLICT = $__default['default'].fn[NAME];
-  var SELECTOR_DISMISS = '[data-dismiss="alert"]';
-  var EVENT_CLOSE = "close" + EVENT_KEY;
-  var EVENT_CLOSED = "closed" + EVENT_KEY;
-  var EVENT_CLICK_DATA_API = "click" + EVENT_KEY + DATA_API_KEY;
+  var NAME$a = 'alert';
+  var VERSION$a = '4.6.1';
+  var DATA_KEY$a = 'bs.alert';
+  var EVENT_KEY$a = "." + DATA_KEY$a;
+  var DATA_API_KEY$7 = '.data-api';
+  var JQUERY_NO_CONFLICT$a = $__default["default"].fn[NAME$a];
   var CLASS_NAME_ALERT = 'alert';
-  var CLASS_NAME_FADE = 'fade';
-  var CLASS_NAME_SHOW = 'show';
+  var CLASS_NAME_FADE$5 = 'fade';
+  var CLASS_NAME_SHOW$7 = 'show';
+  var EVENT_CLOSE = "close" + EVENT_KEY$a;
+  var EVENT_CLOSED = "closed" + EVENT_KEY$a;
+  var EVENT_CLICK_DATA_API$6 = "click" + EVENT_KEY$a + DATA_API_KEY$7;
+  var SELECTOR_DISMISS = '[data-dismiss="alert"]';
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Alert = /*#__PURE__*/function () {
@@ -4841,7 +4830,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY);
+      $__default["default"].removeData(this._element, DATA_KEY$a);
       this._element = null;
     } // Private
     ;
@@ -4855,48 +4844,48 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (!parent) {
-        parent = $__default['default'](element).closest("." + CLASS_NAME_ALERT)[0];
+        parent = $__default["default"](element).closest("." + CLASS_NAME_ALERT)[0];
       }
 
       return parent;
     };
 
     _proto._triggerCloseEvent = function _triggerCloseEvent(element) {
-      var closeEvent = $__default['default'].Event(EVENT_CLOSE);
-      $__default['default'](element).trigger(closeEvent);
+      var closeEvent = $__default["default"].Event(EVENT_CLOSE);
+      $__default["default"](element).trigger(closeEvent);
       return closeEvent;
     };
 
     _proto._removeElement = function _removeElement(element) {
       var _this = this;
 
-      $__default['default'](element).removeClass(CLASS_NAME_SHOW);
+      $__default["default"](element).removeClass(CLASS_NAME_SHOW$7);
 
-      if (!$__default['default'](element).hasClass(CLASS_NAME_FADE)) {
+      if (!$__default["default"](element).hasClass(CLASS_NAME_FADE$5)) {
         this._destroyElement(element);
 
         return;
       }
 
       var transitionDuration = Util.getTransitionDurationFromElement(element);
-      $__default['default'](element).one(Util.TRANSITION_END, function (event) {
+      $__default["default"](element).one(Util.TRANSITION_END, function (event) {
         return _this._destroyElement(element, event);
       }).emulateTransitionEnd(transitionDuration);
     };
 
     _proto._destroyElement = function _destroyElement(element) {
-      $__default['default'](element).detach().trigger(EVENT_CLOSED).remove();
+      $__default["default"](element).detach().trigger(EVENT_CLOSED).remove();
     } // Static
     ;
 
     Alert._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $element = $__default['default'](this);
-        var data = $element.data(DATA_KEY);
+        var $element = $__default["default"](this);
+        var data = $element.data(DATA_KEY$a);
 
         if (!data) {
           data = new Alert(this);
-          $element.data(DATA_KEY, data);
+          $element.data(DATA_KEY$a, data);
         }
 
         if (config === 'close') {
@@ -4918,63 +4907,55 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Alert, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION;
+        return VERSION$a;
       }
     }]);
 
     return Alert;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API, SELECTOR_DISMISS, Alert._handleDismiss(new Alert()));
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$6, SELECTOR_DISMISS, Alert._handleDismiss(new Alert()));
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME] = Alert._jQueryInterface;
-  $__default['default'].fn[NAME].Constructor = Alert;
+  $__default["default"].fn[NAME$a] = Alert._jQueryInterface;
+  $__default["default"].fn[NAME$a].Constructor = Alert;
 
-  $__default['default'].fn[NAME].noConflict = function () {
-    $__default['default'].fn[NAME] = JQUERY_NO_CONFLICT;
+  $__default["default"].fn[NAME$a].noConflict = function () {
+    $__default["default"].fn[NAME$a] = JQUERY_NO_CONFLICT$a;
     return Alert._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$1 = 'button';
-  var VERSION$1 = '4.6.0';
-  var DATA_KEY$1 = 'bs.button';
-  var EVENT_KEY$1 = "." + DATA_KEY$1;
-  var DATA_API_KEY$1 = '.data-api';
-  var JQUERY_NO_CONFLICT$1 = $__default['default'].fn[NAME$1];
-  var CLASS_NAME_ACTIVE = 'active';
+  var NAME$9 = 'button';
+  var VERSION$9 = '4.6.1';
+  var DATA_KEY$9 = 'bs.button';
+  var EVENT_KEY$9 = "." + DATA_KEY$9;
+  var DATA_API_KEY$6 = '.data-api';
+  var JQUERY_NO_CONFLICT$9 = $__default["default"].fn[NAME$9];
+  var CLASS_NAME_ACTIVE$3 = 'active';
   var CLASS_NAME_BUTTON = 'btn';
   var CLASS_NAME_FOCUS = 'focus';
+  var EVENT_CLICK_DATA_API$5 = "click" + EVENT_KEY$9 + DATA_API_KEY$6;
+  var EVENT_FOCUS_BLUR_DATA_API = "focus" + EVENT_KEY$9 + DATA_API_KEY$6 + " " + ("blur" + EVENT_KEY$9 + DATA_API_KEY$6);
+  var EVENT_LOAD_DATA_API$2 = "load" + EVENT_KEY$9 + DATA_API_KEY$6;
   var SELECTOR_DATA_TOGGLE_CARROT = '[data-toggle^="button"]';
   var SELECTOR_DATA_TOGGLES = '[data-toggle="buttons"]';
-  var SELECTOR_DATA_TOGGLE = '[data-toggle="button"]';
+  var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="button"]';
   var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
   var SELECTOR_INPUT = 'input:not([type="hidden"])';
-  var SELECTOR_ACTIVE = '.active';
+  var SELECTOR_ACTIVE$2 = '.active';
   var SELECTOR_BUTTON = '.btn';
-  var EVENT_CLICK_DATA_API$1 = "click" + EVENT_KEY$1 + DATA_API_KEY$1;
-  var EVENT_FOCUS_BLUR_DATA_API = "focus" + EVENT_KEY$1 + DATA_API_KEY$1 + " " + ("blur" + EVENT_KEY$1 + DATA_API_KEY$1);
-  var EVENT_LOAD_DATA_API = "load" + EVENT_KEY$1 + DATA_API_KEY$1;
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Button = /*#__PURE__*/function () {
@@ -4990,20 +4971,20 @@ __webpack_require__.r(__webpack_exports__);
     _proto.toggle = function toggle() {
       var triggerChangeEvent = true;
       var addAriaPressed = true;
-      var rootElement = $__default['default'](this._element).closest(SELECTOR_DATA_TOGGLES)[0];
+      var rootElement = $__default["default"](this._element).closest(SELECTOR_DATA_TOGGLES)[0];
 
       if (rootElement) {
         var input = this._element.querySelector(SELECTOR_INPUT);
 
         if (input) {
           if (input.type === 'radio') {
-            if (input.checked && this._element.classList.contains(CLASS_NAME_ACTIVE)) {
+            if (input.checked && this._element.classList.contains(CLASS_NAME_ACTIVE$3)) {
               triggerChangeEvent = false;
             } else {
-              var activeElement = rootElement.querySelector(SELECTOR_ACTIVE);
+              var activeElement = rootElement.querySelector(SELECTOR_ACTIVE$2);
 
               if (activeElement) {
-                $__default['default'](activeElement).removeClass(CLASS_NAME_ACTIVE);
+                $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$3);
               }
             }
           }
@@ -5011,11 +4992,11 @@ __webpack_require__.r(__webpack_exports__);
           if (triggerChangeEvent) {
             // if it's not a radio button or checkbox don't add a pointless/invalid checked property to the input
             if (input.type === 'checkbox' || input.type === 'radio') {
-              input.checked = !this._element.classList.contains(CLASS_NAME_ACTIVE);
+              input.checked = !this._element.classList.contains(CLASS_NAME_ACTIVE$3);
             }
 
             if (!this.shouldAvoidTriggerChange) {
-              $__default['default'](input).trigger('change');
+              $__default["default"](input).trigger('change');
             }
           }
 
@@ -5026,29 +5007,29 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!(this._element.hasAttribute('disabled') || this._element.classList.contains('disabled'))) {
         if (addAriaPressed) {
-          this._element.setAttribute('aria-pressed', !this._element.classList.contains(CLASS_NAME_ACTIVE));
+          this._element.setAttribute('aria-pressed', !this._element.classList.contains(CLASS_NAME_ACTIVE$3));
         }
 
         if (triggerChangeEvent) {
-          $__default['default'](this._element).toggleClass(CLASS_NAME_ACTIVE);
+          $__default["default"](this._element).toggleClass(CLASS_NAME_ACTIVE$3);
         }
       }
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY$1);
+      $__default["default"].removeData(this._element, DATA_KEY$9);
       this._element = null;
     } // Static
     ;
 
     Button._jQueryInterface = function _jQueryInterface(config, avoidTriggerChange) {
       return this.each(function () {
-        var $element = $__default['default'](this);
-        var data = $element.data(DATA_KEY$1);
+        var $element = $__default["default"](this);
+        var data = $element.data(DATA_KEY$9);
 
         if (!data) {
           data = new Button(this);
-          $element.data(DATA_KEY$1, data);
+          $element.data(DATA_KEY$9, data);
         }
 
         data.shouldAvoidTriggerChange = avoidTriggerChange;
@@ -5062,25 +5043,23 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Button, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$1;
+        return VERSION$9;
       }
     }]);
 
     return Button;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
     var button = event.target;
     var initialButton = button;
 
-    if (!$__default['default'](button).hasClass(CLASS_NAME_BUTTON)) {
-      button = $__default['default'](button).closest(SELECTOR_BUTTON)[0];
+    if (!$__default["default"](button).hasClass(CLASS_NAME_BUTTON)) {
+      button = $__default["default"](button).closest(SELECTOR_BUTTON)[0];
     }
 
     if (!button || button.hasAttribute('disabled') || button.classList.contains('disabled')) {
@@ -5095,14 +5074,14 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (initialButton.tagName === 'INPUT' || button.tagName !== 'LABEL') {
-        Button._jQueryInterface.call($__default['default'](button), 'toggle', initialButton.tagName === 'INPUT');
+        Button._jQueryInterface.call($__default["default"](button), 'toggle', initialButton.tagName === 'INPUT');
       }
     }
   }).on(EVENT_FOCUS_BLUR_DATA_API, SELECTOR_DATA_TOGGLE_CARROT, function (event) {
-    var button = $__default['default'](event.target).closest(SELECTOR_BUTTON)[0];
-    $__default['default'](button).toggleClass(CLASS_NAME_FOCUS, /^focus(in)?$/.test(event.type));
+    var button = $__default["default"](event.target).closest(SELECTOR_BUTTON)[0];
+    $__default["default"](button).toggleClass(CLASS_NAME_FOCUS, /^focus(in)?$/.test(event.type));
   });
-  $__default['default'](window).on(EVENT_LOAD_DATA_API, function () {
+  $__default["default"](window).on(EVENT_LOAD_DATA_API$2, function () {
     // ensure correct active class is set to match the controls' actual values/states
     // find all checkboxes/readio buttons inside data-toggle groups
     var buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLES_BUTTONS));
@@ -5112,51 +5091,47 @@ __webpack_require__.r(__webpack_exports__);
       var input = button.querySelector(SELECTOR_INPUT);
 
       if (input.checked || input.hasAttribute('checked')) {
-        button.classList.add(CLASS_NAME_ACTIVE);
+        button.classList.add(CLASS_NAME_ACTIVE$3);
       } else {
-        button.classList.remove(CLASS_NAME_ACTIVE);
+        button.classList.remove(CLASS_NAME_ACTIVE$3);
       }
     } // find all button toggles
 
 
-    buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE));
+    buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE$4));
 
     for (var _i = 0, _len = buttons.length; _i < _len; _i++) {
       var _button = buttons[_i];
 
       if (_button.getAttribute('aria-pressed') === 'true') {
-        _button.classList.add(CLASS_NAME_ACTIVE);
+        _button.classList.add(CLASS_NAME_ACTIVE$3);
       } else {
-        _button.classList.remove(CLASS_NAME_ACTIVE);
+        _button.classList.remove(CLASS_NAME_ACTIVE$3);
       }
     }
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$1] = Button._jQueryInterface;
-  $__default['default'].fn[NAME$1].Constructor = Button;
+  $__default["default"].fn[NAME$9] = Button._jQueryInterface;
+  $__default["default"].fn[NAME$9].Constructor = Button;
 
-  $__default['default'].fn[NAME$1].noConflict = function () {
-    $__default['default'].fn[NAME$1] = JQUERY_NO_CONFLICT$1;
+  $__default["default"].fn[NAME$9].noConflict = function () {
+    $__default["default"].fn[NAME$9] = JQUERY_NO_CONFLICT$9;
     return Button._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$2 = 'carousel';
-  var VERSION$2 = '4.6.0';
-  var DATA_KEY$2 = 'bs.carousel';
-  var EVENT_KEY$2 = "." + DATA_KEY$2;
-  var DATA_API_KEY$2 = '.data-api';
-  var JQUERY_NO_CONFLICT$2 = $__default['default'].fn[NAME$2];
+  var NAME$8 = 'carousel';
+  var VERSION$8 = '4.6.1';
+  var DATA_KEY$8 = 'bs.carousel';
+  var EVENT_KEY$8 = "." + DATA_KEY$8;
+  var DATA_API_KEY$5 = '.data-api';
+  var JQUERY_NO_CONFLICT$8 = $__default["default"].fn[NAME$8];
   var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
   var ARROW_RIGHT_KEYCODE = 39; // KeyboardEvent.which value for right arrow key
@@ -5164,47 +5139,31 @@ __webpack_require__.r(__webpack_exports__);
   var TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
 
   var SWIPE_THRESHOLD = 40;
-  var Default = {
-    interval: 5000,
-    keyboard: true,
-    slide: false,
-    pause: 'hover',
-    wrap: true,
-    touch: true
-  };
-  var DefaultType = {
-    interval: '(number|boolean)',
-    keyboard: 'boolean',
-    slide: '(boolean|string)',
-    pause: '(string|boolean)',
-    wrap: 'boolean',
-    touch: 'boolean'
-  };
-  var DIRECTION_NEXT = 'next';
-  var DIRECTION_PREV = 'prev';
-  var DIRECTION_LEFT = 'left';
-  var DIRECTION_RIGHT = 'right';
-  var EVENT_SLIDE = "slide" + EVENT_KEY$2;
-  var EVENT_SLID = "slid" + EVENT_KEY$2;
-  var EVENT_KEYDOWN = "keydown" + EVENT_KEY$2;
-  var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$2;
-  var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY$2;
-  var EVENT_TOUCHSTART = "touchstart" + EVENT_KEY$2;
-  var EVENT_TOUCHMOVE = "touchmove" + EVENT_KEY$2;
-  var EVENT_TOUCHEND = "touchend" + EVENT_KEY$2;
-  var EVENT_POINTERDOWN = "pointerdown" + EVENT_KEY$2;
-  var EVENT_POINTERUP = "pointerup" + EVENT_KEY$2;
-  var EVENT_DRAG_START = "dragstart" + EVENT_KEY$2;
-  var EVENT_LOAD_DATA_API$1 = "load" + EVENT_KEY$2 + DATA_API_KEY$2;
-  var EVENT_CLICK_DATA_API$2 = "click" + EVENT_KEY$2 + DATA_API_KEY$2;
   var CLASS_NAME_CAROUSEL = 'carousel';
-  var CLASS_NAME_ACTIVE$1 = 'active';
+  var CLASS_NAME_ACTIVE$2 = 'active';
   var CLASS_NAME_SLIDE = 'slide';
   var CLASS_NAME_RIGHT = 'carousel-item-right';
   var CLASS_NAME_LEFT = 'carousel-item-left';
   var CLASS_NAME_NEXT = 'carousel-item-next';
   var CLASS_NAME_PREV = 'carousel-item-prev';
   var CLASS_NAME_POINTER_EVENT = 'pointer-event';
+  var DIRECTION_NEXT = 'next';
+  var DIRECTION_PREV = 'prev';
+  var DIRECTION_LEFT = 'left';
+  var DIRECTION_RIGHT = 'right';
+  var EVENT_SLIDE = "slide" + EVENT_KEY$8;
+  var EVENT_SLID = "slid" + EVENT_KEY$8;
+  var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
+  var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$8;
+  var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY$8;
+  var EVENT_TOUCHSTART = "touchstart" + EVENT_KEY$8;
+  var EVENT_TOUCHMOVE = "touchmove" + EVENT_KEY$8;
+  var EVENT_TOUCHEND = "touchend" + EVENT_KEY$8;
+  var EVENT_POINTERDOWN = "pointerdown" + EVENT_KEY$8;
+  var EVENT_POINTERUP = "pointerup" + EVENT_KEY$8;
+  var EVENT_DRAG_START = "dragstart" + EVENT_KEY$8;
+  var EVENT_LOAD_DATA_API$1 = "load" + EVENT_KEY$8 + DATA_API_KEY$5;
+  var EVENT_CLICK_DATA_API$4 = "click" + EVENT_KEY$8 + DATA_API_KEY$5;
   var SELECTOR_ACTIVE$1 = '.active';
   var SELECTOR_ACTIVE_ITEM = '.active.carousel-item';
   var SELECTOR_ITEM = '.carousel-item';
@@ -5213,14 +5172,28 @@ __webpack_require__.r(__webpack_exports__);
   var SELECTOR_INDICATORS = '.carousel-indicators';
   var SELECTOR_DATA_SLIDE = '[data-slide], [data-slide-to]';
   var SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
+  var Default$7 = {
+    interval: 5000,
+    keyboard: true,
+    slide: false,
+    pause: 'hover',
+    wrap: true,
+    touch: true
+  };
+  var DefaultType$7 = {
+    interval: '(number|boolean)',
+    keyboard: 'boolean',
+    slide: '(boolean|string)',
+    pause: '(string|boolean)',
+    wrap: 'boolean',
+    touch: 'boolean'
+  };
   var PointerType = {
     TOUCH: 'touch',
     PEN: 'pen'
   };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Carousel = /*#__PURE__*/function () {
@@ -5253,7 +5226,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.nextWhenVisible = function nextWhenVisible() {
-      var $element = $__default['default'](this._element); // Don't call next when the page isn't visible
+      var $element = $__default["default"](this._element); // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
 
       if (!document.hidden && $element.is(':visible') && $element.css('visibility') !== 'hidden') {
@@ -5310,7 +5283,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this._isSliding) {
-        $__default['default'](this._element).one(EVENT_SLID, function () {
+        $__default["default"](this._element).one(EVENT_SLID, function () {
           return _this.to(index);
         });
         return;
@@ -5328,8 +5301,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'](this._element).off(EVENT_KEY$2);
-      $__default['default'].removeData(this._element, DATA_KEY$2);
+      $__default["default"](this._element).off(EVENT_KEY$8);
+      $__default["default"].removeData(this._element, DATA_KEY$8);
       this._items = null;
       this._config = null;
       this._element = null;
@@ -5342,8 +5315,8 @@ __webpack_require__.r(__webpack_exports__);
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default, config);
-      Util.typeCheckConfig(NAME$2, config, DefaultType);
+      config = _extends({}, Default$7, config);
+      Util.typeCheckConfig(NAME$8, config, DefaultType$7);
       return config;
     };
 
@@ -5371,13 +5344,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (this._config.keyboard) {
-        $__default['default'](this._element).on(EVENT_KEYDOWN, function (event) {
+        $__default["default"](this._element).on(EVENT_KEYDOWN, function (event) {
           return _this2._keydown(event);
         });
       }
 
       if (this._config.pause === 'hover') {
-        $__default['default'](this._element).on(EVENT_MOUSEENTER, function (event) {
+        $__default["default"](this._element).on(EVENT_MOUSEENTER, function (event) {
           return _this2.pause(event);
         }).on(EVENT_MOUSELEAVE, function (event) {
           return _this2.cycle(event);
@@ -5406,11 +5379,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var move = function move(event) {
         // ensure swiping with one touch and not pinching
-        if (event.originalEvent.touches && event.originalEvent.touches.length > 1) {
-          _this3.touchDeltaX = 0;
-        } else {
-          _this3.touchDeltaX = event.originalEvent.touches[0].clientX - _this3.touchStartX;
-        }
+        _this3.touchDeltaX = event.originalEvent.touches && event.originalEvent.touches.length > 1 ? 0 : event.originalEvent.touches[0].clientX - _this3.touchStartX;
       };
 
       var end = function end(event) {
@@ -5440,27 +5409,27 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
 
-      $__default['default'](this._element.querySelectorAll(SELECTOR_ITEM_IMG)).on(EVENT_DRAG_START, function (e) {
+      $__default["default"](this._element.querySelectorAll(SELECTOR_ITEM_IMG)).on(EVENT_DRAG_START, function (e) {
         return e.preventDefault();
       });
 
       if (this._pointerEvent) {
-        $__default['default'](this._element).on(EVENT_POINTERDOWN, function (event) {
+        $__default["default"](this._element).on(EVENT_POINTERDOWN, function (event) {
           return start(event);
         });
-        $__default['default'](this._element).on(EVENT_POINTERUP, function (event) {
+        $__default["default"](this._element).on(EVENT_POINTERUP, function (event) {
           return end(event);
         });
 
         this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
-        $__default['default'](this._element).on(EVENT_TOUCHSTART, function (event) {
+        $__default["default"](this._element).on(EVENT_TOUCHSTART, function (event) {
           return start(event);
         });
-        $__default['default'](this._element).on(EVENT_TOUCHMOVE, function (event) {
+        $__default["default"](this._element).on(EVENT_TOUCHMOVE, function (event) {
           return move(event);
         });
-        $__default['default'](this._element).on(EVENT_TOUCHEND, function (event) {
+        $__default["default"](this._element).on(EVENT_TOUCHEND, function (event) {
           return end(event);
         });
       }
@@ -5512,25 +5481,25 @@ __webpack_require__.r(__webpack_exports__);
 
       var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
 
-      var slideEvent = $__default['default'].Event(EVENT_SLIDE, {
+      var slideEvent = $__default["default"].Event(EVENT_SLIDE, {
         relatedTarget: relatedTarget,
         direction: eventDirectionName,
         from: fromIndex,
         to: targetIndex
       });
-      $__default['default'](this._element).trigger(slideEvent);
+      $__default["default"](this._element).trigger(slideEvent);
       return slideEvent;
     };
 
     _proto._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
       if (this._indicatorsElement) {
         var indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_ACTIVE$1));
-        $__default['default'](indicators).removeClass(CLASS_NAME_ACTIVE$1);
+        $__default["default"](indicators).removeClass(CLASS_NAME_ACTIVE$2);
 
         var nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
 
         if (nextIndicator) {
-          $__default['default'](nextIndicator).addClass(CLASS_NAME_ACTIVE$1);
+          $__default["default"](nextIndicator).addClass(CLASS_NAME_ACTIVE$2);
         }
       }
     };
@@ -5578,7 +5547,7 @@ __webpack_require__.r(__webpack_exports__);
         eventDirectionName = DIRECTION_RIGHT;
       }
 
-      if (nextElement && $__default['default'](nextElement).hasClass(CLASS_NAME_ACTIVE$1)) {
+      if (nextElement && $__default["default"](nextElement).hasClass(CLASS_NAME_ACTIVE$2)) {
         this._isSliding = false;
         return;
       }
@@ -5603,32 +5572,32 @@ __webpack_require__.r(__webpack_exports__);
       this._setActiveIndicatorElement(nextElement);
 
       this._activeElement = nextElement;
-      var slidEvent = $__default['default'].Event(EVENT_SLID, {
+      var slidEvent = $__default["default"].Event(EVENT_SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
         from: activeElementIndex,
         to: nextElementIndex
       });
 
-      if ($__default['default'](this._element).hasClass(CLASS_NAME_SLIDE)) {
-        $__default['default'](nextElement).addClass(orderClassName);
+      if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIDE)) {
+        $__default["default"](nextElement).addClass(orderClassName);
         Util.reflow(nextElement);
-        $__default['default'](activeElement).addClass(directionalClassName);
-        $__default['default'](nextElement).addClass(directionalClassName);
+        $__default["default"](activeElement).addClass(directionalClassName);
+        $__default["default"](nextElement).addClass(directionalClassName);
         var transitionDuration = Util.getTransitionDurationFromElement(activeElement);
-        $__default['default'](activeElement).one(Util.TRANSITION_END, function () {
-          $__default['default'](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$1);
-          $__default['default'](activeElement).removeClass(CLASS_NAME_ACTIVE$1 + " " + orderClassName + " " + directionalClassName);
+        $__default["default"](activeElement).one(Util.TRANSITION_END, function () {
+          $__default["default"](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$2);
+          $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2 + " " + orderClassName + " " + directionalClassName);
           _this4._isSliding = false;
           setTimeout(function () {
-            return $__default['default'](_this4._element).trigger(slidEvent);
+            return $__default["default"](_this4._element).trigger(slidEvent);
           }, 0);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        $__default['default'](activeElement).removeClass(CLASS_NAME_ACTIVE$1);
-        $__default['default'](nextElement).addClass(CLASS_NAME_ACTIVE$1);
+        $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2);
+        $__default["default"](nextElement).addClass(CLASS_NAME_ACTIVE$2);
         this._isSliding = false;
-        $__default['default'](this._element).trigger(slidEvent);
+        $__default["default"](this._element).trigger(slidEvent);
       }
 
       if (isCycling) {
@@ -5639,9 +5608,9 @@ __webpack_require__.r(__webpack_exports__);
 
     Carousel._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $__default['default'](this).data(DATA_KEY$2);
+        var data = $__default["default"](this).data(DATA_KEY$8);
 
-        var _config = _extends({}, Default, $__default['default'](this).data());
+        var _config = _extends({}, Default$7, $__default["default"](this).data());
 
         if (typeof config === 'object') {
           _config = _extends({}, _config, config);
@@ -5651,7 +5620,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!data) {
           data = new Carousel(this, _config);
-          $__default['default'](this).data(DATA_KEY$2, data);
+          $__default["default"](this).data(DATA_KEY$8, data);
         }
 
         if (typeof config === 'number') {
@@ -5676,13 +5645,13 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      var target = $__default['default'](selector)[0];
+      var target = $__default["default"](selector)[0];
 
-      if (!target || !$__default['default'](target).hasClass(CLASS_NAME_CAROUSEL)) {
+      if (!target || !$__default["default"](target).hasClass(CLASS_NAME_CAROUSEL)) {
         return;
       }
 
-      var config = _extends({}, $__default['default'](target).data(), $__default['default'](this).data());
+      var config = _extends({}, $__default["default"](target).data(), $__default["default"](this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -5690,10 +5659,10 @@ __webpack_require__.r(__webpack_exports__);
         config.interval = false;
       }
 
-      Carousel._jQueryInterface.call($__default['default'](target), config);
+      Carousel._jQueryInterface.call($__default["default"](target), config);
 
       if (slideIndex) {
-        $__default['default'](target).data(DATA_KEY$2).to(slideIndex);
+        $__default["default"](target).data(DATA_KEY$8).to(slideIndex);
       }
 
       event.preventDefault();
@@ -5702,85 +5671,77 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Carousel, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$2;
+        return VERSION$8;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default;
+        return Default$7;
       }
     }]);
 
     return Carousel;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API$2, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
-  $__default['default'](window).on(EVENT_LOAD_DATA_API$1, function () {
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
+  $__default["default"](window).on(EVENT_LOAD_DATA_API$1, function () {
     var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
 
     for (var i = 0, len = carousels.length; i < len; i++) {
-      var $carousel = $__default['default'](carousels[i]);
+      var $carousel = $__default["default"](carousels[i]);
 
       Carousel._jQueryInterface.call($carousel, $carousel.data());
     }
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$2] = Carousel._jQueryInterface;
-  $__default['default'].fn[NAME$2].Constructor = Carousel;
+  $__default["default"].fn[NAME$8] = Carousel._jQueryInterface;
+  $__default["default"].fn[NAME$8].Constructor = Carousel;
 
-  $__default['default'].fn[NAME$2].noConflict = function () {
-    $__default['default'].fn[NAME$2] = JQUERY_NO_CONFLICT$2;
+  $__default["default"].fn[NAME$8].noConflict = function () {
+    $__default["default"].fn[NAME$8] = JQUERY_NO_CONFLICT$8;
     return Carousel._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$3 = 'collapse';
-  var VERSION$3 = '4.6.0';
-  var DATA_KEY$3 = 'bs.collapse';
-  var EVENT_KEY$3 = "." + DATA_KEY$3;
-  var DATA_API_KEY$3 = '.data-api';
-  var JQUERY_NO_CONFLICT$3 = $__default['default'].fn[NAME$3];
-  var Default$1 = {
-    toggle: true,
-    parent: ''
-  };
-  var DefaultType$1 = {
-    toggle: 'boolean',
-    parent: '(string|element)'
-  };
-  var EVENT_SHOW = "show" + EVENT_KEY$3;
-  var EVENT_SHOWN = "shown" + EVENT_KEY$3;
-  var EVENT_HIDE = "hide" + EVENT_KEY$3;
-  var EVENT_HIDDEN = "hidden" + EVENT_KEY$3;
-  var EVENT_CLICK_DATA_API$3 = "click" + EVENT_KEY$3 + DATA_API_KEY$3;
-  var CLASS_NAME_SHOW$1 = 'show';
+  var NAME$7 = 'collapse';
+  var VERSION$7 = '4.6.1';
+  var DATA_KEY$7 = 'bs.collapse';
+  var EVENT_KEY$7 = "." + DATA_KEY$7;
+  var DATA_API_KEY$4 = '.data-api';
+  var JQUERY_NO_CONFLICT$7 = $__default["default"].fn[NAME$7];
+  var CLASS_NAME_SHOW$6 = 'show';
   var CLASS_NAME_COLLAPSE = 'collapse';
   var CLASS_NAME_COLLAPSING = 'collapsing';
   var CLASS_NAME_COLLAPSED = 'collapsed';
   var DIMENSION_WIDTH = 'width';
   var DIMENSION_HEIGHT = 'height';
+  var EVENT_SHOW$4 = "show" + EVENT_KEY$7;
+  var EVENT_SHOWN$4 = "shown" + EVENT_KEY$7;
+  var EVENT_HIDE$4 = "hide" + EVENT_KEY$7;
+  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$7;
+  var EVENT_CLICK_DATA_API$3 = "click" + EVENT_KEY$7 + DATA_API_KEY$4;
   var SELECTOR_ACTIVES = '.show, .collapsing';
-  var SELECTOR_DATA_TOGGLE$1 = '[data-toggle="collapse"]';
+  var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="collapse"]';
+  var Default$6 = {
+    toggle: true,
+    parent: ''
+  };
+  var DefaultType$6 = {
+    toggle: 'boolean',
+    parent: '(string|element)'
+  };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Collapse = /*#__PURE__*/function () {
@@ -5789,7 +5750,7 @@ __webpack_require__.r(__webpack_exports__);
       this._element = element;
       this._config = this._getConfig(config);
       this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.id + "\"]")));
-      var toggleList = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE$1));
+      var toggleList = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE$3));
 
       for (var i = 0, len = toggleList.length; i < len; i++) {
         var elem = toggleList[i];
@@ -5821,7 +5782,7 @@ __webpack_require__.r(__webpack_exports__);
 
     // Public
     _proto.toggle = function toggle() {
-      if ($__default['default'](this._element).hasClass(CLASS_NAME_SHOW$1)) {
+      if ($__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
         this.hide();
       } else {
         this.show();
@@ -5831,7 +5792,7 @@ __webpack_require__.r(__webpack_exports__);
     _proto.show = function show() {
       var _this = this;
 
-      if (this._isTransitioning || $__default['default'](this._element).hasClass(CLASS_NAME_SHOW$1)) {
+      if (this._isTransitioning || $__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
         return;
       }
 
@@ -5853,64 +5814,64 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (actives) {
-        activesData = $__default['default'](actives).not(this._selector).data(DATA_KEY$3);
+        activesData = $__default["default"](actives).not(this._selector).data(DATA_KEY$7);
 
         if (activesData && activesData._isTransitioning) {
           return;
         }
       }
 
-      var startEvent = $__default['default'].Event(EVENT_SHOW);
-      $__default['default'](this._element).trigger(startEvent);
+      var startEvent = $__default["default"].Event(EVENT_SHOW$4);
+      $__default["default"](this._element).trigger(startEvent);
 
       if (startEvent.isDefaultPrevented()) {
         return;
       }
 
       if (actives) {
-        Collapse._jQueryInterface.call($__default['default'](actives).not(this._selector), 'hide');
+        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hide');
 
         if (!activesData) {
-          $__default['default'](actives).data(DATA_KEY$3, null);
+          $__default["default"](actives).data(DATA_KEY$7, null);
         }
       }
 
       var dimension = this._getDimension();
 
-      $__default['default'](this._element).removeClass(CLASS_NAME_COLLAPSE).addClass(CLASS_NAME_COLLAPSING);
+      $__default["default"](this._element).removeClass(CLASS_NAME_COLLAPSE).addClass(CLASS_NAME_COLLAPSING);
       this._element.style[dimension] = 0;
 
       if (this._triggerArray.length) {
-        $__default['default'](this._triggerArray).removeClass(CLASS_NAME_COLLAPSED).attr('aria-expanded', true);
+        $__default["default"](this._triggerArray).removeClass(CLASS_NAME_COLLAPSED).attr('aria-expanded', true);
       }
 
       this.setTransitioning(true);
 
       var complete = function complete() {
-        $__default['default'](_this._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE + " " + CLASS_NAME_SHOW$1);
+        $__default["default"](_this._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE + " " + CLASS_NAME_SHOW$6);
         _this._element.style[dimension] = '';
 
         _this.setTransitioning(false);
 
-        $__default['default'](_this._element).trigger(EVENT_SHOWN);
+        $__default["default"](_this._element).trigger(EVENT_SHOWN$4);
       };
 
       var capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
       var scrollSize = "scroll" + capitalizedDimension;
       var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-      $__default['default'](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+      $__default["default"](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       this._element.style[dimension] = this._element[scrollSize] + "px";
     };
 
     _proto.hide = function hide() {
       var _this2 = this;
 
-      if (this._isTransitioning || !$__default['default'](this._element).hasClass(CLASS_NAME_SHOW$1)) {
+      if (this._isTransitioning || !$__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
         return;
       }
 
-      var startEvent = $__default['default'].Event(EVENT_HIDE);
-      $__default['default'](this._element).trigger(startEvent);
+      var startEvent = $__default["default"].Event(EVENT_HIDE$4);
+      $__default["default"](this._element).trigger(startEvent);
 
       if (startEvent.isDefaultPrevented()) {
         return;
@@ -5920,7 +5881,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this._element.style[dimension] = this._element.getBoundingClientRect()[dimension] + "px";
       Util.reflow(this._element);
-      $__default['default'](this._element).addClass(CLASS_NAME_COLLAPSING).removeClass(CLASS_NAME_COLLAPSE + " " + CLASS_NAME_SHOW$1);
+      $__default["default"](this._element).addClass(CLASS_NAME_COLLAPSING).removeClass(CLASS_NAME_COLLAPSE + " " + CLASS_NAME_SHOW$6);
       var triggerArrayLength = this._triggerArray.length;
 
       if (triggerArrayLength > 0) {
@@ -5929,10 +5890,10 @@ __webpack_require__.r(__webpack_exports__);
           var selector = Util.getSelectorFromElement(trigger);
 
           if (selector !== null) {
-            var $elem = $__default['default']([].slice.call(document.querySelectorAll(selector)));
+            var $elem = $__default["default"]([].slice.call(document.querySelectorAll(selector)));
 
-            if (!$elem.hasClass(CLASS_NAME_SHOW$1)) {
-              $__default['default'](trigger).addClass(CLASS_NAME_COLLAPSED).attr('aria-expanded', false);
+            if (!$elem.hasClass(CLASS_NAME_SHOW$6)) {
+              $__default["default"](trigger).addClass(CLASS_NAME_COLLAPSED).attr('aria-expanded', false);
             }
           }
         }
@@ -5943,12 +5904,12 @@ __webpack_require__.r(__webpack_exports__);
       var complete = function complete() {
         _this2.setTransitioning(false);
 
-        $__default['default'](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIDDEN);
+        $__default["default"](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIDDEN$4);
       };
 
       this._element.style[dimension] = '';
       var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-      $__default['default'](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+      $__default["default"](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
     };
 
     _proto.setTransitioning = function setTransitioning(isTransitioning) {
@@ -5956,7 +5917,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY$3);
+      $__default["default"].removeData(this._element, DATA_KEY$7);
       this._config = null;
       this._parent = null;
       this._element = null;
@@ -5966,15 +5927,15 @@ __webpack_require__.r(__webpack_exports__);
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$1, config);
+      config = _extends({}, Default$6, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
-      Util.typeCheckConfig(NAME$3, config, DefaultType$1);
+      Util.typeCheckConfig(NAME$7, config, DefaultType$6);
       return config;
     };
 
     _proto._getDimension = function _getDimension() {
-      var hasWidth = $__default['default'](this._element).hasClass(DIMENSION_WIDTH);
+      var hasWidth = $__default["default"](this._element).hasClass(DIMENSION_WIDTH);
       return hasWidth ? DIMENSION_WIDTH : DIMENSION_HEIGHT;
     };
 
@@ -5995,17 +5956,17 @@ __webpack_require__.r(__webpack_exports__);
 
       var selector = "[data-toggle=\"collapse\"][data-parent=\"" + this._config.parent + "\"]";
       var children = [].slice.call(parent.querySelectorAll(selector));
-      $__default['default'](children).each(function (i, element) {
+      $__default["default"](children).each(function (i, element) {
         _this3._addAriaAndCollapsedClass(Collapse._getTargetFromElement(element), [element]);
       });
       return parent;
     };
 
     _proto._addAriaAndCollapsedClass = function _addAriaAndCollapsedClass(element, triggerArray) {
-      var isOpen = $__default['default'](element).hasClass(CLASS_NAME_SHOW$1);
+      var isOpen = $__default["default"](element).hasClass(CLASS_NAME_SHOW$6);
 
       if (triggerArray.length) {
-        $__default['default'](triggerArray).toggleClass(CLASS_NAME_COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
+        $__default["default"](triggerArray).toggleClass(CLASS_NAME_COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
       }
     } // Static
     ;
@@ -6017,10 +5978,10 @@ __webpack_require__.r(__webpack_exports__);
 
     Collapse._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $element = $__default['default'](this);
-        var data = $element.data(DATA_KEY$3);
+        var $element = $__default["default"](this);
+        var data = $element.data(DATA_KEY$7);
 
-        var _config = _extends({}, Default$1, $element.data(), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$6, $element.data(), typeof config === 'object' && config ? config : {});
 
         if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -6028,7 +5989,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!data) {
           data = new Collapse(this, _config);
-          $element.data(DATA_KEY$3, data);
+          $element.data(DATA_KEY$7, data);
         }
 
         if (typeof config === 'string') {
@@ -6044,68 +6005,62 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Collapse, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$3;
+        return VERSION$7;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$1;
+        return Default$6;
       }
     }]);
 
     return Collapse;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$1, function (event) {
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.currentTarget.tagName === 'A') {
       event.preventDefault();
     }
 
-    var $trigger = $__default['default'](this);
+    var $trigger = $__default["default"](this);
     var selector = Util.getSelectorFromElement(this);
     var selectors = [].slice.call(document.querySelectorAll(selector));
-    $__default['default'](selectors).each(function () {
-      var $target = $__default['default'](this);
-      var data = $target.data(DATA_KEY$3);
+    $__default["default"](selectors).each(function () {
+      var $target = $__default["default"](this);
+      var data = $target.data(DATA_KEY$7);
       var config = data ? 'toggle' : $trigger.data();
 
       Collapse._jQueryInterface.call($target, config);
     });
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$3] = Collapse._jQueryInterface;
-  $__default['default'].fn[NAME$3].Constructor = Collapse;
+  $__default["default"].fn[NAME$7] = Collapse._jQueryInterface;
+  $__default["default"].fn[NAME$7].Constructor = Collapse;
 
-  $__default['default'].fn[NAME$3].noConflict = function () {
-    $__default['default'].fn[NAME$3] = JQUERY_NO_CONFLICT$3;
+  $__default["default"].fn[NAME$7].noConflict = function () {
+    $__default["default"].fn[NAME$7] = JQUERY_NO_CONFLICT$7;
     return Collapse._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.6.0';
-  var DATA_KEY$4 = 'bs.dropdown';
-  var EVENT_KEY$4 = "." + DATA_KEY$4;
-  var DATA_API_KEY$4 = '.data-api';
-  var JQUERY_NO_CONFLICT$4 = $__default['default'].fn[NAME$4];
-  var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
+  var NAME$6 = 'dropdown';
+  var VERSION$6 = '4.6.1';
+  var DATA_KEY$6 = 'bs.dropdown';
+  var EVENT_KEY$6 = "." + DATA_KEY$6;
+  var DATA_API_KEY$3 = '.data-api';
+  var JQUERY_NO_CONFLICT$6 = $__default["default"].fn[NAME$6];
+  var ESCAPE_KEYCODE$1 = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   var SPACE_KEYCODE = 32; // KeyboardEvent.which value for space key
 
@@ -6117,22 +6072,22 @@ __webpack_require__.r(__webpack_exports__);
 
   var RIGHT_MOUSE_BUTTON_WHICH = 3; // MouseEvent.which value for the right button (assuming a right-handed mouse)
 
-  var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + "|" + ARROW_DOWN_KEYCODE + "|" + ESCAPE_KEYCODE);
-  var EVENT_HIDE$1 = "hide" + EVENT_KEY$4;
-  var EVENT_HIDDEN$1 = "hidden" + EVENT_KEY$4;
-  var EVENT_SHOW$1 = "show" + EVENT_KEY$4;
-  var EVENT_SHOWN$1 = "shown" + EVENT_KEY$4;
-  var EVENT_CLICK = "click" + EVENT_KEY$4;
-  var EVENT_CLICK_DATA_API$4 = "click" + EVENT_KEY$4 + DATA_API_KEY$4;
-  var EVENT_KEYDOWN_DATA_API = "keydown" + EVENT_KEY$4 + DATA_API_KEY$4;
-  var EVENT_KEYUP_DATA_API = "keyup" + EVENT_KEY$4 + DATA_API_KEY$4;
-  var CLASS_NAME_DISABLED = 'disabled';
-  var CLASS_NAME_SHOW$2 = 'show';
+  var REGEXP_KEYDOWN = new RegExp(ARROW_UP_KEYCODE + "|" + ARROW_DOWN_KEYCODE + "|" + ESCAPE_KEYCODE$1);
+  var CLASS_NAME_DISABLED$1 = 'disabled';
+  var CLASS_NAME_SHOW$5 = 'show';
   var CLASS_NAME_DROPUP = 'dropup';
   var CLASS_NAME_DROPRIGHT = 'dropright';
   var CLASS_NAME_DROPLEFT = 'dropleft';
   var CLASS_NAME_MENURIGHT = 'dropdown-menu-right';
   var CLASS_NAME_POSITION_STATIC = 'position-static';
+  var EVENT_HIDE$3 = "hide" + EVENT_KEY$6;
+  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$6;
+  var EVENT_SHOW$3 = "show" + EVENT_KEY$6;
+  var EVENT_SHOWN$3 = "shown" + EVENT_KEY$6;
+  var EVENT_CLICK = "click" + EVENT_KEY$6;
+  var EVENT_CLICK_DATA_API$2 = "click" + EVENT_KEY$6 + DATA_API_KEY$3;
+  var EVENT_KEYDOWN_DATA_API = "keydown" + EVENT_KEY$6 + DATA_API_KEY$3;
+  var EVENT_KEYUP_DATA_API = "keyup" + EVENT_KEY$6 + DATA_API_KEY$3;
   var SELECTOR_DATA_TOGGLE$2 = '[data-toggle="dropdown"]';
   var SELECTOR_FORM_CHILD = '.dropdown form';
   var SELECTOR_MENU = '.dropdown-menu';
@@ -6144,7 +6099,7 @@ __webpack_require__.r(__webpack_exports__);
   var PLACEMENT_BOTTOMEND = 'bottom-end';
   var PLACEMENT_RIGHT = 'right-start';
   var PLACEMENT_LEFT = 'left-start';
-  var Default$2 = {
+  var Default$5 = {
     offset: 0,
     flip: true,
     boundary: 'scrollParent',
@@ -6152,7 +6107,7 @@ __webpack_require__.r(__webpack_exports__);
     display: 'dynamic',
     popperConfig: null
   };
-  var DefaultType$2 = {
+  var DefaultType$5 = {
     offset: '(number|string|function)',
     flip: 'boolean',
     boundary: '(string|element)',
@@ -6161,9 +6116,7 @@ __webpack_require__.r(__webpack_exports__);
     popperConfig: '(null|object)'
   };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Dropdown = /*#__PURE__*/function () {
@@ -6182,11 +6135,11 @@ __webpack_require__.r(__webpack_exports__);
 
     // Public
     _proto.toggle = function toggle() {
-      if (this._element.disabled || $__default['default'](this._element).hasClass(CLASS_NAME_DISABLED)) {
+      if (this._element.disabled || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED$1)) {
         return;
       }
 
-      var isActive = $__default['default'](this._menu).hasClass(CLASS_NAME_SHOW$2);
+      var isActive = $__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5);
 
       Dropdown._clearMenus();
 
@@ -6202,18 +6155,18 @@ __webpack_require__.r(__webpack_exports__);
         usePopper = false;
       }
 
-      if (this._element.disabled || $__default['default'](this._element).hasClass(CLASS_NAME_DISABLED) || $__default['default'](this._menu).hasClass(CLASS_NAME_SHOW$2)) {
+      if (this._element.disabled || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED$1) || $__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5)) {
         return;
       }
 
       var relatedTarget = {
         relatedTarget: this._element
       };
-      var showEvent = $__default['default'].Event(EVENT_SHOW$1, relatedTarget);
+      var showEvent = $__default["default"].Event(EVENT_SHOW$3, relatedTarget);
 
       var parent = Dropdown._getParentFromElement(this._element);
 
-      $__default['default'](parent).trigger(showEvent);
+      $__default["default"](parent).trigger(showEvent);
 
       if (showEvent.isDefaultPrevented()) {
         return;
@@ -6221,11 +6174,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (!this._inNavbar && usePopper) {
-        /**
-         * Check for Popper dependency
-         * Popper - https://popper.js.org
-         */
-        if (typeof Popper__default['default'] === 'undefined') {
+        // Check for Popper dependency
+        if (typeof Popper__default["default"] === 'undefined') {
           throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
         }
 
@@ -6245,41 +6195,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
         if (this._config.boundary !== 'scrollParent') {
-          $__default['default'](parent).addClass(CLASS_NAME_POSITION_STATIC);
+          $__default["default"](parent).addClass(CLASS_NAME_POSITION_STATIC);
         }
 
-        this._popper = new Popper__default['default'](referenceElement, this._menu, this._getPopperConfig());
+        this._popper = new Popper__default["default"](referenceElement, this._menu, this._getPopperConfig());
       } // If this is a touch-enabled device we add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
 
-      if ('ontouchstart' in document.documentElement && $__default['default'](parent).closest(SELECTOR_NAVBAR_NAV).length === 0) {
-        $__default['default'](document.body).children().on('mouseover', null, $__default['default'].noop);
+      if ('ontouchstart' in document.documentElement && $__default["default"](parent).closest(SELECTOR_NAVBAR_NAV).length === 0) {
+        $__default["default"](document.body).children().on('mouseover', null, $__default["default"].noop);
       }
 
       this._element.focus();
 
       this._element.setAttribute('aria-expanded', true);
 
-      $__default['default'](this._menu).toggleClass(CLASS_NAME_SHOW$2);
-      $__default['default'](parent).toggleClass(CLASS_NAME_SHOW$2).trigger($__default['default'].Event(EVENT_SHOWN$1, relatedTarget));
+      $__default["default"](this._menu).toggleClass(CLASS_NAME_SHOW$5);
+      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_SHOWN$3, relatedTarget));
     };
 
     _proto.hide = function hide() {
-      if (this._element.disabled || $__default['default'](this._element).hasClass(CLASS_NAME_DISABLED) || !$__default['default'](this._menu).hasClass(CLASS_NAME_SHOW$2)) {
+      if (this._element.disabled || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED$1) || !$__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5)) {
         return;
       }
 
       var relatedTarget = {
         relatedTarget: this._element
       };
-      var hideEvent = $__default['default'].Event(EVENT_HIDE$1, relatedTarget);
+      var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
 
       var parent = Dropdown._getParentFromElement(this._element);
 
-      $__default['default'](parent).trigger(hideEvent);
+      $__default["default"](parent).trigger(hideEvent);
 
       if (hideEvent.isDefaultPrevented()) {
         return;
@@ -6289,13 +6239,13 @@ __webpack_require__.r(__webpack_exports__);
         this._popper.destroy();
       }
 
-      $__default['default'](this._menu).toggleClass(CLASS_NAME_SHOW$2);
-      $__default['default'](parent).toggleClass(CLASS_NAME_SHOW$2).trigger($__default['default'].Event(EVENT_HIDDEN$1, relatedTarget));
+      $__default["default"](this._menu).toggleClass(CLASS_NAME_SHOW$5);
+      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY$4);
-      $__default['default'](this._element).off(EVENT_KEY$4);
+      $__default["default"].removeData(this._element, DATA_KEY$6);
+      $__default["default"](this._element).off(EVENT_KEY$6);
       this._element = null;
       this._menu = null;
 
@@ -6318,7 +6268,7 @@ __webpack_require__.r(__webpack_exports__);
     _proto._addEventListeners = function _addEventListeners() {
       var _this = this;
 
-      $__default['default'](this._element).on(EVENT_CLICK, function (event) {
+      $__default["default"](this._element).on(EVENT_CLICK, function (event) {
         event.preventDefault();
         event.stopPropagation();
 
@@ -6327,8 +6277,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, this.constructor.Default, $__default['default'](this._element).data(), config);
-      Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
+      config = _extends({}, this.constructor.Default, $__default["default"](this._element).data(), config);
+      Util.typeCheckConfig(NAME$6, config, this.constructor.DefaultType);
       return config;
     };
 
@@ -6345,16 +6295,16 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._getPlacement = function _getPlacement() {
-      var $parentDropdown = $__default['default'](this._element.parentNode);
+      var $parentDropdown = $__default["default"](this._element.parentNode);
       var placement = PLACEMENT_BOTTOM; // Handle dropup
 
       if ($parentDropdown.hasClass(CLASS_NAME_DROPUP)) {
-        placement = $__default['default'](this._menu).hasClass(CLASS_NAME_MENURIGHT) ? PLACEMENT_TOPEND : PLACEMENT_TOP;
+        placement = $__default["default"](this._menu).hasClass(CLASS_NAME_MENURIGHT) ? PLACEMENT_TOPEND : PLACEMENT_TOP;
       } else if ($parentDropdown.hasClass(CLASS_NAME_DROPRIGHT)) {
         placement = PLACEMENT_RIGHT;
       } else if ($parentDropdown.hasClass(CLASS_NAME_DROPLEFT)) {
         placement = PLACEMENT_LEFT;
-      } else if ($__default['default'](this._menu).hasClass(CLASS_NAME_MENURIGHT)) {
+      } else if ($__default["default"](this._menu).hasClass(CLASS_NAME_MENURIGHT)) {
         placement = PLACEMENT_BOTTOMEND;
       }
 
@@ -6362,7 +6312,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._detectNavbar = function _detectNavbar() {
-      return $__default['default'](this._element).closest('.navbar').length > 0;
+      return $__default["default"](this._element).closest('.navbar').length > 0;
     };
 
     _proto._getOffset = function _getOffset() {
@@ -6372,7 +6322,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+          data.offsets = _extends({}, data.offsets, _this2._config.offset(data.offsets, _this2._element));
           return data;
         };
       } else {
@@ -6408,13 +6358,13 @@ __webpack_require__.r(__webpack_exports__);
 
     Dropdown._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $__default['default'](this).data(DATA_KEY$4);
+        var data = $__default["default"](this).data(DATA_KEY$6);
 
         var _config = typeof config === 'object' ? config : null;
 
         if (!data) {
           data = new Dropdown(this, _config);
-          $__default['default'](this).data(DATA_KEY$4, data);
+          $__default["default"](this).data(DATA_KEY$6, data);
         }
 
         if (typeof config === 'string') {
@@ -6437,7 +6387,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0, len = toggles.length; i < len; i++) {
         var parent = Dropdown._getParentFromElement(toggles[i]);
 
-        var context = $__default['default'](toggles[i]).data(DATA_KEY$4);
+        var context = $__default["default"](toggles[i]).data(DATA_KEY$6);
         var relatedTarget = {
           relatedTarget: toggles[i]
         };
@@ -6452,16 +6402,16 @@ __webpack_require__.r(__webpack_exports__);
 
         var dropdownMenu = context._menu;
 
-        if (!$__default['default'](parent).hasClass(CLASS_NAME_SHOW$2)) {
+        if (!$__default["default"](parent).hasClass(CLASS_NAME_SHOW$5)) {
           continue;
         }
 
-        if (event && (event.type === 'click' && /input|textarea/i.test(event.target.tagName) || event.type === 'keyup' && event.which === TAB_KEYCODE) && $__default['default'].contains(parent, event.target)) {
+        if (event && (event.type === 'click' && /input|textarea/i.test(event.target.tagName) || event.type === 'keyup' && event.which === TAB_KEYCODE) && $__default["default"].contains(parent, event.target)) {
           continue;
         }
 
-        var hideEvent = $__default['default'].Event(EVENT_HIDE$1, relatedTarget);
-        $__default['default'](parent).trigger(hideEvent);
+        var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
+        $__default["default"](parent).trigger(hideEvent);
 
         if (hideEvent.isDefaultPrevented()) {
           continue;
@@ -6470,7 +6420,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
         if ('ontouchstart' in document.documentElement) {
-          $__default['default'](document.body).children().off('mouseover', null, $__default['default'].noop);
+          $__default["default"](document.body).children().off('mouseover', null, $__default["default"].noop);
         }
 
         toggles[i].setAttribute('aria-expanded', 'false');
@@ -6479,8 +6429,8 @@ __webpack_require__.r(__webpack_exports__);
           context._popper.destroy();
         }
 
-        $__default['default'](dropdownMenu).removeClass(CLASS_NAME_SHOW$2);
-        $__default['default'](parent).removeClass(CLASS_NAME_SHOW$2).trigger($__default['default'].Event(EVENT_HIDDEN$1, relatedTarget));
+        $__default["default"](dropdownMenu).removeClass(CLASS_NAME_SHOW$5);
+        $__default["default"](parent).removeClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
       }
     };
 
@@ -6504,36 +6454,36 @@ __webpack_require__.r(__webpack_exports__);
       //  - If key is other than escape
       //    - If key is not up or down => not a dropdown command
       //    - If trigger inside the menu => not a dropdown command
-      if (/input|textarea/i.test(event.target.tagName) ? event.which === SPACE_KEYCODE || event.which !== ESCAPE_KEYCODE && (event.which !== ARROW_DOWN_KEYCODE && event.which !== ARROW_UP_KEYCODE || $__default['default'](event.target).closest(SELECTOR_MENU).length) : !REGEXP_KEYDOWN.test(event.which)) {
+      if (/input|textarea/i.test(event.target.tagName) ? event.which === SPACE_KEYCODE || event.which !== ESCAPE_KEYCODE$1 && (event.which !== ARROW_DOWN_KEYCODE && event.which !== ARROW_UP_KEYCODE || $__default["default"](event.target).closest(SELECTOR_MENU).length) : !REGEXP_KEYDOWN.test(event.which)) {
         return;
       }
 
-      if (this.disabled || $__default['default'](this).hasClass(CLASS_NAME_DISABLED)) {
+      if (this.disabled || $__default["default"](this).hasClass(CLASS_NAME_DISABLED$1)) {
         return;
       }
 
       var parent = Dropdown._getParentFromElement(this);
 
-      var isActive = $__default['default'](parent).hasClass(CLASS_NAME_SHOW$2);
+      var isActive = $__default["default"](parent).hasClass(CLASS_NAME_SHOW$5);
 
-      if (!isActive && event.which === ESCAPE_KEYCODE) {
+      if (!isActive && event.which === ESCAPE_KEYCODE$1) {
         return;
       }
 
       event.preventDefault();
       event.stopPropagation();
 
-      if (!isActive || event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE) {
-        if (event.which === ESCAPE_KEYCODE) {
-          $__default['default'](parent.querySelector(SELECTOR_DATA_TOGGLE$2)).trigger('focus');
+      if (!isActive || event.which === ESCAPE_KEYCODE$1 || event.which === SPACE_KEYCODE) {
+        if (event.which === ESCAPE_KEYCODE$1) {
+          $__default["default"](parent.querySelector(SELECTOR_DATA_TOGGLE$2)).trigger('focus');
         }
 
-        $__default['default'](this).trigger('click');
+        $__default["default"](this).trigger('click');
         return;
       }
 
       var items = [].slice.call(parent.querySelectorAll(SELECTOR_VISIBLE_ITEMS)).filter(function (item) {
-        return $__default['default'](item).is(':visible');
+        return $__default["default"](item).is(':visible');
       });
 
       if (items.length === 0) {
@@ -6562,77 +6512,66 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Dropdown, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$4;
+        return VERSION$6;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$2;
+        return Default$5;
       }
     }, {
       key: "DefaultType",
       get: function get() {
-        return DefaultType$2;
+        return DefaultType$5;
       }
     }]);
 
     return Dropdown;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$2, Dropdown._dataApiKeydownHandler).on(EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown._dataApiKeydownHandler).on(EVENT_CLICK_DATA_API$4 + " " + EVENT_KEYUP_DATA_API, Dropdown._clearMenus).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$2, function (event) {
+  $__default["default"](document).on(EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$2, Dropdown._dataApiKeydownHandler).on(EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown._dataApiKeydownHandler).on(EVENT_CLICK_DATA_API$2 + " " + EVENT_KEYUP_DATA_API, Dropdown._clearMenus).on(EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, function (event) {
     event.preventDefault();
     event.stopPropagation();
 
-    Dropdown._jQueryInterface.call($__default['default'](this), 'toggle');
-  }).on(EVENT_CLICK_DATA_API$4, SELECTOR_FORM_CHILD, function (e) {
+    Dropdown._jQueryInterface.call($__default["default"](this), 'toggle');
+  }).on(EVENT_CLICK_DATA_API$2, SELECTOR_FORM_CHILD, function (e) {
     e.stopPropagation();
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$4] = Dropdown._jQueryInterface;
-  $__default['default'].fn[NAME$4].Constructor = Dropdown;
+  $__default["default"].fn[NAME$6] = Dropdown._jQueryInterface;
+  $__default["default"].fn[NAME$6].Constructor = Dropdown;
 
-  $__default['default'].fn[NAME$4].noConflict = function () {
-    $__default['default'].fn[NAME$4] = JQUERY_NO_CONFLICT$4;
+  $__default["default"].fn[NAME$6].noConflict = function () {
+    $__default["default"].fn[NAME$6] = JQUERY_NO_CONFLICT$6;
     return Dropdown._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.6.0';
+  var VERSION$5 = '4.6.1';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
-  var DATA_API_KEY$5 = '.data-api';
-  var JQUERY_NO_CONFLICT$5 = $__default['default'].fn[NAME$5];
-  var ESCAPE_KEYCODE$1 = 27; // KeyboardEvent.which value for Escape (Esc) key
+  var DATA_API_KEY$2 = '.data-api';
+  var JQUERY_NO_CONFLICT$5 = $__default["default"].fn[NAME$5];
+  var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
-  var Default$3 = {
-    backdrop: true,
-    keyboard: true,
-    focus: true,
-    show: true
-  };
-  var DefaultType$3 = {
-    backdrop: '(boolean|string)',
-    keyboard: 'boolean',
-    focus: 'boolean',
-    show: 'boolean'
-  };
+  var CLASS_NAME_SCROLLABLE = 'modal-dialog-scrollable';
+  var CLASS_NAME_SCROLLBAR_MEASURER = 'modal-scrollbar-measure';
+  var CLASS_NAME_BACKDROP = 'modal-backdrop';
+  var CLASS_NAME_OPEN = 'modal-open';
+  var CLASS_NAME_FADE$4 = 'fade';
+  var CLASS_NAME_SHOW$4 = 'show';
+  var CLASS_NAME_STATIC = 'modal-static';
   var EVENT_HIDE$2 = "hide" + EVENT_KEY$5;
   var EVENT_HIDE_PREVENTED = "hidePrevented" + EVENT_KEY$5;
   var EVENT_HIDDEN$2 = "hidden" + EVENT_KEY$5;
@@ -6640,28 +6579,31 @@ __webpack_require__.r(__webpack_exports__);
   var EVENT_SHOWN$2 = "shown" + EVENT_KEY$5;
   var EVENT_FOCUSIN = "focusin" + EVENT_KEY$5;
   var EVENT_RESIZE = "resize" + EVENT_KEY$5;
-  var EVENT_CLICK_DISMISS = "click.dismiss" + EVENT_KEY$5;
+  var EVENT_CLICK_DISMISS$1 = "click.dismiss" + EVENT_KEY$5;
   var EVENT_KEYDOWN_DISMISS = "keydown.dismiss" + EVENT_KEY$5;
   var EVENT_MOUSEUP_DISMISS = "mouseup.dismiss" + EVENT_KEY$5;
   var EVENT_MOUSEDOWN_DISMISS = "mousedown.dismiss" + EVENT_KEY$5;
-  var EVENT_CLICK_DATA_API$5 = "click" + EVENT_KEY$5 + DATA_API_KEY$5;
-  var CLASS_NAME_SCROLLABLE = 'modal-dialog-scrollable';
-  var CLASS_NAME_SCROLLBAR_MEASURER = 'modal-scrollbar-measure';
-  var CLASS_NAME_BACKDROP = 'modal-backdrop';
-  var CLASS_NAME_OPEN = 'modal-open';
-  var CLASS_NAME_FADE$1 = 'fade';
-  var CLASS_NAME_SHOW$3 = 'show';
-  var CLASS_NAME_STATIC = 'modal-static';
+  var EVENT_CLICK_DATA_API$1 = "click" + EVENT_KEY$5 + DATA_API_KEY$2;
   var SELECTOR_DIALOG = '.modal-dialog';
   var SELECTOR_MODAL_BODY = '.modal-body';
-  var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="modal"]';
-  var SELECTOR_DATA_DISMISS = '[data-dismiss="modal"]';
+  var SELECTOR_DATA_TOGGLE$1 = '[data-toggle="modal"]';
+  var SELECTOR_DATA_DISMISS$1 = '[data-dismiss="modal"]';
   var SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   var SELECTOR_STICKY_CONTENT = '.sticky-top';
+  var Default$4 = {
+    backdrop: true,
+    keyboard: true,
+    focus: true,
+    show: true
+  };
+  var DefaultType$4 = {
+    backdrop: '(boolean|string)',
+    keyboard: 'boolean',
+    focus: 'boolean',
+    show: 'boolean'
+  };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Modal = /*#__PURE__*/function () {
@@ -6692,20 +6634,20 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      if ($__default['default'](this._element).hasClass(CLASS_NAME_FADE$1)) {
-        this._isTransitioning = true;
-      }
-
-      var showEvent = $__default['default'].Event(EVENT_SHOW$2, {
+      var showEvent = $__default["default"].Event(EVENT_SHOW$2, {
         relatedTarget: relatedTarget
       });
-      $__default['default'](this._element).trigger(showEvent);
+      $__default["default"](this._element).trigger(showEvent);
 
-      if (this._isShown || showEvent.isDefaultPrevented()) {
+      if (showEvent.isDefaultPrevented()) {
         return;
       }
 
       this._isShown = true;
+
+      if ($__default["default"](this._element).hasClass(CLASS_NAME_FADE$4)) {
+        this._isTransitioning = true;
+      }
 
       this._checkScrollbar();
 
@@ -6717,12 +6659,12 @@ __webpack_require__.r(__webpack_exports__);
 
       this._setResizeEvent();
 
-      $__default['default'](this._element).on(EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, function (event) {
+      $__default["default"](this._element).on(EVENT_CLICK_DISMISS$1, SELECTOR_DATA_DISMISS$1, function (event) {
         return _this.hide(event);
       });
-      $__default['default'](this._dialog).on(EVENT_MOUSEDOWN_DISMISS, function () {
-        $__default['default'](_this._element).one(EVENT_MOUSEUP_DISMISS, function (event) {
-          if ($__default['default'](event.target).is(_this._element)) {
+      $__default["default"](this._dialog).on(EVENT_MOUSEDOWN_DISMISS, function () {
+        $__default["default"](_this._element).one(EVENT_MOUSEUP_DISMISS, function (event) {
+          if ($__default["default"](event.target).is(_this._element)) {
             _this._ignoreBackdropClick = true;
           }
         });
@@ -6744,15 +6686,15 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      var hideEvent = $__default['default'].Event(EVENT_HIDE$2);
-      $__default['default'](this._element).trigger(hideEvent);
+      var hideEvent = $__default["default"].Event(EVENT_HIDE$2);
+      $__default["default"](this._element).trigger(hideEvent);
 
       if (!this._isShown || hideEvent.isDefaultPrevented()) {
         return;
       }
 
       this._isShown = false;
-      var transition = $__default['default'](this._element).hasClass(CLASS_NAME_FADE$1);
+      var transition = $__default["default"](this._element).hasClass(CLASS_NAME_FADE$4);
 
       if (transition) {
         this._isTransitioning = true;
@@ -6762,14 +6704,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this._setResizeEvent();
 
-      $__default['default'](document).off(EVENT_FOCUSIN);
-      $__default['default'](this._element).removeClass(CLASS_NAME_SHOW$3);
-      $__default['default'](this._element).off(EVENT_CLICK_DISMISS);
-      $__default['default'](this._dialog).off(EVENT_MOUSEDOWN_DISMISS);
+      $__default["default"](document).off(EVENT_FOCUSIN);
+      $__default["default"](this._element).removeClass(CLASS_NAME_SHOW$4);
+      $__default["default"](this._element).off(EVENT_CLICK_DISMISS$1);
+      $__default["default"](this._dialog).off(EVENT_MOUSEDOWN_DISMISS);
 
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $__default['default'](this._element).one(Util.TRANSITION_END, function (event) {
+        $__default["default"](this._element).one(Util.TRANSITION_END, function (event) {
           return _this2._hideModal(event);
         }).emulateTransitionEnd(transitionDuration);
       } else {
@@ -6779,7 +6721,7 @@ __webpack_require__.r(__webpack_exports__);
 
     _proto.dispose = function dispose() {
       [window, this._element, this._dialog].forEach(function (htmlElement) {
-        return $__default['default'](htmlElement).off(EVENT_KEY$5);
+        return $__default["default"](htmlElement).off(EVENT_KEY$5);
       });
       /**
        * `document` has 2 events `EVENT_FOCUSIN` and `EVENT_CLICK_DATA_API`
@@ -6787,8 +6729,8 @@ __webpack_require__.r(__webpack_exports__);
        * It will remove `EVENT_CLICK_DATA_API` event that should remain
        */
 
-      $__default['default'](document).off(EVENT_FOCUSIN);
-      $__default['default'].removeData(this._element, DATA_KEY$5);
+      $__default["default"](document).off(EVENT_FOCUSIN);
+      $__default["default"].removeData(this._element, DATA_KEY$5);
       this._config = null;
       this._element = null;
       this._dialog = null;
@@ -6806,16 +6748,16 @@ __webpack_require__.r(__webpack_exports__);
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$3, config);
-      Util.typeCheckConfig(NAME$5, config, DefaultType$3);
+      config = _extends({}, Default$4, config);
+      Util.typeCheckConfig(NAME$5, config, DefaultType$4);
       return config;
     };
 
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
-      var hideEventPrevented = $__default['default'].Event(EVENT_HIDE_PREVENTED);
-      $__default['default'](this._element).trigger(hideEventPrevented);
+      var hideEventPrevented = $__default["default"].Event(EVENT_HIDE_PREVENTED);
+      $__default["default"](this._element).trigger(hideEventPrevented);
 
       if (hideEventPrevented.isDefaultPrevented()) {
         return;
@@ -6830,12 +6772,12 @@ __webpack_require__.r(__webpack_exports__);
       this._element.classList.add(CLASS_NAME_STATIC);
 
       var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-      $__default['default'](this._element).off(Util.TRANSITION_END);
-      $__default['default'](this._element).one(Util.TRANSITION_END, function () {
+      $__default["default"](this._element).off(Util.TRANSITION_END);
+      $__default["default"](this._element).one(Util.TRANSITION_END, function () {
         _this3._element.classList.remove(CLASS_NAME_STATIC);
 
         if (!isModalOverflowing) {
-          $__default['default'](_this3._element).one(Util.TRANSITION_END, function () {
+          $__default["default"](_this3._element).one(Util.TRANSITION_END, function () {
             _this3._element.style.overflowY = '';
           }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
         }
@@ -6847,7 +6789,7 @@ __webpack_require__.r(__webpack_exports__);
     _proto._showElement = function _showElement(relatedTarget) {
       var _this4 = this;
 
-      var transition = $__default['default'](this._element).hasClass(CLASS_NAME_FADE$1);
+      var transition = $__default["default"](this._element).hasClass(CLASS_NAME_FADE$4);
       var modalBody = this._dialog ? this._dialog.querySelector(SELECTOR_MODAL_BODY) : null;
 
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
@@ -6863,7 +6805,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this._element.setAttribute('role', 'dialog');
 
-      if ($__default['default'](this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
+      if ($__default["default"](this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
       } else {
         this._element.scrollTop = 0;
@@ -6873,13 +6815,13 @@ __webpack_require__.r(__webpack_exports__);
         Util.reflow(this._element);
       }
 
-      $__default['default'](this._element).addClass(CLASS_NAME_SHOW$3);
+      $__default["default"](this._element).addClass(CLASS_NAME_SHOW$4);
 
       if (this._config.focus) {
         this._enforceFocus();
       }
 
-      var shownEvent = $__default['default'].Event(EVENT_SHOWN$2, {
+      var shownEvent = $__default["default"].Event(EVENT_SHOWN$2, {
         relatedTarget: relatedTarget
       });
 
@@ -6889,12 +6831,12 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this4._isTransitioning = false;
-        $__default['default'](_this4._element).trigger(shownEvent);
+        $__default["default"](_this4._element).trigger(shownEvent);
       };
 
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $__default['default'](this._dialog).one(Util.TRANSITION_END, transitionComplete).emulateTransitionEnd(transitionDuration);
+        $__default["default"](this._dialog).one(Util.TRANSITION_END, transitionComplete).emulateTransitionEnd(transitionDuration);
       } else {
         transitionComplete();
       }
@@ -6903,9 +6845,9 @@ __webpack_require__.r(__webpack_exports__);
     _proto._enforceFocus = function _enforceFocus() {
       var _this5 = this;
 
-      $__default['default'](document).off(EVENT_FOCUSIN) // Guard against infinite focus loop
+      $__default["default"](document).off(EVENT_FOCUSIN) // Guard against infinite focus loop
       .on(EVENT_FOCUSIN, function (event) {
-        if (document !== event.target && _this5._element !== event.target && $__default['default'](_this5._element).has(event.target).length === 0) {
+        if (document !== event.target && _this5._element !== event.target && $__default["default"](_this5._element).has(event.target).length === 0) {
           _this5._element.focus();
         }
       });
@@ -6915,17 +6857,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       if (this._isShown) {
-        $__default['default'](this._element).on(EVENT_KEYDOWN_DISMISS, function (event) {
-          if (_this6._config.keyboard && event.which === ESCAPE_KEYCODE$1) {
+        $__default["default"](this._element).on(EVENT_KEYDOWN_DISMISS, function (event) {
+          if (_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             event.preventDefault();
 
             _this6.hide();
-          } else if (!_this6._config.keyboard && event.which === ESCAPE_KEYCODE$1) {
+          } else if (!_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             _this6._triggerBackdropTransition();
           }
         });
       } else if (!this._isShown) {
-        $__default['default'](this._element).off(EVENT_KEYDOWN_DISMISS);
+        $__default["default"](this._element).off(EVENT_KEYDOWN_DISMISS);
       }
     };
 
@@ -6933,11 +6875,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this7 = this;
 
       if (this._isShown) {
-        $__default['default'](window).on(EVENT_RESIZE, function (event) {
+        $__default["default"](window).on(EVENT_RESIZE, function (event) {
           return _this7.handleUpdate(event);
         });
       } else {
-        $__default['default'](window).off(EVENT_RESIZE);
+        $__default["default"](window).off(EVENT_RESIZE);
       }
     };
 
@@ -6955,19 +6897,19 @@ __webpack_require__.r(__webpack_exports__);
       this._isTransitioning = false;
 
       this._showBackdrop(function () {
-        $__default['default'](document.body).removeClass(CLASS_NAME_OPEN);
+        $__default["default"](document.body).removeClass(CLASS_NAME_OPEN);
 
         _this8._resetAdjustments();
 
         _this8._resetScrollbar();
 
-        $__default['default'](_this8._element).trigger(EVENT_HIDDEN$2);
+        $__default["default"](_this8._element).trigger(EVENT_HIDDEN$2);
       });
     };
 
     _proto._removeBackdrop = function _removeBackdrop() {
       if (this._backdrop) {
-        $__default['default'](this._backdrop).remove();
+        $__default["default"](this._backdrop).remove();
         this._backdrop = null;
       }
     };
@@ -6975,7 +6917,7 @@ __webpack_require__.r(__webpack_exports__);
     _proto._showBackdrop = function _showBackdrop(callback) {
       var _this9 = this;
 
-      var animate = $__default['default'](this._element).hasClass(CLASS_NAME_FADE$1) ? CLASS_NAME_FADE$1 : '';
+      var animate = $__default["default"](this._element).hasClass(CLASS_NAME_FADE$4) ? CLASS_NAME_FADE$4 : '';
 
       if (this._isShown && this._config.backdrop) {
         this._backdrop = document.createElement('div');
@@ -6985,8 +6927,8 @@ __webpack_require__.r(__webpack_exports__);
           this._backdrop.classList.add(animate);
         }
 
-        $__default['default'](this._backdrop).appendTo(document.body);
-        $__default['default'](this._element).on(EVENT_CLICK_DISMISS, function (event) {
+        $__default["default"](this._backdrop).appendTo(document.body);
+        $__default["default"](this._element).on(EVENT_CLICK_DISMISS$1, function (event) {
           if (_this9._ignoreBackdropClick) {
             _this9._ignoreBackdropClick = false;
             return;
@@ -7007,7 +6949,7 @@ __webpack_require__.r(__webpack_exports__);
           Util.reflow(this._backdrop);
         }
 
-        $__default['default'](this._backdrop).addClass(CLASS_NAME_SHOW$3);
+        $__default["default"](this._backdrop).addClass(CLASS_NAME_SHOW$4);
 
         if (!callback) {
           return;
@@ -7019,9 +6961,9 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         var backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
-        $__default['default'](this._backdrop).one(Util.TRANSITION_END, callback).emulateTransitionEnd(backdropTransitionDuration);
+        $__default["default"](this._backdrop).one(Util.TRANSITION_END, callback).emulateTransitionEnd(backdropTransitionDuration);
       } else if (!this._isShown && this._backdrop) {
-        $__default['default'](this._backdrop).removeClass(CLASS_NAME_SHOW$3);
+        $__default["default"](this._backdrop).removeClass(CLASS_NAME_SHOW$4);
 
         var callbackRemove = function callbackRemove() {
           _this9._removeBackdrop();
@@ -7031,10 +6973,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         };
 
-        if ($__default['default'](this._element).hasClass(CLASS_NAME_FADE$1)) {
+        if ($__default["default"](this._element).hasClass(CLASS_NAME_FADE$4)) {
           var _backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
 
-          $__default['default'](this._backdrop).one(Util.TRANSITION_END, callbackRemove).emulateTransitionEnd(_backdropTransitionDuration);
+          $__default["default"](this._backdrop).one(Util.TRANSITION_END, callbackRemove).emulateTransitionEnd(_backdropTransitionDuration);
         } else {
           callbackRemove();
         }
@@ -7079,46 +7021,46 @@ __webpack_require__.r(__webpack_exports__);
         var fixedContent = [].slice.call(document.querySelectorAll(SELECTOR_FIXED_CONTENT));
         var stickyContent = [].slice.call(document.querySelectorAll(SELECTOR_STICKY_CONTENT)); // Adjust fixed content padding
 
-        $__default['default'](fixedContent).each(function (index, element) {
+        $__default["default"](fixedContent).each(function (index, element) {
           var actualPadding = element.style.paddingRight;
-          var calculatedPadding = $__default['default'](element).css('padding-right');
-          $__default['default'](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWidth + "px");
+          var calculatedPadding = $__default["default"](element).css('padding-right');
+          $__default["default"](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWidth + "px");
         }); // Adjust sticky content margin
 
-        $__default['default'](stickyContent).each(function (index, element) {
+        $__default["default"](stickyContent).each(function (index, element) {
           var actualMargin = element.style.marginRight;
-          var calculatedMargin = $__default['default'](element).css('margin-right');
-          $__default['default'](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWidth + "px");
+          var calculatedMargin = $__default["default"](element).css('margin-right');
+          $__default["default"](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWidth + "px");
         }); // Adjust body padding
 
         var actualPadding = document.body.style.paddingRight;
-        var calculatedPadding = $__default['default'](document.body).css('padding-right');
-        $__default['default'](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
+        var calculatedPadding = $__default["default"](document.body).css('padding-right');
+        $__default["default"](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
       }
 
-      $__default['default'](document.body).addClass(CLASS_NAME_OPEN);
+      $__default["default"](document.body).addClass(CLASS_NAME_OPEN);
     };
 
     _proto._resetScrollbar = function _resetScrollbar() {
       // Restore fixed content padding
       var fixedContent = [].slice.call(document.querySelectorAll(SELECTOR_FIXED_CONTENT));
-      $__default['default'](fixedContent).each(function (index, element) {
-        var padding = $__default['default'](element).data('padding-right');
-        $__default['default'](element).removeData('padding-right');
+      $__default["default"](fixedContent).each(function (index, element) {
+        var padding = $__default["default"](element).data('padding-right');
+        $__default["default"](element).removeData('padding-right');
         element.style.paddingRight = padding ? padding : '';
       }); // Restore sticky content
 
       var elements = [].slice.call(document.querySelectorAll("" + SELECTOR_STICKY_CONTENT));
-      $__default['default'](elements).each(function (index, element) {
-        var margin = $__default['default'](element).data('margin-right');
+      $__default["default"](elements).each(function (index, element) {
+        var margin = $__default["default"](element).data('margin-right');
 
         if (typeof margin !== 'undefined') {
-          $__default['default'](element).css('margin-right', margin).removeData('margin-right');
+          $__default["default"](element).css('margin-right', margin).removeData('margin-right');
         }
       }); // Restore body padding
 
-      var padding = $__default['default'](document.body).data('padding-right');
-      $__default['default'](document.body).removeData('padding-right');
+      var padding = $__default["default"](document.body).data('padding-right');
+      $__default["default"](document.body).removeData('padding-right');
       document.body.style.paddingRight = padding ? padding : '';
     };
 
@@ -7135,13 +7077,13 @@ __webpack_require__.r(__webpack_exports__);
 
     Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $__default['default'](this).data(DATA_KEY$5);
+        var data = $__default["default"](this).data(DATA_KEY$5);
 
-        var _config = _extends({}, Default$3, $__default['default'](this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _extends({}, Default$4, $__default["default"](this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Modal(this, _config);
-          $__default['default'](this).data(DATA_KEY$5, data);
+          $__default["default"](this).data(DATA_KEY$5, data);
         }
 
         if (typeof config === 'string') {
@@ -7164,20 +7106,18 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       key: "Default",
       get: function get() {
-        return Default$3;
+        return Default$4;
       }
     }]);
 
     return Modal;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, function (event) {
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, function (event) {
     var _this11 = this;
 
     var target;
@@ -7187,44 +7127,42 @@ __webpack_require__.r(__webpack_exports__);
       target = document.querySelector(selector);
     }
 
-    var config = $__default['default'](target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $__default['default'](target).data(), $__default['default'](this).data());
+    var config = $__default["default"](target).data(DATA_KEY$5) ? 'toggle' : _extends({}, $__default["default"](target).data(), $__default["default"](this).data());
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
     }
 
-    var $target = $__default['default'](target).one(EVENT_SHOW$2, function (showEvent) {
+    var $target = $__default["default"](target).one(EVENT_SHOW$2, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
         // Only register focus restorer if modal will actually get shown
         return;
       }
 
       $target.one(EVENT_HIDDEN$2, function () {
-        if ($__default['default'](_this11).is(':visible')) {
+        if ($__default["default"](_this11).is(':visible')) {
           _this11.focus();
         }
       });
     });
 
-    Modal._jQueryInterface.call($__default['default'](target), config, this);
+    Modal._jQueryInterface.call($__default["default"](target), config, this);
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$5] = Modal._jQueryInterface;
-  $__default['default'].fn[NAME$5].Constructor = Modal;
+  $__default["default"].fn[NAME$5] = Modal._jQueryInterface;
+  $__default["default"].fn[NAME$5].Constructor = Modal;
 
-  $__default['default'].fn[NAME$5].noConflict = function () {
-    $__default['default'].fn[NAME$5] = JQUERY_NO_CONFLICT$5;
+  $__default["default"].fn[NAME$5].noConflict = function () {
+    $__default["default"].fn[NAME$5] = JQUERY_NO_CONFLICT$5;
     return Modal._jQueryInterface;
   };
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.6.0): tools/sanitizer.js
+   * Bootstrap (v4.6.1): tools/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -7266,14 +7204,14 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * A pattern that recognizes a commonly useful subset of URLs that are safe.
    *
-   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   * Shoutout to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^#&/:?]*(?:[#/?]|$))/gi;
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
    *
-   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   * Shoutout to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
    */
 
   var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
@@ -7283,7 +7221,7 @@ __webpack_require__.r(__webpack_exports__);
 
     if (allowedAttributeList.indexOf(attrName) !== -1) {
       if (uriAttrs.indexOf(attrName) !== -1) {
-        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN));
+        return Boolean(SAFE_URL_PATTERN.test(attr.nodeValue) || DATA_URL_PATTERN.test(attr.nodeValue));
       }
 
       return true;
@@ -7294,7 +7232,7 @@ __webpack_require__.r(__webpack_exports__);
     }); // Check if a regular expression validates the attribute.
 
     for (var i = 0, len = regExp.length; i < len; i++) {
-      if (attrName.match(regExp[i])) {
+      if (regExp[i].test(attrName)) {
         return true;
       }
     }
@@ -7325,7 +7263,8 @@ __webpack_require__.r(__webpack_exports__);
         return "continue";
       }
 
-      var attributeList = [].slice.call(el.attributes);
+      var attributeList = [].slice.call(el.attributes); // eslint-disable-next-line unicorn/prefer-spread
+
       var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || []);
       attributeList.forEach(function (attr) {
         if (!allowedAttribute(attr, whitelistedAttributes)) {
@@ -7344,38 +7283,27 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.6.0';
-  var DATA_KEY$6 = 'bs.tooltip';
-  var EVENT_KEY$6 = "." + DATA_KEY$6;
-  var JQUERY_NO_CONFLICT$6 = $__default['default'].fn[NAME$6];
-  var CLASS_PREFIX = 'bs-tooltip';
-  var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+  var NAME$4 = 'tooltip';
+  var VERSION$4 = '4.6.1';
+  var DATA_KEY$4 = 'bs.tooltip';
+  var EVENT_KEY$4 = "." + DATA_KEY$4;
+  var JQUERY_NO_CONFLICT$4 = $__default["default"].fn[NAME$4];
+  var CLASS_PREFIX$1 = 'bs-tooltip';
+  var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
   var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
-  var DefaultType$4 = {
-    animation: 'boolean',
-    template: 'string',
-    title: '(string|element|function)',
-    trigger: 'string',
-    delay: '(number|object)',
-    html: 'boolean',
-    selector: '(string|boolean)',
-    placement: '(string|function)',
-    offset: '(number|string|function)',
-    container: '(string|element|boolean)',
-    fallbackPlacement: '(string|array)',
-    boundary: '(string|element)',
-    customClass: '(string|function)',
-    sanitize: 'boolean',
-    sanitizeFn: '(null|function)',
-    whiteList: 'object',
-    popperConfig: '(null|object)'
-  };
+  var CLASS_NAME_FADE$3 = 'fade';
+  var CLASS_NAME_SHOW$3 = 'show';
+  var HOVER_STATE_SHOW = 'show';
+  var HOVER_STATE_OUT = 'out';
+  var SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
+  var SELECTOR_ARROW = '.arrow';
+  var TRIGGER_HOVER = 'hover';
+  var TRIGGER_FOCUS = 'focus';
+  var TRIGGER_CLICK = 'click';
+  var TRIGGER_MANUAL = 'manual';
   var AttachmentMap = {
     AUTO: 'auto',
     TOP: 'top',
@@ -7383,7 +7311,7 @@ __webpack_require__.r(__webpack_exports__);
     BOTTOM: 'bottom',
     LEFT: 'left'
   };
-  var Default$4 = {
+  var Default$3 = {
     animation: true,
     template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
     trigger: 'hover focus',
@@ -7402,39 +7330,46 @@ __webpack_require__.r(__webpack_exports__);
     whiteList: DefaultWhitelist,
     popperConfig: null
   };
-  var HOVER_STATE_SHOW = 'show';
-  var HOVER_STATE_OUT = 'out';
-  var Event = {
-    HIDE: "hide" + EVENT_KEY$6,
-    HIDDEN: "hidden" + EVENT_KEY$6,
-    SHOW: "show" + EVENT_KEY$6,
-    SHOWN: "shown" + EVENT_KEY$6,
-    INSERTED: "inserted" + EVENT_KEY$6,
-    CLICK: "click" + EVENT_KEY$6,
-    FOCUSIN: "focusin" + EVENT_KEY$6,
-    FOCUSOUT: "focusout" + EVENT_KEY$6,
-    MOUSEENTER: "mouseenter" + EVENT_KEY$6,
-    MOUSELEAVE: "mouseleave" + EVENT_KEY$6
+  var DefaultType$3 = {
+    animation: 'boolean',
+    template: 'string',
+    title: '(string|element|function)',
+    trigger: 'string',
+    delay: '(number|object)',
+    html: 'boolean',
+    selector: '(string|boolean)',
+    placement: '(string|function)',
+    offset: '(number|string|function)',
+    container: '(string|element|boolean)',
+    fallbackPlacement: '(string|array)',
+    boundary: '(string|element)',
+    customClass: '(string|function)',
+    sanitize: 'boolean',
+    sanitizeFn: '(null|function)',
+    whiteList: 'object',
+    popperConfig: '(null|object)'
   };
-  var CLASS_NAME_FADE$2 = 'fade';
-  var CLASS_NAME_SHOW$4 = 'show';
-  var SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
-  var SELECTOR_ARROW = '.arrow';
-  var TRIGGER_HOVER = 'hover';
-  var TRIGGER_FOCUS = 'focus';
-  var TRIGGER_CLICK = 'click';
-  var TRIGGER_MANUAL = 'manual';
+  var Event$1 = {
+    HIDE: "hide" + EVENT_KEY$4,
+    HIDDEN: "hidden" + EVENT_KEY$4,
+    SHOW: "show" + EVENT_KEY$4,
+    SHOWN: "shown" + EVENT_KEY$4,
+    INSERTED: "inserted" + EVENT_KEY$4,
+    CLICK: "click" + EVENT_KEY$4,
+    FOCUSIN: "focusin" + EVENT_KEY$4,
+    FOCUSOUT: "focusout" + EVENT_KEY$4,
+    MOUSEENTER: "mouseenter" + EVENT_KEY$4,
+    MOUSELEAVE: "mouseleave" + EVENT_KEY$4
+  };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Tooltip = /*#__PURE__*/function () {
     function Tooltip(element, config) {
-      if (typeof Popper__default['default'] === 'undefined') {
+      if (typeof Popper__default["default"] === 'undefined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
-      } // private
+      } // Private
 
 
       this._isEnabled = true;
@@ -7473,11 +7408,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (event) {
         var dataKey = this.constructor.DATA_KEY;
-        var context = $__default['default'](event.currentTarget).data(dataKey);
+        var context = $__default["default"](event.currentTarget).data(dataKey);
 
         if (!context) {
           context = new this.constructor(event.currentTarget, this._getDelegateConfig());
-          $__default['default'](event.currentTarget).data(dataKey, context);
+          $__default["default"](event.currentTarget).data(dataKey, context);
         }
 
         context._activeTrigger.click = !context._activeTrigger.click;
@@ -7488,7 +7423,7 @@ __webpack_require__.r(__webpack_exports__);
           context._leave(null, context);
         }
       } else {
-        if ($__default['default'](this.getTipElement()).hasClass(CLASS_NAME_SHOW$4)) {
+        if ($__default["default"](this.getTipElement()).hasClass(CLASS_NAME_SHOW$3)) {
           this._leave(null, this);
 
           return;
@@ -7500,12 +7435,12 @@ __webpack_require__.r(__webpack_exports__);
 
     _proto.dispose = function dispose() {
       clearTimeout(this._timeout);
-      $__default['default'].removeData(this.element, this.constructor.DATA_KEY);
-      $__default['default'](this.element).off(this.constructor.EVENT_KEY);
-      $__default['default'](this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
+      $__default["default"].removeData(this.element, this.constructor.DATA_KEY);
+      $__default["default"](this.element).off(this.constructor.EVENT_KEY);
+      $__default["default"](this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
 
       if (this.tip) {
-        $__default['default'](this.tip).remove();
+        $__default["default"](this.tip).remove();
       }
 
       this._isEnabled = null;
@@ -7526,16 +7461,16 @@ __webpack_require__.r(__webpack_exports__);
     _proto.show = function show() {
       var _this = this;
 
-      if ($__default['default'](this.element).css('display') === 'none') {
+      if ($__default["default"](this.element).css('display') === 'none') {
         throw new Error('Please use show on visible elements');
       }
 
-      var showEvent = $__default['default'].Event(this.constructor.Event.SHOW);
+      var showEvent = $__default["default"].Event(this.constructor.Event.SHOW);
 
       if (this.isWithContent() && this._isEnabled) {
-        $__default['default'](this.element).trigger(showEvent);
+        $__default["default"](this.element).trigger(showEvent);
         var shadowRoot = Util.findShadowRoot(this.element);
-        var isInTheDom = $__default['default'].contains(shadowRoot !== null ? shadowRoot : this.element.ownerDocument.documentElement, this.element);
+        var isInTheDom = $__default["default"].contains(shadowRoot !== null ? shadowRoot : this.element.ownerDocument.documentElement, this.element);
 
         if (showEvent.isDefaultPrevented() || !isInTheDom) {
           return;
@@ -7548,7 +7483,7 @@ __webpack_require__.r(__webpack_exports__);
         this.setContent();
 
         if (this.config.animation) {
-          $__default['default'](tip).addClass(CLASS_NAME_FADE$2);
+          $__default["default"](tip).addClass(CLASS_NAME_FADE$3);
         }
 
         var placement = typeof this.config.placement === 'function' ? this.config.placement.call(this, tip, this.element) : this.config.placement;
@@ -7559,22 +7494,22 @@ __webpack_require__.r(__webpack_exports__);
 
         var container = this._getContainer();
 
-        $__default['default'](tip).data(this.constructor.DATA_KEY, this);
+        $__default["default"](tip).data(this.constructor.DATA_KEY, this);
 
-        if (!$__default['default'].contains(this.element.ownerDocument.documentElement, this.tip)) {
-          $__default['default'](tip).appendTo(container);
+        if (!$__default["default"].contains(this.element.ownerDocument.documentElement, this.tip)) {
+          $__default["default"](tip).appendTo(container);
         }
 
-        $__default['default'](this.element).trigger(this.constructor.Event.INSERTED);
-        this._popper = new Popper__default['default'](this.element, tip, this._getPopperConfig(attachment));
-        $__default['default'](tip).addClass(CLASS_NAME_SHOW$4);
-        $__default['default'](tip).addClass(this.config.customClass); // If this is a touch-enabled device we add extra
+        $__default["default"](this.element).trigger(this.constructor.Event.INSERTED);
+        this._popper = new Popper__default["default"](this.element, tip, this._getPopperConfig(attachment));
+        $__default["default"](tip).addClass(CLASS_NAME_SHOW$3);
+        $__default["default"](tip).addClass(this.config.customClass); // If this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
 
         if ('ontouchstart' in document.documentElement) {
-          $__default['default'](document.body).children().on('mouseover', null, $__default['default'].noop);
+          $__default["default"](document.body).children().on('mouseover', null, $__default["default"].noop);
         }
 
         var complete = function complete() {
@@ -7584,16 +7519,16 @@ __webpack_require__.r(__webpack_exports__);
 
           var prevHoverState = _this._hoverState;
           _this._hoverState = null;
-          $__default['default'](_this.element).trigger(_this.constructor.Event.SHOWN);
+          $__default["default"](_this.element).trigger(_this.constructor.Event.SHOWN);
 
           if (prevHoverState === HOVER_STATE_OUT) {
             _this._leave(null, _this);
           }
         };
 
-        if ($__default['default'](this.tip).hasClass(CLASS_NAME_FADE$2)) {
+        if ($__default["default"](this.tip).hasClass(CLASS_NAME_FADE$3)) {
           var transitionDuration = Util.getTransitionDurationFromElement(this.tip);
-          $__default['default'](this.tip).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+          $__default["default"](this.tip).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
         } else {
           complete();
         }
@@ -7604,7 +7539,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var tip = this.getTipElement();
-      var hideEvent = $__default['default'].Event(this.constructor.Event.HIDE);
+      var hideEvent = $__default["default"].Event(this.constructor.Event.HIDE);
 
       var complete = function complete() {
         if (_this2._hoverState !== HOVER_STATE_SHOW && tip.parentNode) {
@@ -7615,7 +7550,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.element.removeAttribute('aria-describedby');
 
-        $__default['default'](_this2.element).trigger(_this2.constructor.Event.HIDDEN);
+        $__default["default"](_this2.element).trigger(_this2.constructor.Event.HIDDEN);
 
         if (_this2._popper !== null) {
           _this2._popper.destroy();
@@ -7626,26 +7561,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
 
-      $__default['default'](this.element).trigger(hideEvent);
+      $__default["default"](this.element).trigger(hideEvent);
 
       if (hideEvent.isDefaultPrevented()) {
         return;
       }
 
-      $__default['default'](tip).removeClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we remove the extra
+      $__default["default"](tip).removeClass(CLASS_NAME_SHOW$3); // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
-        $__default['default'](document.body).children().off('mouseover', null, $__default['default'].noop);
+        $__default["default"](document.body).children().off('mouseover', null, $__default["default"].noop);
       }
 
       this._activeTrigger[TRIGGER_CLICK] = false;
       this._activeTrigger[TRIGGER_FOCUS] = false;
       this._activeTrigger[TRIGGER_HOVER] = false;
 
-      if ($__default['default'](this.tip).hasClass(CLASS_NAME_FADE$2)) {
+      if ($__default["default"](this.tip).hasClass(CLASS_NAME_FADE$3)) {
         var transitionDuration = Util.getTransitionDurationFromElement(tip);
-        $__default['default'](tip).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $__default["default"](tip).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
@@ -7665,29 +7600,29 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {
-      $__default['default'](this.getTipElement()).addClass(CLASS_PREFIX + "-" + attachment);
+      $__default["default"](this.getTipElement()).addClass(CLASS_PREFIX$1 + "-" + attachment);
     };
 
     _proto.getTipElement = function getTipElement() {
-      this.tip = this.tip || $__default['default'](this.config.template)[0];
+      this.tip = this.tip || $__default["default"](this.config.template)[0];
       return this.tip;
     };
 
     _proto.setContent = function setContent() {
       var tip = this.getTipElement();
-      this.setElementContent($__default['default'](tip.querySelectorAll(SELECTOR_TOOLTIP_INNER)), this.getTitle());
-      $__default['default'](tip).removeClass(CLASS_NAME_FADE$2 + " " + CLASS_NAME_SHOW$4);
+      this.setElementContent($__default["default"](tip.querySelectorAll(SELECTOR_TOOLTIP_INNER)), this.getTitle());
+      $__default["default"](tip).removeClass(CLASS_NAME_FADE$3 + " " + CLASS_NAME_SHOW$3);
     };
 
     _proto.setElementContent = function setElementContent($element, content) {
       if (typeof content === 'object' && (content.nodeType || content.jquery)) {
         // Content is a DOM node or a jQuery
         if (this.config.html) {
-          if (!$__default['default'](content).parent().is($element)) {
+          if (!$__default["default"](content).parent().is($element)) {
             $element.empty().append(content);
           }
         } else {
-          $element.text($__default['default'](content).text());
+          $element.text($__default["default"](content).text());
         }
 
         return;
@@ -7751,7 +7686,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element) || {});
+          data.offsets = _extends({}, data.offsets, _this4.config.offset(data.offsets, _this4.element));
           return data;
         };
       } else {
@@ -7767,10 +7702,10 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (Util.isElement(this.config.container)) {
-        return $__default['default'](this.config.container);
+        return $__default["default"](this.config.container);
       }
 
-      return $__default['default'](document).find(this.config.container);
+      return $__default["default"](document).find(this.config.container);
     };
 
     _proto._getAttachment = function _getAttachment(placement) {
@@ -7783,13 +7718,13 @@ __webpack_require__.r(__webpack_exports__);
       var triggers = this.config.trigger.split(' ');
       triggers.forEach(function (trigger) {
         if (trigger === 'click') {
-          $__default['default'](_this5.element).on(_this5.constructor.Event.CLICK, _this5.config.selector, function (event) {
+          $__default["default"](_this5.element).on(_this5.constructor.Event.CLICK, _this5.config.selector, function (event) {
             return _this5.toggle(event);
           });
         } else if (trigger !== TRIGGER_MANUAL) {
           var eventIn = trigger === TRIGGER_HOVER ? _this5.constructor.Event.MOUSEENTER : _this5.constructor.Event.FOCUSIN;
           var eventOut = trigger === TRIGGER_HOVER ? _this5.constructor.Event.MOUSELEAVE : _this5.constructor.Event.FOCUSOUT;
-          $__default['default'](_this5.element).on(eventIn, _this5.config.selector, function (event) {
+          $__default["default"](_this5.element).on(eventIn, _this5.config.selector, function (event) {
             return _this5._enter(event);
           }).on(eventOut, _this5.config.selector, function (event) {
             return _this5._leave(event);
@@ -7803,7 +7738,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
 
-      $__default['default'](this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
+      $__default["default"](this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
 
       if (this.config.selector) {
         this.config = _extends({}, this.config, {
@@ -7826,18 +7761,18 @@ __webpack_require__.r(__webpack_exports__);
 
     _proto._enter = function _enter(event, context) {
       var dataKey = this.constructor.DATA_KEY;
-      context = context || $__default['default'](event.currentTarget).data(dataKey);
+      context = context || $__default["default"](event.currentTarget).data(dataKey);
 
       if (!context) {
         context = new this.constructor(event.currentTarget, this._getDelegateConfig());
-        $__default['default'](event.currentTarget).data(dataKey, context);
+        $__default["default"](event.currentTarget).data(dataKey, context);
       }
 
       if (event) {
         context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
       }
 
-      if ($__default['default'](context.getTipElement()).hasClass(CLASS_NAME_SHOW$4) || context._hoverState === HOVER_STATE_SHOW) {
+      if ($__default["default"](context.getTipElement()).hasClass(CLASS_NAME_SHOW$3) || context._hoverState === HOVER_STATE_SHOW) {
         context._hoverState = HOVER_STATE_SHOW;
         return;
       }
@@ -7859,11 +7794,11 @@ __webpack_require__.r(__webpack_exports__);
 
     _proto._leave = function _leave(event, context) {
       var dataKey = this.constructor.DATA_KEY;
-      context = context || $__default['default'](event.currentTarget).data(dataKey);
+      context = context || $__default["default"](event.currentTarget).data(dataKey);
 
       if (!context) {
         context = new this.constructor(event.currentTarget, this._getDelegateConfig());
-        $__default['default'](event.currentTarget).data(dataKey, context);
+        $__default["default"](event.currentTarget).data(dataKey, context);
       }
 
       if (event) {
@@ -7900,7 +7835,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._getConfig = function _getConfig(config) {
-      var dataAttributes = $__default['default'](this.element).data();
+      var dataAttributes = $__default["default"](this.element).data();
       Object.keys(dataAttributes).forEach(function (dataAttr) {
         if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
           delete dataAttributes[dataAttr];
@@ -7923,7 +7858,7 @@ __webpack_require__.r(__webpack_exports__);
         config.content = config.content.toString();
       }
 
-      Util.typeCheckConfig(NAME$6, config, this.constructor.DefaultType);
+      Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
 
       if (config.sanitize) {
         config.template = sanitizeHtml(config.template, config.whiteList, config.sanitizeFn);
@@ -7947,8 +7882,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._cleanTipClass = function _cleanTipClass() {
-      var $tip = $__default['default'](this.getTipElement());
-      var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX);
+      var $tip = $__default["default"](this.getTipElement());
+      var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX$1);
 
       if (tabClass !== null && tabClass.length) {
         $tip.removeClass(tabClass.join(''));
@@ -7971,7 +7906,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      $__default['default'](tip).removeClass(CLASS_NAME_FADE$2);
+      $__default["default"](tip).removeClass(CLASS_NAME_FADE$3);
       this.config.animation = false;
       this.hide();
       this.show();
@@ -7981,8 +7916,8 @@ __webpack_require__.r(__webpack_exports__);
 
     Tooltip._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $element = $__default['default'](this);
-        var data = $element.data(DATA_KEY$6);
+        var $element = $__default["default"](this);
+        var data = $element.data(DATA_KEY$4);
 
         var _config = typeof config === 'object' && config;
 
@@ -7992,7 +7927,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!data) {
           data = new Tooltip(this, _config);
-          $element.data(DATA_KEY$6, data);
+          $element.data(DATA_KEY$4, data);
         }
 
         if (typeof config === 'string') {
@@ -8008,102 +7943,96 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Tooltip, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$6;
+        return VERSION$4;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$4;
+        return Default$3;
       }
     }, {
       key: "NAME",
       get: function get() {
-        return NAME$6;
+        return NAME$4;
       }
     }, {
       key: "DATA_KEY",
       get: function get() {
-        return DATA_KEY$6;
+        return DATA_KEY$4;
       }
     }, {
       key: "Event",
       get: function get() {
-        return Event;
+        return Event$1;
       }
     }, {
       key: "EVENT_KEY",
       get: function get() {
-        return EVENT_KEY$6;
+        return EVENT_KEY$4;
       }
     }, {
       key: "DefaultType",
       get: function get() {
-        return DefaultType$4;
+        return DefaultType$3;
       }
     }]);
 
     return Tooltip;
   }();
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
 
-  $__default['default'].fn[NAME$6] = Tooltip._jQueryInterface;
-  $__default['default'].fn[NAME$6].Constructor = Tooltip;
+  $__default["default"].fn[NAME$4] = Tooltip._jQueryInterface;
+  $__default["default"].fn[NAME$4].Constructor = Tooltip;
 
-  $__default['default'].fn[NAME$6].noConflict = function () {
-    $__default['default'].fn[NAME$6] = JQUERY_NO_CONFLICT$6;
+  $__default["default"].fn[NAME$4].noConflict = function () {
+    $__default["default"].fn[NAME$4] = JQUERY_NO_CONFLICT$4;
     return Tooltip._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$7 = 'popover';
-  var VERSION$7 = '4.6.0';
-  var DATA_KEY$7 = 'bs.popover';
-  var EVENT_KEY$7 = "." + DATA_KEY$7;
-  var JQUERY_NO_CONFLICT$7 = $__default['default'].fn[NAME$7];
-  var CLASS_PREFIX$1 = 'bs-popover';
-  var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
+  var NAME$3 = 'popover';
+  var VERSION$3 = '4.6.1';
+  var DATA_KEY$3 = 'bs.popover';
+  var EVENT_KEY$3 = "." + DATA_KEY$3;
+  var JQUERY_NO_CONFLICT$3 = $__default["default"].fn[NAME$3];
+  var CLASS_PREFIX = 'bs-popover';
+  var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
+  var CLASS_NAME_FADE$2 = 'fade';
+  var CLASS_NAME_SHOW$2 = 'show';
+  var SELECTOR_TITLE = '.popover-header';
+  var SELECTOR_CONTENT = '.popover-body';
 
-  var Default$5 = _extends({}, Tooltip.Default, {
+  var Default$2 = _extends({}, Tooltip.Default, {
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-  var DefaultType$5 = _extends({}, Tooltip.DefaultType, {
+  var DefaultType$2 = _extends({}, Tooltip.DefaultType, {
     content: '(string|element|function)'
   });
 
-  var CLASS_NAME_FADE$3 = 'fade';
-  var CLASS_NAME_SHOW$5 = 'show';
-  var SELECTOR_TITLE = '.popover-header';
-  var SELECTOR_CONTENT = '.popover-body';
-  var Event$1 = {
-    HIDE: "hide" + EVENT_KEY$7,
-    HIDDEN: "hidden" + EVENT_KEY$7,
-    SHOW: "show" + EVENT_KEY$7,
-    SHOWN: "shown" + EVENT_KEY$7,
-    INSERTED: "inserted" + EVENT_KEY$7,
-    CLICK: "click" + EVENT_KEY$7,
-    FOCUSIN: "focusin" + EVENT_KEY$7,
-    FOCUSOUT: "focusout" + EVENT_KEY$7,
-    MOUSEENTER: "mouseenter" + EVENT_KEY$7,
-    MOUSELEAVE: "mouseleave" + EVENT_KEY$7
+  var Event = {
+    HIDE: "hide" + EVENT_KEY$3,
+    HIDDEN: "hidden" + EVENT_KEY$3,
+    SHOW: "show" + EVENT_KEY$3,
+    SHOWN: "shown" + EVENT_KEY$3,
+    INSERTED: "inserted" + EVENT_KEY$3,
+    CLICK: "click" + EVENT_KEY$3,
+    FOCUSIN: "focusin" + EVENT_KEY$3,
+    FOCUSOUT: "focusout" + EVENT_KEY$3,
+    MOUSEENTER: "mouseenter" + EVENT_KEY$3,
+    MOUSELEAVE: "mouseleave" + EVENT_KEY$3
   };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Popover = /*#__PURE__*/function (_Tooltip) {
@@ -8121,16 +8050,16 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {
-      $__default['default'](this.getTipElement()).addClass(CLASS_PREFIX$1 + "-" + attachment);
+      $__default["default"](this.getTipElement()).addClass(CLASS_PREFIX + "-" + attachment);
     };
 
     _proto.getTipElement = function getTipElement() {
-      this.tip = this.tip || $__default['default'](this.config.template)[0];
+      this.tip = this.tip || $__default["default"](this.config.template)[0];
       return this.tip;
     };
 
     _proto.setContent = function setContent() {
-      var $tip = $__default['default'](this.getTipElement()); // We use append for html objects to maintain js events
+      var $tip = $__default["default"](this.getTipElement()); // We use append for html objects to maintain js events
 
       this.setElementContent($tip.find(SELECTOR_TITLE), this.getTitle());
 
@@ -8141,7 +8070,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.setElementContent($tip.find(SELECTOR_CONTENT), content);
-      $tip.removeClass(CLASS_NAME_FADE$3 + " " + CLASS_NAME_SHOW$5);
+      $tip.removeClass(CLASS_NAME_FADE$2 + " " + CLASS_NAME_SHOW$2);
     } // Private
     ;
 
@@ -8150,8 +8079,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto._cleanTipClass = function _cleanTipClass() {
-      var $tip = $__default['default'](this.getTipElement());
-      var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX$1);
+      var $tip = $__default["default"](this.getTipElement());
+      var tabClass = $tip.attr('class').match(BSCLS_PREFIX_REGEX);
 
       if (tabClass !== null && tabClass.length > 0) {
         $tip.removeClass(tabClass.join(''));
@@ -8161,7 +8090,7 @@ __webpack_require__.r(__webpack_exports__);
 
     Popover._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $__default['default'](this).data(DATA_KEY$7);
+        var data = $__default["default"](this).data(DATA_KEY$3);
 
         var _config = typeof config === 'object' ? config : null;
 
@@ -8171,7 +8100,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!data) {
           data = new Popover(this, _config);
-          $__default['default'](this).data(DATA_KEY$7, data);
+          $__default["default"](this).data(DATA_KEY$3, data);
         }
 
         if (typeof config === 'string') {
@@ -8186,100 +8115,94 @@ __webpack_require__.r(__webpack_exports__);
 
     _createClass(Popover, null, [{
       key: "VERSION",
-      // Getters
-      get: function get() {
-        return VERSION$7;
+      get: // Getters
+      function get() {
+        return VERSION$3;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$5;
+        return Default$2;
       }
     }, {
       key: "NAME",
       get: function get() {
-        return NAME$7;
+        return NAME$3;
       }
     }, {
       key: "DATA_KEY",
       get: function get() {
-        return DATA_KEY$7;
+        return DATA_KEY$3;
       }
     }, {
       key: "Event",
       get: function get() {
-        return Event$1;
+        return Event;
       }
     }, {
       key: "EVENT_KEY",
       get: function get() {
-        return EVENT_KEY$7;
+        return EVENT_KEY$3;
       }
     }, {
       key: "DefaultType",
       get: function get() {
-        return DefaultType$5;
+        return DefaultType$2;
       }
     }]);
 
     return Popover;
   }(Tooltip);
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
 
-  $__default['default'].fn[NAME$7] = Popover._jQueryInterface;
-  $__default['default'].fn[NAME$7].Constructor = Popover;
+  $__default["default"].fn[NAME$3] = Popover._jQueryInterface;
+  $__default["default"].fn[NAME$3].Constructor = Popover;
 
-  $__default['default'].fn[NAME$7].noConflict = function () {
-    $__default['default'].fn[NAME$7] = JQUERY_NO_CONFLICT$7;
+  $__default["default"].fn[NAME$3].noConflict = function () {
+    $__default["default"].fn[NAME$3] = JQUERY_NO_CONFLICT$3;
     return Popover._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.6.0';
-  var DATA_KEY$8 = 'bs.scrollspy';
-  var EVENT_KEY$8 = "." + DATA_KEY$8;
-  var DATA_API_KEY$6 = '.data-api';
-  var JQUERY_NO_CONFLICT$8 = $__default['default'].fn[NAME$8];
-  var Default$6 = {
+  var NAME$2 = 'scrollspy';
+  var VERSION$2 = '4.6.1';
+  var DATA_KEY$2 = 'bs.scrollspy';
+  var EVENT_KEY$2 = "." + DATA_KEY$2;
+  var DATA_API_KEY$1 = '.data-api';
+  var JQUERY_NO_CONFLICT$2 = $__default["default"].fn[NAME$2];
+  var CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item';
+  var CLASS_NAME_ACTIVE$1 = 'active';
+  var EVENT_ACTIVATE = "activate" + EVENT_KEY$2;
+  var EVENT_SCROLL = "scroll" + EVENT_KEY$2;
+  var EVENT_LOAD_DATA_API = "load" + EVENT_KEY$2 + DATA_API_KEY$1;
+  var METHOD_OFFSET = 'offset';
+  var METHOD_POSITION = 'position';
+  var SELECTOR_DATA_SPY = '[data-spy="scroll"]';
+  var SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
+  var SELECTOR_NAV_LINKS = '.nav-link';
+  var SELECTOR_NAV_ITEMS = '.nav-item';
+  var SELECTOR_LIST_ITEMS = '.list-group-item';
+  var SELECTOR_DROPDOWN$1 = '.dropdown';
+  var SELECTOR_DROPDOWN_ITEMS = '.dropdown-item';
+  var SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
+  var Default$1 = {
     offset: 10,
     method: 'auto',
     target: ''
   };
-  var DefaultType$6 = {
+  var DefaultType$1 = {
     offset: 'number',
     method: 'string',
     target: '(string|element)'
   };
-  var EVENT_ACTIVATE = "activate" + EVENT_KEY$8;
-  var EVENT_SCROLL = "scroll" + EVENT_KEY$8;
-  var EVENT_LOAD_DATA_API$2 = "load" + EVENT_KEY$8 + DATA_API_KEY$6;
-  var CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item';
-  var CLASS_NAME_ACTIVE$2 = 'active';
-  var SELECTOR_DATA_SPY = '[data-spy="scroll"]';
-  var SELECTOR_NAV_LIST_GROUP = '.nav, .list-group';
-  var SELECTOR_NAV_LINKS = '.nav-link';
-  var SELECTOR_NAV_ITEMS = '.nav-item';
-  var SELECTOR_LIST_ITEMS = '.list-group-item';
-  var SELECTOR_DROPDOWN = '.dropdown';
-  var SELECTOR_DROPDOWN_ITEMS = '.dropdown-item';
-  var SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
-  var METHOD_OFFSET = 'offset';
-  var METHOD_POSITION = 'position';
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var ScrollSpy = /*#__PURE__*/function () {
@@ -8294,7 +8217,7 @@ __webpack_require__.r(__webpack_exports__);
       this._targets = [];
       this._activeTarget = null;
       this._scrollHeight = 0;
-      $__default['default'](this._scrollElement).on(EVENT_SCROLL, function (event) {
+      $__default["default"](this._scrollElement).on(EVENT_SCROLL, function (event) {
         return _this._process(event);
       });
       this.refresh();
@@ -8329,7 +8252,7 @@ __webpack_require__.r(__webpack_exports__);
 
           if (targetBCR.width || targetBCR.height) {
             // TODO (fat): remove sketch reliance on jQuery position/offset
-            return [$__default['default'](target)[offsetMethod]().top + offsetBase, targetSelector];
+            return [$__default["default"](target)[offsetMethod]().top + offsetBase, targetSelector];
           }
         }
 
@@ -8346,8 +8269,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY$8);
-      $__default['default'](this._scrollElement).off(EVENT_KEY$8);
+      $__default["default"].removeData(this._element, DATA_KEY$2);
+      $__default["default"](this._scrollElement).off(EVENT_KEY$2);
       this._element = null;
       this._scrollElement = null;
       this._config = null;
@@ -8360,20 +8283,20 @@ __webpack_require__.r(__webpack_exports__);
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$6, typeof config === 'object' && config ? config : {});
+      config = _extends({}, Default$1, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
-        var id = $__default['default'](config.target).attr('id');
+        var id = $__default["default"](config.target).attr('id');
 
         if (!id) {
-          id = Util.getUID(NAME$8);
-          $__default['default'](config.target).attr('id', id);
+          id = Util.getUID(NAME$2);
+          $__default["default"](config.target).attr('id', id);
         }
 
         config.target = "#" + id;
       }
 
-      Util.typeCheckConfig(NAME$8, config, DefaultType$6);
+      Util.typeCheckConfig(NAME$2, config, DefaultType$1);
       return config;
     };
 
@@ -8436,44 +8359,44 @@ __webpack_require__.r(__webpack_exports__);
         return selector + "[data-target=\"" + target + "\"]," + selector + "[href=\"" + target + "\"]";
       });
 
-      var $link = $__default['default']([].slice.call(document.querySelectorAll(queries.join(','))));
+      var $link = $__default["default"]([].slice.call(document.querySelectorAll(queries.join(','))));
 
       if ($link.hasClass(CLASS_NAME_DROPDOWN_ITEM)) {
-        $link.closest(SELECTOR_DROPDOWN).find(SELECTOR_DROPDOWN_TOGGLE).addClass(CLASS_NAME_ACTIVE$2);
-        $link.addClass(CLASS_NAME_ACTIVE$2);
+        $link.closest(SELECTOR_DROPDOWN$1).find(SELECTOR_DROPDOWN_TOGGLE$1).addClass(CLASS_NAME_ACTIVE$1);
+        $link.addClass(CLASS_NAME_ACTIVE$1);
       } else {
         // Set triggered link as active
-        $link.addClass(CLASS_NAME_ACTIVE$2); // Set triggered links parents as active
+        $link.addClass(CLASS_NAME_ACTIVE$1); // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$2); // Handle special case when .nav-link is inside .nav-item
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is inside .nav-item
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_ACTIVE$2);
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_ACTIVE$1);
       }
 
-      $__default['default'](this._scrollElement).trigger(EVENT_ACTIVATE, {
+      $__default["default"](this._scrollElement).trigger(EVENT_ACTIVATE, {
         relatedTarget: target
       });
     };
 
     _proto._clear = function _clear() {
       [].slice.call(document.querySelectorAll(this._selector)).filter(function (node) {
-        return node.classList.contains(CLASS_NAME_ACTIVE$2);
+        return node.classList.contains(CLASS_NAME_ACTIVE$1);
       }).forEach(function (node) {
-        return node.classList.remove(CLASS_NAME_ACTIVE$2);
+        return node.classList.remove(CLASS_NAME_ACTIVE$1);
       });
     } // Static
     ;
 
     ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $__default['default'](this).data(DATA_KEY$8);
+        var data = $__default["default"](this).data(DATA_KEY$2);
 
         var _config = typeof config === 'object' && config;
 
         if (!data) {
           data = new ScrollSpy(this, _config);
-          $__default['default'](this).data(DATA_KEY$8, data);
+          $__default["default"](this).data(DATA_KEY$2, data);
         }
 
         if (typeof config === 'string') {
@@ -8489,81 +8412,73 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(ScrollSpy, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$8;
+        return VERSION$2;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$6;
+        return Default$1;
       }
     }]);
 
     return ScrollSpy;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](window).on(EVENT_LOAD_DATA_API$2, function () {
+  $__default["default"](window).on(EVENT_LOAD_DATA_API, function () {
     var scrollSpys = [].slice.call(document.querySelectorAll(SELECTOR_DATA_SPY));
     var scrollSpysLength = scrollSpys.length;
 
     for (var i = scrollSpysLength; i--;) {
-      var $spy = $__default['default'](scrollSpys[i]);
+      var $spy = $__default["default"](scrollSpys[i]);
 
       ScrollSpy._jQueryInterface.call($spy, $spy.data());
     }
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$8] = ScrollSpy._jQueryInterface;
-  $__default['default'].fn[NAME$8].Constructor = ScrollSpy;
+  $__default["default"].fn[NAME$2] = ScrollSpy._jQueryInterface;
+  $__default["default"].fn[NAME$2].Constructor = ScrollSpy;
 
-  $__default['default'].fn[NAME$8].noConflict = function () {
-    $__default['default'].fn[NAME$8] = JQUERY_NO_CONFLICT$8;
+  $__default["default"].fn[NAME$2].noConflict = function () {
+    $__default["default"].fn[NAME$2] = JQUERY_NO_CONFLICT$2;
     return ScrollSpy._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$9 = 'tab';
-  var VERSION$9 = '4.6.0';
-  var DATA_KEY$9 = 'bs.tab';
-  var EVENT_KEY$9 = "." + DATA_KEY$9;
-  var DATA_API_KEY$7 = '.data-api';
-  var JQUERY_NO_CONFLICT$9 = $__default['default'].fn[NAME$9];
-  var EVENT_HIDE$3 = "hide" + EVENT_KEY$9;
-  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$9;
-  var EVENT_SHOW$3 = "show" + EVENT_KEY$9;
-  var EVENT_SHOWN$3 = "shown" + EVENT_KEY$9;
-  var EVENT_CLICK_DATA_API$6 = "click" + EVENT_KEY$9 + DATA_API_KEY$7;
+  var NAME$1 = 'tab';
+  var VERSION$1 = '4.6.1';
+  var DATA_KEY$1 = 'bs.tab';
+  var EVENT_KEY$1 = "." + DATA_KEY$1;
+  var DATA_API_KEY = '.data-api';
+  var JQUERY_NO_CONFLICT$1 = $__default["default"].fn[NAME$1];
   var CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu';
-  var CLASS_NAME_ACTIVE$3 = 'active';
-  var CLASS_NAME_DISABLED$1 = 'disabled';
-  var CLASS_NAME_FADE$4 = 'fade';
-  var CLASS_NAME_SHOW$6 = 'show';
-  var SELECTOR_DROPDOWN$1 = '.dropdown';
-  var SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
-  var SELECTOR_ACTIVE$2 = '.active';
+  var CLASS_NAME_ACTIVE = 'active';
+  var CLASS_NAME_DISABLED = 'disabled';
+  var CLASS_NAME_FADE$1 = 'fade';
+  var CLASS_NAME_SHOW$1 = 'show';
+  var EVENT_HIDE$1 = "hide" + EVENT_KEY$1;
+  var EVENT_HIDDEN$1 = "hidden" + EVENT_KEY$1;
+  var EVENT_SHOW$1 = "show" + EVENT_KEY$1;
+  var EVENT_SHOWN$1 = "shown" + EVENT_KEY$1;
+  var EVENT_CLICK_DATA_API = "click" + EVENT_KEY$1 + DATA_API_KEY;
+  var SELECTOR_DROPDOWN = '.dropdown';
+  var SELECTOR_NAV_LIST_GROUP = '.nav, .list-group';
+  var SELECTOR_ACTIVE = '.active';
   var SELECTOR_ACTIVE_UL = '> li > .active';
-  var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]';
-  var SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
+  var SELECTOR_DATA_TOGGLE = '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]';
+  var SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
   var SELECTOR_DROPDOWN_ACTIVE_CHILD = '> .dropdown-menu .active';
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Tab = /*#__PURE__*/function () {
@@ -8578,33 +8493,33 @@ __webpack_require__.r(__webpack_exports__);
     _proto.show = function show() {
       var _this = this;
 
-      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $__default['default'](this._element).hasClass(CLASS_NAME_ACTIVE$3) || $__default['default'](this._element).hasClass(CLASS_NAME_DISABLED$1)) {
+      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $__default["default"](this._element).hasClass(CLASS_NAME_ACTIVE) || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED)) {
         return;
       }
 
       var target;
       var previous;
-      var listElement = $__default['default'](this._element).closest(SELECTOR_NAV_LIST_GROUP$1)[0];
+      var listElement = $__default["default"](this._element).closest(SELECTOR_NAV_LIST_GROUP)[0];
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {
-        var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE$2;
-        previous = $__default['default'].makeArray($__default['default'](listElement).find(itemSelector));
+        var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE;
+        previous = $__default["default"].makeArray($__default["default"](listElement).find(itemSelector));
         previous = previous[previous.length - 1];
       }
 
-      var hideEvent = $__default['default'].Event(EVENT_HIDE$3, {
+      var hideEvent = $__default["default"].Event(EVENT_HIDE$1, {
         relatedTarget: this._element
       });
-      var showEvent = $__default['default'].Event(EVENT_SHOW$3, {
+      var showEvent = $__default["default"].Event(EVENT_SHOW$1, {
         relatedTarget: previous
       });
 
       if (previous) {
-        $__default['default'](previous).trigger(hideEvent);
+        $__default["default"](previous).trigger(hideEvent);
       }
 
-      $__default['default'](this._element).trigger(showEvent);
+      $__default["default"](this._element).trigger(showEvent);
 
       if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) {
         return;
@@ -8617,14 +8532,14 @@ __webpack_require__.r(__webpack_exports__);
       this._activate(this._element, listElement);
 
       var complete = function complete() {
-        var hiddenEvent = $__default['default'].Event(EVENT_HIDDEN$3, {
+        var hiddenEvent = $__default["default"].Event(EVENT_HIDDEN$1, {
           relatedTarget: _this._element
         });
-        var shownEvent = $__default['default'].Event(EVENT_SHOWN$3, {
+        var shownEvent = $__default["default"].Event(EVENT_SHOWN$1, {
           relatedTarget: previous
         });
-        $__default['default'](previous).trigger(hiddenEvent);
-        $__default['default'](_this._element).trigger(shownEvent);
+        $__default["default"](previous).trigger(hiddenEvent);
+        $__default["default"](_this._element).trigger(shownEvent);
       };
 
       if (target) {
@@ -8635,7 +8550,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     _proto.dispose = function dispose() {
-      $__default['default'].removeData(this._element, DATA_KEY$9);
+      $__default["default"].removeData(this._element, DATA_KEY$1);
       this._element = null;
     } // Private
     ;
@@ -8643,9 +8558,9 @@ __webpack_require__.r(__webpack_exports__);
     _proto._activate = function _activate(element, container, callback) {
       var _this2 = this;
 
-      var activeElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ? $__default['default'](container).find(SELECTOR_ACTIVE_UL) : $__default['default'](container).children(SELECTOR_ACTIVE$2);
+      var activeElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ? $__default["default"](container).find(SELECTOR_ACTIVE_UL) : $__default["default"](container).children(SELECTOR_ACTIVE);
       var active = activeElements[0];
-      var isTransitioning = callback && active && $__default['default'](active).hasClass(CLASS_NAME_FADE$4);
+      var isTransitioning = callback && active && $__default["default"](active).hasClass(CLASS_NAME_FADE$1);
 
       var complete = function complete() {
         return _this2._transitionComplete(element, active, callback);
@@ -8653,7 +8568,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (active && isTransitioning) {
         var transitionDuration = Util.getTransitionDurationFromElement(active);
-        $__default['default'](active).removeClass(CLASS_NAME_SHOW$6).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $__default["default"](active).removeClass(CLASS_NAME_SHOW$1).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
@@ -8661,11 +8576,11 @@ __webpack_require__.r(__webpack_exports__);
 
     _proto._transitionComplete = function _transitionComplete(element, active, callback) {
       if (active) {
-        $__default['default'](active).removeClass(CLASS_NAME_ACTIVE$3);
-        var dropdownChild = $__default['default'](active.parentNode).find(SELECTOR_DROPDOWN_ACTIVE_CHILD)[0];
+        $__default["default"](active).removeClass(CLASS_NAME_ACTIVE);
+        var dropdownChild = $__default["default"](active.parentNode).find(SELECTOR_DROPDOWN_ACTIVE_CHILD)[0];
 
         if (dropdownChild) {
-          $__default['default'](dropdownChild).removeClass(CLASS_NAME_ACTIVE$3);
+          $__default["default"](dropdownChild).removeClass(CLASS_NAME_ACTIVE);
         }
 
         if (active.getAttribute('role') === 'tab') {
@@ -8673,7 +8588,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      $__default['default'](element).addClass(CLASS_NAME_ACTIVE$3);
+      $__default["default"](element).addClass(CLASS_NAME_ACTIVE);
 
       if (element.getAttribute('role') === 'tab') {
         element.setAttribute('aria-selected', true);
@@ -8681,16 +8596,22 @@ __webpack_require__.r(__webpack_exports__);
 
       Util.reflow(element);
 
-      if (element.classList.contains(CLASS_NAME_FADE$4)) {
-        element.classList.add(CLASS_NAME_SHOW$6);
+      if (element.classList.contains(CLASS_NAME_FADE$1)) {
+        element.classList.add(CLASS_NAME_SHOW$1);
       }
 
-      if (element.parentNode && $__default['default'](element.parentNode).hasClass(CLASS_NAME_DROPDOWN_MENU)) {
-        var dropdownElement = $__default['default'](element).closest(SELECTOR_DROPDOWN$1)[0];
+      var parent = element.parentNode;
+
+      if (parent && parent.nodeName === 'LI') {
+        parent = parent.parentNode;
+      }
+
+      if (parent && $__default["default"](parent).hasClass(CLASS_NAME_DROPDOWN_MENU)) {
+        var dropdownElement = $__default["default"](element).closest(SELECTOR_DROPDOWN)[0];
 
         if (dropdownElement) {
-          var dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE$1));
-          $__default['default'](dropdownToggleList).addClass(CLASS_NAME_ACTIVE$3);
+          var dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE));
+          $__default["default"](dropdownToggleList).addClass(CLASS_NAME_ACTIVE);
         }
 
         element.setAttribute('aria-expanded', true);
@@ -8704,12 +8625,12 @@ __webpack_require__.r(__webpack_exports__);
 
     Tab._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $this = $__default['default'](this);
-        var data = $this.data(DATA_KEY$9);
+        var $this = $__default["default"](this);
+        var data = $this.data(DATA_KEY$1);
 
         if (!data) {
           data = new Tab(this);
-          $this.data(DATA_KEY$9, data);
+          $this.data(DATA_KEY$1, data);
         }
 
         if (typeof config === 'string') {
@@ -8725,73 +8646,65 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Tab, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$9;
+        return VERSION$1;
       }
     }]);
 
     return Tab;
   }();
   /**
-   * ------------------------------------------------------------------------
-   * Data Api implementation
-   * ------------------------------------------------------------------------
+   * Data API implementation
    */
 
 
-  $__default['default'](document).on(EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, function (event) {
+  $__default["default"](document).on(EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
     event.preventDefault();
 
-    Tab._jQueryInterface.call($__default['default'](this), 'show');
+    Tab._jQueryInterface.call($__default["default"](this), 'show');
   });
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
-  $__default['default'].fn[NAME$9] = Tab._jQueryInterface;
-  $__default['default'].fn[NAME$9].Constructor = Tab;
+  $__default["default"].fn[NAME$1] = Tab._jQueryInterface;
+  $__default["default"].fn[NAME$1].Constructor = Tab;
 
-  $__default['default'].fn[NAME$9].noConflict = function () {
-    $__default['default'].fn[NAME$9] = JQUERY_NO_CONFLICT$9;
+  $__default["default"].fn[NAME$1].noConflict = function () {
+    $__default["default"].fn[NAME$1] = JQUERY_NO_CONFLICT$1;
     return Tab._jQueryInterface;
   };
 
   /**
-   * ------------------------------------------------------------------------
    * Constants
-   * ------------------------------------------------------------------------
    */
 
-  var NAME$a = 'toast';
-  var VERSION$a = '4.6.0';
-  var DATA_KEY$a = 'bs.toast';
-  var EVENT_KEY$a = "." + DATA_KEY$a;
-  var JQUERY_NO_CONFLICT$a = $__default['default'].fn[NAME$a];
-  var EVENT_CLICK_DISMISS$1 = "click.dismiss" + EVENT_KEY$a;
-  var EVENT_HIDE$4 = "hide" + EVENT_KEY$a;
-  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$a;
-  var EVENT_SHOW$4 = "show" + EVENT_KEY$a;
-  var EVENT_SHOWN$4 = "shown" + EVENT_KEY$a;
-  var CLASS_NAME_FADE$5 = 'fade';
+  var NAME = 'toast';
+  var VERSION = '4.6.1';
+  var DATA_KEY = 'bs.toast';
+  var EVENT_KEY = "." + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $__default["default"].fn[NAME];
+  var CLASS_NAME_FADE = 'fade';
   var CLASS_NAME_HIDE = 'hide';
-  var CLASS_NAME_SHOW$7 = 'show';
+  var CLASS_NAME_SHOW = 'show';
   var CLASS_NAME_SHOWING = 'showing';
-  var DefaultType$7 = {
-    animation: 'boolean',
-    autohide: 'boolean',
-    delay: 'number'
-  };
-  var Default$7 = {
+  var EVENT_CLICK_DISMISS = "click.dismiss" + EVENT_KEY;
+  var EVENT_HIDE = "hide" + EVENT_KEY;
+  var EVENT_HIDDEN = "hidden" + EVENT_KEY;
+  var EVENT_SHOW = "show" + EVENT_KEY;
+  var EVENT_SHOWN = "shown" + EVENT_KEY;
+  var SELECTOR_DATA_DISMISS = '[data-dismiss="toast"]';
+  var Default = {
     animation: true,
     autohide: true,
     delay: 500
   };
-  var SELECTOR_DATA_DISMISS$1 = '[data-dismiss="toast"]';
+  var DefaultType = {
+    animation: 'boolean',
+    autohide: 'boolean',
+    delay: 'number'
+  };
   /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
+   * Class definition
    */
 
   var Toast = /*#__PURE__*/function () {
@@ -8810,8 +8723,8 @@ __webpack_require__.r(__webpack_exports__);
     _proto.show = function show() {
       var _this = this;
 
-      var showEvent = $__default['default'].Event(EVENT_SHOW$4);
-      $__default['default'](this._element).trigger(showEvent);
+      var showEvent = $__default["default"].Event(EVENT_SHOW);
+      $__default["default"](this._element).trigger(showEvent);
 
       if (showEvent.isDefaultPrevented()) {
         return;
@@ -8820,15 +8733,15 @@ __webpack_require__.r(__webpack_exports__);
       this._clearTimeout();
 
       if (this._config.animation) {
-        this._element.classList.add(CLASS_NAME_FADE$5);
+        this._element.classList.add(CLASS_NAME_FADE);
       }
 
       var complete = function complete() {
         _this._element.classList.remove(CLASS_NAME_SHOWING);
 
-        _this._element.classList.add(CLASS_NAME_SHOW$7);
+        _this._element.classList.add(CLASS_NAME_SHOW);
 
-        $__default['default'](_this._element).trigger(EVENT_SHOWN$4);
+        $__default["default"](_this._element).trigger(EVENT_SHOWN);
 
         if (_this._config.autohide) {
           _this._timeout = setTimeout(function () {
@@ -8845,19 +8758,19 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $__default['default'](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $__default["default"](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
     };
 
     _proto.hide = function hide() {
-      if (!this._element.classList.contains(CLASS_NAME_SHOW$7)) {
+      if (!this._element.classList.contains(CLASS_NAME_SHOW)) {
         return;
       }
 
-      var hideEvent = $__default['default'].Event(EVENT_HIDE$4);
-      $__default['default'](this._element).trigger(hideEvent);
+      var hideEvent = $__default["default"].Event(EVENT_HIDE);
+      $__default["default"](this._element).trigger(hideEvent);
 
       if (hideEvent.isDefaultPrevented()) {
         return;
@@ -8869,27 +8782,27 @@ __webpack_require__.r(__webpack_exports__);
     _proto.dispose = function dispose() {
       this._clearTimeout();
 
-      if (this._element.classList.contains(CLASS_NAME_SHOW$7)) {
-        this._element.classList.remove(CLASS_NAME_SHOW$7);
+      if (this._element.classList.contains(CLASS_NAME_SHOW)) {
+        this._element.classList.remove(CLASS_NAME_SHOW);
       }
 
-      $__default['default'](this._element).off(EVENT_CLICK_DISMISS$1);
-      $__default['default'].removeData(this._element, DATA_KEY$a);
+      $__default["default"](this._element).off(EVENT_CLICK_DISMISS);
+      $__default["default"].removeData(this._element, DATA_KEY);
       this._element = null;
       this._config = null;
     } // Private
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _extends({}, Default$7, $__default['default'](this._element).data(), typeof config === 'object' && config ? config : {});
-      Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
+      config = _extends({}, Default, $__default["default"](this._element).data(), typeof config === 'object' && config ? config : {});
+      Util.typeCheckConfig(NAME, config, this.constructor.DefaultType);
       return config;
     };
 
     _proto._setListeners = function _setListeners() {
       var _this2 = this;
 
-      $__default['default'](this._element).on(EVENT_CLICK_DISMISS$1, SELECTOR_DATA_DISMISS$1, function () {
+      $__default["default"](this._element).on(EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, function () {
         return _this2.hide();
       });
     };
@@ -8900,14 +8813,14 @@ __webpack_require__.r(__webpack_exports__);
       var complete = function complete() {
         _this3._element.classList.add(CLASS_NAME_HIDE);
 
-        $__default['default'](_this3._element).trigger(EVENT_HIDDEN$4);
+        $__default["default"](_this3._element).trigger(EVENT_HIDDEN);
       };
 
-      this._element.classList.remove(CLASS_NAME_SHOW$7);
+      this._element.classList.remove(CLASS_NAME_SHOW);
 
       if (this._config.animation) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $__default['default'](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+        $__default["default"](this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
@@ -8921,14 +8834,14 @@ __webpack_require__.r(__webpack_exports__);
 
     Toast._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $element = $__default['default'](this);
-        var data = $element.data(DATA_KEY$a);
+        var $element = $__default["default"](this);
+        var data = $element.data(DATA_KEY);
 
         var _config = typeof config === 'object' && config;
 
         if (!data) {
           data = new Toast(this, _config);
-          $element.data(DATA_KEY$a, data);
+          $element.data(DATA_KEY, data);
         }
 
         if (typeof config === 'string') {
@@ -8944,34 +8857,32 @@ __webpack_require__.r(__webpack_exports__);
     _createClass(Toast, null, [{
       key: "VERSION",
       get: function get() {
-        return VERSION$a;
+        return VERSION;
       }
     }, {
       key: "DefaultType",
       get: function get() {
-        return DefaultType$7;
+        return DefaultType;
       }
     }, {
       key: "Default",
       get: function get() {
-        return Default$7;
+        return Default;
       }
     }]);
 
     return Toast;
   }();
   /**
-   * ------------------------------------------------------------------------
    * jQuery
-   * ------------------------------------------------------------------------
    */
 
 
-  $__default['default'].fn[NAME$a] = Toast._jQueryInterface;
-  $__default['default'].fn[NAME$a].Constructor = Toast;
+  $__default["default"].fn[NAME] = Toast._jQueryInterface;
+  $__default["default"].fn[NAME].Constructor = Toast;
 
-  $__default['default'].fn[NAME$a].noConflict = function () {
-    $__default['default'].fn[NAME$a] = JQUERY_NO_CONFLICT$a;
+  $__default["default"].fn[NAME].noConflict = function () {
+    $__default["default"].fn[NAME] = JQUERY_NO_CONFLICT;
     return Toast._jQueryInterface;
   };
 
@@ -8990,7 +8901,7 @@ __webpack_require__.r(__webpack_exports__);
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=bootstrap.js.map
 
 
@@ -9008,7 +8919,7 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 
 // module
-exports.push([module.i, "/*!\n * Viewer.js v1.10.1\n * https://fengyuanchen.github.io/viewerjs\n *\n * Copyright 2015-present Chen Fengyuan\n * Released under the MIT license\n *\n * Date: 2021-08-01T13:35:44.576Z\n */\n\n.viewer-zoom-in::before,\n.viewer-zoom-out::before,\n.viewer-one-to-one::before,\n.viewer-reset::before,\n.viewer-prev::before,\n.viewer-play::before,\n.viewer-next::before,\n.viewer-rotate-left::before,\n.viewer-rotate-right::before,\n.viewer-flip-horizontal::before,\n.viewer-flip-vertical::before,\n.viewer-fullscreen::before,\n.viewer-fullscreen-exit::before,\n.viewer-close::before {\n  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAAUCAYAAABWOyJDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAQPSURBVHic7Zs/iFxVFMa/0U2UaJGksUgnIVhYxVhpjDbZCBmLdAYECxsRFBTUamcXUiSNncgKQbSxsxH8gzAP3FU2jY0kKKJNiiiIghFlccnP4p3nPCdv3p9778vsLOcHB2bfveeb7955c3jvvNkBIMdxnD64a94GHMfZu3iBcRynN7zAOI7TG15gHCeeNUkr8zaxG2lbYDYsdgMbktBsP03jdQwljSXdtBhLOmtjowC9Mg9L+knSlcD8TNKpSA9lBpK2JF2VdDSR5n5J64m0qli399hNFMUlpshQii5jbXTbHGviB0nLNeNDSd9VO4A2UdB2fp+x0eCnaXxWXGA2X0au/3HgN9P4LFCjIANOJdrLr0zzZ+BEpNYDwKbpnQMeAw4m8HjQtM6Z9qa917zPQwFr3M5KgA6J5rTJCdFZJj9/lyvGhsDvwFNVuV2MhhjrK6b9bFiE+j1r87eBl4HDwCF7/U/k+ofAX5b/EXBv5JoLMuILzf3Ap6Z3EzgdqHMCuF7hcQf4HDgeoHnccncqdK/TvSDWffFXI/exICY/xZyqc6XLWF1UFZna4gJ7q8BsRvgd2/xXpo6P+D9dfT7PpECtA3cnWPM0GXGFZh/wgWltA+cDNC7X+AP4GzjZQe+k5dRxuYPeiuXU7e1qwLpDz7dFjXKRaSwuMLvAlG8zZlG+YmiK1HoFqT7wP2z+4Q45TfEGcMt01xLoNZEBTwRqD4BLpnMLeC1A41UmVxsXgXeBayV/Wx20rpTyrpnWRft7p6O/FdqzGrDukPNtkaMoMo3FBdBSQMOnYBCReyf05s126fU9ytfX98+mY54Kxnp7S9K3kj6U9KYdG0h6UdLbkh7poFXMfUnSOyVvL0h6VtIXHbS6nOP+s/Zm9mvyXW1uuC9ohZ72E9uDmXWLJOB1GxsH+DxPftsB8B6wlGDN02TAkxG6+4D3TWsbeC5CS8CDFce+AW500LhhOW2020TRjK3b21HEmgti9m0RonxbdMZeVzV+/4tF3cBpP7E9mKHNL5q8h5g0eYsCMQz0epq8gQrwMXAgcs0FGXGFRcB9wCemF9PkbYqM/Bas7fxLwNeJPdTdpo4itQti8lPMqTpXuozVRVXPpbHI3KkNTB1NfkL81j2mvhDp91HgV9MKuRIqrykj3WPq4rHyL+axj8/qGPmTqi6F9YDlHOvJU6oYcTsh/TYSzWmTE6JT19CtLTJt32D6CmHe0eQn1O8z5AXgT4sx4Vcu0/EQecMydB8z0hUWkTd2t4CrwNEePqMBcAR4mrBbwyXLPWJa8zrXmmLEhNBmfpkuY2102xxrih+pb+ieAb6vGhuA97UcJ5KR8gZ77K+99xxeYBzH6Q3/Z0fHcXrDC4zjOL3hBcZxnN74F+zlvXFWXF9PAAAAAElFTkSuQmCC');\n  background-repeat: no-repeat;\n  background-size: 280px;\n  color: transparent;\n  display: block;\n  font-size: 0;\n  height: 20px;\n  line-height: 0;\n  width: 20px;\n}\n\n.viewer-zoom-in::before {\n  background-position: 0 0;\n  content: 'Zoom In';\n}\n\n.viewer-zoom-out::before {\n  background-position: -20px 0;\n  content: 'Zoom Out';\n}\n\n.viewer-one-to-one::before {\n  background-position: -40px 0;\n  content: 'One to One';\n}\n\n.viewer-reset::before {\n  background-position: -60px 0;\n  content: 'Reset';\n}\n\n.viewer-prev::before {\n  background-position: -80px 0;\n  content: 'Previous';\n}\n\n.viewer-play::before {\n  background-position: -100px 0;\n  content: 'Play';\n}\n\n.viewer-next::before {\n  background-position: -120px 0;\n  content: 'Next';\n}\n\n.viewer-rotate-left::before {\n  background-position: -140px 0;\n  content: 'Rotate Left';\n}\n\n.viewer-rotate-right::before {\n  background-position: -160px 0;\n  content: 'Rotate Right';\n}\n\n.viewer-flip-horizontal::before {\n  background-position: -180px 0;\n  content: 'Flip Horizontal';\n}\n\n.viewer-flip-vertical::before {\n  background-position: -200px 0;\n  content: 'Flip Vertical';\n}\n\n.viewer-fullscreen::before {\n  background-position: -220px 0;\n  content: 'Enter Full Screen';\n}\n\n.viewer-fullscreen-exit::before {\n  background-position: -240px 0;\n  content: 'Exit Full Screen';\n}\n\n.viewer-close::before {\n  background-position: -260px 0;\n  content: 'Close';\n}\n\n.viewer-container {\n  bottom: 0;\n  direction: ltr;\n  font-size: 0;\n  left: 0;\n  line-height: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  -webkit-tap-highlight-color: transparent;\n  top: 0;\n  -ms-touch-action: none;\n  touch-action: none;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n\n.viewer-container::-moz-selection,\n.viewer-container *::-moz-selection {\n  background-color: transparent;\n}\n\n.viewer-container::-moz-selection, .viewer-container *::-moz-selection {\n  background-color: transparent;\n}\n\n.viewer-container::selection,\n.viewer-container *::selection {\n  background-color: transparent;\n}\n\n.viewer-container:focus {\n  outline: 0;\n}\n\n.viewer-container img {\n  display: block;\n  height: auto;\n  max-height: none !important;\n  max-width: none !important;\n  min-height: 0 !important;\n  min-width: 0 !important;\n  width: 100%;\n}\n\n.viewer-canvas {\n  bottom: 0;\n  left: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.viewer-canvas > img {\n  height: auto;\n  margin: 15px auto;\n  max-width: 90% !important;\n  width: auto;\n}\n\n.viewer-footer {\n  bottom: 0;\n  left: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  text-align: center;\n}\n\n.viewer-navbar {\n  background-color: rgba(0, 0, 0, 0.5);\n  overflow: hidden;\n}\n\n.viewer-list {\n  -webkit-box-sizing: content-box;\n  box-sizing: content-box;\n  height: 50px;\n  margin: 0;\n  overflow: hidden;\n  padding: 1px 0;\n}\n\n.viewer-list > li {\n  color: transparent;\n  cursor: pointer;\n  float: left;\n  font-size: 0;\n  height: 50px;\n  line-height: 0;\n  opacity: 0.5;\n  overflow: hidden;\n  -webkit-transition: opacity 0.15s;\n  transition: opacity 0.15s;\n  width: 30px;\n}\n\n.viewer-list > li:focus,\n.viewer-list > li:hover {\n  opacity: 0.75;\n}\n\n.viewer-list > li:focus {\n  outline: 0;\n}\n\n.viewer-list > li + li {\n  margin-left: 1px;\n}\n\n.viewer-list > .viewer-loading {\n  position: relative;\n}\n\n.viewer-list > .viewer-loading::after {\n  border-width: 2px;\n  height: 20px;\n  margin-left: -10px;\n  margin-top: -10px;\n  width: 20px;\n}\n\n.viewer-list > .viewer-active,\n.viewer-list > .viewer-active:focus,\n.viewer-list > .viewer-active:hover {\n  opacity: 1;\n}\n\n.viewer-player {\n  background-color: #000;\n  bottom: 0;\n  cursor: none;\n  display: none;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  z-index: 1;\n}\n\n.viewer-player > img {\n  left: 0;\n  position: absolute;\n  top: 0;\n}\n\n.viewer-toolbar > ul {\n  display: inline-block;\n  margin: 0 auto 5px;\n  overflow: hidden;\n  padding: 6px 3px;\n}\n\n.viewer-toolbar > ul > li {\n  background-color: rgba(0, 0, 0, 0.5);\n  border-radius: 50%;\n  cursor: pointer;\n  float: left;\n  height: 24px;\n  overflow: hidden;\n  -webkit-transition: background-color 0.15s;\n  transition: background-color 0.15s;\n  width: 24px;\n}\n\n.viewer-toolbar > ul > li:focus,\n.viewer-toolbar > ul > li:hover {\n  background-color: rgba(0, 0, 0, 0.8);\n}\n\n.viewer-toolbar > ul > li:focus {\n  -webkit-box-shadow: 0 0 3px #fff;\n  box-shadow: 0 0 3px #fff;\n  outline: 0;\n  position: relative;\n  z-index: 1;\n}\n\n.viewer-toolbar > ul > li::before {\n  margin: 2px;\n}\n\n.viewer-toolbar > ul > li + li {\n  margin-left: 1px;\n}\n\n.viewer-toolbar > ul > .viewer-small {\n  height: 18px;\n  margin-bottom: 3px;\n  margin-top: 3px;\n  width: 18px;\n}\n\n.viewer-toolbar > ul > .viewer-small::before {\n  margin: -1px;\n}\n\n.viewer-toolbar > ul > .viewer-large {\n  height: 30px;\n  margin-bottom: -3px;\n  margin-top: -3px;\n  width: 30px;\n}\n\n.viewer-toolbar > ul > .viewer-large::before {\n  margin: 5px;\n}\n\n.viewer-tooltip {\n  background-color: rgba(0, 0, 0, 0.8);\n  border-radius: 10px;\n  color: #fff;\n  display: none;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: absolute;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n}\n\n.viewer-title {\n  color: #ccc;\n  display: inline-block;\n  font-size: 12px;\n  line-height: 1;\n  margin: 0 5% 5px;\n  max-width: 90%;\n  opacity: 0.8;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  -webkit-transition: opacity 0.15s;\n  transition: opacity 0.15s;\n  white-space: nowrap;\n}\n\n.viewer-title:hover {\n  opacity: 1;\n}\n\n.viewer-button {\n  background-color: rgba(0, 0, 0, 0.5);\n  border-radius: 50%;\n  cursor: pointer;\n  height: 80px;\n  overflow: hidden;\n  position: absolute;\n  right: -40px;\n  top: -40px;\n  -webkit-transition: background-color 0.15s;\n  transition: background-color 0.15s;\n  width: 80px;\n}\n\n.viewer-button:focus,\n.viewer-button:hover {\n  background-color: rgba(0, 0, 0, 0.8);\n}\n\n.viewer-button:focus {\n  -webkit-box-shadow: 0 0 3px #fff;\n  box-shadow: 0 0 3px #fff;\n  outline: 0;\n}\n\n.viewer-button::before {\n  bottom: 15px;\n  left: 15px;\n  position: absolute;\n}\n\n.viewer-fixed {\n  position: fixed;\n}\n\n.viewer-open {\n  overflow: hidden;\n}\n\n.viewer-show {\n  display: block;\n}\n\n.viewer-hide {\n  display: none;\n}\n\n.viewer-backdrop {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.viewer-invisible {\n  visibility: hidden;\n}\n\n.viewer-move {\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n\n.viewer-fade {\n  opacity: 0;\n}\n\n.viewer-in {\n  opacity: 1;\n}\n\n.viewer-transition {\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n\n@-webkit-keyframes viewer-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes viewer-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg);\n  }\n\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg);\n  }\n}\n\n.viewer-loading::after {\n  -webkit-animation: viewer-spinner 1s linear infinite;\n  animation: viewer-spinner 1s linear infinite;\n  border: 4px solid rgba(255, 255, 255, 0.1);\n  border-left-color: rgba(255, 255, 255, 0.5);\n  border-radius: 50%;\n  content: '';\n  display: inline-block;\n  height: 40px;\n  left: 50%;\n  margin-left: -20px;\n  margin-top: -20px;\n  position: absolute;\n  top: 50%;\n  width: 40px;\n  z-index: 1;\n}\n\n@media (max-width: 767px) {\n  .viewer-hide-xs-down {\n    display: none;\n  }\n}\n\n@media (max-width: 991px) {\n  .viewer-hide-sm-down {\n    display: none;\n  }\n}\n\n@media (max-width: 1199px) {\n  .viewer-hide-md-down {\n    display: none;\n  }\n}\n", ""]);
+exports.push([module.i, "/*!\n * Viewer.js v1.10.4\n * https://fengyuanchen.github.io/viewerjs\n *\n * Copyright 2015-present Chen Fengyuan\n * Released under the MIT license\n *\n * Date: 2022-02-13T08:39:57.620Z\n */\n\n.viewer-zoom-in::before, .viewer-zoom-out::before, .viewer-one-to-one::before, .viewer-reset::before, .viewer-prev::before, .viewer-play::before, .viewer-next::before, .viewer-rotate-left::before, .viewer-rotate-right::before, .viewer-flip-horizontal::before, .viewer-flip-vertical::before, .viewer-fullscreen::before, .viewer-fullscreen-exit::before, .viewer-close::before {\n    background-image: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAAUCAYAAABWOyJDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAQPSURBVHic7Zs/iFxVFMa/0U2UaJGksUgnIVhYxVhpjDbZCBmLdAYECxsRFBTUamcXUiSNncgKQbSxsxH8gzAP3FU2jY0kKKJNiiiIghFlccnP4p3nPCdv3p9778vsLOcHB2bfveeb7955c3jvvNkBIMdxnD64a94GHMfZu3iBcRynN7zAOI7TG15gHCeeNUkr8zaxG2lbYDYsdgMbktBsP03jdQwljSXdtBhLOmtjowC9Mg9L+knSlcD8TNKpSA9lBpK2JF2VdDSR5n5J64m0qli399hNFMUlpshQii5jbXTbHGviB0nLNeNDSd9VO4A2UdB2fp+x0eCnaXxWXGA2X0au/3HgN9P4LFCjIANOJdrLr0zzZ+BEpNYDwKbpnQMeAw4m8HjQtM6Z9qa917zPQwFr3M5KgA6J5rTJCdFZJj9/lyvGhsDvwFNVuV2MhhjrK6b9bFiE+j1r87eBl4HDwCF7/U/k+ofAX5b/EXBv5JoLMuILzf3Ap6Z3EzgdqHMCuF7hcQf4HDgeoHnccncqdK/TvSDWffFXI/exICY/xZyqc6XLWF1UFZna4gJ7q8BsRvgd2/xXpo6P+D9dfT7PpECtA3cnWPM0GXGFZh/wgWltA+cDNC7X+AP4GzjZQe+k5dRxuYPeiuXU7e1qwLpDz7dFjXKRaSwuMLvAlG8zZlG+YmiK1HoFqT7wP2z+4Q45TfEGcMt01xLoNZEBTwRqD4BLpnMLeC1A41UmVxsXgXeBayV/Wx20rpTyrpnWRft7p6O/FdqzGrDukPNtkaMoMo3FBdBSQMOnYBCReyf05s126fU9ytfX98+mY54Kxnp7S9K3kj6U9KYdG0h6UdLbkh7poFXMfUnSOyVvL0h6VtIXHbS6nOP+s/Zm9mvyXW1uuC9ohZ72E9uDmXWLJOB1GxsH+DxPftsB8B6wlGDN02TAkxG6+4D3TWsbeC5CS8CDFce+AW500LhhOW2020TRjK3b21HEmgti9m0RonxbdMZeVzV+/4tF3cBpP7E9mKHNL5q8h5g0eYsCMQz0epq8gQrwMXAgcs0FGXGFRcB9wCemF9PkbYqM/Bas7fxLwNeJPdTdpo4itQti8lPMqTpXuozVRVXPpbHI3KkNTB1NfkL81j2mvhDp91HgV9MKuRIqrykj3WPq4rHyL+axj8/qGPmTqi6F9YDlHOvJU6oYcTsh/TYSzWmTE6JT19CtLTJt32D6CmHe0eQn1O8z5AXgT4sx4Vcu0/EQecMydB8z0hUWkTd2t4CrwNEePqMBcAR4mrBbwyXLPWJa8zrXmmLEhNBmfpkuY2102xxrih+pb+ieAb6vGhuA97UcJ5KR8gZ77K+99xxeYBzH6Q3/Z0fHcXrDC4zjOL3hBcZxnN74F+zlvXFWXF9PAAAAAElFTkSuQmCC\");\n    background-repeat: no-repeat;\n    background-size: 280px;\n    color: transparent;\n    display: block;\n    font-size: 0;\n    height: 20px;\n    line-height: 0;\n    width: 20px;\n  }\n\n.viewer-zoom-in::before {\n  background-position: 0 0;\n  content: \"Zoom In\";\n}\n\n.viewer-zoom-out::before {\n  background-position: -20px 0;\n  content: \"Zoom Out\";\n}\n\n.viewer-one-to-one::before {\n  background-position: -40px 0;\n  content: \"One to One\";\n}\n\n.viewer-reset::before {\n  background-position: -60px 0;\n  content: \"Reset\";\n}\n\n.viewer-prev::before {\n  background-position: -80px 0;\n  content: \"Previous\";\n}\n\n.viewer-play::before {\n  background-position: -100px 0;\n  content: \"Play\";\n}\n\n.viewer-next::before {\n  background-position: -120px 0;\n  content: \"Next\";\n}\n\n.viewer-rotate-left::before {\n  background-position: -140px 0;\n  content: \"Rotate Left\";\n}\n\n.viewer-rotate-right::before {\n  background-position: -160px 0;\n  content: \"Rotate Right\";\n}\n\n.viewer-flip-horizontal::before {\n  background-position: -180px 0;\n  content: \"Flip Horizontal\";\n}\n\n.viewer-flip-vertical::before {\n  background-position: -200px 0;\n  content: \"Flip Vertical\";\n}\n\n.viewer-fullscreen::before {\n  background-position: -220px 0;\n  content: \"Enter Full Screen\";\n}\n\n.viewer-fullscreen-exit::before {\n  background-position: -240px 0;\n  content: \"Exit Full Screen\";\n}\n\n.viewer-close::before {\n  background-position: -260px 0;\n  content: \"Close\";\n}\n\n.viewer-container {\n  bottom: 0;\n  direction: ltr;\n  font-size: 0;\n  left: 0;\n  line-height: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  -webkit-tap-highlight-color: transparent;\n  top: 0;\n  touch-action: none;\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none\n}\n\n.viewer-container::-moz-selection, .viewer-container *::-moz-selection {\n    background-color: transparent;\n  }\n\n.viewer-container::selection,\n  .viewer-container *::selection {\n    background-color: transparent;\n  }\n\n.viewer-container:focus {\n    outline: 0;\n  }\n\n.viewer-container img {\n    display: block;\n    height: auto;\n    max-height: none !important;\n    max-width: none !important;\n    min-height: 0 !important;\n    min-width: 0 !important;\n    width: 100%;\n  }\n\n.viewer-canvas {\n  bottom: 0;\n  left: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  top: 0\n}\n\n.viewer-canvas > img {\n    height: auto;\n    margin: 15px auto;\n    max-width: 90% !important;\n    width: auto;\n  }\n\n.viewer-footer {\n  bottom: 0;\n  left: 0;\n  overflow: hidden;\n  position: absolute;\n  right: 0;\n  text-align: center;\n}\n\n.viewer-navbar {\n  background-color: rgba(0, 0, 0, 50%);\n  overflow: hidden;\n}\n\n.viewer-list {\n  box-sizing: content-box;\n  height: 50px;\n  margin: 0;\n  overflow: hidden;\n  padding: 1px 0\n}\n\n.viewer-list > li {\n    color: transparent;\n    cursor: pointer;\n    float: left;\n    font-size: 0;\n    height: 50px;\n    line-height: 0;\n    opacity: 0.5;\n    overflow: hidden;\n    transition: opacity 0.15s;\n    width: 30px\n  }\n\n.viewer-list > li:focus,\n    .viewer-list > li:hover {\n      opacity: 0.75;\n    }\n\n.viewer-list > li:focus {\n      outline: 0;\n    }\n\n.viewer-list > li + li {\n      margin-left: 1px;\n    }\n\n.viewer-list > .viewer-loading {\n    position: relative\n  }\n\n.viewer-list > .viewer-loading::after {\n      border-width: 2px;\n      height: 20px;\n      margin-left: -10px;\n      margin-top: -10px;\n      width: 20px;\n    }\n\n.viewer-list > .viewer-active,\n  .viewer-list > .viewer-active:focus,\n  .viewer-list > .viewer-active:hover {\n    opacity: 1;\n  }\n\n.viewer-player {\n  background-color: #000;\n  bottom: 0;\n  cursor: none;\n  display: none;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  z-index: 1\n}\n\n.viewer-player > img {\n    left: 0;\n    position: absolute;\n    top: 0;\n  }\n\n.viewer-toolbar > ul {\n    display: inline-block;\n    margin: 0 auto 5px;\n    overflow: hidden;\n    padding: 6px 3px\n  }\n\n.viewer-toolbar > ul > li {\n      background-color: rgba(0, 0, 0, 50%);\n      border-radius: 50%;\n      cursor: pointer;\n      float: left;\n      height: 24px;\n      overflow: hidden;\n      transition: background-color 0.15s;\n      width: 24px\n    }\n\n.viewer-toolbar > ul > li:focus,\n      .viewer-toolbar > ul > li:hover {\n        background-color: rgba(0, 0, 0, 80%);\n      }\n\n.viewer-toolbar > ul > li:focus {\n        box-shadow: 0 0 3px #fff;\n        outline: 0;\n        position: relative;\n        z-index: 1;\n      }\n\n.viewer-toolbar > ul > li::before {\n        margin: 2px;\n      }\n\n.viewer-toolbar > ul > li + li {\n        margin-left: 1px;\n      }\n\n.viewer-toolbar > ul > .viewer-small {\n      height: 18px;\n      margin-bottom: 3px;\n      margin-top: 3px;\n      width: 18px\n    }\n\n.viewer-toolbar > ul > .viewer-small::before {\n        margin: -1px;\n      }\n\n.viewer-toolbar > ul > .viewer-large {\n      height: 30px;\n      margin-bottom: -3px;\n      margin-top: -3px;\n      width: 30px\n    }\n\n.viewer-toolbar > ul > .viewer-large::before {\n        margin: 5px;\n      }\n\n.viewer-tooltip {\n  background-color: rgba(0, 0, 0, 80%);\n  border-radius: 10px;\n  color: #fff;\n  display: none;\n  font-size: 12px;\n  height: 20px;\n  left: 50%;\n  line-height: 20px;\n  margin-left: -25px;\n  margin-top: -10px;\n  position: absolute;\n  text-align: center;\n  top: 50%;\n  width: 50px;\n}\n\n.viewer-title {\n  color: #ccc;\n  display: inline-block;\n  font-size: 12px;\n  line-height: 1.2;\n  margin: 0 5% 5px;\n  max-width: 90%;\n  opacity: 0.8;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  transition: opacity 0.15s;\n  white-space: nowrap\n}\n\n.viewer-title:hover {\n    opacity: 1;\n  }\n\n.viewer-button {\n  background-color: rgba(0, 0, 0, 50%);\n  border-radius: 50%;\n  cursor: pointer;\n  height: 80px;\n  overflow: hidden;\n  position: absolute;\n  right: -40px;\n  top: -40px;\n  transition: background-color 0.15s;\n  width: 80px\n}\n\n.viewer-button:focus,\n  .viewer-button:hover {\n    background-color: rgba(0, 0, 0, 80%);\n  }\n\n.viewer-button:focus {\n    box-shadow: 0 0 3px #fff;\n    outline: 0;\n  }\n\n.viewer-button::before {\n    bottom: 15px;\n    left: 15px;\n    position: absolute;\n  }\n\n.viewer-fixed {\n  position: fixed;\n}\n\n.viewer-open {\n  overflow: hidden;\n}\n\n.viewer-show {\n  display: block;\n}\n\n.viewer-hide {\n  display: none;\n}\n\n.viewer-backdrop {\n  background-color: rgba(0, 0, 0, 50%);\n}\n\n.viewer-invisible {\n  visibility: hidden;\n}\n\n.viewer-move {\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: grab;\n}\n\n.viewer-fade {\n  opacity: 0;\n}\n\n.viewer-in {\n  opacity: 1;\n}\n\n.viewer-transition {\n  transition: all 0.3s;\n}\n\n@-webkit-keyframes viewer-spinner {\n  0% {\n    transform: rotate(0deg);\n  }\n\n  100% {\n    transform: rotate(360deg);\n  }\n}\n\n@keyframes viewer-spinner {\n  0% {\n    transform: rotate(0deg);\n  }\n\n  100% {\n    transform: rotate(360deg);\n  }\n}\n\n.viewer-loading::after {\n    -webkit-animation: viewer-spinner 1s linear infinite;\n            animation: viewer-spinner 1s linear infinite;\n    border: 4px solid rgba(255, 255, 255, 10%);\n    border-left-color: rgba(255, 255, 255, 50%);\n    border-radius: 50%;\n    content: \"\";\n    display: inline-block;\n    height: 40px;\n    left: 50%;\n    margin-left: -20px;\n    margin-top: -20px;\n    position: absolute;\n    top: 50%;\n    width: 40px;\n    z-index: 1;\n  }\n\n@media (max-width: 767px) {\n  .viewer-hide-xs-down {\n    display: none;\n  }\n}\n\n@media (max-width: 991px) {\n  .viewer-hide-sm-down {\n    display: none;\n  }\n}\n\n@media (max-width: 1199px) {\n  .viewer-hide-md-down {\n    display: none;\n  }\n}\n", ""]);
 
 // exports
 
@@ -43619,33 +43530,28 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
- * Viewer.js v1.10.1
+ * Viewer.js v1.10.4
  * https://fengyuanchen.github.io/viewerjs
  *
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2021-08-01T13:35:49.731Z
+ * Date: 2022-02-13T08:40:00.127Z
  */
 
 (function (global, factory) {
    true ? module.exports = factory() :
   undefined;
-}(this, (function () { 'use strict';
+})(this, (function () { 'use strict';
 
   function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
 
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-
-      if (enumerableOnly) {
-        symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-      }
-
-      keys.push.apply(keys, symbols);
+      enumerableOnly && (symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      })), keys.push.apply(keys, symbols);
     }
 
     return keys;
@@ -43653,19 +43559,12 @@ if(false) {}
 
   function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
+      var source = null != arguments[i] ? arguments[i] : {};
+      i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
     }
 
     return target;
@@ -43674,17 +43573,11 @@ if(false) {}
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-
-    return _typeof(obj);
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
   }
 
   function _classCallCheck(instance, Constructor) {
@@ -43706,6 +43599,9 @@ if(false) {}
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
     return Constructor;
   }
 
@@ -43997,6 +43893,7 @@ if(false) {}
   var EVENT_FOCUSIN = 'focusin';
   var EVENT_KEY_DOWN = 'keydown';
   var EVENT_LOAD = 'load';
+  var EVENT_ERROR = 'error';
   var EVENT_TOUCH_END = IS_TOUCH_DEVICE ? 'touchend touchcancel' : 'mouseup';
   var EVENT_TOUCH_MOVE = IS_TOUCH_DEVICE ? 'touchmove' : 'mousemove';
   var EVENT_TOUCH_START = IS_TOUCH_DEVICE ? 'touchstart' : 'mousedown';
@@ -44746,18 +44643,31 @@ if(false) {}
       this.items = items;
       forEach(items, function (item) {
         var image = item.firstElementChild;
+        var onLoad;
+        var onError;
         setData(image, 'filled', true);
 
         if (options.loading) {
           addClass(item, CLASS_LOADING);
         }
 
-        addListener(image, EVENT_LOAD, function (event) {
+        addListener(image, EVENT_LOAD, onLoad = function onLoad(event) {
+          removeListener(image, EVENT_ERROR, onError);
+
           if (options.loading) {
             removeClass(item, CLASS_LOADING);
           }
 
           _this.loadImage(event);
+        }, {
+          once: true
+        });
+        addListener(image, EVENT_ERROR, onError = function onError() {
+          removeListener(image, EVENT_LOAD, onLoad);
+
+          if (options.loading) {
+            removeClass(item, CLASS_LOADING);
+          }
         }, {
           once: true
         });
@@ -44774,6 +44684,11 @@ if(false) {}
     renderList: function renderList() {
       var index = this.index;
       var item = this.items[index];
+
+      if (!item) {
+        return;
+      }
+
       var next = item.nextElementSibling;
       var gutter = parseInt(window.getComputedStyle(next || item).marginLeft, 10);
       var offsetWidth = item.offsetWidth;
@@ -45058,9 +44973,10 @@ if(false) {}
         // Cancel the emulated double click when the native dblclick event was triggered.
         if (IS_TOUCH_DEVICE && event.isTrusted) {
           clearTimeout(this.doubleClickImageTimeout);
-        }
+        } // XXX: No pageX/Y properties in custom event, fallback to the original event.
 
-        this.toggle(event);
+
+        this.toggle(event.isTrusted ? event : event.detail && event.detail.originalEvent);
       }
     },
     load: function load() {
@@ -45327,7 +45243,9 @@ if(false) {}
             this.imageClicked = false; // This timeout will be cleared later when a native dblclick event is triggering
 
             this.doubleClickImageTimeout = setTimeout(function () {
-              dispatchEvent(_this2.image, EVENT_DBLCLICK);
+              dispatchEvent(_this2.image, EVENT_DBLCLICK, {
+                originalEvent: event
+              });
             }, 50);
           } else {
             this.imageClicked = true; // The default timing of a double click in Windows is 500 ms
@@ -45342,7 +45260,9 @@ if(false) {}
           if (options.backdrop && options.backdrop !== 'static' && event.target === this.canvas) {
             // This timeout will be cleared later when a native click event is triggering
             this.clickCanvasTimeout = setTimeout(function () {
-              dispatchEvent(_this2.canvas, EVENT_CLICK);
+              dispatchEvent(_this2.canvas, EVENT_CLICK, {
+                originalEvent: event
+              });
             }, 50);
           }
         }
@@ -45676,6 +45596,7 @@ if(false) {}
       };
 
       var onLoad;
+      var onError;
       addListener(element, EVENT_VIEWED, onViewed, {
         once: true
       });
@@ -45704,7 +45625,27 @@ if(false) {}
       if (image.complete) {
         this.load();
       } else {
-        addListener(image, EVENT_LOAD, onLoad = this.load.bind(this), {
+        addListener(image, EVENT_LOAD, onLoad = function onLoad() {
+          removeListener(image, EVENT_ERROR, onError);
+
+          _this2.load();
+        }, {
+          once: true
+        });
+        addListener(image, EVENT_ERROR, onError = function onError() {
+          removeListener(image, EVENT_LOAD, onLoad);
+
+          if (_this2.timeout) {
+            clearTimeout(_this2.timeout);
+            _this2.timeout = false;
+          }
+
+          removeClass(image, CLASS_INVISIBLE);
+
+          if (options.loading) {
+            removeClass(_this2.canvas, CLASS_LOADING);
+          }
+        }, {
           once: true
         });
 
@@ -46075,8 +46016,24 @@ if(false) {}
           ratio = Math.min(Math.max(ratio, minZoomRatio), maxZoomRatio);
         }
 
-        if (_originalEvent && options.zoomRatio >= 0.055 && ratio > 0.95 && ratio < 1.05) {
-          ratio = 1;
+        if (_originalEvent) {
+          switch (_originalEvent.type) {
+            case 'wheel':
+              if (options.zoomRatio >= 0.055 && ratio > 0.95 && ratio < 1.05) {
+                ratio = 1;
+              }
+
+              break;
+
+            case 'pointermove':
+            case 'touchmove':
+            case 'mousemove':
+              if (ratio > 0.99 && ratio < 1.01) {
+                ratio = 1;
+              }
+
+              break;
+          }
         }
 
         var newWidth = naturalWidth * ratio;
@@ -46103,7 +46060,7 @@ if(false) {}
 
         if (_originalEvent) {
           var offset = getOffset(this.viewer);
-          var center = pointers && Object.keys(pointers).length ? getPointersCenter(pointers) : {
+          var center = pointers && Object.keys(pointers).length > 0 ? getPointersCenter(pointers) : {
             pageX: _originalEvent.pageX,
             pageY: _originalEvent.pageY
           }; // Zoom from the triggering point of the event
@@ -47145,7 +47102,7 @@ if(false) {}
 
   return Viewer;
 
-})));
+}));
 
 
 /***/ }),
@@ -47176,7 +47133,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -47187,8 +47144,8 @@ var render = function() {
         staticClass: "page-wrap d-flex flex-row align-items-center",
         staticStyle: {
           "min-height": "90vh",
-          background: "repeating-radial-gradient(#f6a6a6, transparent 2px)"
-        }
+          background: "repeating-radial-gradient(#f6a6a6, transparent 2px)",
+        },
       },
       [
         _c("div", { staticClass: "container" }, [
@@ -47201,30 +47158,30 @@ var render = function() {
                   attrs: {
                     src: "/images/logo/logo.png",
                     alt: "SBDA",
-                    height: "100"
-                  }
+                    height: "100",
+                  },
                 }),
                 _vm._v(" "),
                 _c("span", { staticClass: "display-1 d-block" }, [
-                  _vm._v("404")
+                  _vm._v("404"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "mb-4 lead" }, [
-                  _vm._v("The page you are looking for was not found.")
+                  _vm._v("The page you are looking for was not found."),
                 ]),
                 _vm._v(" "),
                 _c(
                   "router-link",
                   { staticClass: "btn btn-link", attrs: { to: "/admin" } },
                   [_vm._v("Back to Home")]
-                )
+                ),
               ],
               1
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = []
@@ -47245,14 +47202,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -47261,19 +47218,19 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+              _vm._v("Example Component"),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
                 "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -47292,7 +47249,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -47301,11 +47258,11 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(1),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -47320,22 +47277,22 @@ var staticRenderFns = [
                 _c(
                   "div",
                   {
-                    staticClass: "row section-heading-wrapper margin-bottom-11"
+                    staticClass: "row section-heading-wrapper margin-bottom-11",
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator"
+                          "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator",
                       },
                       [
                         _c("span", {
                           staticClass:
-                            "heading-separator heading-separator-horizontal"
-                        })
+                            "heading-separator heading-separator-horizontal",
+                        }),
                       ]
-                    )
+                    ),
                   ]
                 ),
                 _vm._v(" "),
@@ -47343,11 +47300,11 @@ var staticRenderFns = [
                   _c("p", [
                     _vm._v(
                       "\n                                    সপ্তগাঁও ব্লাড ডোনার এসোসিয়েশন’ একটি স্বেচ্ছাসেবী, অরাজনৈতিক ও অলাভজনক সংগঠন। এসোসিয়েশনের সদস্যরা স্বেচ্ছায় রক্তদান এবং অন্যান্য সামাজিক ও মানবিক\n                                    কাজ করে থাকে। বিনামূল্যে রক্তদান, বিনামূল্যে রক্তের গ্রুপ নির্ণয়, রক্তদান নিয়ে সামাজিক সচেতনতা বৃদ্ধি কার্যক্রম ছাড়াও বিশেষজ্ঞ ডাক্তারদের সমন্বয়ে গঠিত মেডিকেল ইউনিটের\n                                    মাধ্যমে অসহায় রোগীদের জন্য বিনামূল্যে স্বাস্থ্যসেবা নিশ্চিত করে থাকে এই সংগঠন। গ্রামীন সামাজিক অবক্ষয় দূরীকরণে এই সংগঠনটির বিশেষ ভূমিকা রয়েছে।\n                                "
-                    )
-                  ])
-                ])
+                    ),
+                  ]),
+                ]),
               ]
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-6 col-md-12 col-sm-12 col-xs-12" }, [
@@ -47359,22 +47316,22 @@ var staticRenderFns = [
                   attrs: {
                     "data-vbtype": "video",
                     "data-autoplay": "true",
-                    href: "https://www.youtube.com/watch?v=nrJtHemSPW4"
-                  }
+                    href: "https://www.youtube.com/watch?v=nrJtHemSPW4",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-play" })]
               ),
               _vm._v(" "),
               _c("img", {
-                attrs: { src: "images/sbda/about-us1.jpg", alt: "about" }
-              })
-            ])
-          ])
-        ])
-      ])
+                attrs: { src: "images/sbda/about-us1.jpg", alt: "about" },
+              }),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -47390,35 +47347,35 @@ var staticRenderFns = [
                   "div",
                   {
                     staticClass:
-                      "col-md-12 col-sm-12 text-left no-img-separator"
+                      "col-md-12 col-sm-12 text-left no-img-separator",
                   },
                   [
                     _c("h2", [_vm._v("OUR CAMPAIGNS")]),
                     _vm._v(" "),
                     _c("span", {
                       staticClass:
-                        "heading-separator heading-separator-horizontal"
+                        "heading-separator heading-separator-horizontal",
                     }),
                     _vm._v(" "),
                     _c("h4", { staticClass: "margin-top-24" }, [
                       _c("small", [
                         _vm._v(
                           "\n                                        বিনামূল্যে রক্তদান, বিনামূল্যে রক্তের গ্রুপ নির্ণয়, বিনামূল্যে স্বাস্থ্যসেবা ও স্বেচ্ছাসেবী কার্যক্রম - এই চার সেবা নিয়ে বর্তমানে এসবিডিএ'র কার্যক্রম পরিচালিত হচ্ছে।\n                                    "
-                        )
-                      ])
+                        ),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c(
                       "a",
                       {
                         staticClass: "btn btn-theme margin-top-32",
-                        attrs: { href: "#" }
+                        attrs: { href: "#" },
                       },
                       [_vm._v("Load All Campaigns")]
-                    )
+                    ),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-12 col-md-7" }, [
@@ -47430,8 +47387,8 @@ var staticRenderFns = [
                     attrs: {
                       "data-nav": "false",
                       "data-dots": "true",
-                      "data-items": "1"
-                    }
+                      "data-items": "1",
+                    },
                   },
                   [
                     _c("div", { staticClass: "col-md-6 col-sm-12" }, [
@@ -47439,15 +47396,15 @@ var staticRenderFns = [
                         "div",
                         {
                           staticClass:
-                            "event-layout-1 theme-custom-box-shadow clearfix"
+                            "event-layout-1 theme-custom-box-shadow clearfix",
                         },
                         [
                           _c("figure", { staticClass: "event-img" }, [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("img", {
-                                attrs: { src: "images/event_1.jpg", alt: "" }
-                              })
-                            ])
+                                attrs: { src: "images/event_1.jpg", alt: "" },
+                              }),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "event-info" }, [
@@ -47455,42 +47412,42 @@ var staticRenderFns = [
                               "a",
                               {
                                 staticClass: "event-date",
-                                attrs: { href: "#" }
+                                attrs: { href: "#" },
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
                                 _vm._v(
                                   " 24 February,\n                                                2018"
-                                )
+                                ),
                               ]
                             ),
                             _vm._v(" "),
                             _c("h4", [
                               _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Opening Donation Day")
-                              ])
+                                _vm._v("Opening Donation Day"),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
                                 "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-time" }, [
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-clock-o" }),
-                                _vm._v(" 10.00 - 3.00")
+                                _vm._v(" 10.00 - 3.00"),
                               ]),
                               _vm._v(" "),
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-map-marker" }),
-                                _vm._v(" California, USA")
-                              ])
-                            ])
-                          ])
+                                _vm._v(" California, USA"),
+                              ]),
+                            ]),
+                          ]),
                         ]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6 col-sm-12" }, [
@@ -47498,15 +47455,15 @@ var staticRenderFns = [
                         "div",
                         {
                           staticClass:
-                            "event-layout-1 theme-custom-box-shadow clearfix"
+                            "event-layout-1 theme-custom-box-shadow clearfix",
                         },
                         [
                           _c("figure", { staticClass: "event-img" }, [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("img", {
-                                attrs: { src: "images/event_3.jpg", alt: "" }
-                              })
-                            ])
+                                attrs: { src: "images/event_3.jpg", alt: "" },
+                              }),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "event-info" }, [
@@ -47514,42 +47471,42 @@ var staticRenderFns = [
                               "a",
                               {
                                 staticClass: "event-date",
-                                attrs: { href: "#" }
+                                attrs: { href: "#" },
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
                                 _vm._v(
                                   " 11 March,\n                                                2018"
-                                )
+                                ),
                               ]
                             ),
                             _vm._v(" "),
                             _c("h4", [
                               _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Free Group Checking")
-                              ])
+                                _vm._v("Free Group Checking"),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
                                 "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-time" }, [
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-clock-o" }),
-                                _vm._v(" 10.00 - 3.00")
+                                _vm._v(" 10.00 - 3.00"),
                               ]),
                               _vm._v(" "),
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-map-marker" }),
-                                _vm._v(" California, USA")
-                              ])
-                            ])
-                          ])
+                                _vm._v(" California, USA"),
+                              ]),
+                            ]),
+                          ]),
                         ]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6 col-sm-12" }, [
@@ -47557,15 +47514,15 @@ var staticRenderFns = [
                         "div",
                         {
                           staticClass:
-                            "event-layout-1 theme-custom-box-shadow clearfix"
+                            "event-layout-1 theme-custom-box-shadow clearfix",
                         },
                         [
                           _c("figure", { staticClass: "event-img" }, [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("img", {
-                                attrs: { src: "images/event_4.jpg", alt: "" }
-                              })
-                            ])
+                                attrs: { src: "images/event_4.jpg", alt: "" },
+                              }),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "event-info" }, [
@@ -47573,42 +47530,42 @@ var staticRenderFns = [
                               "a",
                               {
                                 staticClass: "event-date",
-                                attrs: { href: "#" }
+                                attrs: { href: "#" },
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
                                 _vm._v(
                                   " 14 June,\n                                                2018"
-                                )
+                                ),
                               ]
                             ),
                             _vm._v(" "),
                             _c("h4", [
                               _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Blood Group Collection")
-                              ])
+                                _vm._v("Blood Group Collection"),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
                                 "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-time" }, [
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-clock-o" }),
-                                _vm._v(" 10.00 - 3.00")
+                                _vm._v(" 10.00 - 3.00"),
                               ]),
                               _vm._v(" "),
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-map-marker" }),
-                                _vm._v(" California, USA")
-                              ])
-                            ])
-                          ])
+                                _vm._v(" California, USA"),
+                              ]),
+                            ]),
+                          ]),
                         ]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6 col-sm-12" }, [
@@ -47616,15 +47573,15 @@ var staticRenderFns = [
                         "div",
                         {
                           staticClass:
-                            "event-layout-1 theme-custom-box-shadow clearfix"
+                            "event-layout-1 theme-custom-box-shadow clearfix",
                         },
                         [
                           _c("figure", { staticClass: "event-img" }, [
                             _c("a", { attrs: { href: "#" } }, [
                               _c("img", {
-                                attrs: { src: "images/event_2.jpg", alt: "" }
-                              })
-                            ])
+                                attrs: { src: "images/event_2.jpg", alt: "" },
+                              }),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "event-info" }, [
@@ -47632,52 +47589,52 @@ var staticRenderFns = [
                               "a",
                               {
                                 staticClass: "event-date",
-                                attrs: { href: "#" }
+                                attrs: { href: "#" },
                               },
                               [
                                 _c("i", { staticClass: "fa fa-calendar-o" }),
                                 _vm._v(
                                   " 31 July,\n                                                2018"
-                                )
+                                ),
                               ]
                             ),
                             _vm._v(" "),
                             _c("h4", [
                               _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Blood Donation Camp")
-                              ])
+                                _vm._v("Blood Donation Camp"),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-exceprt" }, [
                               _vm._v(
                                 "Lorem ipsum dolor sit amet turadipi scing elit\n                                                lobort\n                                                issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis\n                                                sharetrx mauris\n                                                gone do.\n                                            "
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "event-time" }, [
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-clock-o" }),
-                                _vm._v(" 10.00 - 3.00")
+                                _vm._v(" 10.00 - 3.00"),
                               ]),
                               _vm._v(" "),
                               _c("a", { attrs: { href: "#" } }, [
                                 _c("i", { staticClass: "fa fa-map-marker" }),
-                                _vm._v(" California, USA")
-                              ])
-                            ])
-                          ])
+                                _vm._v(" California, USA"),
+                              ]),
+                            ]),
+                          ]),
                         ]
-                      )
-                    ])
+                      ),
+                    ]),
                   ]
-                )
-              ])
-            ])
-          ])
-        ])
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -47696,7 +47653,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -47720,14 +47677,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -47739,16 +47696,16 @@ var staticRenderFns = [
               _c("h3", [
                 _vm._v(
                   "\n                            About Us\n                        "
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "page-breadcrumb" }, [
                 _c("a", { attrs: { href: "#" } }, [_vm._v("Home")]),
-                _vm._v(" / About Us\n                        ")
-              ])
-            ])
-          ])
-        ])
+                _vm._v(" / About Us\n                        "),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("section", { staticClass: "section-content-block" }, [
@@ -47766,22 +47723,22 @@ var staticRenderFns = [
                       "div",
                       {
                         staticClass:
-                          "row section-heading-wrapper margin-bottom-11"
+                          "row section-heading-wrapper margin-bottom-11",
                       },
                       [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator"
+                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator",
                           },
                           [
                             _c("span", {
                               staticClass:
-                                "heading-separator heading-separator-horizontal"
-                            })
+                                "heading-separator heading-separator-horizontal",
+                            }),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -47789,11 +47746,11 @@ var staticRenderFns = [
                       _c("p", [
                         _vm._v(
                           "\n                                    সপ্তগাঁও ব্লাড ডোনার এসোসিয়েশন’ একটি স্বেচ্ছাসেবী, অরাজনৈতিক ও অলাভজনক সংগঠন। এসোসিয়েশনের সদস্যরা স্বেচ্ছায় রক্তদান এবং অন্যান্য সামাজিক ও মানবিক\n                                    কাজ করে থাকে। বিনামূল্যে রক্তদান, বিনামূল্যে রক্তের গ্রুপ নির্ণয়, রক্তদান নিয়ে সামাজিক সচেতনতা বৃদ্ধি কার্যক্রম ছাড়াও বিশেষজ্ঞ ডাক্তারদের সমন্বয়ে গঠিত মেডিকেল ইউনিটের\n                                    মাধ্যমে অসহায় রোগীদের জন্য বিনামূল্যে স্বাস্থ্যসেবা নিশ্চিত করে থাকে এই সংগঠন। গ্রামীন সামাজিক অবক্ষয় দূরীকরণে এই সংগঠনটির বিশেষ ভূমিকা রয়েছে।\n                                "
-                        )
-                      ])
-                    ])
+                        ),
+                      ]),
+                    ]),
                   ]
-                )
+                ),
               ]
             ),
             _vm._v(" "),
@@ -47812,8 +47769,8 @@ var staticRenderFns = [
                         attrs: {
                           "data-vbtype": "video",
                           "data-autoplay": "true",
-                          href: "https://www.youtube.com/watch?v=nrJtHemSPW4"
-                        }
+                          href: "https://www.youtube.com/watch?v=nrJtHemSPW4",
+                        },
                       },
                       [_c("i", { staticClass: "fa fa-play" })]
                     ),
@@ -47821,11 +47778,11 @@ var staticRenderFns = [
                     _c("img", {
                       attrs: {
                         src: "images/sbda/about-us1.jpg     ",
-                        alt: "about"
-                      }
-                    })
+                        alt: "about",
+                      },
+                    }),
                   ]
-                )
+                ),
               ]
             ),
             _vm._v(" "),
@@ -47837,37 +47794,37 @@ var staticRenderFns = [
                   "div",
                   {
                     staticClass: "about-us-container theme-custom-box-shadow",
-                    staticStyle: { width: "100%" }
+                    staticStyle: { width: "100%" },
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "row section-heading-wrapper margin-bottom-11"
+                          "row section-heading-wrapper margin-bottom-11",
                       },
                       [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator"
+                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator",
                           },
                           [
                             _c("h4", [
                               _c("strong", [
                                 _vm._v(
                                   "আমাদের লক্ষ্য ও উদ্দেশ্য । OUR AIM & OBJECTIVES"
-                                )
-                              ])
+                                ),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("span", {
                               staticClass:
-                                "heading-separator heading-separator-horizontal"
-                            })
+                                "heading-separator heading-separator-horizontal",
+                            }),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -47878,36 +47835,38 @@ var staticRenderFns = [
                         _c("li", [_vm._v("নতুন ও নিয়মিত রক্তদাতা তৈরি করা।")]),
                         _vm._v(" "),
                         _c("li", [
-                          _vm._v("রক্তদান সম্পর্কে সামাজিক সচেতনতা বৃদ্ধি করা।")
+                          _vm._v(
+                            "রক্তদান সম্পর্কে সামাজিক সচেতনতা বৃদ্ধি করা।"
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("li", [
                           _vm._v(
                             "সুবিধাবঞ্ছিত ও অসহায় মানুষের সুবিধার্থে ফ্রি ব্লাড গ্রুপিং ক্যাম্পেইন ও ফ্রি মেডিকেল ক্যাম্প আয়োজন করা।"
-                          )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("li", [
                           _vm._v(
                             "এসোসিয়েশনের সদস্যদের মধ্যে একতা, সৌহার্দ্য, ভ্রাতৃত্ববোধ স্থাপন ও উৎকর্ষ সাধন করা এবং একে- অন্যকে যথাসম্ভব সহযোগিতা করা।"
-                          )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("li", [
                           _vm._v(
                             " একটি পৃথক তহবিল গঠন করার মাধ্যমে সাহায্য পাওয়ার যোগ্য মানুষদের সহায়তা করা।"
-                          )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("li", [
                           _vm._v(
                             " সামাজিক উন্নয়নের জন্য বিভিন্ন কর্মসূচি গ্রহণ করা।"
-                          )
-                        ])
-                      ])
-                    ])
+                          ),
+                        ]),
+                      ]),
+                    ]),
                   ]
-                )
+                ),
               ]
             ),
             _vm._v(" "),
@@ -47919,29 +47878,29 @@ var staticRenderFns = [
                   "div",
                   {
                     staticClass: "about-us-container theme-custom-box-shadow",
-                    staticStyle: { width: "100%", "text-align": "center" }
+                    staticStyle: { width: "100%", "text-align": "center" },
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "row section-heading-wrapper margin-bottom-11"
+                          "row section-heading-wrapper margin-bottom-11",
                       },
                       [
                         _c(
                           "div",
                           {
                             staticClass:
-                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator"
+                              "col-lg-12 col-md-12 col-sm-12 text-left no-img-separator",
                           },
                           [
                             _c("span", {
                               staticClass:
-                                "heading-separator heading-separator-horizontal"
-                            })
+                                "heading-separator heading-separator-horizontal",
+                            }),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -47954,7 +47913,7 @@ var staticRenderFns = [
                         _c("strong", [
                           _vm._v(
                             "\n                                    ‘সপ্তগাঁও ব্লাড ডোনার এসোসিয়েশন’\n                                    "
-                          )
+                          ),
                         ]),
                         _vm._v(
                           " প্রতিষ্ঠিত হয়।\n                                    "
@@ -47974,15 +47933,15 @@ var staticRenderFns = [
                         _c("br"),
                         _vm._v(
                           "\n                                    নিরাপদ হোক রক্তদান - আপনার রক্তে বাঁচুক প্রাণ\n                                "
-                        )
-                      ])
-                    ])
+                        ),
+                      ]),
+                    ]),
                   ]
-                )
+                ),
               ]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c(
@@ -47997,9 +47956,9 @@ var staticRenderFns = [
                 _c("h4", [
                   _vm._v(
                     "We have been working since 1973 with a prestigious vision to helping patient to provide blood."
-                  )
-                ])
-              ])
+                  ),
+                ]),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -48013,9 +47972,9 @@ var staticRenderFns = [
                     _c("span", { staticClass: "counter" }, [_vm._v("2578")]),
                     _vm._v(" "),
                     _c("h4", { staticClass: "text-capitalize" }, [
-                      _vm._v("Success Smile")
-                    ])
-                  ])
+                      _vm._v("Success Smile"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -48029,9 +47988,9 @@ var staticRenderFns = [
                     _c("span", { staticClass: "counter" }, [_vm._v("3235")]),
                     _vm._v(" "),
                     _c("h4", { staticClass: "text-capitalize" }, [
-                      _vm._v("Happy Donors")
-                    ])
-                  ])
+                      _vm._v("Happy Donors"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -48045,9 +48004,9 @@ var staticRenderFns = [
                     _c("span", { staticClass: "counter" }, [_vm._v("3568")]),
                     _vm._v(" "),
                     _c("h4", { staticClass: "text-capitalize" }, [
-                      _vm._v("Happy Recipient")
-                    ])
-                  ])
+                      _vm._v("Happy Recipient"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -48061,17 +48020,17 @@ var staticRenderFns = [
                     _c("span", { staticClass: "counter" }, [_vm._v("1364")]),
                     _vm._v(" "),
                     _c("h4", { staticClass: "text-capitalize" }, [
-                      _vm._v("Total Awards")
-                    ])
-                  ])
+                      _vm._v("Total Awards"),
+                    ]),
+                  ]),
                 ]
-              )
-            ])
-          ])
+              ),
+            ]),
+          ]),
         ]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48090,14 +48049,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48106,7 +48065,7 @@ var staticRenderFns = [
         "section",
         {
           staticClass: "page-header",
-          attrs: { "data-stellar-background-ratio": "1.2" }
+          attrs: { "data-stellar-background-ratio": "1.2" },
         },
         [
           _c("div", { staticClass: "container" }, [
@@ -48115,16 +48074,16 @@ var staticRenderFns = [
                 _c("h3", [
                   _vm._v(
                     "\n                        Contact Us\n                    "
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "page-breadcrumb" }, [
                   _c("a", { attrs: { href: "#" } }, [_vm._v("Home")]),
-                  _vm._v(" / Contact\n                    ")
-                ])
-              ])
-            ])
-          ])
+                  _vm._v(" / Contact\n                    "),
+                ]),
+              ]),
+            ]),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -48132,7 +48091,9 @@ var staticRenderFns = [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
-              _c("h2", { staticClass: "contact-title" }, [_vm._v("Contact us")])
+              _c("h2", { staticClass: "contact-title" }, [
+                _vm._v("Contact us"),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
@@ -48140,67 +48101,67 @@ var staticRenderFns = [
                 _c("li", [
                   _c("address", [
                     _c("span", { staticClass: "icon-container" }, [
-                      _c("i", { staticClass: "fa fa-home" })
+                      _c("i", { staticClass: "fa fa-home" }),
                     ]),
                     _vm._v(
                       "\n                                Madrasha Market (1st Floor),\n                                Islampur, Chatkhil, Noakhali-3874\n                                Bangladesh\n                            "
-                    )
-                  ])
-                ])
-              ])
+                    ),
+                  ]),
+                ]),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
               _c("ul", { staticClass: "contact-info" }, [
                 _c("li", [
                   _c("span", { staticClass: "icon-container" }, [
-                    _c("i", { staticClass: "fa fa-phone" })
+                    _c("i", { staticClass: "fa fa-phone" }),
                   ]),
                   _vm._v(" "),
                   _c("address", [
                     _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("+88 01905199278")
-                    ])
-                  ])
-                ])
-              ])
+                      _vm._v("+88 01905199278"),
+                    ]),
+                  ]),
+                ]),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
               _c("ul", { staticClass: "contact-info" }, [
                 _c("li", [
                   _c("span", { staticClass: "icon-container" }, [
-                    _c("i", { staticClass: "fa fa-envelope" })
+                    _c("i", { staticClass: "fa fa-envelope" }),
                   ]),
                   _vm._v(" "),
                   _c("address", [
                     _c("a", { attrs: { href: "mailto:" } }, [
                       _vm._v(
                         "sbdaofficialbd@gmail.com\n                            "
-                      )
-                    ])
-                  ])
-                ])
-              ])
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
               _c("ul", { staticClass: "contact-info" }, [
                 _c("li", [
                   _c("span", { staticClass: "icon-container" }, [
-                    _c("i", { staticClass: "fa fa-globe" })
+                    _c("i", { staticClass: "fa fa-globe" }),
                   ]),
                   _vm._v(" "),
                   _c("address", [
                     _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("www.yourdomain.com")
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+                      _vm._v("www.yourdomain.com"),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c(
@@ -48212,7 +48173,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "col-sm-6 wow fadeInLeft" }, [
                 _c("div", { staticClass: "contact-form-block" }, [
                   _c("h2", { staticClass: "contact-title" }, [
-                    _vm._v("Say hello to us")
+                    _vm._v("Say hello to us"),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -48222,8 +48183,8 @@ var staticRenderFns = [
                         role: "form",
                         action: "#",
                         method: "post",
-                        id: "contact-form"
-                      }
+                        id: "contact-form",
+                      },
                     },
                     [
                       _c("div", { staticClass: "form-group" }, [
@@ -48234,9 +48195,9 @@ var staticRenderFns = [
                             id: "user_name",
                             name: "user_name",
                             placeholder: "Name",
-                            "data-msg": "Please Write Your Name"
-                          }
-                        })
+                            "data-msg": "Please Write Your Name",
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -48247,9 +48208,9 @@ var staticRenderFns = [
                             id: "user_email",
                             name: "user_email",
                             placeholder: "Email",
-                            "data-msg": "Please Write Your Valid Email"
-                          }
-                        })
+                            "data-msg": "Please Write Your Valid Email",
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -48260,9 +48221,9 @@ var staticRenderFns = [
                             id: "email_subject",
                             name: "email_subject",
                             placeholder: "Subject",
-                            "data-msg": "Please Write Your Message Subject"
-                          }
-                        })
+                            "data-msg": "Please Write Your Message Subject",
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -48273,9 +48234,9 @@ var staticRenderFns = [
                             name: "email_message",
                             id: "email_message",
                             placeholder: "Message",
-                            "data-msg": "Please Write Your Message"
-                          }
-                        })
+                            "data-msg": "Please Write Your Message",
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -48283,33 +48244,33 @@ var staticRenderFns = [
                           "button",
                           {
                             staticClass: "btn btn-theme",
-                            attrs: { type: "submit" }
+                            attrs: { type: "submit" },
                           },
                           [_vm._v("Send Now")]
-                        )
-                      ])
+                        ),
+                      ]),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6 wow fadeInRight" }, [
                 _c("h2", { staticClass: "contact-title" }, [
-                  _vm._v("Our Location")
+                  _vm._v("Our Location"),
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "section-google-map-block wow fadeInUp" },
                   [_c("div", { attrs: { id: "map_canvas" } })]
-                )
-              ])
-            ])
-          ])
+                ),
+              ]),
+            ]),
+          ]),
         ]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48328,14 +48289,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48348,23 +48309,23 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
+                staticClass: "col-md-12 col-sm-12 text-center no-img-separator",
               },
               [
                 _c("img", {
                   staticStyle: { width: "100%" },
                   attrs: {
                     src: "images/sbda/Advisor.png",
-                    alt: "Executive Committee"
-                  }
-                })
+                    alt: "Executive Committee",
+                  },
+                }),
               ]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48383,14 +48344,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48403,23 +48364,23 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "col-md-12 col-sm-12 text-center no-img-separator"
+                staticClass: "col-md-12 col-sm-12 text-center no-img-separator",
               },
               [
                 _c("img", {
                   staticStyle: { width: "100%" },
                   attrs: {
                     src: "images/sbda/Founder-Member.png",
-                    alt: "Executive Committee"
-                  }
-                })
+                    alt: "Executive Committee",
+                  },
+                }),
               ]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48438,7 +48399,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -48457,14 +48418,14 @@ var render = function() {
                     staticStyle: { width: "100%" },
                     attrs: {
                       src: "images/sbda/executive-committee.png",
-                      alt: "Executive Committee"
-                    }
+                      alt: "Executive Committee",
+                    },
                   })
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ]
   )
 }
@@ -48486,7 +48447,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -48507,18 +48468,18 @@ var render = function() {
                 "data-bv-feedbackicons-valid": "",
                 "data-bv-feedbackicons-invalid": "",
                 "data-bv-feedbackicons-validating": "",
-                novalidate: "novalidate"
-              }
+                novalidate: "novalidate",
+              },
             },
             [
               _c("button", {
                 staticClass: "bv-hidden-submit",
                 staticStyle: { display: "none", width: "0px", height: "0px" },
-                attrs: { type: "submit" }
+                attrs: { type: "submit" },
               }),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "hidden", value: "donor", name: "type" }
+                attrs: { type: "hidden", value: "donor", name: "type" },
               }),
               _vm._v(" "),
               _c("div", { staticClass: "panel panel-primary" }, [
@@ -48544,15 +48505,15 @@ var render = function() {
                             staticClass: "form-select form-control",
                             attrs: {
                               name: "blood_group",
-                              "aria-label": "Default select example"
-                            }
+                              "aria-label": "Default select example",
+                            },
                           },
                           [
                             _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select Blood Group")
+                              _vm._v("Select Blood Group"),
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.blood_groups, function(b_group) {
+                            _vm._l(_vm.blood_groups, function (b_group) {
                               return _c(
                                 "option",
                                 { domProps: { value: b_group.id } },
@@ -48561,10 +48522,10 @@ var render = function() {
                                     _vm._s(b_group.id) +
                                       ") " +
                                       _vm._s(b_group.name)
-                                  )
+                                  ),
                                 ]
                               )
-                            })
+                            }),
                           ],
                           2
                         ),
@@ -48577,27 +48538,27 @@ var render = function() {
                             attrs: {
                               "data-bv-validator": "notEmpty",
                               "data-bv-for": "password",
-                              "data-bv-result": "NOT_VALIDATED"
-                            }
+                              "data-bv-result": "NOT_VALIDATED",
+                            },
                           },
                           [_vm._v("Please enter a value")]
-                        )
-                      ])
-                    ])
-                  ])
+                        ),
+                      ]),
+                    ]),
+                  ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(5)
-              ])
+                _vm._m(5),
+              ]),
             ]
-          )
-        ])
-      ])
-    ])
+          ),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48606,11 +48567,11 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("small", [
         _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-        _vm._v(" Required fields\n                                    ")
-      ])
+        _vm._v(" Required fields\n                                    "),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48620,7 +48581,7 @@ var staticRenderFns = [
           _vm._v(
             "Full Name:\n                                                "
           ),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -48632,8 +48593,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter full name",
-            "data-bv-field": "email"
-          }
+            "data-bv-field": "email",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -48644,11 +48605,11 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "email",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
@@ -48656,7 +48617,7 @@ var staticRenderFns = [
           _vm._v(
             "E-mail/Mobile:\n                                                "
           ),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -48668,8 +48629,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter email/mobile",
-            "data-bv-field": "email"
-          }
+            "data-bv-field": "email",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -48680,17 +48641,17 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "email",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
           _vm._v("Password:\n                                                "),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -48702,8 +48663,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter password",
-            "data-bv-field": "password"
-          }
+            "data-bv-field": "password",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -48714,22 +48675,22 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "password",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
-      ])
+        ),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
         _vm._v("Phone:\n                                                "),
-        _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+        _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
       ]),
       _vm._v(" "),
       _c("input", {
@@ -48741,8 +48702,8 @@ var staticRenderFns = [
           value: "",
           "data-bv-notempty": "true",
           placeholder: "enter phone number",
-          "data-bv-field": "password"
-        }
+          "data-bv-field": "password",
+        },
       }),
       _vm._v(" "),
       _c(
@@ -48753,21 +48714,21 @@ var staticRenderFns = [
           attrs: {
             "data-bv-validator": "notEmpty",
             "data-bv-for": "password",
-            "data-bv-result": "NOT_VALIDATED"
-          }
+            "data-bv-result": "NOT_VALIDATED",
+          },
         },
         [_vm._v("Please enter a value")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
         _vm._v("Address :\n                                                "),
-        _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+        _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
       ]),
       _vm._v(" "),
       _c("input", {
@@ -48779,8 +48740,8 @@ var staticRenderFns = [
           value: "",
           "data-bv-notempty": "true",
           placeholder: "enter full address",
-          "data-bv-field": "password"
-        }
+          "data-bv-field": "password",
+        },
       }),
       _vm._v(" "),
       _c(
@@ -48791,23 +48752,23 @@ var staticRenderFns = [
           attrs: {
             "data-bv-validator": "notEmpty",
             "data-bv-for": "password",
-            "data-bv-result": "NOT_VALIDATED"
-          }
+            "data-bv-result": "NOT_VALIDATED",
+          },
         },
         [_vm._v("Please enter a value")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label" }, [
       _vm._v("Blood Group :\n                                                "),
-      _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+      _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -48818,11 +48779,11 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "text-primary",
-              attrs: { href: "https://saptagaon.com/forgotpassword" }
+              attrs: { href: "https://saptagaon.com/forgotpassword" },
             },
             [_vm._v("Forgot password?")]
-          )
-        ])
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pull-right" }, [
@@ -48831,14 +48792,14 @@ var staticRenderFns = [
           { staticClass: "btn btn-lg btn-primary", attrs: { type: "submit" } },
           [
             _c("i", { staticClass: "fa fa-key" }),
-            _vm._v(" Join now\n                                    ")
+            _vm._v(" Join now\n                                    "),
           ]
-        )
+        ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "clearfix" })
+      _c("div", { staticClass: "clearfix" }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48857,7 +48818,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -48870,7 +48831,31 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users, function (user, k) {
+                  return _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(k + 1)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.phone))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(user.blood_group ? user.blood_group.name : "")
+                      ),
+                    ]),
+                  ])
+                }),
+                0
+              ),
+            ]),
             _vm._v(" "),
             _c(
               "div",
@@ -48882,9 +48867,9 @@ var render = function() {
                     attrs: {
                       align: "center",
                       options: _vm.options,
-                      data: _vm.photo_s
+                      data: _vm.photo_s,
                     },
-                    on: { "pagination-change-page": _vm.list }
+                    on: { "pagination-change-page": _vm.list },
                   },
                   [
                     _c(
@@ -48897,67 +48882,43 @@ var render = function() {
                       "span",
                       { attrs: { slot: "next-nav" }, slot: "next-nav" },
                       [_vm._v("Next >")]
-                    )
+                    ),
                   ]
-                )
+                ),
               ],
               1
-            )
-          ])
-        ])
-      ])
+            ),
+          ]),
+        ]),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h2", [_vm._v("Our Donors")])
+      _c("h2", [_vm._v("Our Donors")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table table-hover" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("#")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("First Name")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Last Name")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Username")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Mark")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Otto")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("@mdo")])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Jacob")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Thornton")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("@fat")])
-        ])
-      ])
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Blood Group")]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -48976,7 +48937,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -48996,20 +48957,20 @@ var render = function() {
                   staticClass: "gallery-light-box",
                   attrs: {
                     "data-gall": "myGallery",
-                    href: "javascript:void(0)"
-                  }
+                    href: "javascript:void(0)",
+                  },
                 }),
                 _vm._v(" "),
                 _c(
                   "viewer",
                   { attrs: { images: _vm.photos, options: { inline: false } } },
-                  _vm._l(_vm.photos, function(src) {
+                  _vm._l(_vm.photos, function (src) {
                     return _c(
                       "div",
                       {
                         staticClass:
                           "gallery-container col-lg-3 col-md-3 col-sm-4 col-xs-12 ",
-                        staticStyle: { "max-height": "200px !important" }
+                        staticStyle: { "max-height": "200px !important" },
                       },
                       [
                         _c(
@@ -49018,21 +48979,21 @@ var render = function() {
                             staticClass: "gallery-light-box",
                             attrs: {
                               "data-gall": "myGallery",
-                              href: "javascript:void(0)"
-                            }
+                              href: "javascript:void(0)",
+                            },
                           },
                           [
                             _c("figure", { staticClass: "gallery-img" }, [
                               _c("img", {
                                 key: src,
                                 staticStyle: {
-                                  "max-height": "180px !important"
+                                  "max-height": "180px !important",
                                 },
-                                attrs: { src: src }
-                              })
-                            ])
+                                attrs: { src: src },
+                              }),
+                            ]),
                           ]
-                        )
+                        ),
                       ]
                     )
                   }),
@@ -49049,9 +49010,9 @@ var render = function() {
                         attrs: {
                           align: "center",
                           options: _vm.options,
-                          data: _vm.photo_s
+                          data: _vm.photo_s,
                         },
-                        on: { "pagination-change-page": _vm.list }
+                        on: { "pagination-change-page": _vm.list },
                       },
                       [
                         _c(
@@ -49064,22 +49025,22 @@ var render = function() {
                           "span",
                           { attrs: { slot: "next-nav" }, slot: "next-nav" },
                           [_vm._v("Next >")]
-                        )
+                        ),
                       ]
-                    )
+                    ),
                   ],
                   1
-                )
+                ),
               ],
               1
             )
-          : _vm._e()
-      ])
+          : _vm._e(),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -49094,13 +49055,13 @@ var staticRenderFns = [
             _c("span", { staticClass: "heading-separator" }),
             _vm._v(" "),
             _c("h4", [
-              _vm._v("our prestigious voluntary work on campaigns by the team")
-            ])
+              _vm._v("our prestigious voluntary work on campaigns by the team"),
+            ]),
           ]
-        )
-      ])
+        ),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -49119,7 +49080,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -49138,7 +49099,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "dropdown-toggle",
-                    attrs: { href: "#", title: "Members" }
+                    attrs: { href: "#", title: "Members" },
                   },
                   [_vm._v("Unit")]
                 ),
@@ -49164,7 +49125,7 @@ var render = function() {
                                 "router-link",
                                 { attrs: { to: { name: "donors" } } },
                                 [_vm._v("Donors")]
-                              )
+                              ),
                             ],
                             1
                           ),
@@ -49176,20 +49137,20 @@ var render = function() {
                                 "router-link",
                                 { attrs: { to: { name: "volunteers" } } },
                                 [_vm._v("Volunteers")]
-                              )
+                              ),
                             ],
                             1
-                          )
+                          ),
                         ]
-                      : _vm._e()
+                      : _vm._e(),
                   ],
                   2
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Excutive Committee" } }, [
-                  _vm._v("Committee")
+                  _vm._v("Committee"),
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "drop-down" }, [
@@ -49200,7 +49161,7 @@ var render = function() {
                         "router-link",
                         { attrs: { to: { name: "committee" } } },
                         [_vm._v("Executive Committee")]
-                      )
+                      ),
                     ],
                     1
                   ),
@@ -49212,7 +49173,7 @@ var render = function() {
                         "router-link",
                         { attrs: { to: { name: "advisor" } } },
                         [_vm._v("Advisers")]
-                      )
+                      ),
                     ],
                     1
                   ),
@@ -49224,7 +49185,7 @@ var render = function() {
                         "router-link",
                         { attrs: { to: { name: "founder-member" } } },
                         [_vm._v("Founder Member")]
-                      )
+                      ),
                     ],
                     1
                   ),
@@ -49236,19 +49197,19 @@ var render = function() {
                         "router-link",
                         { attrs: { to: { name: "life-member" } } },
                         [_vm._v("Life Member")]
-                      )
+                      ),
                     ],
                     1
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c(
                 "li",
                 [
                   _c("router-link", { attrs: { to: { name: "about-us" } } }, [
-                    _vm._v("About Us")
-                  ])
+                    _vm._v("About Us"),
+                  ]),
                 ],
                 1
               ),
@@ -49257,8 +49218,8 @@ var render = function() {
                 "li",
                 [
                   _c("router-link", { attrs: { to: "gallery" } }, [
-                    _vm._v("gallery")
-                  ])
+                    _vm._v("gallery"),
+                  ]),
                 ],
                 1
               ),
@@ -49267,7 +49228,7 @@ var render = function() {
               _vm._v(" "),
               _c("li", [
                 _c("a", { attrs: { href: "#", title: "Members" } }, [
-                  _vm._v("Join Us")
+                  _vm._v("Join Us"),
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "drop-down" }, [
@@ -49281,9 +49242,9 @@ var render = function() {
                             [
                               _vm._v(
                                 "Become A Blood Donor\n                                    "
-                              )
+                              ),
                             ]
-                          )
+                          ),
                         ],
                         1
                       )
@@ -49297,7 +49258,7 @@ var render = function() {
                             "router-link",
                             { attrs: { to: { name: "member_registration" } } },
                             [_vm._v("Become A Member")]
-                          )
+                          ),
                         ],
                         1
                       )
@@ -49310,19 +49271,19 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              attrs: { to: { name: "volunteer_registration" } }
+                              attrs: { to: { name: "volunteer_registration" } },
                             },
                             [
                               _vm._v(
                                 "Become A Volunteer\n                                    "
-                              )
+                              ),
                             ]
-                          )
+                          ),
                         ],
                         1
                       )
-                    : _vm._e()
-                ])
+                    : _vm._e(),
+                ]),
               ]),
               _vm._v(" "),
               !_vm.auth
@@ -49330,8 +49291,8 @@ var render = function() {
                     "li",
                     [
                       _c("router-link", { attrs: { to: { name: "login" } } }, [
-                        _vm._v("Login")
-                      ])
+                        _vm._v("Login"),
+                      ]),
                     ],
                     1
                   )
@@ -49340,7 +49301,7 @@ var render = function() {
                       "span",
                       {
                         staticClass: "profile-section",
-                        staticStyle: { display: "flex" }
+                        staticStyle: { display: "flex" },
                       },
                       [
                         _c("img", {
@@ -49348,39 +49309,39 @@ var render = function() {
                             "border-radius": "24px",
                             height: "30px",
                             "margin-top": "8px",
-                            "margin-right": "0px"
+                            "margin-right": "0px",
                           },
-                          attrs: { src: "images/thumbnail.png", alt: "" }
+                          attrs: { src: "images/thumbnail.png", alt: "" },
                         }),
                         _vm._v(" "),
                         _c(
                           "a",
                           {
                             staticClass: "profile-name",
-                            attrs: { href: "#", title: "Members" }
+                            attrs: { href: "#", title: "Members" },
                           },
                           [
                             _vm._v(_vm._s(_vm.auth.name) + " ["),
                             _c("span", { staticClass: "text-capitalize" }, [
-                              _vm._v(_vm._s(_vm.auth.type))
+                              _vm._v(_vm._s(_vm.auth.type)),
                             ]),
-                            _vm._v("]")
+                            _vm._v("]"),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(7)
-                  ])
-            ])
-          ])
-        ])
-      ])
-    ])
+                    _vm._m(7),
+                  ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -49388,7 +49349,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6 col-sm-12" }, [
-            _c("p", [_vm._v("Welcome to Saptagaon Blood Donor Association.")])
+            _c("p", [_vm._v("Welcome to Saptagaon Blood Donor Association.")]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2 col-sm-12" }, [
@@ -49396,9 +49357,9 @@ var staticRenderFns = [
               _c("i", { staticClass: "fa fa-phone" }),
               _vm._v(" "),
               _c("a", { attrs: { href: "tel:01905199278" } }, [
-                _vm._v("01905 199\n                            278")
-              ])
-            ])
+                _vm._v("01905 199\n                            278"),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-4 col-sm-12" }, [
@@ -49408,8 +49369,8 @@ var staticRenderFns = [
                 {
                   attrs: {
                     target: "_blank",
-                    href: "//www.facebook.com/sbdaofficialbd/"
-                  }
+                    href: "//www.facebook.com/sbdaofficialbd/",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-facebook" })]
               ),
@@ -49419,8 +49380,8 @@ var staticRenderFns = [
                 {
                   attrs: {
                     target: "_blank",
-                    href: "//www.twitter.com/sbdaofficialbd/"
-                  }
+                    href: "//www.twitter.com/sbdaofficialbd/",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-twitter" })]
               ),
@@ -49430,8 +49391,8 @@ var staticRenderFns = [
                 {
                   attrs: {
                     target: "_blank",
-                    href: "//www.instagram.com/sbdaofficialbd/"
-                  }
+                    href: "//www.instagram.com/sbdaofficialbd/",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-instagram" })]
               ),
@@ -49441,8 +49402,8 @@ var staticRenderFns = [
                 {
                   attrs: {
                     target: "_blank",
-                    href: "//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A"
-                  }
+                    href: "//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-youtube" })]
               ),
@@ -49452,18 +49413,18 @@ var staticRenderFns = [
                 {
                   attrs: {
                     target: "_blank",
-                    href: "https://www.linkedin.com/company/sbdaofficialbd/"
-                  }
+                    href: "https://www.linkedin.com/company/sbdaofficialbd/",
+                  },
                 },
                 [_c("i", { staticClass: "fa fa-linkedin" })]
-              )
-            ])
-          ])
-        ])
-      ])
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -49475,89 +49436,89 @@ var staticRenderFns = [
           attrs: {
             type: "button",
             "data-toggle": "collapse",
-            "data-target": ".navbar-collapse"
-          }
+            "data-target": ".navbar-collapse",
+          },
         },
         [
           _c("span", { staticClass: "icon-bar" }),
           _vm._v(" "),
           _c("span", { staticClass: "icon-bar" }),
           _vm._v(" "),
-          _c("span", { staticClass: "icon-bar" })
+          _c("span", { staticClass: "icon-bar" }),
         ]
       ),
       _vm._v(" "),
       _c("a", { staticClass: "logo", attrs: { href: "/" } }, [
         _c("img", {
           staticStyle: { height: "60px" },
-          attrs: { alt: "", src: "images/logo/sbda-logo.png" }
-        })
-      ])
+          attrs: { alt: "", src: "images/logo/sbda-logo.png" },
+        }),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "#about-membership" } }, [
-        _vm._v("SBDA Volunteer")
-      ])
+        _vm._v("SBDA Volunteer"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "#about-membership" } }, [
-        _vm._v("SBDA Medical Care")
-      ])
+        _vm._v("SBDA Medical Care"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "#founder-member" } }, [_vm._v("Books")])
+      _c("a", { attrs: { href: "#founder-member" } }, [_vm._v("Books")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "#founder-member" } }, [
-        _vm._v("Emergency Response Team")
-      ])
+        _vm._v("Emergency Response Team"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "/contacts" } }, [_vm._v("Contact")])
+      _c("a", { attrs: { href: "/contacts" } }, [_vm._v("Contact")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "drop-down" }, [
       _c("li", [
-        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Profile")])
+        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Profile")]),
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Events")])
+        _c("a", { attrs: { href: "#about-membership" } }, [_vm._v("Events")]),
       ]),
       _vm._v(" "),
       _c("li", [
         _c("a", { attrs: { href: "#about-membership" } }, [
-          _vm._v("Donation history")
-        ])
+          _vm._v("Donation history"),
+        ]),
       ]),
       _vm._v(" "),
       _c("li", [
@@ -49565,12 +49526,12 @@ var staticRenderFns = [
           "form",
           {
             staticStyle: { display: "none" },
-            attrs: { id: "logout-form", action: "logout", method: "POST" }
+            attrs: { id: "logout-form", action: "logout", method: "POST" },
           },
           [
             _vm._v(
               "\n                                        @csrf\n                                    "
-            )
+            ),
           ]
         ),
         _vm._v(" "),
@@ -49580,14 +49541,14 @@ var staticRenderFns = [
             attrs: {
               href: "#",
               onclick:
-                "event.preventDefault();\n                                                 document.getElementById('logout-form').submit();"
-            }
+                "event.preventDefault();\n                                                 document.getElementById('logout-form').submit();",
+            },
           },
           [_vm._v("Logout")]
-        )
-      ])
+        ),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -49606,14 +49567,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -49634,31 +49595,31 @@ var staticRenderFns = [
                   "data-bv-feedbackicons-valid": "",
                   "data-bv-feedbackicons-invalid": "",
                   "data-bv-feedbackicons-validating": "",
-                  novalidate: "novalidate"
-                }
+                  novalidate: "novalidate",
+                },
               },
               [
                 _c("button", {
                   staticClass: "bv-hidden-submit",
                   staticStyle: { display: "none", width: "0px", height: "0px" },
-                  attrs: { type: "submit" }
+                  attrs: { type: "submit" },
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "panel panel-primary" }, [
                   _c("div", { staticClass: "panel-body" }, [
                     _c("div", { staticClass: "text-center" }, [
                       _c("h4", { staticClass: "text-red" }, [
-                        _vm._v("Sign-In")
+                        _vm._v("Sign-In"),
                       ]),
                       _vm._v(" "),
                       _c("small", [
                         _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("*")
+                          _vm._v("*"),
                         ]),
                         _vm._v(
                           " Required fields\n                                "
-                        )
-                      ])
+                        ),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("hr"),
@@ -49669,8 +49630,8 @@ var staticRenderFns = [
                           "E-mail/Mobile:\n                                    "
                         ),
                         _c("small", { staticClass: "text-danger" }, [
-                          _vm._v("*")
-                        ])
+                          _vm._v("*"),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -49682,8 +49643,8 @@ var staticRenderFns = [
                           value: "",
                           "data-bv-notempty": "true",
                           placeholder: "enter email/mobile",
-                          "data-bv-field": "email"
-                        }
+                          "data-bv-field": "email",
+                        },
                       }),
                       _vm._v(" "),
                       _c(
@@ -49694,11 +49655,11 @@ var staticRenderFns = [
                           attrs: {
                             "data-bv-validator": "notEmpty",
                             "data-bv-for": "email",
-                            "data-bv-result": "NOT_VALIDATED"
-                          }
+                            "data-bv-result": "NOT_VALIDATED",
+                          },
                         },
                         [_vm._v("Please enter a value")]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -49707,8 +49668,8 @@ var staticRenderFns = [
                           "Password:\n                                    "
                         ),
                         _c("small", { staticClass: "text-danger" }, [
-                          _vm._v("*")
-                        ])
+                          _vm._v("*"),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -49720,8 +49681,8 @@ var staticRenderFns = [
                           value: "",
                           "data-bv-notempty": "true",
                           placeholder: "enter password",
-                          "data-bv-field": "password"
-                        }
+                          "data-bv-field": "password",
+                        },
                       }),
                       _vm._v(" "),
                       _c(
@@ -49732,12 +49693,12 @@ var staticRenderFns = [
                           attrs: {
                             "data-bv-validator": "notEmpty",
                             "data-bv-for": "password",
-                            "data-bv-result": "NOT_VALIDATED"
-                          }
+                            "data-bv-result": "NOT_VALIDATED",
+                          },
                         },
                         [_vm._v("Please enter a value")]
-                      )
-                    ])
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "panel-footer" }, [
@@ -49747,11 +49708,11 @@ var staticRenderFns = [
                           "a",
                           {
                             staticClass: "text-primary",
-                            attrs: { href: "/password/reset" }
+                            attrs: { href: "/password/reset" },
                           },
                           [_vm._v("Forgot password?")]
-                        )
-                      ])
+                        ),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "pull-right" }, [
@@ -49759,25 +49720,25 @@ var staticRenderFns = [
                         "button",
                         {
                           staticClass: "btn btn-lg btn-primary",
-                          attrs: { type: "submit" }
+                          attrs: { type: "submit" },
                         },
                         [
                           _c("i", { staticClass: "fa fa-key" }),
-                          _vm._v(" Join now\n                                ")
+                          _vm._v(" Join now\n                                "),
                         ]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "clearfix" })
-                  ])
-                ])
+                    _c("div", { staticClass: "clearfix" }),
+                  ]),
+                ]),
               ]
-            )
-          ])
-        ])
-      ])
+            ),
+          ]),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -49796,14 +49757,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -49813,7 +49774,7 @@ var staticRenderFns = [
         {
           staticClass: "yaqOZd",
           staticStyle: { padding: "29px 210px" },
-          attrs: { id: "h.33ac46acaa9cb602_15" }
+          attrs: { id: "h.33ac46acaa9cb602_15" },
         },
         [
           _c("div", { staticClass: "IFuOkc" }),
@@ -49827,7 +49788,7 @@ var staticRenderFns = [
                   "div",
                   {
                     staticClass:
-                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"
+                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc",
                   },
                   [
                     _c("div", { staticClass: "JNdkSc-SmKAyb" }, [
@@ -49837,8 +49798,8 @@ var staticRenderFns = [
                           attrs: {
                             jscontroller: "sGwD4d",
                             jsaction: "zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;",
-                            jsname: "F57UId"
-                          }
+                            jsname: "F57UId",
+                          },
                         },
                         [
                           _c("div", { staticClass: "oKdM2c Kzv0Me" }, [
@@ -49847,7 +49808,7 @@ var staticRenderFns = [
                               {
                                 staticClass:
                                   "hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc",
-                                attrs: { id: "h.33ac46acaa9cb602_12" }
+                                attrs: { id: "h.33ac46acaa9cb602_12" },
                               },
                               [
                                 _c("div", { staticClass: "jXK9ad-SmKAyb" }, [
@@ -49864,9 +49825,9 @@ var staticRenderFns = [
                                             "margin-right": "0",
                                             "padding-left": "0",
                                             "text-align": "center",
-                                            "text-indent": "0"
+                                            "text-indent": "0",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _c(
@@ -49877,15 +49838,15 @@ var staticRenderFns = [
                                                 "font-size": "13pt",
                                                 "font-style": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [
                                               _c("strong", [
-                                                _vm._v("সদস্যভুক্তির নিয়মাবলী")
-                                              ])
+                                                _vm._v("সদস্যভুক্তির নিয়মাবলী"),
+                                              ]),
                                             ]
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -49898,9 +49859,9 @@ var staticRenderFns = [
                                             "margin-right": "0",
                                             "padding-left": "0",
                                             "text-align": "center",
-                                            "text-indent": "0"
+                                            "text-indent": "0",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _vm._v(
@@ -49915,8 +49876,8 @@ var staticRenderFns = [
                                                 "font-style": "normal",
                                                 "font-weight": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [_vm._v("যেকোন")]
                                           ),
@@ -49932,8 +49893,8 @@ var staticRenderFns = [
                                                 "font-style": "normal",
                                                 "font-weight": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [_vm._v("অত্র এসোসিয়েশনের ")]
                                           ),
@@ -49949,13 +49910,13 @@ var staticRenderFns = [
                                                 "font-style": "normal",
                                                 "font-weight": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [
                                               _vm._v(
                                                 " বিধি ও নিয়মাবলীর প্রতি পূর্ণ আস্থা জ্ঞাপন"
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(
@@ -49970,13 +49931,13 @@ var staticRenderFns = [
                                                 "font-style": "normal",
                                                 "font-weight": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [
                                               _vm._v(
                                                 " নির্ধারিত ফি প্রদান পূর্বক এসোসিয়েশনের সদস্য হওয়ার জন্য নির্ধারিত আবেদন ফর্মে  আবেদন করতে পারবেন এবং আবেদন কার্যনির্বাহী কমিটি কর্তৃক অনুমোদিত হ"
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v("লে"),
@@ -49989,31 +49950,31 @@ var staticRenderFns = [
                                                 "font-style": "normal",
                                                 "font-weight": "normal",
                                                 "text-decoration": "normal",
-                                                "vertical-align": "baseline"
-                                              }
+                                                "vertical-align": "baseline",
+                                              },
                                             },
                                             [
                                               _vm._v(
                                                 " আবেদনকারী এসোসিয়েশনের সদস্য হিসাবে গণ্য হইবেন। শর্ত থাকে যে, কার্যনির্বাহী কমিটি যে কোন আবেদন গ্রহণ কিংবা প্রত্যাখান করার সর্বময় ক্ষমতা সংরক্ষণ রাখে।"
-                                              )
+                                              ),
                                             ]
-                                          )
+                                          ),
                                         ]
-                                      )
+                                      ),
                                     ]
-                                  )
-                                ])
+                                  ),
+                                ]),
                               ]
-                            )
-                          ])
+                            ),
+                          ]),
                         ]
-                      )
-                    ])
+                      ),
+                    ]),
                   ]
-                )
+                ),
               ]
-            )
-          ])
+            ),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -50024,9 +49985,9 @@ var staticRenderFns = [
           staticStyle: {
             padding: "29px 210px",
             "background-color": "rgb(41 40 94)",
-            color: "white"
+            color: "white",
           },
-          attrs: { id: "h.33ac46acaa9cb602_19" }
+          attrs: { id: "h.33ac46acaa9cb602_19" },
         },
         [
           _c("div", { staticClass: "mYVXT" }, [
@@ -50038,7 +49999,7 @@ var staticRenderFns = [
                   "div",
                   {
                     staticClass:
-                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"
+                      "hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc",
                   },
                   [
                     _c("div", { staticClass: "JNdkSc-SmKAyb" }, [
@@ -50048,8 +50009,8 @@ var staticRenderFns = [
                           attrs: {
                             jscontroller: "sGwD4d",
                             jsaction: "zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;",
-                            jsname: "F57UId"
-                          }
+                            jsname: "F57UId",
+                          },
                         },
                         [
                           _c("div", { staticClass: "oKdM2c Kzv0Me" }, [
@@ -50058,7 +50019,7 @@ var staticRenderFns = [
                               {
                                 staticClass:
                                   "hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc",
-                                attrs: { id: "h.33ac46acaa9cb602_16" }
+                                attrs: { id: "h.33ac46acaa9cb602_16" },
                               },
                               [
                                 _c("div", { staticClass: "jXK9ad-SmKAyb" }, [
@@ -50072,14 +50033,14 @@ var staticRenderFns = [
                                           staticClass: "CDt4Ke zfr3Q",
                                           staticStyle: {
                                             "text-align": "center",
-                                            color: "white"
+                                            color: "white",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _vm._v(
                                             "সদস্য হতে\n                                            আমাদের কার্যালয়ে আসুন"
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -50089,14 +50050,14 @@ var staticRenderFns = [
                                           staticClass: "CDt4Ke zfr3Q",
                                           staticStyle: {
                                             "text-align": "center",
-                                            color: "white"
+                                            color: "white",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _vm._v(
                                             "প্রধান\n                                                কার্যালয়ঃ "
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -50106,14 +50067,14 @@ var staticRenderFns = [
                                           staticClass: "CDt4Ke zfr3Q",
                                           staticStyle: {
                                             "text-align": "center",
-                                            color: "white"
+                                            color: "white",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _vm._v(
                                             "মাদ্রাসা\n                                                মার্কেট (২য় তলা), ইসলামপুর, চাটখিল, নোয়াখালী-৩৮৭৪"
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -50123,34 +50084,34 @@ var staticRenderFns = [
                                           staticClass: "CDt4Ke zfr3Q",
                                           staticStyle: {
                                             "text-align": "center",
-                                            color: "white"
+                                            color: "white",
                                           },
-                                          attrs: { dir: "ltr" }
+                                          attrs: { dir: "ltr" },
                                         },
                                         [
                                           _vm._v(
                                             "ফোনঃ +88\n                                                01905199278 , ইমেলঃ sbdaofficialbd@gmail.com"
-                                          )
+                                          ),
                                         ]
-                                      )
+                                      ),
                                     ]
-                                  )
-                                ])
+                                  ),
+                                ]),
                               ]
-                            )
-                          ])
+                            ),
+                          ]),
                         ]
-                      )
-                    ])
+                      ),
+                    ]),
                   ]
-                )
+                ),
               ]
-            )
-          ])
+            ),
+          ]),
         ]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -50169,7 +50130,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -50179,12 +50140,12 @@ var render = function() {
       staticClass: "wrapper",
       class: {
         "is-previous": _vm.isPreviousSlide,
-        "first-load": _vm.isFirstLoad
+        "first-load": _vm.isFirstLoad,
       },
-      attrs: { id: "app-new" }
+      attrs: { id: "app-new" },
     },
     [
-      _vm._l(_vm.slides, function(slide, index) {
+      _vm._l(_vm.slides, function (slide, index) {
         return _c(
           "div",
           {
@@ -50192,42 +50153,44 @@ var render = function() {
             class: { active: index === _vm.currentSlide },
             style: {
               "z-index": _vm.slides.length - index,
-              "background-image": "url(" + slide.bgImg + ")"
+              "background-image": "url(" + slide.bgImg + ")",
             },
-            on: { mouseover: _vm.stopRotation, mouseout: _vm.startRotation }
+            on: { mouseover: _vm.stopRotation, mouseout: _vm.startRotation },
           },
           [
             _c("div", { staticClass: "slide-inner" }, [
               _c("div", { staticClass: "slide-bg-text" }, [
                 _c("p", [_vm._v(_vm._s(slide.headlineFirstLine))]),
                 _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(slide.headlineSecondLine))])
+                _c("p", [_vm._v(_vm._s(slide.headlineSecondLine))]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "slide-rect-filter" }, [
                 _c("div", {
                   staticClass: "slide-rect",
-                  style: { "border-image-source": "url(" + slide.rectImg + ")" }
-                })
+                  style: {
+                    "border-image-source": "url(" + slide.rectImg + ")",
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "slide-content" }, [
                 _c("h1", { staticClass: "slide-content-text" }, [
                   _c("p", [_vm._v(_vm._s(slide.headlineFirstLine))]),
                   _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(slide.headlineSecondLine))])
+                  _c("p", [_vm._v(_vm._s(slide.headlineSecondLine))]),
                 ]),
                 _vm._v(" "),
                 _c("a", { staticClass: "slide-content-cta" }, [
-                  _vm._v("Call To Action")
-                ])
+                  _vm._v("Call To Action"),
+                ]),
               ]),
               _vm._v(" "),
               _c("h2", { staticClass: "slide-side-text" }, [
                 _c("span", [_vm._v(_vm._s(slide.sublineFirstLine) + " / ")]),
-                _c("span", [_vm._v(_vm._s(slide.sublineSecondLine))])
-              ])
-            ])
+                _c("span", [_vm._v(_vm._s(slide.sublineSecondLine))]),
+              ]),
+            ]),
           ]
         )
       }),
@@ -50235,19 +50198,19 @@ var render = function() {
       _c(
         "div",
         { staticClass: "controls-container" },
-        _vm._l(_vm.slides, function(slide, index) {
+        _vm._l(_vm.slides, function (slide, index) {
           return _c(
             "button",
             {
               staticClass: "controls-button",
               class: { active: index === _vm.currentSlide },
               on: {
-                click: function($event) {
+                click: function ($event) {
                   return _vm.updateSlide(index)
                 },
                 mouseover: _vm.stopRotation,
-                mouseout: _vm.startRotation
-              }
+                mouseout: _vm.startRotation,
+              },
             },
             [
               _vm._v(
@@ -50255,7 +50218,7 @@ var render = function() {
                   " " +
                   _vm._s(slide.headlineSecondLine) +
                   "\n        "
-              )
+              ),
             ]
           )
         }),
@@ -50265,21 +50228,21 @@ var render = function() {
       _c(
         "div",
         { staticClass: "pagination-container" },
-        _vm._l(_vm.slides, function(slide, index) {
+        _vm._l(_vm.slides, function (slide, index) {
           return _c("span", {
             staticClass: "pagination-item",
             class: { active: index === _vm.currentSlide },
             on: {
-              click: function($event) {
+              click: function ($event) {
                 return _vm.updateSlide(index)
               },
               mouseover: _vm.stopRotation,
-              mouseout: _vm.startRotation
-            }
+              mouseout: _vm.startRotation,
+            },
           })
         }),
         0
-      )
+      ),
     ],
     2
   )
@@ -50302,7 +50265,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -50323,18 +50286,18 @@ var render = function() {
                 "data-bv-feedbackicons-valid": "",
                 "data-bv-feedbackicons-invalid": "",
                 "data-bv-feedbackicons-validating": "",
-                novalidate: "novalidate"
-              }
+                novalidate: "novalidate",
+              },
             },
             [
               _c("button", {
                 staticClass: "bv-hidden-submit",
                 staticStyle: { display: "none", width: "0px", height: "0px" },
-                attrs: { type: "submit" }
+                attrs: { type: "submit" },
               }),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "hidden", value: "volunteer", name: "type" }
+                attrs: { type: "hidden", value: "volunteer", name: "type" },
               }),
               _vm._v(" "),
               _c("div", { staticClass: "panel panel-primary" }, [
@@ -50360,15 +50323,15 @@ var render = function() {
                             staticClass: "form-select form-control",
                             attrs: {
                               name: "blood_group",
-                              "aria-label": "Default select example"
-                            }
+                              "aria-label": "Default select example",
+                            },
                           },
                           [
                             _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select Blood Group")
+                              _vm._v("Select Blood Group"),
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.blood_groups, function(b_group) {
+                            _vm._l(_vm.blood_groups, function (b_group) {
                               return _c(
                                 "option",
                                 { domProps: { value: b_group.id } },
@@ -50377,10 +50340,10 @@ var render = function() {
                                     _vm._s(b_group.id) +
                                       ") " +
                                       _vm._s(b_group.name)
-                                  )
+                                  ),
                                 ]
                               )
-                            })
+                            }),
                           ],
                           2
                         ),
@@ -50393,11 +50356,11 @@ var render = function() {
                             attrs: {
                               "data-bv-validator": "notEmpty",
                               "data-bv-for": "password",
-                              "data-bv-result": "NOT_VALIDATED"
-                            }
+                              "data-bv-result": "NOT_VALIDATED",
+                            },
                           },
                           [_vm._v("Please enter a value")]
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -50409,25 +50372,25 @@ var render = function() {
                             staticClass: "form-select form-control",
                             attrs: {
                               name: "area",
-                              "aria-label": "Default select example"
-                            }
+                              "aria-label": "Default select example",
+                            },
                           },
                           [
                             _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("Select Volunteer Area ")
+                              _vm._v("Select Volunteer Area "),
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.member_areas, function(areas) {
+                            _vm._l(_vm.member_areas, function (areas) {
                               return _c(
                                 "option",
                                 { domProps: { value: areas.id } },
                                 [
                                   _vm._v(
                                     _vm._s(areas.id) + ") " + _vm._s(areas.name)
-                                  )
+                                  ),
                                 ]
                               )
-                            })
+                            }),
                           ],
                           2
                         ),
@@ -50440,27 +50403,27 @@ var render = function() {
                             attrs: {
                               "data-bv-validator": "notEmpty",
                               "data-bv-for": "password",
-                              "data-bv-result": "NOT_VALIDATED"
-                            }
+                              "data-bv-result": "NOT_VALIDATED",
+                            },
                           },
                           [_vm._v("Please enter a value")]
-                        )
-                      ])
-                    ])
-                  ])
+                        ),
+                      ]),
+                    ]),
+                  ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(6)
-              ])
+                _vm._m(6),
+              ]),
             ]
-          )
-        ])
-      ])
-    ])
+          ),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -50469,11 +50432,11 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("small", [
         _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-        _vm._v(" Required fields\n                                ")
-      ])
+        _vm._v(" Required fields\n                                "),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -50481,7 +50444,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
           _vm._v("Full Name:\n                                            "),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -50493,8 +50456,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter full name",
-            "data-bv-field": "email"
-          }
+            "data-bv-field": "email",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -50505,11 +50468,11 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "email",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
@@ -50517,7 +50480,7 @@ var staticRenderFns = [
           _vm._v(
             "E-mail/Mobile:\n                                            "
           ),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -50529,8 +50492,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter email/mobile",
-            "data-bv-field": "email"
-          }
+            "data-bv-field": "email",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -50541,17 +50504,17 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "email",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
         _c("label", { staticClass: "control-label" }, [
           _vm._v("Password:\n                                            "),
-          _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+          _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
         ]),
         _vm._v(" "),
         _c("input", {
@@ -50563,8 +50526,8 @@ var staticRenderFns = [
             value: "",
             "data-bv-notempty": "true",
             placeholder: "enter password",
-            "data-bv-field": "password"
-          }
+            "data-bv-field": "password",
+          },
         }),
         _vm._v(" "),
         _c(
@@ -50575,22 +50538,22 @@ var staticRenderFns = [
             attrs: {
               "data-bv-validator": "notEmpty",
               "data-bv-for": "password",
-              "data-bv-result": "NOT_VALIDATED"
-            }
+              "data-bv-result": "NOT_VALIDATED",
+            },
           },
           [_vm._v("Please enter a value")]
-        )
-      ])
+        ),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
         _vm._v("Phone:\n                                            "),
-        _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+        _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
       ]),
       _vm._v(" "),
       _c("input", {
@@ -50602,8 +50565,8 @@ var staticRenderFns = [
           value: "",
           "data-bv-notempty": "true",
           placeholder: "enter phone number",
-          "data-bv-field": "password"
-        }
+          "data-bv-field": "password",
+        },
       }),
       _vm._v(" "),
       _c(
@@ -50614,21 +50577,21 @@ var staticRenderFns = [
           attrs: {
             "data-bv-validator": "notEmpty",
             "data-bv-for": "password",
-            "data-bv-result": "NOT_VALIDATED"
-          }
+            "data-bv-result": "NOT_VALIDATED",
+          },
         },
         [_vm._v("Please enter a value")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("label", { staticClass: "control-label" }, [
         _vm._v("Address :\n                                            "),
-        _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+        _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
       ]),
       _vm._v(" "),
       _c("input", {
@@ -50640,8 +50603,8 @@ var staticRenderFns = [
           value: "",
           "data-bv-notempty": "true",
           placeholder: "enter full address",
-          "data-bv-field": "password"
-        }
+          "data-bv-field": "password",
+        },
       }),
       _vm._v(" "),
       _c(
@@ -50652,32 +50615,32 @@ var staticRenderFns = [
           attrs: {
             "data-bv-validator": "notEmpty",
             "data-bv-for": "password",
-            "data-bv-result": "NOT_VALIDATED"
-          }
+            "data-bv-result": "NOT_VALIDATED",
+          },
         },
         [_vm._v("Please enter a value")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label" }, [
       _vm._v("Blood Group :\n                                            "),
-      _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+      _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label" }, [
       _vm._v("Volunteer Area :\n                                            "),
-      _c("small", { staticClass: "text-danger" }, [_vm._v("*")])
+      _c("small", { staticClass: "text-danger" }, [_vm._v("*")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -50688,11 +50651,11 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "text-primary",
-              attrs: { href: "https://saptagaon.com/forgotpassword" }
+              attrs: { href: "https://saptagaon.com/forgotpassword" },
             },
             [_vm._v("Forgot password?")]
-          )
-        ])
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pull-right" }, [
@@ -50701,14 +50664,14 @@ var staticRenderFns = [
           { staticClass: "btn btn-lg btn-primary", attrs: { type: "submit" } },
           [
             _c("i", { staticClass: "fa fa-key" }),
-            _vm._v(" Join now\n                                ")
+            _vm._v(" Join now\n                                "),
           ]
-        )
+        ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "clearfix" })
+      _c("div", { staticClass: "clearfix" }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -50838,7 +50801,7 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.5.2
+  * vue-router v3.5.3
   * (c) 2021 Evan You
   * @license MIT
   */
@@ -50851,7 +50814,7 @@ function assert (condition, message) {
 }
 
 function warn (condition, message) {
-  if ( true && !condition) {
+  if (!condition) {
     typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
   }
 }
@@ -51357,7 +51320,7 @@ function parsePath (path) {
 }
 
 function cleanPath (path) {
-  return path.replace(/\/\//g, '/')
+  return path.replace(/\/+/g, '/')
 }
 
 var isarray = Array.isArray || function (arr) {
@@ -53149,7 +53112,9 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
           cb(err);
         });
       } else {
-        warn(false, 'uncaught error during route navigation:');
+        if (true) {
+          warn(false, 'uncaught error during route navigation:');
+        }
         console.error(err);
       }
     }
@@ -53164,6 +53129,9 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
     route.matched[lastRouteIndex] === current.matched[lastCurrentIndex]
   ) {
     this.ensureURL();
+    if (route.hash) {
+      handleScroll(this.router, current, route, false);
+    }
     return abort(createNavigationDuplicatedError(current, route))
   }
 
@@ -53727,6 +53695,9 @@ var AbstractHistory = /*@__PURE__*/(function (History) {
 var VueRouter = function VueRouter (options) {
   if ( options === void 0 ) options = {};
 
+  if (true) {
+    warn(this instanceof VueRouter, "Router must be called with the new operator.");
+  }
   this.app = null;
   this.apps = [];
   this.options = options;
@@ -53971,7 +53942,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.5.2';
+VueRouter.version = '3.5.3';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;
