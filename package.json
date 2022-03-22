@@ -27,6 +27,7 @@
         "laravel-vue-pagination": "^2.3.1",
         "v-viewer": "^1.6.4",
         "vue-image-slider": "^1.0.2",
-        "vue-router": "^3.1.5"
+        "vue-router": "^3.1.5",
+        "vuejs-datatable": "^2.0.0-alpha.7"
     }
 }

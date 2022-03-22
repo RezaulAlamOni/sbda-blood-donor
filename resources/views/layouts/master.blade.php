@@ -92,7 +92,7 @@
                             <div class="row">
 
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                    <img src="images/logo/logo.png" alt="" height="120"/>
+                                    <img src="images/logo/logo.png" alt=""/>
                                 </div> <!--  end col-lg-3-->
 
                                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">

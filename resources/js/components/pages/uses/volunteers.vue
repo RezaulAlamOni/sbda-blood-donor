@@ -7,7 +7,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Our Donors</h2>
+                    <h2>Our Volunteer</h2>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
@@ -57,7 +57,7 @@ import pagination from 'laravel-vue-pagination'
 
 Vue.use(VueViewer)
 export default {
-    name: "donor-list",
+    name: "volunteer-list",
     components: {
         pagination,
     },
@@ -81,7 +81,7 @@ export default {
     methods: {
         getGallery() {
             let _this = this;
-            this.axios.get('/users-type/donor')
+            this.axios.get('/users-type/volunteer')
                 .then(resp => {
                     _this.users = resp.data.users.data;
                     _this.photo_s =     resp.data.users
@@ -94,7 +94,7 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            await axios.get(`/users-type/donor?page=${page}`)
+            await axios.get(`/users-type/volunteer?page=${page}`)
                 .then((resp) => {
                     _this.users = resp.data.users.data;
                     _this.photo_s =     resp.data.users

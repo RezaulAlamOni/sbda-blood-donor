@@ -43,6 +43,28 @@ class VolunteerController extends Controller
         //
     }
 
+    public function index1(Request $request)
+    {
+        $users = new User();
+        if (isset($request->type)) {
+            if ($request->type == 'donor') {
+                $users_id = Donor::get()->pluck('user_id');
+            } else {
+                $users_id = Volunteer::get()->pluck('user_id');
+            }
+
+        }
+
+        $users = $users->whereIn('id',$users_id)->with(['blood_group','area','v_area','donor','volunteer']);
+
+        $users = $users->paginate(50);
+
+        return response()->json(['users'=>$users]);
+
+
+        //
+    }
+
     /**
      * Show the form for creating a new resource.
      *
