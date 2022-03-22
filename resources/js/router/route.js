@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { VuejsDatatableFactory } from 'vuejs-datatable';
+Vue.use(VuejsDatatableFactory)
 Vue.use(VueRouter)
 
 import test_home from '../components/ExampleComponent'

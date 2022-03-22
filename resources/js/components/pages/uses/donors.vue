@@ -35,6 +35,8 @@
                             <span slot="next-nav">Next &gt;</span>
                         </pagination>
                     </div>
+
+<!--                    <datatable :columns="columns" :data="users"></datatable>-->
                 </div>
             </div>
         </div> <!--  end .container -->
@@ -87,11 +89,12 @@ import VueViewer from 'v-viewer'
 import Vue from 'vue'
 import pagination from 'laravel-vue-pagination'
 
+
 Vue.use(VueViewer)
 export default {
     name: "donor-list",
     components: {
-        pagination
+        pagination,
     },
     data() {
         return {
@@ -115,8 +118,8 @@ export default {
             let _this = this;
             this.axios.get('/users-type/donor')
                 .then(resp => {
-                    _this.users = resp.data.users;
-                    _this.photo_s =     _this.users;
+                    _this.users = resp.data.users.data;
+                    _this.photo_s =     resp.data.users
                 })
         },
         show() {
@@ -126,16 +129,10 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            await axios.get(`/photos/gallery?page=${page}`)
+            await axios.get(`/users-type/donor?page=${page}`)
                 .then((resp) => {
-                    let photos = resp.data.photos.data;
-                    _this.photo_s = resp.data.photos;
-                    // _this.photos = resp.data.photos;
-                    let gallery = [];
-                    photos.map(function (photo) {
-                        gallery.push(photo.photo)
-                    });
-                    _this.photos = gallery;
+                    _this.users = resp.data.users.data;
+                    _this.photo_s =     resp.data.users
                 }).catch(({response}) => {
                     console.error(response)
                 })
