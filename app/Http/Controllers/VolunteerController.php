@@ -57,7 +57,7 @@ class VolunteerController extends Controller
 
         $users = $users->whereIn('id',$users_id)->with(['blood_group','area','v_area','donor','volunteer']);
 
-        $users = $users->paginate(25);
+        $users = $users->paginate(50);
 
         return response()->json(['users'=>$users]);
 

@@ -18,6 +18,7 @@ import Advisor from "../components/pages/uses/Advisor";
 import FounderMember from "../components/pages/uses/Founder-Member";
 import PageNotFound from "../components/404";
 import donors from "../components/pages/uses/donors";
+import volunteers from "../components/pages/uses/volunteers";
 
 let base_url = window.APP_URL
 
@@ -90,7 +91,7 @@ let routes = [
     },
     {
         path: "/volunteers",
-        component: donors,
+        component: volunteers,
         name: "volunteers"
     },
 
