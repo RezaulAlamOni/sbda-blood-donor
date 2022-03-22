@@ -63,14 +63,7 @@
                                     </li>
                                     <li><a href="#founder-member">Books</a></li>
                                     <li><a href="#founder-member">Emergency Response Team</a></li>
-                                    <template v-if="auth">
-                                        <li>
-                                            <router-link :to="{name : 'donors'}">Donors</router-link>
-                                        </li>
-                                        <li>
-                                            <router-link :to="{name : 'volunteers'}">Volunteers</router-link>
-                                        </li>
-                                    </template>
+
 
                                 </ul>
                             </li>
@@ -137,6 +130,14 @@
                                     <li><a href="#about-membership">Profile</a></li>
                                     <li><a href="#about-membership">Events</a></li>
                                     <li><a href="#about-membership">Donation history</a></li>
+
+                                    <li>
+                                        <router-link :to="{name : 'donors'}">Donor List</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name : 'volunteers'}">Volunteer List</router-link>
+                                    </li>
+
                                     <li>
                                         <form id="logout-form" action="logout" method="POST" style="display: none;">
                                             @csrf
@@ -144,6 +145,7 @@
                                         <a href="#" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
                                     </li>
+
                                 </ul>
                             </li>
                         </ul>
