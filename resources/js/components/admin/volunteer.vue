@@ -45,14 +45,14 @@
                             <table class="table align-items-center table-dark table-flush">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="name">Name</th>
-                                    <th scope="col" class="sort" data-sort="budget">Email</th>
-                                    <th scope="col" class="sort" data-sort="status">Phone</th>
+                                    <th scope="col" class="sort" data-sort="name"  @click="setFilterType('name')">Name</th>
+                                    <th scope="col" class="sort" data-sort="budget" @click="setFilterType('email')">Email</th>
+                                    <th scope="col" class="sort" data-sort="status" @click="setFilterType('phone')">Phone</th>
                                     <th scope="col" class="sort" data-sort="status">Area</th>
                                     <th scope="col" class="sort" data-sort="status">Blood Group</th>
                                     <!--                                    <th scope="col">Users</th>-->
                                     <!--                                    <th scope="col" class="sort" data-sort="completion">Completion</th>-->
-                                    <th scope="col">Status</th>
+                                    <th scope="col" @click="setFilterType('status')">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -119,7 +119,9 @@ export default {
         return {
             type: null,
             users : [],
-            search : ''
+            search : '',
+            filter : 'DESC',
+            filter_type : 'id'
         }
     },
     mounted() {
@@ -132,7 +134,11 @@ export default {
             let url = '/admin/users-type/'+_this.type;
             if (this.search.length > 0) {
                 url = url + '?search=' + _this.search;
+                url += '&';
+            } else {
+                url += '?';
             }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
             this.axios.get(url)
                 .then(resp => {
                     _this.users = resp.data.users;
@@ -163,11 +169,15 @@ export default {
 
 
         },
-
         clickOnCsvFile() {
             $('#csv_input').click()
-        }
-
+        },
+        setFilterType(type) {
+            if (this.filter_type == type){
+                this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
+            }
+            this.filter_type = type;
+        },
     },
     watch: {
         '$attrs.type': function (val) {
@@ -177,11 +187,24 @@ export default {
         '$attrs.search': function (val) {
             this.search = val;
             this.getUsersType();
+        },
+        filter_type : function (val, oldVal) {
+            if (val != oldVal) {
+                this.filter = 'ASC';
+            }
+            this.getUsersType();
+        },
+        filter : function (val, oldVal) {
+            this.getUsersType();
         }
     }
 }
 </script>
 
 <style scoped>
+
+th {
+    cursor: pointer;
+}
 
 </style>
