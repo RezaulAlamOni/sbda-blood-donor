@@ -115,10 +115,12 @@ class VolunteerController extends Controller
                 if ($type == 'volunteer') {
                     $cond = [
                         'email' => trim($datum->email ?? $datum->phone),
+                        'phone' => $datum->phone,
                     ];
                 } else {
                     $cond = [
                         'email' => trim($datum->email ?? $datum->phone),
+                        'phone' => $datum->phone,
                     ];
                 }
 
@@ -126,6 +128,7 @@ class VolunteerController extends Controller
                     [
                         'type' => $type,
                         'name' => $datum->name,
+                        'dob' => $datum->dob ?? null,
                         'email' => trim($datum->email ?? $datum->phone),
                         'blood_group_id' => $bg_id,
                         'areas_id' => $a_id,

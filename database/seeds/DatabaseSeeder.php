@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
          $this->call([
              BloodGroupsSeeder::class,
              MemberAreasSeeder::class,
-             DonorAreaSeeder::class
+             DonorAreaSeeder::class,
+             AdminGroupsSeeder::class
          ]);
     }
 }
