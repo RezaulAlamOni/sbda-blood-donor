@@ -10,6 +10,7 @@ use App\Models\VolunteerArea;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 //use Maatwebsite\Excel\Facades\Excel;
 use Excel;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,7 @@ class VolunteerController extends Controller
      */
     public function index(Request $request)
     {
+        $search = $request->get('search');
         $users = new User();
         if (isset($request->type)) {
             if ($request->type == 'donor') {
@@ -32,13 +34,26 @@ class VolunteerController extends Controller
             }
 
         }
-        $users = $users->whereIn('id',$users_id)
-            ->with(['blood_group','area','v_area','donor','volunteer'])
-            ->orderBy('id','desc');
+        $users = $users->whereIn('id', $users_id)
+            ->with(['blood_group', 'area', 'v_area', 'donor', 'volunteer'])
+            ->orderBy('id', 'desc');
+        if ($search) {
+            $users = $users->where('email', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%')
+                ->with([
+                    'blood_group' => function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    },
+                    'area' => function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    }
+                ])
+                ->orWhere('phone', 'like', '%' . $search . '%');
+        }
 
         $users = $users->get();
 
-        return response()->json(['users'=>$users,'dasd' => '00']);
+        return response()->json(['users' => $users, 'dasd' => '00']);
 
 
         //
@@ -56,11 +71,11 @@ class VolunteerController extends Controller
 
         }
 
-        $users = $users->whereIn('id',$users_id)->with(['blood_group','area','v_area','donor','volunteer']);
+        $users = $users->whereIn('id', $users_id)->with(['blood_group', 'area', 'v_area', 'donor', 'volunteer']);
 
         $users = $users->paginate(50);
 
-        return response()->json(['users'=>$users]);
+        return response()->json(['users' => $users]);
 
 
         //
@@ -79,7 +94,7 @@ class VolunteerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -91,25 +106,25 @@ class VolunteerController extends Controller
         foreach ($data as $datum) {
 
             try {
-                $a_id = VolunteerArea::query()->where('name',$datum->area)->first();
+                $a_id = VolunteerArea::query()->where('name', $datum->area)->first();
                 $a_id = $a_id ? $a_id->id : null;
-                $b_grp = BloodGroup::query()->where('name',$datum->blood)->first();
-                $bg_id = $b_grp ? $b_grp->id  : null;
+                $b_grp = BloodGroup::query()->where('name', $datum->blood)->first();
+                $bg_id = $b_grp ? $b_grp->id : null;
                 if ($type == 'volunteer') {
                     $cond = [
-                        'email' => trim($datum->email??$datum->phone),
+                        'email' => trim($datum->email ?? $datum->phone),
                     ];
                 } else {
                     $cond = [
-                        'email' => trim($datum->email??$datum->phone),
+                        'email' => trim($datum->email ?? $datum->phone),
                     ];
                 }
 
-                $user =  User::updateOrCreate( $cond,
+                $user = User::updateOrCreate($cond,
                     [
                         'type' => $type,
                         'name' => $datum->name,
-                        'email' => trim($datum->email??$datum->phone),
+                        'email' => trim($datum->email ?? $datum->phone),
                         'blood_group_id' => $bg_id,
                         'areas_id' => $a_id,
                         'phone' => $datum->phone,
@@ -118,7 +133,7 @@ class VolunteerController extends Controller
                     ]);
 
                 if ($type == 'volunteer') {
-                    Volunteer::updateOrInsert(['user_id' => $user->id],[
+                    Volunteer::updateOrInsert(['user_id' => $user->id], [
                         'user_id' => $user->id,
                         'v_area_id' => $a_id,
                         'v_type' => '',
@@ -139,12 +154,12 @@ class VolunteerController extends Controller
                 }
 
 
-            } catch (\Exception $exception){
-                $data__[] = [$datum,$exception->getMessage()];
+            } catch (\Exception $exception) {
+                $data__[] = [$datum, $exception->getMessage()];
             }
         }
-        if (count($data__)  > 0) {
-            return response()->json(['status' => 'some data not insert successfully','data' => $data__]);
+        if (count($data__) > 0) {
+            return response()->json(['status' => 'some data not insert successfully', 'data' => $data__]);
         }
         return response()->json(['status' => 'success']);
     }
@@ -159,7 +174,7 @@ class VolunteerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Volunteer  $volunteer
+     * @param \App\Models\Volunteer $volunteer
      * @return \Illuminate\Http\Response
      */
     public function show(Volunteer $volunteer)
@@ -170,7 +185,7 @@ class VolunteerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Volunteer  $volunteer
+     * @param \App\Models\Volunteer $volunteer
      * @return \Illuminate\Http\Response
      */
     public function edit(Volunteer $volunteer)
@@ -181,8 +196,8 @@ class VolunteerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Volunteer  $volunteer
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Volunteer $volunteer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Volunteer $volunteer)
@@ -193,7 +208,7 @@ class VolunteerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Volunteer  $volunteer
+     * @param \App\Models\Volunteer $volunteer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Volunteer $volunteer)

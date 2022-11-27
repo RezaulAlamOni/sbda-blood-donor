@@ -2479,6 +2479,16 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     'top-nav': _top_nav__WEBPACK_IMPORTED_MODULE_0__["default"],
     'footer-c': _c_footer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      search: ''
+    };
+  },
+  methods: {
+    getSearchValue: function getSearchValue(value) {
+      this.search = value;
+    }
   }
 });
 
@@ -2918,6 +2928,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (er) {
         console.log(er.message);
       })["finally"](function () {});
+    },
+    setSearchValue: function setSearchValue(e) {
+      var value = e.target.value;
+      this.$emit('search', value);
     }
   }
 });
@@ -3290,7 +3304,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       type: null,
-      users: []
+      users: [],
+      search: ''
     };
   },
   mounted: function mounted() {
@@ -3301,7 +3316,13 @@ __webpack_require__.r(__webpack_exports__);
     getUsersType: function getUsersType() {
       var _this = this;
 
-      this.axios.get('/admin/users-type/' + _this.type).then(function (resp) {
+      var url = '/admin/users-type/' + _this.type;
+
+      if (this.search.length > 0) {
+        url = url + '?search=' + _this.search;
+      }
+
+      this.axios.get(url).then(function (resp) {
         _this.users = resp.data.users;
 
         if (_this.type == 'volunteer') {
@@ -3334,6 +3355,10 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     '$attrs.type': function $attrsType(val) {
       this.type = val;
+      this.getUsersType();
+    },
+    '$attrs.search': function $attrsSearch(val) {
+      this.search = val;
       this.getUsersType();
     }
   }
@@ -6142,9 +6167,9 @@ var render = function () {
     "div",
     { staticClass: "main-content", attrs: { id: "panel" } },
     [
-      _c("top-nav"),
+      _c("top-nav", { on: { search: _vm.getSearchValue } }),
       _vm._v(" "),
-      _c("router-view"),
+      _c("router-view", { attrs: { search: _vm.search } }),
       _vm._v(" "),
       _c("footer-c"),
     ],
@@ -6626,9 +6651,42 @@ var render = function () {
             attrs: { id: "navbarSupportedContent" },
           },
           [
-            _vm._m(0),
+            _c(
+              "form",
+              {
+                staticClass:
+                  "navbar-search navbar-search-light form-inline mr-sm-3",
+                attrs: { id: "navbar-search-main", action: "#" },
+              },
+              [
+                _c("div", { staticClass: "form-group mb-0" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "input-group input-group-alternative input-group-merge",
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { placeholder: "Search", type: "text" },
+                        on: {
+                          keyup: function ($event) {
+                            return _vm.setSearchValue($event)
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "ul",
@@ -6651,7 +6709,7 @@ var render = function () {
                     },
                     [
                       _c("div", { staticClass: "media align-items-center" }, [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -6670,7 +6728,7 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _vm._m(4),
                 ]),
               ]
             ),
@@ -6685,49 +6743,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-search" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "form",
+      "button",
       {
-        staticClass: "navbar-search navbar-search-light form-inline mr-sm-3",
-        attrs: { id: "navbar-search-main" },
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-action": "search-close",
+          "data-target": "#navbar-search-main",
+          "aria-label": "Close",
+        },
       },
-      [
-        _c("div", { staticClass: "form-group mb-0" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "input-group input-group-alternative input-group-merge",
-            },
-            [
-              _c("div", { staticClass: "input-group-prepend" }, [
-                _c("span", { staticClass: "input-group-text" }, [
-                  _c("i", { staticClass: "fas fa-search" }),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { placeholder: "Search", type: "text" },
-              }),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "close",
-            attrs: {
-              type: "button",
-              "data-action": "search-close",
-              "data-target": "#navbar-search-main",
-              "aria-label": "Close",
-            },
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        ),
-      ]
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
   },
   function () {

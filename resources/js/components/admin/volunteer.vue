@@ -118,7 +118,8 @@ export default {
     data() {
         return {
             type: null,
-            users : []
+            users : [],
+            search : ''
         }
     },
     mounted() {
@@ -128,7 +129,11 @@ export default {
     methods: {
         getUsersType() {
             let _this = this;
-            this.axios.get('/admin/users-type/'+_this.type)
+            let url = '/admin/users-type/'+_this.type;
+            if (this.search.length > 0) {
+                url = url + '?search=' + _this.search;
+            }
+            this.axios.get(url)
                 .then(resp => {
                     _this.users = resp.data.users;
                     if (_this.type == 'volunteer') {
@@ -167,6 +172,10 @@ export default {
     watch: {
         '$attrs.type': function (val) {
             this.type = val;
+            this.getUsersType();
+        },
+        '$attrs.search': function (val) {
+            this.search = val;
             this.getUsersType();
         }
     }
