@@ -106,61 +106,62 @@ class VolunteerController extends Controller
         $data__ = [];
         $type = $request->type;
         foreach ($data as $datum) {
+            if (strlen($datum['phone']) > 0) {
+                try {
+                    $a_id = VolunteerArea::query()->where('name', $datum->area)->first();
+                    $a_id = $a_id ? $a_id->id : null;
+                    $b_grp = BloodGroup::query()->where('name', $datum->blood)->first();
+                    $bg_id = $b_grp ? $b_grp->id : null;
+                    if ($type == 'volunteer') {
+                        $cond = [
+                            'email' => trim($datum->email ?? $datum->phone),
+                            'phone' => $datum->phone,
+                        ];
+                    } else {
+                        $cond = [
+                            'email' => trim($datum->email ?? $datum->phone),
+                            'phone' => $datum->phone,
+                        ];
+                    }
 
-            try {
-                $a_id = VolunteerArea::query()->where('name', $datum->area)->first();
-                $a_id = $a_id ? $a_id->id : null;
-                $b_grp = BloodGroup::query()->where('name', $datum->blood)->first();
-                $bg_id = $b_grp ? $b_grp->id : null;
-                if ($type == 'volunteer') {
-                    $cond = [
-                        'email' => trim($datum->email ?? $datum->phone),
-                        'phone' => $datum->phone,
-                    ];
-                } else {
-                    $cond = [
-                        'email' => trim($datum->email ?? $datum->phone),
-                        'phone' => $datum->phone,
-                    ];
-                }
-
-                $user = User::updateOrCreate($cond,
-                    [
-                        'type' => $type,
-                        'name' => $datum->name,
-                        'dob' => $datum->dob ?? null,
-                        'email' => trim($datum->email ?? $datum->phone),
-                        'blood_group_id' => $bg_id,
-                        'areas_id' => $a_id,
-                        'phone' => $datum->phone,
-                        'address' => '',
-                        'password' => Hash::make($datum->phone),
-                    ]);
-
-                if ($type == 'volunteer') {
-                    Volunteer::updateOrInsert(['user_id' => $user->id], [
-                        'user_id' => $user->id,
-                        'v_area_id' => $a_id,
-                        'v_type' => '',
-                        'status' => 0,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
-                    ]);
-                } else {
-                    Donor::updateOrCreate(
+                    $user = User::updateOrCreate($cond,
                         [
-                            'user_id' => $user->id
-                        ],
-                        [
+                            'type' => $type,
+                            'name' => $datum->name,
+                            'dob' => $datum->dob ?? null,
+                            'email' => trim($datum->email ?? $datum->phone),
+                            'blood_group_id' => $bg_id,
+                            'areas_id' => $a_id,
+                            'phone' => $datum->phone,
+                            'address' => '',
+                            'password' => Hash::make($datum->phone),
+                        ]);
+
+                    if ($type == 'volunteer') {
+                        Volunteer::updateOrInsert(['user_id' => $user->id], [
                             'user_id' => $user->id,
-                            'current_area_id' => 1
-                        ]
-                    );
+                            'v_area_id' => $a_id,
+                            'v_type' => '',
+                            'status' => 0,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]);
+                    } else {
+                        Donor::updateOrCreate(
+                            [
+                                'user_id' => $user->id
+                            ],
+                            [
+                                'user_id' => $user->id,
+                                'current_area_id' => 1
+                            ]
+                        );
+                    }
+
+
+                } catch (\Exception $exception) {
+                    $data__[] = [$datum, $exception->getMessage()];
                 }
-
-
-            } catch (\Exception $exception) {
-                $data__[] = [$datum, $exception->getMessage()];
             }
         }
         if (count($data__) > 0) {
