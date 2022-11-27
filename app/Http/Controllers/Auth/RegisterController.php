@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Donor;
 use App\Models\Volunteer;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -67,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $area = $data['type'] == 'volunteer' ? null : 4;
+        $area = $data['type'] == 'volunteer' ? $data['area'] : 4;
         $user =  User::create([
             'type' => $data['type'],
             'name' => $data['name'],
@@ -84,6 +85,13 @@ class RegisterController extends Controller
                 'v_area_id' => $data['area'],
                 'v_type' => '',
                 'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+        } else {
+            Donor::create([
+                'user_id' => $user->id,
+                'current_area_id' => $area,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);

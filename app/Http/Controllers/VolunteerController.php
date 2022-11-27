@@ -32,12 +32,13 @@ class VolunteerController extends Controller
             }
 
         }
-
-        $users = $users->whereIn('id',$users_id)->with(['blood_group','area','v_area','donor','volunteer']);
+        $users = $users->whereIn('id',$users_id)
+            ->with(['blood_group','area','v_area','donor','volunteer'])
+            ->orderBy('id','desc');
 
         $users = $users->get();
 
-        return response()->json(['users'=>$users]);
+        return response()->json(['users'=>$users,'dasd' => '00']);
 
 
         //
