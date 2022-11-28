@@ -3954,7 +3954,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -9251,7 +9250,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f;\n}\n\n", ""]);
+exports.push([module.i, "\n.profile-section[data-v-d95279ac] {\n    display: flex;\n    background: #5082bb;\n    padding: 0px 9px 6px 6px;\n    border-radius: 25px;\n}\n.profile-name[data-v-d95279ac] {\n    margin: 8px 0px 0px 15px;\n    font-size: 14px;\n    font-weight: bold;\n    color: white;\n}\n.router-link-active[data-v-d95279ac] {\n    background: none;\n    border-bottom: 3px solid #f9161f;\n}\n.top-bar-social[data-v-d95279ac] {\n    margin-top: 10px;\n}\n.top-bar-social a i.fa[data-v-d95279ac] {\n    width: 36px;\n    height: 36px;\n    text-align: center;\n    color: #666;\n    background: #fafafa;\n    line-height: 35px;\n    font-size: 25px;\n    position: relative;\n    top: -2px;\n    border-radius: 10px;\n}\n@media (max-width: 667px) {\n.top-bar p[data-v-d95279ac] {\n        font-size: 24px;\n}\n.phone-section[data-v-d95279ac] {\n        display: none;\n}\n.social-icons-section[data-v-d95279ac] {\n        /*display: none;*/\n}\n.main-header .top-bar-social[data-v-d95279ac] {\n        margin-bottom: 0px;\n}\n.top-bar-social[data-v-d95279ac] {\n        margin-top: 1px;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -50172,78 +50171,107 @@ var staticRenderFns = [
     return _c("div", { staticClass: "top-bar clearfix" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6 col-sm-12" }, [
+          _c("div", { staticClass: "col-md-6 col-sm-12 title-section" }, [
             _c("p", [_vm._v("Welcome to Saptagaon Blood Donor Association.")]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-2 col-sm-12" }, [
+          _c("div", { staticClass: "col-md-2 col-sm-12 phone-section" }, [
             _c("p", [
               _c("i", { staticClass: "fa fa-phone" }),
               _vm._v(" "),
               _c("a", { attrs: { href: "tel:01905199278" } }, [
-                _vm._v("01905 199\n                            278"),
+                _vm._v("+8801905 199 278"),
               ]),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4 col-sm-12" }, [
-            _c("div", { staticClass: "top-bar-social" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "//www.facebook.com/sbdaofficialbd/",
+          _c(
+            "div",
+            { staticClass: "col-md-4 col-sm-12 social-icons-section" },
+            [
+              _c("div", { staticClass: "top-bar-social" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "//www.facebook.com/sbdaofficialbd/",
+                    },
                   },
-                },
-                [_c("i", { staticClass: "fa fa-facebook" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "//www.twitter.com/sbdaofficialbd/",
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-facebook-f",
+                      staticStyle: { color: "rgb(0 103 227)" },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "//www.twitter.com/sbdaofficialbd/",
+                    },
                   },
-                },
-                [_c("i", { staticClass: "fa fa-twitter" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "//www.instagram.com/sbdaofficialbd/",
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-twitter",
+                      staticStyle: { color: "rgb(28 154 239)" },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "//www.instagram.com/sbdaofficialbd/",
+                    },
                   },
-                },
-                [_c("i", { staticClass: "fa fa-instagram" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A",
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-instagram",
+                      staticStyle: { color: "rgb(230 89 134)" },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A",
+                    },
                   },
-                },
-                [_c("i", { staticClass: "fa fa-youtube" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    target: "_blank",
-                    href: "https://www.linkedin.com/company/sbdaofficialbd/",
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-youtube-play",
+                      staticStyle: { color: "rgb(255 0 0)" },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      target: "_blank",
+                      href: "https://www.linkedin.com/company/sbdaofficialbd/",
+                    },
                   },
-                },
-                [_c("i", { staticClass: "fa fa-linkedin" })]
-              ),
-            ]),
-          ]),
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-linkedin",
+                      staticStyle: { color: "rgb(18 105 190)" },
+                    }),
+                  ]
+                ),
+              ]),
+            ]
+          ),
         ]),
       ]),
     ])

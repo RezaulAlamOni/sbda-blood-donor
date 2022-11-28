@@ -6,30 +6,29 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-12"><p>Welcome to Saptagaon Blood Donor Association.</p></div>
-                    <div class="col-md-2 col-sm-12">
+                    <div class="col-md-6 col-sm-12 title-section"><p>Welcome to Saptagaon Blood Donor Association.</p></div>
+                    <div class="col-md-2 col-sm-12 phone-section">
                         <p>
                             <i class="fa fa-phone"></i>
-                            <a href="tel:01905199278">01905 199
-                                278</a>
+                            <a href="tel:01905199278">+8801905 199 278</a>
                         </p>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 social-icons-section">
                         <div class="top-bar-social">
                             <a target="_blank" href="//www.facebook.com/sbdaofficialbd/">
-                                <i class="fa fa-facebook"></i>
+                                <i class="fa fa-facebook-f" style="color: rgb(0 103 227);"></i>
                             </a>
                             <a target="_blank" href="//www.twitter.com/sbdaofficialbd/">
-                                <i class="fa fa-twitter"></i>
+                                <i class="fa fa-twitter" style="color: rgb(28 154 239);"></i>
                             </a>
                             <a target="_blank" href="//www.instagram.com/sbdaofficialbd/">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fa fa-instagram" style="color: rgb(230 89 134);"></i>
                             </a>
                             <a target="_blank" href="//www.youtube.com/channel/UCIDrZMXk0HnAqUa09dV7Q3A"><i
-                                class="fa fa-youtube"></i>
+                                class="fa fa-youtube-play" style="color: rgb(255 0 0);"></i>
                             </a>
                             <a target="_blank" href="https://www.linkedin.com/company/sbdaofficialbd/"><i
-                                class="fa fa-linkedin"></i>
+                                class="fa fa-linkedin" style="color: rgb(18 105 190);"></i>
                             </a>
                         </div>
                     </div>
@@ -211,6 +210,41 @@ export default {
 .router-link-active {
     background: none;
     border-bottom: 3px solid #f9161f;
+}
+.top-bar-social {
+    margin-top: 10px;
+}
+
+.top-bar-social a i.fa {
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    color: #666;
+    background: #fafafa;
+    line-height: 35px;
+    font-size: 25px;
+    position: relative;
+    top: -2px;
+    border-radius: 10px;
+}
+
+@media (max-width: 667px) {
+    .top-bar p {
+        font-size: 24px;
+    }
+    .phone-section {
+        display: none;
+    }
+    .social-icons-section {
+        /*display: none;*/
+    }
+    .main-header .top-bar-social {
+        margin-bottom: 0px;
+    }
+
+    .top-bar-social {
+        margin-top: 1px;
+    }
 }
 
 </style>
