@@ -362,5 +362,11 @@ export default {
     padding: 5px 10px !important;
     width: 100% !important;
 }
+@media (max-width: 730px) {
+    .theme-custom-box-shadow {
+        margin-top: 0px !Important;
+    }
+}
+
 
 </style>

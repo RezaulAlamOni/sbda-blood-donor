@@ -68,11 +68,13 @@ export default {
             app_url: window.APP_URL,
             options: {},
             type: 0,
-            users : []
+            users : [],
+            search : ''
         }
     },
     mounted() {
         this.type = this.$attrs.type;
+        this.search = this.$attrs.search;
         setTimeout(function () {
             $('.navbar-toggle').click()
         }, 200)
@@ -105,6 +107,12 @@ export default {
     },
     created() {
         this.getGallery();
+    },
+    watch: {
+        '$attrs.search': function (val) {
+            this.search = val;
+            this.getUsersType();
+        }
     }
 
 }

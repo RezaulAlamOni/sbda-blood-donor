@@ -10,7 +10,7 @@
                     <p>{{ slide.headlineSecondLine }}</p>
                 </div>
                 <div class="slide-rect-filter">
-                    <div class="slide-rect" v-bind:style="{'border-image-source': 'url(' + slide.rectImg + ')'}"></div>
+                    <div class="slide-rect" v-bind:style="{'border-image-source': 'url(' + slide.rectImg + ')','background-image': 'url(' + slide.rectImg + ')'}"></div>
                 </div>
                 <div class="slide-content">
                     <h1 class="slide-content-text">
@@ -188,14 +188,22 @@ body ::-moz-selection {
 }
 
 .wrapper {
-    height: calc(100vh - 50px);
+    height: calc(70vh - 50px);
     min-height: 36rem;
     position: relative;
 }
-@media (max-width: 630px) {
+@media (max-width: 667px) {
     .wrapper {
-        height: 100vh;
+        height: 27vh;
         min-height: 0;
+    }
+
+    .slide-rect {
+        left: 7vw !important;
+        height: 19vw !important;
+        width: 22vw !important;
+        border-width: 10px !important;
+        /*background-image: url("https://i.postimg.cc/ryWZ8R2b/slide-rect1.jpg");*/
     }
 }
 
@@ -349,25 +357,17 @@ body ::-moz-selection {
     background-color: #fff;
 }
 .slide-rect {
-    height: 62vh;
-    width: 48vh;
+    height: 50vh;
+    width: 35vh;
     border-image-slice: 10%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     left: 13vw;
-    border-width: 5vh;
+    border-width: 3vh;
     border-style: solid;
     box-shadow: 2px 2px 90px 30px rgba(41, 50, 61, 0.22);
     will-change: auto;
-}
-@media (max-height: 790px) {
-    .slide-rect {
-        left: 9vw;
-        height: 20vw;
-        width: 16vw;
-        border-width: 5vh;
-    }
 }
 @media (max-height: 730px) {
     .slide-rect {

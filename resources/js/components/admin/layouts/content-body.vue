@@ -1,10 +1,10 @@
 <template>
     <div class="main-content" id="panel">
 <!--        TOP nav-->
-        <top-nav></top-nav>
+        <top-nav @search="getSearchValue"></top-nav>
         <!-- Header -->
 
-        <router-view></router-view>
+        <router-view :search="search"></router-view>
 
 <!--        FOOTER -->
         <footer-c></footer-c>
@@ -20,6 +20,16 @@ export default {
     components : {
         'top-nav' : topNav,
         'footer-c' : footer,
+    },
+    data() {
+        return {
+            search : ''
+        }
+    },
+    methods : {
+        getSearchValue(value) {
+            this.search = value
+        }
     }
 }
 </script>
