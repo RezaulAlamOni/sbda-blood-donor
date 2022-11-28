@@ -6,7 +6,7 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-6 col-sm-12 title-section"><p>Welcome to Saptagaon Blood Donor Association.</p></div>
+                    <div class="col-md-6 col-sm-12 title-section text-uppercase"><p>Welcome to Saptagaon Blood Donor Association</p></div>
                     <div class="col-md-2 col-sm-12 phone-section">
                         <p>
                             <i class="fa fa-phone"></i>
@@ -52,72 +52,73 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#" title="Members" class="dropdown-toggle">Unit</a>
+                                <a href="#" title="Members"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Unit</a>
                                 <ul class="drop-down">
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <a href="#about-membership">SBDA Volunteer</a>
                                     </li>
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <a href="#about-membership">SBDA Medical Care</a>
                                     </li>
-                                    <li><a href="#founder-member">Books</a></li>
-                                    <li><a href="#founder-member">Emergency Response Team</a></li>
+                                    <li @click="hideNavbar()"><a href="#founder-member">Books</a></li>
+                                    <li @click="hideNavbar()"><a href="#founder-member">Emergency Response Team</a></li>
 
 
                                 </ul>
                             </li>
-                            <li><a href="#" title="Excutive Committee">Committee</a>
+                            <li><a href="#" title="Excutive Committee"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Committee</a>
                                 <ul class="drop-down">
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'committee'}">Executive Committee</router-link>
                                     </li>
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'advisor'}">Advisers</router-link>
                                     </li>
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'founder-member'}">Founder Member</router-link>
                                     </li>
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'life-member'}">Life Member</router-link>
                                     </li>
 
                                 </ul>
                             </li>
 
-                            <li>
+                            <li @click="hideNavbar()">
                                 <router-link :to="{name : 'about-us'}">About Us</router-link>
                             </li>
                             <!--<li><a href="#blog">Blog</a></li>-->
-                            <li>
+                            <li @click="hideNavbar()">
                                 <router-link to="gallery">gallery</router-link>
                             </li>
-                            <li>
+                            <li @click="hideNavbar()">
                                 <!--                                <router-link :to="{name : 'contact'}">Contact</router-link>-->
                                 <a href="/contacts">Contact</a>
                             </li>
                             <!--                            <li><a href="#registration">Join as Donor</a></li>-->
 
-                            <li><a href="#" title="Members">Join Us</a>
+                            <li>
+                                <a href="#" title="Members"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
                                 <ul class="drop-down">
-                                    <li v-if="!auth">
+                                    <li v-if="!auth"  @click="hideNavbar()">
                                         <router-link :to="{name : 'donor_registration'}">Become A Blood Donor
                                         </router-link>
                                     </li>
-                                    <li v-if="!auth || auth.type != 'member'">
+                                    <li v-if="!auth || auth.type != 'member'" @click="hideNavbar()">
                                         <router-link :to="{name : 'member_registration'}">Become A Member</router-link>
                                     </li>
-                                    <li v-if="!auth">
+                                    <li v-if="!auth" @click="hideNavbar()">
                                         <router-link :to="{name : 'volunteer_registration'}">Become A Volunteer
                                         </router-link>
                                     </li>
                                 </ul>
                             </li>
-                            <li v-if="!auth">
+                            <li v-if="!auth"  @click="hideNavbar()">
                                 <router-link :to="{name : 'login'}">Login</router-link>
                             </li>
 
                             <li style="display: flex" v-else>
-                                <span style="display: flex" class="profile-section">
+                                <span style="display: flex" class="profile-section dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <img src="images/thumbnail.png" alt=""
                                          style="border-radius: 24px; height: 30px;margin-top: 8px;margin-right:0px;">
                                     <a href="#" title="Members" class="profile-name">{{ auth.name }} [<span
@@ -125,19 +126,19 @@
 
                                 </span>
 
-                                <ul class="drop-down">
-                                    <li><a href="#about-membership">Profile</a></li>
-                                    <li><a href="#about-membership">Events</a></li>
-                                    <li><a href="#about-membership">Donation history</a></li>
+                                <ul class="drop-down" >
+                                    <li @click="hideNavbar()"><a href="#about-membership">Profile</a></li>
+                                    <li @click="hideNavbar()"><a href="#about-membership">Events</a></li>
+                                    <li @click="hideNavbar()"><a href="#about-membership">Donation history</a></li>
 
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'donors'}">Donor List</router-link>
                                     </li>
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <router-link :to="{name : 'volunteers'}">Volunteer List</router-link>
                                     </li>
 
-                                    <li>
+                                    <li @click="hideNavbar()">
                                         <form id="logout-form" action="logout" method="POST" style="display: none;">
                                             @csrf
                                         </form>
@@ -150,6 +151,7 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
         </section>
     </section>
@@ -187,6 +189,11 @@ export default {
 
                 })
         },
+        hideNavbar(){
+            setTimeout(function () {
+                $('.navbar-toggle').click()
+            },100)
+        }
     }
 }
 </script>
@@ -227,11 +234,18 @@ export default {
     top: -2px;
     border-radius: 10px;
 }
+ .top-bar .title-section p {
+    font-size: 22px;
+    font-weight: bold;
+}
 
 @media (max-width: 667px) {
-    .top-bar p {
+
+    .top-bar .title-section p {
         font-size: 24px;
+        font-weight: bold;
     }
+
     .phone-section {
         display: none;
     }
