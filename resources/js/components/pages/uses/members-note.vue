@@ -1,7 +1,6 @@
 <template>
     <section>
-        <section id="h.33ac46acaa9cb602_15" class="yaqOZd" style="    padding: 29px 210px;">
-            <div class="IFuOkc"></div>
+        <section id="h.33ac46acaa9cb602_15" class="yaqOZd" style="">
             <div class="mYVXT">
                 <div class="LS81yb VICjCf" tabindex="-1">
                     <div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
@@ -12,11 +11,8 @@
                                          class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc">
                                         <div class="jXK9ad-SmKAyb">
                                             <div class="tyJCtd mGzaTb baZpAe">
-                                                <p dir="ltr" class="CDt4Ke zfr3Q"
-                                                   style="margin-left: 0; margin-right: 0; padding-left: 0; text-align: center; text-indent: 0;">
-                                                    <span
-                                                        style="font-family: Open Sans; font-size: 13pt; font-style: normal; text-decoration: normal; vertical-align: baseline;"><strong>সদস্যভুক্তির নিয়মাবলী</strong></span>
-                                                </p>
+                                                <h4 style="text-align: center;color : #052eb7"> সদস্যভুক্তির নিয়মাবলী</h4>
+
                                                 <p dir="ltr" class="CDt4Ke zfr3Q"
                                                    style="margin-left: 0; margin-right: 0; padding-left: 0; text-align: center; text-indent: 0;">
                                                     রক্তদান করেন এমন <span
@@ -39,7 +35,7 @@
                 </div>
             </div>
         </section>
-        <section id="h.33ac46acaa9cb602_19" class="yaqOZd cJgDec nyKByd" style="padding: 29px 210px;background-color: rgb(41 40 94);color: white">
+        <section id="h.33ac46acaa9cb602_19" class="yaqOZd cJgDec nyKByd" style="background-color: rgb(41 40 94);color: white">
            <div class="mYVXT">
                 <div class="LS81yb VICjCf" tabindex="-1">
                     <div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc">
@@ -79,5 +75,13 @@ export default {
 </script>
 
 <style scoped>
+.yaqOZd {
+    padding: 29px 210px;
+}
+@media (max-width: 667px) {
+    .yaqOZd {
+        padding: 10px;
+    }
+}
 
 </style>
