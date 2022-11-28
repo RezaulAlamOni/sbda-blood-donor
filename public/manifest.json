@@ -1,0 +1,57 @@
+{
+    "name": "SBDA",
+    "short_name": "SBDA",
+    "icons": [
+        {
+            "src": "images/logo/img.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo/img.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo/img.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo/img.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo/img.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo/img.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "lang": "en-US",
+    "start_url": "/",
+    "scope": "/*",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "orange",
+    "shortcuts": [
+        {
+            "name": "SBDA",
+            "description": " ---",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "images//logo/img.png",
+                    "type": "image/svg+xml",
+                    "purpose": "any"
+                }
+            ]
+        }
+    ]
+}
+

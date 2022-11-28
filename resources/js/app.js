@@ -19,6 +19,50 @@ Vue.prototype.axios = Axios;
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+window.onload = () => {
+    'use strict';
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('sw.js')
+            .then(function (registration) {
+                console.log('Registration successful, scope is:', registration.scope);
+                registration.update();
+                console.log('Registration Update')
+
+            })
+            .catch(function (error) {
+                console.log('Service worker registration failed, error:', error);
+            });
+        caches.keys().then(function(cacheNames) {
+            cacheNames.forEach(function(cacheName) {
+                console.log(cacheName)
+                caches.delete(cacheName);
+                // location.reload()
+            });
+        });
+    }
+
+    /*
+  let deferredPrompt;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+      deferredPrompt = e;
+  });
+  const installApp = document.getElementById('installApp');
+
+  installApp.addEventListener('click', async () => {
+      if (deferredPrompt !== null) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+              deferredPrompt = null;
+          }
+      }
+  });
+  */
+
+}
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));

@@ -67612,9 +67612,46 @@ Vue.prototype.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-// const files = require.context('./', true, /\.vue$/i);
+
+window.onload = function () {
+  'use strict';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
+      console.log('Registration successful, scope is:', registration.scope);
+      registration.update();
+      console.log('Registration Update');
+    })["catch"](function (error) {
+      console.log('Service worker registration failed, error:', error);
+    });
+    caches.keys().then(function (cacheNames) {
+      cacheNames.forEach(function (cacheName) {
+        console.log(cacheName);
+        caches["delete"](cacheName); // location.reload()
+      });
+    });
+  }
+  /*
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    deferredPrompt = e;
+  });
+  const installApp = document.getElementById('installApp');
+  installApp.addEventListener('click', async () => {
+    if (deferredPrompt !== null) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            deferredPrompt = null;
+        }
+    }
+  });
+  */
+
+}; // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
 
 Vue.component('app', __webpack_require__(/*! ./components/app */ "./resources/js/components/app.vue")["default"]);
 Vue.component('header-component', __webpack_require__(/*! ./components/pages/uses/header */ "./resources/js/components/pages/uses/header.vue")["default"]);
