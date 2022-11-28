@@ -6,7 +6,7 @@
                 <div class="header-body">
                     <div class="row align-items-center py-4">
                         <div class="col-lg-6 col-7">
-<!--                            <h6 class="h2 text-white d-inline-block mb-0">Images</h6>-->
+                            <!--                            <h6 class="h2 text-white d-inline-block mb-0">Images</h6>-->
                             <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                     <li class="breadcrumb-item">
@@ -14,13 +14,19 @@
                                         </router-link>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Users</a></li>
-                                    <li class="breadcrumb-item active text-capitalize" aria-current="page">{{ type }}</li>
+                                    <li class="breadcrumb-item active text-capitalize" aria-current="page">{{
+                                            type
+                                        }}
+                                    </li>
                                 </ol>
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <input type="file" style="display: none" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="csv_input" @change="uploadCsvData" >
-                            <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#add-image" @click="clickOnCsvFile()">
+                            <input type="file" style="display: none"
+                                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                   id="csv_input" @change="uploadCsvData">
+                            <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#add-image"
+                               @click="clickOnCsvFile()">
                                 <i class="fas fa-plus-circle fa-2x"> </i>
                             </a>
                             <a href="#" class="btn btn-sm btn-neutral">
@@ -45,9 +51,14 @@
                             <table class="table align-items-center table-dark table-flush">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="name"  @click="setFilterType('name')">Name</th>
-                                    <th scope="col" class="sort" data-sort="budget" @click="setFilterType('email')">Email</th>
-                                    <th scope="col" class="sort" data-sort="status" @click="setFilterType('phone')">Phone</th>
+                                    <th scope="col" class="sort" data-sort="name" @click="setFilterType('name')">Name
+                                    </th>
+                                    <th scope="col" class="sort" data-sort="budget" @click="setFilterType('email')">
+                                        Email
+                                    </th>
+                                    <th scope="col" class="sort" data-sort="status" @click="setFilterType('phone')">
+                                        Phone
+                                    </th>
                                     <th scope="col" class="sort" data-sort="status">Area</th>
                                     <th scope="col" class="sort" data-sort="status">Blood Group</th>
                                     <!--                                    <th scope="col">Users</th>-->
@@ -61,7 +72,8 @@
                                     <th scope="row">
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle mr-3">
-                                                <img alt="#" :src="user.profile_photo ?  user.profile_photo : '/images/thumbnail.png'">
+                                                <img alt="#"
+                                                     :src="user.profile_photo ?  user.profile_photo : '/images/thumbnail.png'">
                                             </a>
                                             <div class="media-body">
                                                 <span class="name mb-0 text-sm">{{ user.name }}</span>
@@ -75,7 +87,7 @@
                                     <td>{{ user.area ? user.area.name : '' }}</td>
                                     <td>{{ user.blood_group ? user.blood_group.name : null }}</td>
                                     <td>
-                                        <span class="badge badge-dot mr-4" >
+                                        <span class="badge badge-dot mr-4">
                                             <template v-if="user.status == 0">
                                                  <i class="bg-warning"></i>
                                                 <span class="status text-capitalize ">pending</span>
@@ -104,6 +116,11 @@
 
                                 </tbody>
                             </table>
+                            <div class="text-center col-md-12">
+                                <pagination align="center" :options="options" :data="paginate_users"
+                                            @pagination-change-page="list">
+                                </pagination>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,15 +130,22 @@
 </template>
 
 <script>
+import pagination from 'laravel-vue-pagination'
+
 export default {
     name: "volunteer",
+    components: {
+        pagination,
+    },
     data() {
         return {
             type: null,
-            users : [],
-            search : '',
-            filter : 'DESC',
-            filter_type : 'id'
+            users: [],
+            paginate_users : {},
+            search: '',
+            filter: 'DESC',
+            filter_type: 'id',
+            options: {},
         }
     },
     mounted() {
@@ -131,7 +155,7 @@ export default {
     methods: {
         getUsersType() {
             let _this = this;
-            let url = '/admin/users-type/'+_this.type;
+            let url = '/admin/users-type/' + _this.type;
             if (this.search.length > 0) {
                 url = url + '?search=' + _this.search;
                 url += '&';
@@ -141,9 +165,10 @@ export default {
             url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
             this.axios.get(url)
                 .then(resp => {
-                    _this.users = resp.data.users;
+                    _this.users = resp.data.users.data;
+                    _this.paginate_users = resp.data.users;
                     if (_this.type == 'volunteer') {
-                        _this.users = _this.users.map(function (user){
+                        _this.users = _this.users.map(function (user) {
                             user.area = user.v_area;
                             return user;
                         })
@@ -173,11 +198,36 @@ export default {
             $('#csv_input').click()
         },
         setFilterType(type) {
-            if (this.filter_type == type){
+            if (this.filter_type == type) {
                 this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
             }
             this.filter_type = type;
         },
+        async list(page = 1) {
+            let _this = this;
+            let url = '/admin/users-type/' + _this.type;
+            if (this.search.length > 0) {
+                url = url + '?search=' + _this.search;
+                url += '&';
+            } else {
+                url += '?';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type + '&page=' + page;
+            await _this.axios.get(url)
+                .then((resp) => {
+                    _this.users = resp.data.users.data;
+                    _this.paginate_users = resp.data.users;
+                    if (_this.type == 'volunteer') {
+                        _this.users = _this.users.map(function (user) {
+                            user.area = user.v_area;
+                            return user;
+                        })
+                    }
+                })
+                .catch(({response}) => {
+                    console.error(response)
+                })
+        }
     },
     watch: {
         '$attrs.type': function (val) {
@@ -188,13 +238,13 @@ export default {
             this.search = val;
             this.getUsersType();
         },
-        filter_type : function (val, oldVal) {
+        filter_type: function (val, oldVal) {
             if (val != oldVal) {
                 this.filter = 'ASC';
             }
             this.getUsersType();
         },
-        filter : function (val, oldVal) {
+        filter: function (val, oldVal) {
             this.getUsersType();
         }
     }

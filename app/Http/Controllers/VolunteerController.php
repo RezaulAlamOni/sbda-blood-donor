@@ -53,9 +53,9 @@ class VolunteerController extends Controller
                 ->orWhere('phone', 'like', '%' . $search . '%');
         }
 
-        $users = $users->get();
+        $users = $users->paginate(50);
 
-        return response()->json(['users' => $users, 'dasd' => '00']);
+        return response()->json(['users' => $users]);
 
 
         //
