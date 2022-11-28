@@ -106,7 +106,7 @@ class VolunteerController extends Controller
         $data__ = [];
         $type = $request->type;
         foreach ($data as $datum) {
-            if (strlen($datum['phone']) > 0) {
+            if (strlen($datum['phone']) > 0 && $datum->blood != null) {
                 try {
                     $a_id = VolunteerArea::query()->where('name', $datum->area)->first();
                     $a_id = $a_id ? $a_id->id : null;
