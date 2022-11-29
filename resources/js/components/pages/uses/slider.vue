@@ -120,8 +120,8 @@ export default {
                         _this.slides.push({
                             // headlineFirstLine: "Lorem",
                             // headlineSecondLine: "Vitaer",
-                            sublineFirstLine: "Nihil sub sole",
-                            sublineSecondLine: "novum",
+                            sublineFirstLine: "SBDA",
+                            sublineSecondLine: "SBDA",
                             bgImg: '/' + slide.photo,
                             // rectImg: '/' + slide.photo,
                         })
@@ -272,6 +272,7 @@ body ::-moz-selection {
     padding-left: 4rem;
 }
 .slide-content {
+    display: none !important;
     color: #fff;
     margin-top: 5rem;
     position: absolute;
@@ -357,6 +358,7 @@ body ::-moz-selection {
     background-color: #fff;
 }
 .slide-rect {
+    display: none !important;
     height: 50vh;
     width: 35vh;
     border-image-slice: 10%;
