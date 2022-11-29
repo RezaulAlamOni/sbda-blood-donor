@@ -21,7 +21,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(user,k) in users">
+                        <tr v-for="(user,k) in users" :class="(k%2 == 0) ?  'table-custom-tr1' : 'table-custom-tr' ">
                             <th scope="row">{{ (k+1) }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
@@ -68,7 +68,10 @@ export default {
             app_url: window.APP_URL,
             options: {},
             type: 0,
-            users : []
+            users : [],
+            search : '',
+            filter: 'DESC',
+            filter_type: 'id'
         }
     },
     mounted() {
@@ -79,12 +82,18 @@ export default {
 
     },
     methods: {
-        getGallery() {
+        getDonors() {
             let _this = this;
-            this.axios.get('/users-type/donor')
+            let url = `/users-type/donor?`;
+            if (_this.search.length > 0) {
+                url = url + 'search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            this.axios.get(url)
                 .then(resp => {
                     _this.users = resp.data.users.data;
-                    _this.photo_s =     resp.data.users
+                    _this.photo_s = resp.data.users
                 })
         },
         show() {
@@ -104,7 +113,7 @@ export default {
         }
     },
     created() {
-        this.getGallery();
+        this.getDonors();
     }
 
 }
@@ -113,5 +122,16 @@ export default {
 <style scoped>
 .section-content-block {
     padding: 30px 0 100px 0;
+}
+
+thead tr {
+    background: #fd989c;
+}
+
+.table-custom-tr {
+    background: #dfecff;
+}
+.table-custom-tr {
+    background: #ffedf5;
 }
 </style>

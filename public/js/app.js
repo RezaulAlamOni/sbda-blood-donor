@@ -3539,7 +3539,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
       app_url: window.APP_URL,
       options: {},
       type: 0,
-      users: []
+      users: [],
+      search: '',
+      filter: 'DESC',
+      filter_type: 'id'
     };
   },
   mounted: function mounted() {
@@ -3549,10 +3552,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     }, 200);
   },
   methods: {
-    getGallery: function getGallery() {
+    getDonors: function getDonors() {
       var _this = this;
 
-      this.axios.get('/users-type/donor').then(function (resp) {
+      var url = "/users-type/donor?";
+
+      if (_this.search.length > 0) {
+        url = url + 'search=' + _this.search;
+        url += '&';
+      }
+
+      url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+      this.axios.get(url).then(function (resp) {
         _this.users = resp.data.users.data;
         _this.photo_s = resp.data.users;
       });
@@ -3594,7 +3605,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     }
   },
   created: function created() {
-    this.getGallery();
+    this.getDonors();
   }
 });
 
@@ -9253,7 +9264,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-2f6e3f6a] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-2f6e3f6a] {\n    padding: 30px 0 100px 0;\n}\nthead tr[data-v-2f6e3f6a] {\n    background: #fd989c;\n}\n.table-custom-tr[data-v-2f6e3f6a] {\n    background: #dfecff;\n}\n.table-custom-tr[data-v-2f6e3f6a] {\n    background: #ffedf5;\n}\n", ""]);
 
 // exports
 
@@ -49766,23 +49777,30 @@ var render = function () {
               _c(
                 "tbody",
                 _vm._l(_vm.users, function (user, k) {
-                  return _c("tr", [
-                    _c("th", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(k + 1)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.email))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.phone))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(user.blood_group ? user.blood_group.name : "")
-                      ),
-                    ]),
-                  ])
+                  return _c(
+                    "tr",
+                    {
+                      class:
+                        k % 2 == 0 ? "table-custom-tr1" : "table-custom-tr",
+                    },
+                    [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(k + 1)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.phone))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(user.blood_group ? user.blood_group.name : "")
+                        ),
+                      ]),
+                    ]
+                  )
                 }),
                 0
               ),
@@ -51864,7 +51882,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("table", { staticClass: "table table-hover table-bordered" }, [
+            _c("table", { staticClass: "table table-hover " }, [
               _c("thead", [
                 _c("tr", [
                   _c("th", [_vm._v("#")]),
