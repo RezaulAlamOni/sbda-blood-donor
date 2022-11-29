@@ -7,17 +7,34 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Our Donors</h2>
+                    <div class="col-md-12 row" style="padding: 0; margin: 0">
+                        <div class="col-md-4">
+                            <h2>Our Volunteer</h2>
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-4" style="margin : 0;padding: 0">
+                            <input type="text" class="form-control" style="height: 40px;border-radius: 5px"
+                                   @keyup="getDonors" v-model="search"
+                                   placeholder="Find user by Name, Email, Phone Area and Blood group ">
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Blood Group</th>
+                            <th @click="setFilterType('name')">Name <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('email')">Email <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('phone')">Phone <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('blood_group')">Blood Group <i class="fa fa-fw fa-sort"></i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,7 +43,7 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
-                            <td>{{ user.blood_group ? user.blood_group.name : '' }}</td>
+                            <td class="text-center">{{ user.blood_group ? user.blood_group.name : '' }}</td>
                         </tr>
 
                         </tbody>
@@ -103,14 +120,29 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            await axios.get(`/users-type/donor?page=${page}`)
+            let url = `/users-type/donor?page=${page}&`;
+            if (_this.search.length > 0) {
+                url = url + 'search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            await axios.get(url)
                 .then((resp) => {
                     _this.users = resp.data.users.data;
                     _this.photo_s =     resp.data.users
                 }).catch(({response}) => {
                     console.error(response)
                 })
-        }
+        },
+        setFilterType(type) {
+            if (this.filter_type == type) {
+                this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
+            } else  {
+                this.filter = 'ASC';
+            }
+            this.filter_type = type;
+            this.getVolunteers();
+        },
     },
     created() {
         this.getDonors();
