@@ -8,10 +8,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-md-12 row" style="padding: 0; margin: 0">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h2>Our Volunteer</h2>
                         </div>
-                        <div class="col-md-6" style="margin : 0;padding: 0">
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-4" style="margin : 0;padding: 0">
                             <input type="text" class="form-control" style="height: 40px;border-radius: 5px"
                                    @keyup="getVolunteers" v-model="search"
                                    placeholder="Find user by Name, Email, Phone Area and Blood group ">

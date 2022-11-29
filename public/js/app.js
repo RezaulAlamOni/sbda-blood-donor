@@ -4589,6 +4589,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51813,10 +51819,14 @@ var render = function () {
               [
                 _vm._m(0),
                 _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "col-md-6",
+                    staticClass: "col-md-4",
                     staticStyle: { margin: "0", padding: "0" },
                   },
                   [
@@ -52017,7 +52027,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
+    return _c("div", { staticClass: "col-md-4" }, [
       _c("h2", [_vm._v("Our Volunteer")]),
     ])
   },
