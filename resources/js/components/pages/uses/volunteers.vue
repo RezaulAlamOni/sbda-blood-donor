@@ -12,7 +12,8 @@
                             <h2>Our Volunteer</h2>
                         </div>
                         <div class="col-md-6" style="margin : 0;padding: 0">
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control" style="height: 40px;border-radius: 5px"
+                                   @keyup="getVolunteers" v-model="search"
                                    placeholder="Find user by Name, Email, Phone Area and Blood group ">
                         </div>
 
@@ -81,7 +82,9 @@ export default {
             options: {},
             type: 0,
             users: [],
-            search: ''
+            search: '',
+            filter: 'DESC',
+            filter_type: 'id'
         }
     },
     mounted() {
@@ -93,9 +96,15 @@ export default {
 
     },
     methods: {
-        getGallery() {
+        getVolunteers() {
             let _this = this;
-            this.axios.get('/users-type/volunteer')
+            let url = `/users-type/volunteer?`;
+            if (this.search.length > 0) {
+                url = url + 'search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            this.axios.get(url)
                 .then(resp => {
                     _this.users = resp.data.users.data;
                     _this.photo_s = resp.data.users
@@ -108,7 +117,13 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            await axios.get(`/users-type/volunteer?page=${page}`)
+            let url = `/users-type/volunteer?page=${page}`;
+            if (this.search.length > 0) {
+                url = url + '&search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            await axios.get(url)
                 .then((resp) => {
                     _this.users = resp.data.users.data;
                     _this.photo_s = resp.data.users
@@ -118,7 +133,7 @@ export default {
         }
     },
     created() {
-        this.getGallery();
+        this.getVolunteers();
     },
     watch: {
         '$attrs.search': function (val) {
@@ -143,6 +158,6 @@ thead tr {
     background: #dfecff;
 }
 .table-custom-tr {
-    background: #ffdcec;
+    background: #ffedf5;
 }
 </style>

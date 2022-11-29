@@ -4588,6 +4588,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -4606,7 +4607,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
       options: {},
       type: 0,
       users: [],
-      search: ''
+      search: '',
+      filter: 'DESC',
+      filter_type: 'id'
     };
   },
   mounted: function mounted() {
@@ -4617,10 +4620,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     }, 200);
   },
   methods: {
-    getGallery: function getGallery() {
+    getVolunteers: function getVolunteers() {
       var _this = this;
 
-      this.axios.get('/users-type/volunteer').then(function (resp) {
+      var url = "/users-type/volunteer?";
+
+      if (this.search.length > 0) {
+        url = url + 'search=' + _this.search;
+        url += '&';
+      }
+
+      url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+      this.axios.get(url).then(function (resp) {
         _this.users = resp.data.users.data;
         _this.photo_s = resp.data.users;
       });
@@ -4635,7 +4646,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
           _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var page, _this;
+        var page, _this, url;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -4643,8 +4654,16 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
               case 0:
                 page = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 1;
                 _this = _this2;
-                _context.next = 4;
-                return axios.get("/users-type/volunteer?page=".concat(page)).then(function (resp) {
+                url = "/users-type/volunteer?page=".concat(page);
+
+                if (_this2.search.length > 0) {
+                  url = url + '&search=' + _this.search;
+                  url += '&';
+                }
+
+                url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+                _context.next = 7;
+                return axios.get(url).then(function (resp) {
                   _this.users = resp.data.users.data;
                   _this.photo_s = resp.data.users;
                 })["catch"](function (_ref) {
@@ -4652,7 +4671,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
                   console.error(response);
                 });
 
-              case 4:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -4662,7 +4681,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
     }
   },
   created: function created() {
-    this.getGallery();
+    this.getVolunteers();
   },
   watch: {
     '$attrs.search': function $attrsSearch(val) {
@@ -9357,7 +9376,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-22905e46] {\n    padding: 30px 0 100px 0;\n}\nthead tr[data-v-22905e46] {\n    background: #fd989c;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #dfecff;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #ffdcec;\n}\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-22905e46] {\n    padding: 30px 0 100px 0;\n}\nthead tr[data-v-22905e46] {\n    background: #fd989c;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #dfecff;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #ffedf5;\n}\n", ""]);
 
 // exports
 
@@ -51780,7 +51799,55 @@ var render = function () {
     [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "card-header" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-12 row",
+                staticStyle: { padding: "0", margin: "0" },
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-md-6",
+                    staticStyle: { margin: "0", padding: "0" },
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.search,
+                          expression: "search",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      staticStyle: { height: "40px", "border-radius": "5px" },
+                      attrs: {
+                        type: "text",
+                        placeholder:
+                          "Find user by Name, Email, Phone Area and Blood group ",
+                      },
+                      domProps: { value: _vm.search },
+                      on: {
+                        keyup: _vm.getVolunteers,
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.search = $event.target.value
+                        },
+                      },
+                    }),
+                  ]
+                ),
+              ]
+            ),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table table-hover table-bordered" }, [
@@ -51867,37 +51934,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col-md-12 row",
-          staticStyle: { padding: "0", margin: "0" },
-        },
-        [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("h2", [_vm._v("Our Volunteer")]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6",
-              staticStyle: { margin: "0", padding: "0" },
-            },
-            [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder:
-                    "Find user by Name, Email, Phone Area and Blood group ",
-                },
-              }),
-            ]
-          ),
-        ]
-      ),
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("h2", [_vm._v("Our Volunteer")]),
     ])
   },
   function () {
