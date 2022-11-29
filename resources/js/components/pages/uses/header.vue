@@ -55,7 +55,7 @@
                                 <a href="#" title="Members"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Unit</a>
                                 <ul class="drop-down">
                                     <li @click="hideNavbar()">
-                                        <a href="#about-membership">SBDA Volunteer</a>
+                                        <router-link :to="{name : 'volunteers'}">SBDA Volunteers</router-link>
                                     </li>
                                     <li @click="hideNavbar()">
                                         <a href="#about-membership">SBDA Medical Care</a>

@@ -7,26 +7,38 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Our Volunteer</h2>
+                    <div class="col-md-12 row" style="padding: 0; margin: 0">
+                        <div class="col-md-6">
+                            <h2>Our Volunteer</h2>
+                        </div>
+                        <div class="col-md-6" style="margin : 0;padding: 0">
+                            <input type="text" class="form-control"
+                                   placeholder="Find user by Name, Email, Phone Area and Blood group ">
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Blood Group</th>
+                            <th>Name <i class="fa fa-fw fa-sort"></i></th>
+                            <th>Email <i class="fa fa-fw fa-sort"></i></th>
+                            <th>Phone <i class="fa fa-fw fa-sort"></i></th>
+                            <th>Area <i class="fa fa-fw fa-sort"></i></th>
+                            <th>Blood Group <i class="fa fa-fw fa-sort"></i></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(user,k) in users">
-                            <th scope="row">{{ (k+1) }}</th>
+                            <th scope="row">{{ (k + 1) }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
-                            <td>{{ user.blood_group ? user.blood_group.name : '' }}</td>
+                            <td>{{ user.v_area ? user.v_area.name : '' }}</td>
+                            <td class="text-center"> {{ user.blood_group ? user.blood_group.name : '' }}</td>
                         </tr>
 
                         </tbody>
@@ -38,7 +50,7 @@
                         </pagination>
                     </div>
 
-<!--                    <datatable :columns="columns" :data="users"></datatable>-->
+                    <!--                    <datatable :columns="columns" :data="users"></datatable>-->
                 </div>
             </div>
         </div> <!--  end .container -->
@@ -68,8 +80,8 @@ export default {
             app_url: window.APP_URL,
             options: {},
             type: 0,
-            users : [],
-            search : ''
+            users: [],
+            search: ''
         }
     },
     mounted() {
@@ -86,7 +98,7 @@ export default {
             this.axios.get('/users-type/volunteer')
                 .then(resp => {
                     _this.users = resp.data.users.data;
-                    _this.photo_s =     resp.data.users
+                    _this.photo_s = resp.data.users
                 })
         },
         show() {
@@ -99,7 +111,7 @@ export default {
             await axios.get(`/users-type/volunteer?page=${page}`)
                 .then((resp) => {
                     _this.users = resp.data.users.data;
-                    _this.photo_s =     resp.data.users
+                    _this.photo_s = resp.data.users
                 }).catch(({response}) => {
                     console.error(response)
                 })

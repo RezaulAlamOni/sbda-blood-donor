@@ -4576,6 +4576,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -50014,10 +50026,13 @@ var render = function () {
                       },
                     },
                     [
-                      _c("a", { attrs: { href: "#about-membership" } }, [
-                        _vm._v("SBDA Volunteer"),
-                      ]),
-                    ]
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "volunteers" } } },
+                        [_vm._v("SBDA Volunteers")]
+                      ),
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
@@ -51768,7 +51783,7 @@ var render = function () {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("table", { staticClass: "table table-hover" }, [
+            _c("table", { staticClass: "table table-hover table-bordered" }, [
               _vm._m(1),
               _vm._v(" "),
               _c(
@@ -51786,8 +51801,13 @@ var render = function () {
                     _c("td", [_vm._v(_vm._s(user.phone))]),
                     _vm._v(" "),
                     _c("td", [
+                      _vm._v(_vm._s(user.v_area ? user.v_area.name : "")),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
                       _vm._v(
-                        _vm._s(user.blood_group ? user.blood_group.name : "")
+                        " " +
+                          _vm._s(user.blood_group ? user.blood_group.name : "")
                       ),
                     ]),
                   ])
@@ -51839,7 +51859,36 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h2", [_vm._v("Our Volunteer")]),
+      _c(
+        "div",
+        {
+          staticClass: "col-md-12 row",
+          staticStyle: { padding: "0", margin: "0" },
+        },
+        [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h2", [_vm._v("Our Volunteer")]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-md-6",
+              staticStyle: { margin: "0", padding: "0" },
+            },
+            [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder:
+                    "Find user by Name, Email, Phone Area and Blood group ",
+                },
+              }),
+            ]
+          ),
+        ]
+      ),
     ])
   },
   function () {
@@ -51850,13 +51899,30 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [
+          _vm._v("Name "),
+          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Email")]),
+        _c("th", [
+          _vm._v("Email "),
+          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
+        _c("th", [
+          _vm._v("Phone "),
+          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Blood Group")]),
+        _c("th", [
+          _vm._v("Area "),
+          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Blood Group "),
+          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+        ]),
       ]),
     ])
   },

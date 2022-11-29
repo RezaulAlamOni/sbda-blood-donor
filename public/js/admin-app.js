@@ -3551,7 +3551,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nth[data-v-21f7fc4f] {\n    cursor: pointer;\n}\n\n", ""]);
+exports.push([module.i, "\nth[data-v-21f7fc4f] {\n    cursor: pointer;\n}\n.thead-dark tr th[data-v-21f7fc4f] {\n    font-size: 16px;\n    padding: 05px 30px;\n}\n\n", ""]);
 
 // exports
 
@@ -9395,7 +9395,10 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("Name\n                                ")]
+                        [
+                          _vm._v("Name "),
+                          _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -9411,8 +9414,9 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                                    Email\n                                "
+                            "\n                                    Email "
                           ),
+                          _c("i", { staticClass: "fa fa-fw fa-sort" }),
                         ]
                       ),
                       _vm._v(" "),
@@ -9429,28 +9433,15 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                                    Phone\n                                "
+                            "\n                                    Phone "
                           ),
+                          _c("i", { staticClass: "fa fa-fw fa-sort" }),
                         ]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "th",
-                        {
-                          staticClass: "sort",
-                          attrs: { scope: "col", "data-sort": "status" },
-                        },
-                        [_vm._v("Area")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
-                      _c(
-                        "th",
-                        {
-                          staticClass: "sort",
-                          attrs: { scope: "col", "data-sort": "status" },
-                        },
-                        [_vm._v("Blood Group")]
-                      ),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c(
                         "th",
@@ -9563,7 +9554,7 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(2, true),
+                        _vm._m(4, true),
                       ])
                     }),
                     0
@@ -9610,6 +9601,26 @@ var staticRenderFns = [
       "a",
       { staticClass: "btn btn-sm btn-neutral", attrs: { href: "#" } },
       [_c("i", { staticClass: "fas fa-filter fa-2x" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "th",
+      { staticClass: "sort", attrs: { scope: "col", "data-sort": "status" } },
+      [_vm._v("Area "), _c("i", { staticClass: "fa fa-fw fa-sort" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "th",
+      { staticClass: "sort", attrs: { scope: "col", "data-sort": "status" } },
+      [_vm._v("Blood Group "), _c("i", { staticClass: "fa fa-fw fa-sort" })]
     )
   },
   function () {
