@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(user,k) in users">
+                        <tr v-for="(user,k) in users" :class="(k%2 == 0) ?  'table-custom-tr1' : 'table-custom-tr' " >
                             <th scope="row">{{ (k + 1) }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
@@ -133,5 +133,16 @@ export default {
 <style scoped>
 .section-content-block {
     padding: 30px 0 100px 0;
+}
+
+thead tr {
+    background: #fd989c;
+}
+
+.table-custom-tr {
+    background: #dfecff;
+}
+.table-custom-tr {
+    background: #ffdcec;
 }
 </style>

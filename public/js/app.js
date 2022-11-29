@@ -9357,7 +9357,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.section-content-block[data-v-22905e46] {\n    padding: 30px 0 100px 0;\n}\n", ""]);
+exports.push([module.i, "\n.section-content-block[data-v-22905e46] {\n    padding: 30px 0 100px 0;\n}\nthead tr[data-v-22905e46] {\n    background: #fd989c;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #dfecff;\n}\n.table-custom-tr[data-v-22905e46] {\n    background: #ffdcec;\n}\n", ""]);
 
 // exports
 
@@ -51789,28 +51789,37 @@ var render = function () {
               _c(
                 "tbody",
                 _vm._l(_vm.users, function (user, k) {
-                  return _c("tr", [
-                    _c("th", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(k + 1)),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.email))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(user.phone))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(user.v_area ? user.v_area.name : "")),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-center" }, [
-                      _vm._v(
-                        " " +
-                          _vm._s(user.blood_group ? user.blood_group.name : "")
-                      ),
-                    ]),
-                  ])
+                  return _c(
+                    "tr",
+                    {
+                      class:
+                        k % 2 == 0 ? "table-custom-tr1" : "table-custom-tr",
+                    },
+                    [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(k + 1)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.phone))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(user.v_area ? user.v_area.name : "")),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-center" }, [
+                        _vm._v(
+                          " " +
+                            _vm._s(
+                              user.blood_group ? user.blood_group.name : ""
+                            )
+                        ),
+                      ]),
+                    ]
+                  )
                 }),
                 0
               ),
