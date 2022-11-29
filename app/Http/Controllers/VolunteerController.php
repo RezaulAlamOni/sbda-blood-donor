@@ -76,8 +76,15 @@ class VolunteerController extends Controller
 
         }
 
-        $users = $users->whereIn('id', $users_id)->with(['blood_group', 'area', 'v_area', 'donor', 'volunteer'])
-            ->orderBy($filter_type, $filter);
+        $users = $users->whereIn('id', $users_id)->with(['blood_group', 'area', 'v_area', 'donor', 'volunteer']);
+
+        if ($filter_type == 'area') {
+            $users = $users->orderBy('areas_id', $filter);
+        } else if ($filter_type == 'blood_group') {
+            $users = $users->orderBy('blood_group_id', $filter);;
+        } else {
+            $users = $users->orderBy($filter_type, $filter);
+        }
         if ($search) {
             $users = $users->where('email', 'like', '%' . $search . '%')
                 ->orWhere('name', 'like', '%' . $search . '%')

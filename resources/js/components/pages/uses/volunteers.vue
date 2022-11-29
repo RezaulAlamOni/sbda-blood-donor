@@ -25,11 +25,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name <i class="fa fa-fw fa-sort"></i></th>
-                            <th>Email <i class="fa fa-fw fa-sort"></i></th>
-                            <th>Phone <i class="fa fa-fw fa-sort"></i></th>
-                            <th>Area <i class="fa fa-fw fa-sort"></i></th>
-                            <th>Blood Group <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('name')">Name <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('email')">Email <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('phone')">Phone <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('area')">Area <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('blood_group')">Blood Group <i class="fa fa-fw fa-sort"></i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -82,14 +82,13 @@ export default {
             options: {},
             type: 0,
             users: [],
-            search: '',
+            search : '',
             filter: 'DESC',
             filter_type: 'id'
         }
     },
     mounted() {
         this.type = this.$attrs.type;
-        this.search = this.$attrs.search;
         setTimeout(function () {
             $('.navbar-toggle').click()
         }, 200)
@@ -99,7 +98,7 @@ export default {
         getVolunteers() {
             let _this = this;
             let url = `/users-type/volunteer?`;
-            if (this.search.length > 0) {
+            if (_this.search.length > 0) {
                 url = url + 'search=' + _this.search;
                 url += '&';
             }
@@ -117,9 +116,9 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            let url = `/users-type/volunteer?page=${page}`;
-            if (this.search.length > 0) {
-                url = url + '&search=' + _this.search;
+            let url = `/users-type/volunteer?page=${page}&`;
+            if (_this.search.length > 0) {
+                url = url + 'search=' + _this.search;
                 url += '&';
             }
             url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
@@ -130,16 +129,22 @@ export default {
                 }).catch(({response}) => {
                     console.error(response)
                 })
-        }
+        },
+        setFilterType(type) {
+            if (this.filter_type == type) {
+                this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
+            } else  {
+                this.filter = 'ASC';
+            }
+            this.filter_type = type;
+            this.getVolunteers();
+        },
     },
     created() {
         this.getVolunteers();
     },
     watch: {
-        '$attrs.search': function (val) {
-            this.search = val;
-            this.getUsersType();
-        }
+
     }
 
 }

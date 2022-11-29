@@ -4614,7 +4614,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
   },
   mounted: function mounted() {
     this.type = this.$attrs.type;
-    this.search = this.$attrs.search;
     setTimeout(function () {
       $('.navbar-toggle').click();
     }, 200);
@@ -4625,7 +4624,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
 
       var url = "/users-type/volunteer?";
 
-      if (this.search.length > 0) {
+      if (_this.search.length > 0) {
         url = url + 'search=' + _this.search;
         url += '&';
       }
@@ -4654,10 +4653,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
               case 0:
                 page = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 1;
                 _this = _this2;
-                url = "/users-type/volunteer?page=".concat(page);
+                url = "/users-type/volunteer?page=".concat(page, "&");
 
-                if (_this2.search.length > 0) {
-                  url = url + '&search=' + _this.search;
+                if (_this.search.length > 0) {
+                  url = url + 'search=' + _this.search;
                   url += '&';
                 }
 
@@ -4678,17 +4677,22 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_viewer__WEBPACK_IMPORTED_MODULE
           }
         }, _callee);
       }))();
+    },
+    setFilterType: function setFilterType(type) {
+      if (this.filter_type == type) {
+        this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
+      } else {
+        this.filter = 'ASC';
+      }
+
+      this.filter_type = type;
+      this.getVolunteers();
     }
   },
   created: function created() {
     this.getVolunteers();
   },
-  watch: {
-    '$attrs.search': function $attrsSearch(val) {
-      this.search = val;
-      this.getUsersType();
-    }
-  }
+  watch: {}
 });
 
 /***/ }),
@@ -51851,7 +51855,86 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table table-hover table-bordered" }, [
-              _vm._m(1),
+              _c("thead", [
+                _c("tr", [
+                  _c("th", [_vm._v("#")]),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.setFilterType("name")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("Name "),
+                      _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.setFilterType("email")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("Email "),
+                      _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.setFilterType("phone")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("Phone "),
+                      _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.setFilterType("area")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("Area "),
+                      _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.setFilterType("blood_group")
+                        },
+                      },
+                    },
+                    [
+                      _vm._v("Blood Group "),
+                      _c("i", { staticClass: "fa fa-fw fa-sort" }),
+                    ]
+                  ),
+                ]),
+              ]),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -51936,41 +52019,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-6" }, [
       _c("h2", [_vm._v("Our Volunteer")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v("Name "),
-          _c("i", { staticClass: "fa fa-fw fa-sort" }),
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v("Email "),
-          _c("i", { staticClass: "fa fa-fw fa-sort" }),
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v("Phone "),
-          _c("i", { staticClass: "fa fa-fw fa-sort" }),
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v("Area "),
-          _c("i", { staticClass: "fa fa-fw fa-sort" }),
-        ]),
-        _vm._v(" "),
-        _c("th", [
-          _vm._v("Blood Group "),
-          _c("i", { staticClass: "fa fa-fw fa-sort" }),
-        ]),
-      ]),
     ])
   },
 ]
