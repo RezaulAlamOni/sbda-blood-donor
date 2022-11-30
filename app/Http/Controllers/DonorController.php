@@ -18,6 +18,8 @@ class DonorController extends Controller
     }
 
     public function authCheck() {
-        return response()->json(['auth' => User::find(\auth()->id())->with(['blood_group','v_area'])->first()]);
+        $user = Auth::user();
+        $user = User::where('id',$user->id)->with(['blood_group','v_area'])->first();
+        return response()->json(['auth' => $user]);
     }
 }

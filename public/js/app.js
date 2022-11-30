@@ -4477,8 +4477,10 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {});
     },
     readURL: function readURL(e) {
-      this.photo = e.target.files[0];
-      this.authData.profile_photo = URL.createObjectURL(this.photo);
+      if (e.target.files.length > 0) {
+        this.photo = e.target.files[0];
+        this.authData.profile_photo = URL.createObjectURL(this.photo);
+      }
     },
     saveProfile: function saveProfile() {
       var _this = this;
@@ -4490,7 +4492,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('password', this.authData.password);
       formData.append('confirm_password', this.authData.confirm_password);
 
-      if (this.authData.password === this.authData.confirm_password) {
+      if (this.authData.password === this.authData.confirm_password && this.authData.password.length > 0) {
         axios.post('/profile-update', formData).then(function (respose) {
           console.log(respose.data);
         })["catch"](function (er) {
@@ -51692,7 +51694,7 @@ var render = function () {
     "div",
     {
       staticClass: "container bootstrap snippet",
-      staticStyle: { "margin-top": "12px", "margin-bottom": "15px" },
+      staticStyle: { "margin-top": "30px", "margin-bottom": "15px" },
     },
     [
       _c("div", { staticClass: "row" }, [
@@ -51769,269 +51771,273 @@ var render = function () {
           _vm._m(5),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-9" }, [
-          _vm._m(6),
-          _vm._v(" "),
-          _c("div", { staticClass: "tab-content" }, [
-            _c(
-              "div",
-              { staticClass: "tab-pane active", attrs: { id: "home" } },
-              [
-                _c("hr"),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(7),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.name,
-                          expression: "authData.name",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "first_name",
-                        id: "first_name",
-                        placeholder: "first name",
-                        title: "enter your first name if any.",
-                      },
-                      domProps: { value: _vm.authData.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.authData, "name", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(8),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.blood_group.name,
-                          expression: "authData.blood_group.name",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "first_name",
-                        id: "first_name",
-                        placeholder: "first name",
-                        title: "enter your first name if any.",
-                        readonly: "",
-                      },
-                      domProps: { value: _vm.authData.blood_group.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.authData.blood_group,
-                            "name",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(9),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.phone,
-                          expression: "authData.phone",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "mobile",
-                        id: "mobile",
-                        placeholder: "enter mobile number",
-                        title: "enter your mobile number if any.",
-                        readonly: "",
-                      },
-                      domProps: { value: _vm.authData.phone },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.authData, "phone", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(10),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.email,
-                          expression: "authData.email",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "email",
-                        name: "email",
-                        id: "email",
-                        placeholder: "you@email.com",
-                        title: "enter your email.",
-                        readonly: "",
-                      },
-                      domProps: { value: _vm.authData.email },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.authData, "email", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(11),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.password,
-                          expression: "authData.password",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        name: "password",
-                        id: "password",
-                        placeholder: "password",
-                        title: "enter your password.",
-                      },
-                      domProps: { value: _vm.authData.password },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.authData,
-                            "password",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-xs-6" }, [
-                    _vm._m(12),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.authData.confirm_password,
-                          expression: "authData.confirm_password",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        name: "password",
-                        id: "password",
-                        placeholder: "password",
-                        title: "enter your password.",
-                      },
-                      domProps: { value: _vm.authData.confirm_password },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.authData,
-                            "confirm_password",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "col-xs-12",
-                      staticStyle: { "text-align": "right" },
-                    },
-                    [
-                      _c("br"),
-                      _vm._v(" "),
-                      _vm._m(13),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-lg btn-success",
-                          on: { click: _vm.saveProfile },
-                        },
-                        [
-                          _c("i", { staticClass: "fa fa-save" }),
-                          _vm._v(" Save\n                            "),
-                        ]
-                      ),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-              ]
-            ),
+        _c(
+          "div",
+          { staticClass: "col-sm-9", staticStyle: { "margin-top": "20px" } },
+          [
+            _vm._m(6),
             _vm._v(" "),
-            _vm._m(14),
-          ]),
-        ]),
+            _c("div", { staticClass: "tab-content" }, [
+              _c(
+                "div",
+                { staticClass: "tab-pane active", attrs: { id: "home" } },
+                [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.name,
+                            expression: "authData.name",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "first_name",
+                          id: "first_name",
+                          placeholder: "first name",
+                          title: "enter your first name if any.",
+                        },
+                        domProps: { value: _vm.authData.name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.authData, "name", $event.target.value)
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.blood_group.name,
+                            expression: "authData.blood_group.name",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "first_name",
+                          id: "first_name",
+                          placeholder: "first name",
+                          title: "enter your first name if any.",
+                          readonly: "",
+                        },
+                        domProps: { value: _vm.authData.blood_group.name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.authData.blood_group,
+                              "name",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.phone,
+                            expression: "authData.phone",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "mobile",
+                          id: "mobile",
+                          placeholder: "enter mobile number",
+                          title: "enter your mobile number if any.",
+                          readonly: "",
+                        },
+                        domProps: { value: _vm.authData.phone },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.authData, "phone", $event.target.value)
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.email,
+                            expression: "authData.email",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          id: "email",
+                          placeholder: "you@email.com",
+                          title: "enter your email.",
+                          readonly: "",
+                        },
+                        domProps: { value: _vm.authData.email },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.authData, "email", $event.target.value)
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(11),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.password,
+                            expression: "authData.password",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password",
+                          id: "password",
+                          placeholder: "password",
+                          title: "enter your password.",
+                        },
+                        domProps: { value: _vm.authData.password },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.authData,
+                              "password",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _vm._m(12),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.authData.confirm_password,
+                            expression: "authData.confirm_password",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password",
+                          id: "password",
+                          placeholder: "password",
+                          title: "enter your password.",
+                        },
+                        domProps: { value: _vm.authData.confirm_password },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.authData,
+                              "confirm_password",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-xs-12",
+                        staticStyle: { "text-align": "right" },
+                      },
+                      [
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-lg btn-success",
+                            on: { click: _vm.saveProfile },
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-save" }),
+                            _vm._v(" Save\n                            "),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(14),
+            ]),
+          ]
+        ),
       ]),
     ]
   )
@@ -52048,7 +52054,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
-        _c("a", { attrs: { href: "http://bootnipets.com" } }, [
+        _c("a", { attrs: { href: "http://www.sbdabd.com" } }, [
           _vm._v("www.sbdabd.com"),
         ]),
       ]),
@@ -52156,7 +52162,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "password" } }, [
-      _c("h4", [_vm._v("New Password")]),
+      _c("h4", [_vm._v("Password")]),
     ])
   },
   function () {
@@ -52164,7 +52170,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "password" } }, [
-      _c("h4", [_vm._v("Confirm New Password")]),
+      _c("h4", [_vm._v("Confirm Password")]),
     ])
   },
   function () {

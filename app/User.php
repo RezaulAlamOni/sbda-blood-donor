@@ -55,6 +55,14 @@ class User extends Authenticatable
         return $this->hasOne(Volunteer::class,'user_id','id');
 
     }
+    public function getProfilePhotoAttribute($value)
+    {
+        if ($value) {
+            return  'images/profile/'.$value;
+        }
+        return  $value;
+    }
+
     public function donor() {
         return $this->hasOne(Donor::class,'user_id','id');
 

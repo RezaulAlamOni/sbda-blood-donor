@@ -37,17 +37,20 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $file = $request->profile_photo;
-        $type = 'profile';
-        $extension = $file->extension();
-        $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
-        $destinationPath = public_path().'/images/'.$type ;
-        $file->move($destinationPath,$name.'.'.$extension);
+        if ($file) {
+            $type = 'profile';
+            $extension = $file->extension();
+            $name = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME).time().mt_rand();
+            $destinationPath = public_path().'/images/'.$type ;
+            $file->move($destinationPath,$name.'.'.$extension);
 
-        $user = User::query()->where('id',auth()->id())
-        ->update([
-            'name' => $request->name,
-            'profile_photo' =>$destinationPath.'/'.$name.'.'.$extension,
-        ]);
+            $user = User::query()->where('id',auth()->id())
+                ->update([
+                    'name' => $request->name,
+                    'profile_photo' => $name.'.'.$extension,
+                ]);
+
+        }
 
         if (strlen($request->password) > 0) {
             $user = User::query()->where('id',auth()->id())

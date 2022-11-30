@@ -1,5 +1,5 @@
 <template>
-    <div class="container bootstrap snippet" style="margin-top: 12px;margin-bottom: 15px">
+    <div class="container bootstrap snippet" style="margin-top: 30px;margin-bottom: 15px">
         <div class="row">
             <div>
                 <h2 class="text-center">
@@ -22,7 +22,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                    <div class="panel-body"><a href="http://bootnipets.com">www.sbdabd.com</a></div>
+                    <div class="panel-body"><a href="http://www.sbdabd.com">www.sbdabd.com</a></div>
                 </div>
 
 
@@ -50,7 +50,7 @@
                 </div>
 
             </div><!--/col-3-->
-            <div class="col-sm-9">
+            <div class="col-sm-9" style="margin-top: 20px">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
                 </ul>
@@ -101,7 +101,7 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password"><h4>New Password</h4></label>
+                                <label for="password"><h4>Password</h4></label>
                                 <input type="password" class="form-control" name="password" id="password"
                                        v-model="authData.password"
                                        placeholder="password" title="enter your password.">
@@ -110,7 +110,7 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password"><h4>Confirm New Password</h4></label>
+                                <label for="password"><h4>Confirm Password</h4></label>
                                 <input type="password" class="form-control" name="password" id="password"
                                        v-model="authData.confirm_password"
                                        placeholder="password" title="enter your password.">
@@ -255,8 +255,11 @@ export default {
                 })
         },
         readURL(e) {
-            this.photo = e.target.files[0];
-            this.authData.profile_photo = URL.createObjectURL(this.photo);
+            if (e.target.files.length > 0) {
+                this.photo = e.target.files[0];
+                this.authData.profile_photo = URL.createObjectURL(this.photo);
+            }
+
         },
         saveProfile() {
             let _this = this;
@@ -266,7 +269,7 @@ export default {
             formData.append('name', this.authData.name);
             formData.append('password', this.authData.password);
             formData.append('confirm_password', this.authData.confirm_password);
-            if (this.authData.password === this.authData.confirm_password) {
+            if (this.authData.password === this.authData.confirm_password && this.authData.password.length > 0) {
                 axios.post('/profile-update', formData)
                     .then(function (respose) {
                         console.log(respose.data)
