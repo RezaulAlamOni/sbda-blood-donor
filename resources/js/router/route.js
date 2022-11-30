@@ -19,15 +19,42 @@ import FounderMember from "../components/pages/uses/Founder-Member";
 import PageNotFound from "../components/404";
 import donors from "../components/pages/uses/donors";
 import volunteers from "../components/pages/uses/volunteers";
+import profile from "../components/pages/uses/profile";
+import axios from 'axios';
 
 let base_url = window.APP_URL
 
+const ifAuthenticated = (to, from, next) => {
+    axios.get('auth-check')
+        .then(function (respose) {
+            if (respose.data.auth) {
+                next();
+                return;
+            }
+            router.push({
+                name: 'home'
+            });
+        })
+};
+const authData = (to, from, next) => {
+    axios.get('auth-check')
+        .then(function (respose) {
+            return respose.data.auth;
+        })
+}
 
 let routes = [
     {
         path: "/",
         component: home,
         name: "home"
+    },
+    {
+        path: "/profile",
+        component: profile,
+        name: "profile",
+        params: {auth: authData},
+        beforeEnter: ifAuthenticated
     },
     {
         path: "/gallery",
@@ -87,7 +114,8 @@ let routes = [
     {
         path: "/donors",
         component: donors,
-        name: "donors"
+        name: "donors",
+        beforeEnter: ifAuthenticated
     },
     {
         path: "/volunteers",

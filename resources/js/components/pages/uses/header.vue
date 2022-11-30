@@ -127,7 +127,9 @@
                                 </span>
 
                                 <ul class="drop-down" >
-                                    <li @click="hideNavbar()"><a href="#about-membership">Profile</a></li>
+                                    <li @click="hideNavbar()">
+                                        <router-link :to="{name : 'profile'}">Profile</router-link>
+                                    </li>
                                     <li @click="hideNavbar()"><a href="#about-membership">Events</a></li>
                                     <li @click="hideNavbar()"><a href="#about-membership">Donation history</a></li>
 

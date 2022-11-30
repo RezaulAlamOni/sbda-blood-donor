@@ -3999,6 +3999,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "header-component",
   data: function data() {
@@ -4209,6 +4211,372 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "members-note"
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "profile",
+  data: function data() {
+    return {
+      authData: null
+    };
+  },
+  mounted: function mounted() {
+    this.getAuth();
+
+    var readURL = function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('.avatar').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    };
+
+    $(".file-upload").on('change', function () {
+      readURL(this);
+    });
+  },
+  methods: {
+    getAuth: function getAuth() {
+      var _this = this;
+
+      axios.get('auth-check').then(function (respose) {
+        _this.authData = respose.data.auth;
+        console.log(_this.authData);
+      })["catch"](function (er) {
+        console.log(er.message);
+      })["finally"](function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -50569,10 +50937,13 @@ var render = function () {
                           },
                         },
                         [
-                          _c("a", { attrs: { href: "#about-membership" } }, [
-                            _vm._v("Profile"),
-                          ]),
-                        ]
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "profile" } } },
+                            [_vm._v("Profile")]
+                          ),
+                        ],
+                        1
                       ),
                       _vm._v(" "),
                       _c(
@@ -51369,6 +51740,769 @@ var staticRenderFns = [
           ]),
         ]
       ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container bootstrap snippet" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-10" }, [
+          _c("h1", [_vm._v("User name")]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-2" }, [
+          _c("a", { staticClass: "pull-right", attrs: { href: "/users" } }, [
+            _c("img", {
+              staticClass: "img-circle img-responsive",
+              attrs: {
+                title: "profile image",
+                src: "http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100",
+              },
+            }),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _c("img", {
+              staticClass: "avatar img-circle img-thumbnail",
+              attrs: {
+                src: "http://ssl.gstatic.com/accounts/ui/avatar_2x.png",
+                alt: "avatar",
+              },
+            }),
+            _vm._v(" "),
+            _c("h6", [_vm._v("Upload a different photo...")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "text-center center-block file-upload",
+              attrs: { type: "file" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _vm._v("Website "),
+              _c("i", { staticClass: "fa fa-link fa-1x" }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel-body" }, [
+              _c("a", { attrs: { href: "http://bootnipets.com" } }, [
+                _vm._v("bootnipets.com"),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-group" }, [
+            _c("li", { staticClass: "list-group-item text-muted" }, [
+              _vm._v("Activity "),
+              _c("i", { staticClass: "fa fa-dashboard fa-1x" }),
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-right" }, [
+              _c("span", { staticClass: "pull-left" }, [
+                _c("strong", [_vm._v("Shares")]),
+              ]),
+              _vm._v(" 125\n                "),
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-right" }, [
+              _c("span", { staticClass: "pull-left" }, [
+                _c("strong", [_vm._v("Likes")]),
+              ]),
+              _vm._v(" 13"),
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-right" }, [
+              _c("span", { staticClass: "pull-left" }, [
+                _c("strong", [_vm._v("Posts")]),
+              ]),
+              _vm._v(" 37"),
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-right" }, [
+              _c("span", { staticClass: "pull-left" }, [
+                _c("strong", [_vm._v("Followers")]),
+              ]),
+              _vm._v(" 78\n                "),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _vm._v("Social Media"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel-body" }, [
+              _c("i", { staticClass: "fa fa-facebook fa-2x" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-github fa-2x" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-twitter fa-2x" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-pinterest fa-2x" }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-google-plus fa-2x" }),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-9" }, [
+          _c("ul", { staticClass: "nav nav-tabs" }, [
+            _c("li", { staticClass: "active" }, [
+              _c("a", { attrs: { "data-toggle": "tab", href: "#home" } }, [
+                _vm._v("Home"),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { "data-toggle": "tab", href: "#messages" } }, [
+                _vm._v("Menu 1"),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { attrs: { "data-toggle": "tab", href: "#settings" } }, [
+                _vm._v("Menu 2"),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "tab-content" }, [
+            _c(
+              "div",
+              { staticClass: "tab-pane active", attrs: { id: "home" } },
+              [
+                _c("hr"),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    staticClass: "form",
+                    attrs: {
+                      action: "##",
+                      method: "post",
+                      id: "registrationForm",
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "first_name" } }, [
+                          _c("h4", [_vm._v("First name")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "first_name",
+                            id: "first_name",
+                            placeholder: "first name",
+                            title: "enter your first name if any.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "last_name" } }, [
+                          _c("h4", [_vm._v("Last name")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "last_name",
+                            id: "last_name",
+                            placeholder: "last name",
+                            title: "enter your last name if any.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "phone" } }, [
+                          _c("h4", [_vm._v("Phone")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "phone",
+                            id: "phone",
+                            placeholder: "enter phone",
+                            title: "enter your phone number if any.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "mobile" } }, [
+                          _c("h4", [_vm._v("Mobile")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "mobile",
+                            id: "mobile",
+                            placeholder: "enter mobile number",
+                            title: "enter your mobile number if any.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _c("h4", [_vm._v("Email")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "email",
+                            name: "email",
+                            id: "email",
+                            placeholder: "you@email.com",
+                            title: "enter your email.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _c("h4", [_vm._v("Location")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "email",
+                            id: "location",
+                            placeholder: "somewhere",
+                            title: "enter a location",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "password" } }, [
+                          _c("h4", [_vm._v("Password")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            name: "password",
+                            id: "password",
+                            placeholder: "password",
+                            title: "enter your password.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-6" }, [
+                        _c("label", { attrs: { for: "password2" } }, [
+                          _c("h4", [_vm._v("Verify")]),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            name: "password2",
+                            id: "password2",
+                            placeholder: "password2",
+                            title: "enter your password2.",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "col-xs-12" }, [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-lg btn-success",
+                            attrs: { type: "submit" },
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "glyphicon glyphicon-ok-sign",
+                            }),
+                            _vm._v(" Save\n                                "),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-lg",
+                            attrs: { type: "reset" },
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "glyphicon glyphicon-repeat",
+                            }),
+                            _vm._v(
+                              "\n                                    Reset\n                                "
+                            ),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("hr"),
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-pane", attrs: { id: "messages" } }, [
+              _c("h2"),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "form",
+                  attrs: {
+                    action: "##",
+                    method: "post",
+                    id: "registrationForm",
+                  },
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "first_name" } }, [
+                        _c("h4", [_vm._v("First name")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "first_name",
+                          id: "first_name",
+                          placeholder: "first name",
+                          title: "enter your first name if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "last_name" } }, [
+                        _c("h4", [_vm._v("Last name")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "last_name",
+                          id: "last_name",
+                          placeholder: "last name",
+                          title: "enter your last name if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "phone" } }, [
+                        _c("h4", [_vm._v("Phone")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "phone",
+                          id: "phone",
+                          placeholder: "enter phone",
+                          title: "enter your phone number if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "mobile" } }, [
+                        _c("h4", [_vm._v("Mobile")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "mobile",
+                          id: "mobile",
+                          placeholder: "enter mobile number",
+                          title: "enter your mobile number if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _c("h4", [_vm._v("Email")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          id: "email",
+                          placeholder: "you@email.com",
+                          title: "enter your email.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _c("h4", [_vm._v("Location")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          id: "location",
+                          placeholder: "somewhere",
+                          title: "enter a location",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "password" } }, [
+                        _c("h4", [_vm._v("Password")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password",
+                          id: "password",
+                          placeholder: "password",
+                          title: "enter your password.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "password2" } }, [
+                        _c("h4", [_vm._v("Verify")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password2",
+                          id: "password2",
+                          placeholder: "password2",
+                          title: "enter your password2.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-12" }, [
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-lg btn-success",
+                          attrs: { type: "submit" },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "glyphicon glyphicon-ok-sign",
+                          }),
+                          _vm._v(" Save\n                                "),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-lg", attrs: { type: "reset" } },
+                        [
+                          _c("i", {
+                            staticClass: "glyphicon glyphicon-repeat",
+                          }),
+                          _vm._v(
+                            "\n                                    Reset\n                                "
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-pane", attrs: { id: "settings" } }, [
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "form",
+                  attrs: {
+                    action: "##",
+                    method: "post",
+                    id: "registrationForm",
+                  },
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "first_name" } }, [
+                        _c("h4", [_vm._v("First name")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "first_name",
+                          id: "first_name",
+                          placeholder: "first name",
+                          title: "enter your first name if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "last_name" } }, [
+                        _c("h4", [_vm._v("Last name")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "last_name",
+                          id: "last_name",
+                          placeholder: "last name",
+                          title: "enter your last name if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "phone" } }, [
+                        _c("h4", [_vm._v("Phone")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "phone",
+                          id: "phone",
+                          placeholder: "enter phone",
+                          title: "enter your phone number if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "mobile" } }, [
+                        _c("h4", [_vm._v("Mobile")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "mobile",
+                          id: "mobile",
+                          placeholder: "enter mobile number",
+                          title: "enter your mobile number if any.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _c("h4", [_vm._v("Email")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          id: "email",
+                          placeholder: "you@email.com",
+                          title: "enter your email.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _c("h4", [_vm._v("Location")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          id: "location",
+                          placeholder: "somewhere",
+                          title: "enter a location",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "password" } }, [
+                        _c("h4", [_vm._v("Password")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password",
+                          id: "password",
+                          placeholder: "password",
+                          title: "enter your password.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-6" }, [
+                      _c("label", { attrs: { for: "password2" } }, [
+                        _c("h4", [_vm._v("Verify")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          name: "password2",
+                          id: "password2",
+                          placeholder: "password2",
+                          title: "enter your password2.",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-xs-12" }, [
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-lg btn-success pull-right",
+                          attrs: { type: "submit" },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "glyphicon glyphicon-ok-sign",
+                          }),
+                          _vm._v(" Save\n                                "),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]
@@ -67982,9 +69116,13 @@ Vue.component('header-component', __webpack_require__(/*! ./components/pages/use
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// import {myMixin} from "./myMixin";
+//
+// Vue.mixin(myMixin);
 
 
 var app = new Vue({
+  // mixins: [myMixin],
   el: '#app',
   router: _router_route__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
@@ -69318,6 +70456,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/uses/profile.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/pages/uses/profile.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./profile.vue?vue&type=template&id=c3b6d848&scoped=true& */ "./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true&");
+/* harmony import */ var _profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile.vue?vue&type=script&lang=js& */ "./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "c3b6d848",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pages/uses/profile.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./profile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/profile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./profile.vue?vue&type=template&id=c3b6d848&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pages/uses/profile.vue?vue&type=template&id=c3b6d848&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_template_id_c3b6d848_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/uses/slider.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/pages/uses/slider.vue ***!
@@ -69607,6 +70814,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_404__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/404 */ "./resources/js/components/404.vue");
 /* harmony import */ var _components_pages_uses_donors__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/pages/uses/donors */ "./resources/js/components/pages/uses/donors.vue");
 /* harmony import */ var _components_pages_uses_volunteers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/pages/uses/volunteers */ "./resources/js/components/pages/uses/volunteers.vue");
+/* harmony import */ var _components_pages_uses_profile__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/pages/uses/profile */ "./resources/js/components/pages/uses/profile.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_19__);
 
 
 
@@ -69627,11 +70837,41 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 
+
+
 var base_url = window.APP_URL;
+
+var ifAuthenticated = function ifAuthenticated(to, from, next) {
+  axios__WEBPACK_IMPORTED_MODULE_19___default.a.get('auth-check').then(function (respose) {
+    if (respose.data.auth) {
+      next();
+      return;
+    }
+
+    router.push({
+      name: 'home'
+    });
+  });
+};
+
+var authData = function authData(to, from, next) {
+  axios__WEBPACK_IMPORTED_MODULE_19___default.a.get('auth-check').then(function (respose) {
+    return respose.data.auth;
+  });
+};
+
 var routes = [{
   path: "/",
   component: _components_HomeComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: "home"
+}, {
+  path: "/profile",
+  component: _components_pages_uses_profile__WEBPACK_IMPORTED_MODULE_18__["default"],
+  name: "profile",
+  params: {
+    auth: authData
+  },
+  beforeEnter: ifAuthenticated
 }, {
   path: "/gallery",
   component: _components_pages_uses_gallery__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -69679,7 +70919,8 @@ var routes = [{
 }, {
   path: "/donors",
   component: _components_pages_uses_donors__WEBPACK_IMPORTED_MODULE_16__["default"],
-  name: "donors"
+  name: "donors",
+  beforeEnter: ifAuthenticated
 }, {
   path: "/volunteers",
   component: _components_pages_uses_volunteers__WEBPACK_IMPORTED_MODULE_17__["default"],

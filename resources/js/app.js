@@ -76,9 +76,14 @@ Vue.component('header-component', require('./components/pages/uses/header').defa
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// import {myMixin} from "./myMixin";
+//
+// Vue.mixin(myMixin);
 import router from "./router/route";
 
 const app = new Vue({
+    // mixins: [myMixin],
     el: '#app',
     router
 });
+
