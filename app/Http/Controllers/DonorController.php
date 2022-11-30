@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,6 @@ class DonorController extends Controller
     }
 
     public function authCheck() {
-        return response()->json(['auth'=>Auth::user()]);
+        return response()->json(['auth' => User::find(\auth()->id())->with(['blood_group','v_area'])->first()]);
     }
 }

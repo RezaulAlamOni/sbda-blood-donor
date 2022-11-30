@@ -4452,118 +4452,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "profile",
   data: function data() {
     return {
-      authData: null
+      authData: {},
+      photo: null
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.getAuth();
-
-    var readURL = function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('.avatar').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-      }
-    };
-
-    $(".file-upload").on('change', function () {
-      readURL(this);
-    });
   },
   methods: {
     getAuth: function getAuth() {
@@ -4575,6 +4475,30 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (er) {
         console.log(er.message);
       })["finally"](function () {});
+    },
+    readURL: function readURL(e) {
+      this.photo = e.target.files[0];
+      this.authData.profile_photo = URL.createObjectURL(this.photo);
+    },
+    saveProfile: function saveProfile() {
+      var _this = this;
+
+      var formData = new FormData();
+      formData.append('profile_photo', this.photo);
+      formData.append('id', this.authData.id);
+      formData.append('name', this.authData.name);
+      formData.append('password', this.authData.password);
+      formData.append('confirm_password', this.authData.confirm_password);
+
+      if (this.authData.password === this.authData.confirm_password) {
+        axios.post('/profile-update', formData).then(function (respose) {
+          console.log(respose.data);
+        })["catch"](function (er) {
+          console.log(er.message);
+        })["finally"](function () {});
+      } else {
+        alert('Password not match');
+      }
     }
   }
 });
@@ -51764,28 +51688,21 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container bootstrap snippet" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "container bootstrap snippet",
+      staticStyle: { "margin-top": "12px", "margin-bottom": "15px" },
+    },
+    [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-10" }, [
-          _c("h1", [_vm._v("User name")]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("a", { staticClass: "pull-right", attrs: { href: "/users" } }, [
-            _c("img", {
-              staticClass: "img-circle img-responsive",
-              attrs: {
-                title: "profile image",
-                src: "http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100",
-              },
-            }),
+        _c("div", [
+          _c("h2", { staticClass: "text-center" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.authData.name) +
+                "\n            "
+            ),
           ]),
         ]),
       ]),
@@ -51796,7 +51713,9 @@ var staticRenderFns = [
             _c("img", {
               staticClass: "avatar img-circle img-thumbnail",
               attrs: {
-                src: "http://ssl.gstatic.com/accounts/ui/avatar_2x.png",
+                src: _vm.authData.profile_photo
+                  ? _vm.authData.profile_photo
+                  : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png",
                 alt: "avatar",
               },
             }),
@@ -51804,100 +51723,54 @@ var staticRenderFns = [
             _c("h6", [_vm._v("Upload a different photo...")]),
             _vm._v(" "),
             _c("input", {
-              staticClass: "text-center center-block file-upload",
-              attrs: { type: "file" },
+              staticClass: "text-center center-block file-upload_",
+              attrs: { type: "file", name: "file" },
+              on: { change: _vm.readURL },
             }),
           ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Website "),
-              _c("i", { staticClass: "fa fa-link fa-1x" }),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c("a", { attrs: { href: "http://bootnipets.com" } }, [
-                _vm._v("bootnipets.com"),
-              ]),
-            ]),
-          ]),
+          _vm._m(0),
           _vm._v(" "),
           _c("ul", { staticClass: "list-group" }, [
-            _c("li", { staticClass: "list-group-item text-muted" }, [
-              _vm._v("Activity "),
-              _c("i", { staticClass: "fa fa-dashboard fa-1x" }),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-right" }, [
+              _vm._m(2),
+              _vm._v(
+                " " +
+                  _vm._s(_vm.authData.blood_group.name) +
+                  "\n                "
+              ),
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "list-group-item text-right" }, [
-              _c("span", { staticClass: "pull-left" }, [
-                _c("strong", [_vm._v("Shares")]),
-              ]),
-              _vm._v(" 125\n                "),
+              _vm._m(3),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(
+                    _vm.authData.donation_count
+                      ? _vm.authData.donation_count
+                      : 0
+                  ) +
+                  "\n                "
+              ),
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "list-group-item text-right" }, [
-              _c("span", { staticClass: "pull-left" }, [
-                _c("strong", [_vm._v("Likes")]),
-              ]),
-              _vm._v(" 13"),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-right" }, [
-              _c("span", { staticClass: "pull-left" }, [
-                _c("strong", [_vm._v("Posts")]),
-              ]),
-              _vm._v(" 37"),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-right" }, [
-              _c("span", { staticClass: "pull-left" }, [
-                _c("strong", [_vm._v("Followers")]),
-              ]),
-              _vm._v(" 78\n                "),
+              _vm._m(4),
+              _vm._v(
+                " " + _vm._s(_vm.authData.v_area.name) + "\n                "
+              ),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Social Media"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c("i", { staticClass: "fa fa-facebook fa-2x" }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fa fa-github fa-2x" }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fa fa-twitter fa-2x" }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fa fa-pinterest fa-2x" }),
-              _vm._v(" "),
-              _c("i", { staticClass: "fa fa-google-plus fa-2x" }),
-            ]),
-          ]),
+          _vm._m(5),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-9" }, [
-          _c("ul", { staticClass: "nav nav-tabs" }, [
-            _c("li", { staticClass: "active" }, [
-              _c("a", { attrs: { "data-toggle": "tab", href: "#home" } }, [
-                _vm._v("Home"),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { "data-toggle": "tab", href: "#messages" } }, [
-                _vm._v("Menu 1"),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { "data-toggle": "tab", href: "#settings" } }, [
-                _vm._v("Menu 2"),
-              ]),
-            ]),
-          ]),
+          _vm._m(6),
           _vm._v(" "),
           _c("div", { staticClass: "tab-content" }, [
             _c(
@@ -51906,601 +51779,595 @@ var staticRenderFns = [
               [
                 _c("hr"),
                 _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "form",
-                    attrs: {
-                      action: "##",
-                      method: "post",
-                      id: "registrationForm",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "first_name" } }, [
-                          _c("h4", [_vm._v("First name")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "first_name",
-                            id: "first_name",
-                            placeholder: "first name",
-                            title: "enter your first name if any.",
-                          },
-                        }),
-                      ]),
-                    ]),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(7),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "last_name" } }, [
-                          _c("h4", [_vm._v("Last name")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "last_name",
-                            id: "last_name",
-                            placeholder: "last name",
-                            title: "enter your last name if any.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "phone" } }, [
-                          _c("h4", [_vm._v("Phone")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "phone",
-                            id: "phone",
-                            placeholder: "enter phone",
-                            title: "enter your phone number if any.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "mobile" } }, [
-                          _c("h4", [_vm._v("Mobile")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "mobile",
-                            id: "mobile",
-                            placeholder: "enter mobile number",
-                            title: "enter your mobile number if any.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "email" } }, [
-                          _c("h4", [_vm._v("Email")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "email",
-                            name: "email",
-                            id: "email",
-                            placeholder: "you@email.com",
-                            title: "enter your email.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "email" } }, [
-                          _c("h4", [_vm._v("Location")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "email",
-                            id: "location",
-                            placeholder: "somewhere",
-                            title: "enter a location",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "password" } }, [
-                          _c("h4", [_vm._v("Password")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            name: "password",
-                            id: "password",
-                            placeholder: "password",
-                            title: "enter your password.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-6" }, [
-                        _c("label", { attrs: { for: "password2" } }, [
-                          _c("h4", [_vm._v("Verify")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            name: "password2",
-                            id: "password2",
-                            placeholder: "password2",
-                            title: "enter your password2.",
-                          },
-                        }),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "col-xs-12" }, [
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-lg btn-success",
-                            attrs: { type: "submit" },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "glyphicon glyphicon-ok-sign",
-                            }),
-                            _vm._v(" Save\n                                "),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-lg",
-                            attrs: { type: "reset" },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "glyphicon glyphicon-repeat",
-                            }),
-                            _vm._v(
-                              "\n                                    Reset\n                                "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ]),
-                  ]
-                ),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.name,
+                          expression: "authData.name",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "first_name",
+                        id: "first_name",
+                        placeholder: "first name",
+                        title: "enter your first name if any.",
+                      },
+                      domProps: { value: _vm.authData.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.authData, "name", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
                 _vm._v(" "),
-                _c("hr"),
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "tab-pane", attrs: { id: "messages" } }, [
-              _c("h2"),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  staticClass: "form",
-                  attrs: {
-                    action: "##",
-                    method: "post",
-                    id: "registrationForm",
-                  },
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "first_name" } }, [
-                        _c("h4", [_vm._v("First name")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "first_name",
-                          id: "first_name",
-                          placeholder: "first name",
-                          title: "enter your first name if any.",
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.blood_group.name,
+                          expression: "authData.blood_group.name",
                         },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "last_name" } }, [
-                        _c("h4", [_vm._v("Last name")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "last_name",
-                          id: "last_name",
-                          placeholder: "last name",
-                          title: "enter your last name if any.",
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "first_name",
+                        id: "first_name",
+                        placeholder: "first name",
+                        title: "enter your first name if any.",
+                        readonly: "",
+                      },
+                      domProps: { value: _vm.authData.blood_group.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.authData.blood_group,
+                            "name",
+                            $event.target.value
+                          )
                         },
-                      }),
-                    ]),
+                      },
+                    }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "phone" } }, [
-                        _c("h4", [_vm._v("Phone")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "phone",
-                          id: "phone",
-                          placeholder: "enter phone",
-                          title: "enter your phone number if any.",
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.phone,
+                          expression: "authData.phone",
                         },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "mobile" } }, [
-                        _c("h4", [_vm._v("Mobile")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "mobile",
-                          id: "mobile",
-                          placeholder: "enter mobile number",
-                          title: "enter your mobile number if any.",
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        name: "mobile",
+                        id: "mobile",
+                        placeholder: "enter mobile number",
+                        title: "enter your mobile number if any.",
+                        readonly: "",
+                      },
+                      domProps: { value: _vm.authData.phone },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.authData, "phone", $event.target.value)
                         },
-                      }),
-                    ]),
+                      },
+                    }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "email" } }, [
-                        _c("h4", [_vm._v("Email")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "email",
-                          name: "email",
-                          id: "email",
-                          placeholder: "you@email.com",
-                          title: "enter your email.",
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.email,
+                          expression: "authData.email",
                         },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "email" } }, [
-                        _c("h4", [_vm._v("Location")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "email",
-                          id: "location",
-                          placeholder: "somewhere",
-                          title: "enter a location",
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        name: "email",
+                        id: "email",
+                        placeholder: "you@email.com",
+                        title: "enter your email.",
+                        readonly: "",
+                      },
+                      domProps: { value: _vm.authData.email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.authData, "email", $event.target.value)
                         },
-                      }),
-                    ]),
+                      },
+                    }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "password" } }, [
-                        _c("h4", [_vm._v("Password")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          name: "password",
-                          id: "password",
-                          placeholder: "password",
-                          title: "enter your password.",
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.password,
+                          expression: "authData.password",
                         },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "password2" } }, [
-                        _c("h4", [_vm._v("Verify")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          name: "password2",
-                          id: "password2",
-                          placeholder: "password2",
-                          title: "enter your password2.",
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        name: "password",
+                        id: "password",
+                        placeholder: "password",
+                        title: "enter your password.",
+                      },
+                      domProps: { value: _vm.authData.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.authData,
+                            "password",
+                            $event.target.value
+                          )
                         },
-                      }),
-                    ]),
+                      },
+                    }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-12" }, [
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-xs-6" }, [
+                    _vm._m(12),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.authData.confirm_password,
+                          expression: "authData.confirm_password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        name: "password",
+                        id: "password",
+                        placeholder: "password",
+                        title: "enter your password.",
+                      },
+                      domProps: { value: _vm.authData.confirm_password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.authData,
+                            "confirm_password",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-xs-12",
+                      staticStyle: { "text-align": "right" },
+                    },
+                    [
                       _c("br"),
+                      _vm._v(" "),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c(
                         "button",
                         {
                           staticClass: "btn btn-lg btn-success",
-                          attrs: { type: "submit" },
+                          on: { click: _vm.saveProfile },
                         },
                         [
-                          _c("i", {
-                            staticClass: "glyphicon glyphicon-ok-sign",
-                          }),
-                          _vm._v(" Save\n                                "),
+                          _c("i", { staticClass: "fa fa-save" }),
+                          _vm._v(" Save\n                            "),
                         ]
                       ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        { staticClass: "btn btn-lg", attrs: { type: "reset" } },
-                        [
-                          _c("i", {
-                            staticClass: "glyphicon glyphicon-repeat",
-                          }),
-                          _vm._v(
-                            "\n                                    Reset\n                                "
-                          ),
-                        ]
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "tab-pane", attrs: { id: "settings" } }, [
-              _c("hr"),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  staticClass: "form",
-                  attrs: {
-                    action: "##",
-                    method: "post",
-                    id: "registrationForm",
-                  },
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "first_name" } }, [
-                        _c("h4", [_vm._v("First name")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "first_name",
-                          id: "first_name",
-                          placeholder: "first name",
-                          title: "enter your first name if any.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "last_name" } }, [
-                        _c("h4", [_vm._v("Last name")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "last_name",
-                          id: "last_name",
-                          placeholder: "last name",
-                          title: "enter your last name if any.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "phone" } }, [
-                        _c("h4", [_vm._v("Phone")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "phone",
-                          id: "phone",
-                          placeholder: "enter phone",
-                          title: "enter your phone number if any.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "mobile" } }, [
-                        _c("h4", [_vm._v("Mobile")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          name: "mobile",
-                          id: "mobile",
-                          placeholder: "enter mobile number",
-                          title: "enter your mobile number if any.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "email" } }, [
-                        _c("h4", [_vm._v("Email")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "email",
-                          name: "email",
-                          id: "email",
-                          placeholder: "you@email.com",
-                          title: "enter your email.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "email" } }, [
-                        _c("h4", [_vm._v("Location")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "email",
-                          id: "location",
-                          placeholder: "somewhere",
-                          title: "enter a location",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "password" } }, [
-                        _c("h4", [_vm._v("Password")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          name: "password",
-                          id: "password",
-                          placeholder: "password",
-                          title: "enter your password.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-6" }, [
-                      _c("label", { attrs: { for: "password2" } }, [
-                        _c("h4", [_vm._v("Verify")]),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          name: "password2",
-                          id: "password2",
-                          placeholder: "password2",
-                          title: "enter your password2.",
-                        },
-                      }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "col-xs-12" }, [
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-lg btn-success pull-right",
-                          attrs: { type: "submit" },
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "glyphicon glyphicon-ok-sign",
-                          }),
-                          _vm._v(" Save\n                                "),
-                        ]
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]),
+            _vm._m(14),
           ]),
+        ]),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _vm._v("Website "),
+        _c("i", { staticClass: "fa fa-link fa-1x" }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("a", { attrs: { href: "http://bootnipets.com" } }, [
+          _vm._v("www.sbdabd.com"),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item text-muted" }, [
+      _vm._v("Activity "),
+      _c("i", { staticClass: "fa fa-dashboard fa-1x" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "pull-left" }, [
+      _c("strong", [_vm._v("Blood Group")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "pull-left" }, [
+      _c("strong", [_vm._v("Donations")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "pull-left" }, [
+      _c("strong", [_vm._v("Area")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [_vm._v("Social Media")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("i", { staticClass: "fa fa-facebook fa-2x" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fa fa-github fa-2x" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fa fa-twitter fa-2x" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fa fa-pinterest fa-2x" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fa fa-google-plus fa-2x" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "nav nav-tabs" }, [
+      _c("li", { staticClass: "active" }, [
+        _c("a", { attrs: { "data-toggle": "tab", href: "#home" } }, [
+          _vm._v("Details"),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "first_name" } }, [
+      _c("h4", [_vm._v("Full name")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "first_name" } }, [
+      _c("h4", [_vm._v("Blood Group")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "mobile" } }, [
+      _c("h4", [_vm._v("Phone")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "email" } }, [
+      _c("h4", [_vm._v("Email")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "password" } }, [
+      _c("h4", [_vm._v("New Password")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "password" } }, [
+      _c("h4", [_vm._v("Confirm New Password")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-lg", attrs: { type: "reset" } },
+      [
+        _c("i", { staticClass: "fa fa-recycle" }),
+        _vm._v(
+          "\n                                Reset\n                            "
+        ),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane", attrs: { id: "messages" } }, [
+      _c("h2"),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "first_name" } }, [
+            _c("h4", [_vm._v("First name")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "first_name",
+              id: "first_name",
+              placeholder: "first name",
+              title: "enter your first name if any.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "last_name" } }, [
+            _c("h4", [_vm._v("Last name")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "last_name",
+              id: "last_name",
+              placeholder: "last name",
+              title: "enter your last name if any.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "phone" } }, [
+            _c("h4", [_vm._v("Phone")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "phone",
+              id: "phone",
+              placeholder: "enter phone",
+              title: "enter your phone number if any.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "mobile" } }, [
+            _c("h4", [_vm._v("Mobile")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "mobile",
+              id: "mobile",
+              placeholder: "enter mobile number",
+              title: "enter your mobile number if any.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "email" } }, [
+            _c("h4", [_vm._v("Email")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              name: "email",
+              id: "email",
+              placeholder: "you@email.com",
+              title: "enter your email.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "email" } }, [
+            _c("h4", [_vm._v("Location")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "location",
+              placeholder: "somewhere",
+              title: "enter a location",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "password" } }, [
+            _c("h4", [_vm._v("Password")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              name: "password",
+              id: "password",
+              placeholder: "password",
+              title: "enter your password.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-6" }, [
+          _c("label", { attrs: { for: "password2" } }, [
+            _c("h4", [_vm._v("Verify")]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              name: "password2",
+              id: "password2",
+              placeholder: "password2",
+              title: "enter your password2.",
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "col-xs-12" }, [
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-success",
+              attrs: { type: "submit" },
+            },
+            [
+              _c("i", { staticClass: "glyphicon glyphicon-ok-sign" }),
+              _vm._v(" Save\n                            "),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-lg", attrs: { type: "reset" } },
+            [
+              _c("i", { staticClass: "glyphicon glyphicon-repeat" }),
+              _vm._v(
+                "\n                                Reset\n                            "
+              ),
+            ]
+          ),
         ]),
       ]),
     ])

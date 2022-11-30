@@ -1,10 +1,10 @@
 <template>
-    <div class="container bootstrap snippet">
+    <div class="container bootstrap snippet" style="margin-top: 12px;margin-bottom: 15px">
         <div class="row">
-            <div class="col-sm-10"><h1>User name</h1></div>
-            <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
-                                                                           class="img-circle img-responsive"
-                                                                           src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
+            <div>
+                <h2 class="text-center">
+                    {{ authData.name }}
+                </h2>
             </div>
         </div>
         <div class="row">
@@ -12,27 +12,31 @@
 
 
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                    <img :src=" authData.profile_photo ? authData.profile_photo : 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png'" class="avatar img-circle img-thumbnail"
                          alt="avatar">
                     <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block file-upload">
+                    <input type="file" class="text-center center-block file-upload_" @change="readURL" name="file">
                 </div>
                 <br>
 
 
                 <div class="panel panel-default">
                     <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                    <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+                    <div class="panel-body"><a href="http://bootnipets.com">www.sbdabd.com</a></div>
                 </div>
 
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong>Blood Group</strong></span> {{ authData.blood_group.name }}
                     </li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong>Donations</strong></span>
+                        {{ authData.donation_count ? authData.donation_count : 0 }}
+                    </li>
+                    <li class="list-group-item text-right"><span class="pull-left">
+                        <strong>Area</strong></span> {{ authData.v_area.name }}
                     </li>
                 </ul>
 
@@ -48,93 +52,83 @@
             </div><!--/col-3-->
             <div class="col-sm-9">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                    <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
                 </ul>
 
 
-                <div class="tab-content">
+                <div class="tab-content" >
                     <div class="tab-pane active" id="home">
                         <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="first_name"><h4>First name</h4></label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"
-                                           placeholder="first name" title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="last_name"><h4>Last name</h4></label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"
-                                           placeholder="last name" title="enter your last name if any.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>Full name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       v-model="authData.name"
+                                       placeholder="first name" title="enter your first name if any.">
                             </div>
+                        </div>
+                        <div class="form-group">
 
-                            <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>Blood Group</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       v-model="authData.blood_group.name"
+                                       placeholder="first name" title="enter your first name if any." readonly>
+                            </div>
+                        </div>
 
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Phone</h4></label>
+                                <input type="text" class="form-control" name="mobile" id="mobile"
+                                       v-model="authData.phone"
+                                       placeholder="enter mobile number" title="enter your mobile number if any."
+                                       readonly>
                             </div>
+                        </div>
+                        <div class="form-group">
 
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile"><h4>Mobile</h4></label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile"
-                                           placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       v-model="authData.email"
+                                       placeholder="you@email.com" title="enter your email." readonly>
                             </div>
-                            <div class="form-group">
+                        </div>
 
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Location</h4></label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere"
-                                           title="enter a location">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="password"><h4>New Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       v-model="authData.password"
+                                       placeholder="password" title="enter your password.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                           placeholder="password" title="enter your password.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Confirm New Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       v-model="authData.confirm_password"
+                                       placeholder="password" title="enter your password.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12" style="text-align: right;">
+                                <br>
+                                <button class="btn btn-lg" type="reset">
+                                    <i class="fa fa-recycle"></i>
+                                    Reset
+                                </button>
+                                <button class="btn btn-lg btn-success"  @click="saveProfile">
+                                    <i class="fa fa-save"></i> Save
+                                </button>
+                            </div>
+                        </div>
 
-                                <div class="col-xs-6">
-                                    <label for="password2"><h4>Verify</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2"
-                                           placeholder="password2" title="enter your password2.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save
-                                    </button>
-                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
-                                        Reset
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
 
                         <hr>
 
@@ -144,173 +138,92 @@
                         <h2></h2>
 
                         <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="first_name"><h4>First name</h4></label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"
-                                           placeholder="first name" title="enter your first name if any.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       placeholder="first name" title="enter your first name if any.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="last_name"><h4>Last name</h4></label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"
-                                           placeholder="last name" title="enter your last name if any.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                       placeholder="last name" title="enter your last name if any.">
                             </div>
+                        </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Phone</h4></label>
+                                <input type="text" class="form-control" name="phone" id="phone"
+                                       placeholder="enter phone" title="enter your phone number if any.">
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile"><h4>Mobile</h4></label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile"
-                                           placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Mobile</h4></label>
+                                <input type="text" class="form-control" name="mobile" id="mobile"
+                                       placeholder="enter mobile number" title="enter your mobile number if any.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           placeholder="you@email.com" title="enter your email.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="you@email.com" title="enter your email.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Location</h4></label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere"
-                                           title="enter a location">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Location</h4></label>
+                                <input type="email" class="form-control" id="location" placeholder="somewhere"
+                                       title="enter a location">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                           placeholder="password" title="enter your password.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       placeholder="password" title="enter your password.">
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                <div class="col-xs-6">
-                                    <label for="password2"><h4>Verify</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2"
-                                           placeholder="password2" title="enter your password2.">
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Verify</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2"
+                                       placeholder="password2" title="enter your password2.">
                             </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save
-                                    </button>
-                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
-                                        Reset
-                                    </button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i
+                                    class="glyphicon glyphicon-ok-sign"></i> Save
+                                </button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
+                                    Reset
+                                </button>
                             </div>
-                        </form>
+                        </div>
+
 
                     </div><!--/tab-pane-->
-                    <div class="tab-pane" id="settings">
+                </div>
 
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
 
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
+    </div><!--/col-9-->
 
-                                <div class="col-xs-6">
-                                    <label for="first_name"><h4>First name</h4></label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"
-                                           placeholder="first name" title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="last_name"><h4>Last name</h4></label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"
-                                           placeholder="last name" title="enter your last name if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                           placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile"><h4>Mobile</h4></label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile"
-                                           placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                           placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Location</h4></label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere"
-                                           title="enter a location">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                           placeholder="password" title="enter your password.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password2"><h4>Verify</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2"
-                                           placeholder="password2" title="enter your password2.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success pull-right" type="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save
-                                    </button>
-                                    <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div><!--/tab-pane-->
-            </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div>
 </template>
 
 <script>
@@ -318,26 +231,15 @@ export default {
     name: "profile",
     data() {
         return {
-            authData : null
+            authData: {},
+            photo : null
         }
     },
-    mounted () {
+    mounted() {
+        let _this = this;
         this.getAuth();
-        let readURL = function (input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('.avatar').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".file-upload").on('change', function () {
-            readURL(this);
-        });
     },
-    methods : {
+    methods: {
         getAuth() {
             let _this = this;
             axios.get('auth-check')
@@ -352,6 +254,33 @@ export default {
 
                 })
         },
+        readURL(e) {
+            this.photo = e.target.files[0];
+            this.authData.profile_photo = URL.createObjectURL(this.photo);
+        },
+        saveProfile() {
+            let _this = this;
+            let formData = new FormData();
+            formData.append('profile_photo', this.photo);
+            formData.append('id', this.authData.id);
+            formData.append('name', this.authData.name);
+            formData.append('password', this.authData.password);
+            formData.append('confirm_password', this.authData.confirm_password);
+            if (this.authData.password === this.authData.confirm_password) {
+                axios.post('/profile-update', formData)
+                    .then(function (respose) {
+                        console.log(respose.data)
+                    })
+                    .catch(function (er) {
+                        console.log(er.message)
+                    })
+                    .finally(function () {
+
+                    })
+            } else {
+                alert('Password not match')
+            }
+        }
     }
 }
 </script>
