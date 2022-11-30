@@ -46,7 +46,7 @@
                             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                         </button>
                         <a class="logo" href="/">
-                            <img style="height: 60px;" alt="" src="images/logo/sbda-logo.png">
+                            <img style="height: 45px;" alt="" src="images/logo/logo-written-bangla.png">
                         </a>
                     </div>
                     <div class="navbar-collapse collapse">
