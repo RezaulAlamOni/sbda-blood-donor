@@ -51132,8 +51132,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("a", { staticClass: "logo", attrs: { href: "/" } }, [
         _c("img", {
-          staticStyle: { height: "60px" },
-          attrs: { alt: "", src: "images/logo/sbda-logo.png" },
+          staticStyle: { height: "45px" },
+          attrs: { alt: "", src: "images/logo/logo-written-bangla.png" },
         }),
       ]),
     ])
