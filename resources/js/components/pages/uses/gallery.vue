@@ -148,4 +148,17 @@ export default {
 .section-content-block {
     padding: 30px 0 100px 0;
 }
+
+.no-img-separator span {
+    display: none;
+}
+@media (max-width: 667px) {
+    .no-img-separator h4 {
+        display: none;
+
+    }
+    .section-heading-wrapper {
+        margin-bottom: 10px;
+    }
+}
 </style>

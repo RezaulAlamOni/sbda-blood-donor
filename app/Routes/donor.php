@@ -32,3 +32,4 @@ Route::get('/member-areas','VolunteerAreaController@index')->name('member.areas'
 
 Route::get('/photos/{type}','PhotoController@index');
 Route::get('/users-type/{type}', 'VolunteerController@index1')->name('users.type');
+Route::post('/profile-update', [\App\Http\Controllers\ProfileController::class,'updateProfile'])->name('profile.update');

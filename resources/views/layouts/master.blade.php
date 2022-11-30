@@ -21,6 +21,8 @@
     <link href="{{asset('css/owl.carousel.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/venobox.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('css/styles.css')}}"/>
+
+    <link rel="manifest" href="/manifest.json">
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
     <style>
@@ -290,6 +292,7 @@
 <!-- Back To Top Button  -->
 
 <a id="backTop">Back To Top</a>
+
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

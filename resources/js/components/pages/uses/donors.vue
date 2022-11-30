@@ -7,26 +7,43 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Our Donors</h2>
+                    <div class="col-md-12 row" style="padding: 0; margin: 0">
+                        <div class="col-md-4">
+                            <h2>Our Volunteer</h2>
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-4" style="margin : 0;padding: 0">
+                            <input type="text" class="form-control" style="height: 40px;border-radius: 5px"
+                                   @keyup="getDonors" v-model="search"
+                                   placeholder="Find user by Name, Email, Phone Area and Blood group ">
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Blood Group</th>
+                            <th @click="setFilterType('name')">Name <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('email')">Email <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('phone')">Phone <i class="fa fa-fw fa-sort"></i></th>
+                            <th @click="setFilterType('blood_group')">Blood Group <i class="fa fa-fw fa-sort"></i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(user,k) in users">
+                        <tr v-for="(user,k) in users" :class="(k%2 == 0) ?  'table-custom-tr1' : 'table-custom-tr' ">
                             <th scope="row">{{ (k+1) }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
-                            <td>{{ user.blood_group ? user.blood_group.name : '' }}</td>
+                            <td class="text-center">{{ user.blood_group ? user.blood_group.name : '' }}</td>
                         </tr>
 
                         </tbody>
@@ -68,7 +85,10 @@ export default {
             app_url: window.APP_URL,
             options: {},
             type: 0,
-            users : []
+            users : [],
+            search : '',
+            filter: 'DESC',
+            filter_type: 'id'
         }
     },
     mounted() {
@@ -79,12 +99,18 @@ export default {
 
     },
     methods: {
-        getGallery() {
+        getDonors() {
             let _this = this;
-            this.axios.get('/users-type/donor')
+            let url = `/users-type/donor?`;
+            if (_this.search.length > 0) {
+                url = url + 'search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            this.axios.get(url)
                 .then(resp => {
                     _this.users = resp.data.users.data;
-                    _this.photo_s =     resp.data.users
+                    _this.photo_s = resp.data.users
                 })
         },
         show() {
@@ -94,17 +120,32 @@ export default {
         },
         async list(page = 1) {
             let _this = this;
-            await axios.get(`/users-type/donor?page=${page}`)
+            let url = `/users-type/donor?page=${page}&`;
+            if (_this.search.length > 0) {
+                url = url + 'search=' + _this.search;
+                url += '&';
+            }
+            url += 'filter=' + _this.filter + '&filter_type=' + _this.filter_type;
+            await axios.get(url)
                 .then((resp) => {
                     _this.users = resp.data.users.data;
                     _this.photo_s =     resp.data.users
                 }).catch(({response}) => {
                     console.error(response)
                 })
-        }
+        },
+        setFilterType(type) {
+            if (this.filter_type == type) {
+                this.filter = this.filter == 'ASC' ? 'DESC' : 'ASC';
+            } else  {
+                this.filter = 'ASC';
+            }
+            this.filter_type = type;
+            this.getVolunteers();
+        },
     },
     created() {
-        this.getGallery();
+        this.getDonors();
     }
 
 }
@@ -113,5 +154,16 @@ export default {
 <style scoped>
 .section-content-block {
     padding: 30px 0 100px 0;
+}
+
+thead tr {
+    background: #fd989c;
+}
+
+.table-custom-tr {
+    background: #dfecff;
+}
+.table-custom-tr {
+    background: #ffedf5;
 }
 </style>

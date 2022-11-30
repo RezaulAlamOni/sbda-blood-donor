@@ -51,16 +51,16 @@
                             <table class="table align-items-center table-dark table-flush">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="sort" data-sort="name" @click="setFilterType('name')">Name
+                                    <th scope="col" class="sort" data-sort="name" @click="setFilterType('name')">Name <i class="fa fa-fw fa-sort"></i>
                                     </th>
                                     <th scope="col" class="sort" data-sort="budget" @click="setFilterType('email')">
-                                        Email
+                                        Email <i class="fa fa-fw fa-sort"></i>
                                     </th>
                                     <th scope="col" class="sort" data-sort="status" @click="setFilterType('phone')">
-                                        Phone
+                                        Phone <i class="fa fa-fw fa-sort"></i>
                                     </th>
-                                    <th scope="col" class="sort" data-sort="status">Area</th>
-                                    <th scope="col" class="sort" data-sort="status">Blood Group</th>
+                                    <th scope="col" class="sort" data-sort="status">Area <i class="fa fa-fw fa-sort"></i></th>
+                                    <th scope="col" class="sort" data-sort="status">Blood Group <i class="fa fa-fw fa-sort"></i></th>
                                     <!--                                    <th scope="col">Users</th>-->
                                     <!--                                    <th scope="col" class="sort" data-sort="completion">Completion</th>-->
                                     <th scope="col" @click="setFilterType('status')">Status</th>
@@ -255,6 +255,11 @@ export default {
 
 th {
     cursor: pointer;
+}
+
+.thead-dark tr th {
+    font-size: 16px;
+    padding: 05px 30px;
 }
 
 </style>

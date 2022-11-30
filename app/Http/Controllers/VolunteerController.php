@@ -64,6 +64,9 @@ class VolunteerController extends Controller
     public function index1(Request $request)
     {
         $users = new User();
+        $search = $request->get('search');
+        $filter = $request->get('filter');
+        $filter_type = $request->get('filter_type');
         if (isset($request->type)) {
             if ($request->type == 'donor') {
                 $users_id = Donor::get()->pluck('user_id');
@@ -74,6 +77,27 @@ class VolunteerController extends Controller
         }
 
         $users = $users->whereIn('id', $users_id)->with(['blood_group', 'area', 'v_area', 'donor', 'volunteer']);
+
+        if ($filter_type == 'area') {
+            $users = $users->orderBy('areas_id', $filter);
+        } else if ($filter_type == 'blood_group') {
+            $users = $users->orderBy('blood_group_id', $filter);;
+        } else {
+            $users = $users->orderBy($filter_type, $filter);
+        }
+        if ($search) {
+            $users = $users->where('email', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%')
+                ->with([
+                    'blood_group' => function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    },
+                    'area' => function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    }
+                ])
+                ->orWhere('phone', 'like', '%' . $search . '%');
+        }
 
         $users = $users->paginate(50);
 
