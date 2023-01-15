@@ -101,7 +101,7 @@ class VolunteerController extends Controller
 
         $users = $users->paginate(50);
 
-        return response()->json(['users' => $users]);
+        return response()->json(['users' => []]);
 
 
         //
